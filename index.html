@@ -7,8 +7,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="theme-color" content="#059669" />
   <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="icon" type="image/png" href="icon-192.png">
   <meta name="apple-mobile-web-app-title" content="EcoPulse">
   <title>EcoPulse v3 - 大学生協 環境活動インサイト＆Obsidian連携リーダー</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -297,7 +297,7 @@
       </div>
       <div class="text-center space-y-1">
         <p id="reader-loading-msg" class="text-sm font-bold text-slate-700">記事を取得中...</p>
-        <p class="text-xs text-slate-400">CORSプロキシ経由でHTMLを取得し本文を抽出しています</p>
+        <p class="text-xs text-slate-400">3つのプロキシを並列で試しています。10〜20秒かかる場合があります。</p>
       </div>
     </div>
 
@@ -747,14 +747,86 @@
 // DATA CONSTANTS
 // ════════════════════════════════════════════════════════════════
 const INITIAL_ARTICLES = [
-  { id:'art-1', title:'東京都「食品ロス削減推進計画」改定、大学キャンパスや社員食堂での食べきり推進モデルを拡大（サンプル）', source:'東京都環境局', type:'自治体', tag:'フードロス', nature:'義務・規制動向', coopAreas:['食堂・フード','学生企画・啓発'], date:'2026-11-19', url:'https://www.kankyo.metro.tokyo.lg.jp/resource/foodloss/index.html', readLater:false },
-  { id:'art-2', title:'国内小売・生協グループ各社が「リユース容器シェアリング」実証実験を全国50拠点へ拡大（サンプル）', source:'サステナブル・ブランド ジャパン', type:'企業・評価', tag:'プラスチック・資源循環', nature:'先進事例・表彰', coopAreas:['購買・商品調達','店舗運営・省エネ'], date:'2026-11-18', url:'https://www.env.go.jp/recycle/plastic/index.html', readLater:false },
-  { id:'art-3', title:'EU「エコデザイン規則」本格適用へ、企業に製品の修理可能性とカーボンフットプリント開示を義務付け（サンプル）', source:'JETRO 環境ニュース', type:'世界動向', tag:'経済・ルール形成', nature:'義務・規制動向', coopAreas:['組織方針・ガバナンス'], date:'2026-11-17', url:'https://www.jetro.go.jp/theme/wto-eco/eu/', readLater:false },
-  { id:'art-4', title:'CDP気候変動・森林・水セキュリティ評価、日本企業過去最多の120社が最高ランク「Aリスト」獲得（サンプル）', source:'環境省 報道発表資料', type:'企業・評価', tag:'ESG評価・表彰', nature:'先進事例・表彰', coopAreas:['組織方針・ガバナンス'], date:'2026-11-16', url:'https://www.env.go.jp/press/index.html', readLater:false },
-  { id:'art-5', title:'仙台市「杜の都・脱炭素先行地域」プロジェクト、地域新電力と大学施設間の再エネ直接供給を開始（サンプル）', source:'仙台市 環境推進', type:'自治体', tag:'脱炭素・再エネ', nature:'補助・連携機会', coopAreas:['店舗運営・省エネ','組織方針・ガバナンス'], date:'2026-11-15', url:'https://www.city.sendai.jp/kankyo/index.html', readLater:false },
-  { id:'art-6', title:'自然関連財務情報開示（TNFD）提言賛同組織が世界500突破、食品・農林業のサプライチェーン評価が加速（サンプル）', source:'日経ESG', type:'世界動向', tag:'生物多様性・森林', nature:'先進事例・表彰', coopAreas:['購買・商品調達','組織方針・ガバナンス'], date:'2026-11-14', url:'https://www.env.go.jp/nature/biodiversity/index.html', readLater:false },
-  { id:'art-7', title:'神奈川県鎌倉市、市民参加型「コンポスト循環コミュニティ」で生ごみ焼却量を前年比18%削減（サンプル）', source:'IDEAS FOR GOOD', type:'自治体', tag:'フードロス', nature:'先進事例・表彰', coopAreas:['食堂・フード','学生企画・啓発'], date:'2026-11-12', url:'https://ideasforgood.jp/category/circular/', readLater:false },
-  { id:'art-8', title:'環境省「グッドライフアワード」受賞発表、学生団体と地元企業が協働したアップサイクル事業が選出（サンプル）', source:'環境省 グッドライフアワード', type:'企業・評価', tag:'ESG評価・表彰', nature:'先進事例・表彰', coopAreas:['学生企画・啓発','購買・商品調達'], date:'2026-11-10', url:'https://www.env.go.jp/policy/kihon_keikaku/goodlifeaward/', readLater:false }
+  {
+    id:'art-1',
+    title:'大学生の食品ロス削減企画に注目 — 美作大学・東京農業大・他4大学の取り組みレポート',
+    source:'農林水産省 あふりこ 2025年10月号',
+    type:'自治体', tag:'フードロス', nature:'先進事例・表彰',
+    coopAreas:['食堂・フード','学生企画・啓発'],
+    date:'2025-10-01',
+    url:'https://www.maff.go.jp/j/pr/aff/2510/spe1_03.html',
+    readLater:false
+  },
+  {
+    id:'art-2',
+    title:'「千年続く」は、目標ではなく結果だった。京都の街に見るサーキュラーエコノミー【CBDSレポート】',
+    source:'IDEAS FOR GOOD',
+    type:'企業・評価', tag:'プラスチック・資源循環', nature:'先進事例・表彰',
+    coopAreas:['購買・商品調達','学生企画・啓発','組織方針・ガバナンス'],
+    date:'2025-09-23',
+    url:'https://ideasforgood.jp/2025/09/23/cbds-kyoto-kickoff-event/',
+    readLater:false
+  },
+  {
+    id:'art-3',
+    title:'令和7年度「食品ロス削減推進表彰」受賞者決定 — 応募88件から環境大臣賞など16点を選定',
+    source:'環境省 報道発表',
+    type:'企業・評価', tag:'ESG評価・表彰', nature:'先進事例・表彰',
+    coopAreas:['食堂・フード','組織方針・ガバナンス'],
+    date:'2025-09-30',
+    url:'https://www.env.go.jp/press/press_00909.html',
+    readLater:false
+  },
+  {
+    id:'art-4',
+    title:'令和6年度「食品ロス削減推進表彰」受賞者紹介 — 味の素・吉野家・新潟フードバンクなど12点',
+    source:'環境省 食品ロスポータルサイト',
+    type:'企業・評価', tag:'ESG評価・表彰', nature:'先進事例・表彰',
+    coopAreas:['食堂・フード','購買・商品調達','学生企画・啓発'],
+    date:'2024-09-27',
+    url:'https://www.env.go.jp/recycle/foodloss/event04.html',
+    readLater:false
+  },
+  {
+    id:'art-5',
+    title:'グリーンコープ共同体、2027年CO2排出実質ゼロへ — 2025年6月は約831トンのCO2削減を達成',
+    source:'財経新聞',
+    type:'企業・評価', tag:'脱炭素・再エネ', nature:'先進事例・表彰',
+    coopAreas:['店舗運営・省エネ','購買・商品調達','組織方針・ガバナンス'],
+    date:'2025-09-16',
+    url:'https://www.zaikei.co.jp/releases/3095624/',
+    readLater:false
+  },
+  {
+    id:'art-6',
+    title:'脱炭素チャレンジカップ2025 — グリーンコープが市民部門の最高賞「環境大臣賞（金賞）」を受賞',
+    source:'財経新聞',
+    type:'企業・評価', tag:'ESG評価・表彰', nature:'先進事例・表彰',
+    coopAreas:['学生企画・啓発','組織方針・ガバナンス'],
+    date:'2025-03-01',
+    url:'https://www.zaikei.co.jp/releases/2819677/',
+    readLater:false
+  },
+  {
+    id:'art-7',
+    title:'食品ロス削減 mottECO普及キャンペーン — 外食時の持ち帰りで食べ残し33%削減の実証結果',
+    source:'環境省 食品ロスポータルサイト',
+    type:'自治体', tag:'フードロス', nature:'補助・連携機会',
+    coopAreas:['食堂・フード','学生企画・啓発'],
+    date:'2025-03-01',
+    url:'https://www.env.go.jp/recycle/foodloss/index.html',
+    readLater:false
+  },
+  {
+    id:'art-8',
+    title:'グッドライフアワード — 環境と社会によい暮らし方・ビジネスを表彰する環境省の取り組み',
+    source:'環境省 グッドライフアワード',
+    type:'企業・評価', tag:'ESG評価・表彰', nature:'先進事例・表彰',
+    coopAreas:['学生企画・啓発','購買・商品調達'],
+    date:'2024-11-01',
+    url:'https://www.env.go.jp/policy/kihon_keikaku/goodlifeaward/',
+    readLater:false
+  }
 ];
 
 const TAGS = ['すべて','フードロス','脱炭素・再エネ','プラスチック・資源循環','ESG評価・表彰','生物多様性・森林','経済・ルール形成'];
@@ -1222,28 +1294,42 @@ function absolutifyUrls(html, base) {
   } catch(_) { return html; }
 }
 
+// ── 3本のプロキシを並列で試し、最初に成功したものを採用 ───────────
 async function fetchHTMLviaProxy(url) {
-  // 試行1: allorigins.win JSON エンドポイント
-  try {
+  const enc = encodeURIComponent(url);
+
+  // 各プロキシを個別のPromiseとして定義
+  const p1 = (async () => {
     const r = await fetchWithTimeout(
-      `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`, 14000);
-    if (!r.ok) throw new Error(r.status);
+      `https://api.allorigins.win/get?url=${enc}`, 15000);
+    if (!r.ok) throw new Error('p1:'+r.status);
     const d = await r.json();
-    if (d.contents && d.contents.length > 500) return d.contents;
-    throw new Error('empty');
-  } catch(_) {}
+    if (!d.contents || d.contents.length < 300) throw new Error('p1:empty');
+    return d.contents;
+  })();
 
-  // 試行2: allorigins.win raw エンドポイント
-  try {
-    const r2 = await fetchWithTimeout(
-      `https://allorigins.win/raw?url=${encodeURIComponent(url)}`, 14000);
-    if (!r2.ok) throw new Error(r2.status);
-    const text = await r2.text();
-    if (text && text.length > 500) return text;
-    throw new Error('empty');
-  } catch(_) {}
+  const p2 = (async () => {
+    const r = await fetchWithTimeout(
+      `https://allorigins.win/raw?url=${enc}`, 15000);
+    if (!r.ok) throw new Error('p2:'+r.status);
+    const t = await r.text();
+    if (!t || t.length < 300) throw new Error('p2:empty');
+    return t;
+  })();
 
-  throw new Error('all proxies failed');
+  const p3 = (async () => {
+    // corsproxy.io — URLをそのまま末尾に付ける形式
+    const r = await fetchWithTimeout(
+      `https://corsproxy.io/?url=${enc}`, 15000);
+    if (!r.ok) throw new Error('p3:'+r.status);
+    const t = await r.text();
+    if (!t || t.length < 300) throw new Error('p3:empty');
+    return t;
+  })();
+
+  // Promise.any: 最初に成功したPromiseの値を返す
+  // 全て失敗した場合は AggregateError をスロー
+  return Promise.any([p1, p2, p3]);
 }
 
 async function openArticleReader(id) {
@@ -1340,6 +1426,12 @@ function closeReaderOnly() {
   document.getElementById('reader-article-body').innerHTML = '';
   setReaderState('loading'); // 次回表示のためリセット
   state.activeArticle = null;
+}
+
+function retryArticleLoad() {
+  if (state.activeArticle) {
+    openArticleReader(state.activeArticle.id);
+  }
 }
 
 function finishReading() {
