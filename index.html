@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#059669" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-title" content="EcoPulse">
+  <title>EcoPulse v3 - 大学生協 環境活動インサイト＆Obsidian連携リーダー</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mozilla/readability@0.5.0/Readability.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: #f0f7f4;
+      color: #1e293b;
+      -webkit-tap-highlight-color: transparent;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .glass-card { background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border: 1px solid rgba(226,232,240,0.8); }
+    .tree-bounce { animation: bounce-slow 3s infinite ease-in-out; }
+    @keyframes bounce-slow { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    @media (min-width:768px) {
+      ::-webkit-scrollbar { width:6px; height:6px; }
+      ::-webkit-scrollbar-track { background:#f1f5f9; }
+      ::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:3px; }
+      ::-webkit-scrollbar-thumb:hover { background:#94a3b8; }
+    }
+    .area-bar { transition: width 0.7s cubic-bezier(.4,0,.2,1); }
+    @keyframes spin-anim { to { transform: rotate(360deg); } }
+    .spin-anim { animation: spin-anim 1s linear infinite; }
+    .coop-btn-sel { background-color:#d1fae5 !important; color:#065f46 !important; border-color:#6ee7b7 !important; }
+    .nature-sel-義務 { background:#fef2f2 !important; color:#b91c1c !important; border-color:#fca5a5 !important; }
+    .nature-sel-先進 { background:#fffbeb !important; color:#b45309 !important; border-color:#fcd34d !important; }
+    .nature-sel-補助 { background:#f0f9ff !important; color:#0369a1 !important; border-color:#7dd3fc !important; }
+    .nature-sel-未 { background:#1e293b !important; color:#fff !important; border-color:#1e293b !important; }
+    input[type=text], input[type=url], textarea, select {
+      font-size: 16px !important; /* iOS zoom prevention */
+    }
+    @media (min-width:640px) {
+      input[type=text], input[type=url], textarea, select { font-size: 0.75rem !important; }
+    }
+    .rss-spin { animation: spin-anim 1s linear infinite; }
+    .peer:checked ~ div { border-color: #6366f1 !important; background:#eef2ff !important; color: #4338ca !important; }
+    /* ── Reader article content ── */
+    #reader-article-body { font-size:0.925rem; line-height:1.8; color:#334155; }
+    #reader-article-body h1 { font-size:1.4rem; font-weight:700; margin:1.25rem 0 0.6rem; color:#0f172a; line-height:1.3; }
+    #reader-article-body h2 { font-size:1.15rem; font-weight:700; margin:1.1rem 0 0.5rem; color:#1e293b; padding-bottom:0.3rem; border-bottom:1px solid #e2e8f0; }
+    #reader-article-body h3 { font-size:1rem; font-weight:600; margin:0.9rem 0 0.4rem; color:#334155; }
+    #reader-article-body h4,#reader-article-body h5,#reader-article-body h6 { font-size:0.9rem; font-weight:600; margin:0.75rem 0 0.3rem; color:#475569; }
+    #reader-article-body p { margin:0.7rem 0; }
+    #reader-article-body a { color:#059669; text-decoration:underline; word-break:break-all; }
+    #reader-article-body img { max-width:100%; height:auto; border-radius:8px; margin:0.75rem auto; display:block; }
+    #reader-article-body ul { margin:0.6rem 0 0.6rem 1.5rem; list-style-type:disc; }
+    #reader-article-body ol { margin:0.6rem 0 0.6rem 1.5rem; list-style-type:decimal; }
+    #reader-article-body li { margin:0.3rem 0; }
+    #reader-article-body li > ul,#reader-article-body li > ol { margin-top:0.2rem; margin-bottom:0.2rem; }
+    #reader-article-body blockquote { border-left:3px solid #94a3b8; padding:0.5rem 1rem; color:#64748b; margin:0.8rem 0; background:#f8fafc; border-radius:0 6px 6px 0; }
+    #reader-article-body code { background:#f1f5f9; padding:0.15em 0.4em; border-radius:4px; font-size:0.82em; font-family:monospace; color:#0f172a; }
+    #reader-article-body pre { background:#1e293b; color:#e2e8f0; padding:1rem; border-radius:8px; overflow-x:auto; margin:0.75rem 0; }
+    #reader-article-body pre code { background:none; color:inherit; padding:0; }
+    #reader-article-body hr { border:none; border-top:1px solid #e2e8f0; margin:1.1rem 0; }
+    #reader-article-body table { width:100%; border-collapse:collapse; margin:0.75rem 0; font-size:0.82rem; }
+    #reader-article-body th { background:#f1f5f9; font-weight:700; padding:0.4rem 0.6rem; border:1px solid #e2e8f0; }
+    #reader-article-body td { padding:0.4rem 0.6rem; border:1px solid #e2e8f0; }
+    #reader-article-body figure { margin:0.75rem 0; }
+    #reader-article-body figcaption { font-size:0.78rem; color:#94a3b8; text-align:center; margin-top:0.3rem; }
+    #reader-article-body strong { font-weight:700; color:#0f172a; }
+    #reader-article-body em { font-style:italic; }
+
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+<!-- ===== HEADER ===== -->
+<header class="bg-white/95 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-30 shadow-sm"
+  style="padding-top: env(safe-area-inset-top)">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-2">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2 shrink-0">
+      <div class="bg-emerald-600 text-white p-1.5 sm:p-2 rounded-xl shadow-sm">
+        <i data-lucide="sprout" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+      </div>
+      <div>
+        <h1 class="font-bold text-sm sm:text-base text-slate-800 leading-none tracking-tight flex items-center gap-1.5">
+          EcoPulse
+          <span class="text-[10px] font-black bg-emerald-600 text-white px-1.5 py-0.5 rounded-md">v3</span>
+        </h1>
+        <p class="text-[10px] sm:text-[11px] text-emerald-700 font-medium mt-0.5 hidden sm:block">環境動向トラッカー × Obsidian連携</p>
+      </div>
+    </div>
+
+    <!-- Right controls -->
+    <div class="flex items-center gap-1.5 sm:gap-2">
+      <!-- Tree widget -->
+      <button onclick="openCollectionModal()" class="flex items-center gap-1.5 bg-emerald-50 active:bg-emerald-100 hover:bg-emerald-100 transition px-2 py-1 sm:px-3 sm:py-1.5 rounded-full border border-emerald-200" title="エコガーデン">
+        <span id="header-tree-icon" class="text-base sm:text-lg tree-bounce leading-none">🌱</span>
+        <div class="text-left">
+          <div class="flex items-center gap-1">
+            <span id="header-level-text" class="text-[11px] sm:text-xs font-bold text-emerald-900">Lv.1</span>
+            <span id="header-pts-text" class="text-[10px] font-bold bg-emerald-600 text-white px-1.5 py-0.5 rounded-full leading-none">0pt</span>
+          </div>
+          <div class="w-14 sm:w-20 h-1 sm:h-1.5 bg-emerald-200 rounded-full overflow-hidden mt-1">
+            <div id="header-progress-bar" class="h-full bg-emerald-600 transition-all duration-500" style="width:0%"></div>
+          </div>
+        </div>
+      </button>
+
+      <!-- RSS refresh -->
+      <button onclick="fetchRSSFeeds()" id="rss-btn"
+        class="relative flex items-center gap-1 bg-blue-50 active:bg-blue-100 hover:bg-blue-100 text-blue-800 border border-blue-200 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-bold transition shadow-sm"
+        title="RSSフィード更新">
+        <i data-lucide="rss" id="rss-icon" class="w-4 h-4 text-blue-500"></i>
+        <span class="hidden md:inline rss-label">RSS更新</span>
+      </button>
+
+      <!-- Quiz -->
+      <button onclick="openQuizModal()" class="relative flex items-center gap-1 bg-amber-50 active:bg-amber-100 hover:bg-amber-100 text-amber-800 border border-amber-200 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-bold transition shadow-sm" title="エコクイズ">
+        <i data-lucide="sparkles" class="w-4 h-4 text-amber-500"></i>
+        <span class="hidden md:inline">クイズ</span>
+        <span id="quiz-badge-dot" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+      </button>
+
+      <!-- Settings (with backup badge) -->
+      <button onclick="openSettingsModal()" class="relative flex items-center gap-1 bg-slate-100 active:bg-slate-200 hover:bg-slate-200 text-slate-700 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-bold transition" title="設定">
+        <i data-lucide="settings" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">設定</span>
+        <span id="backup-badge" class="hidden absolute -top-1 -right-1 w-4 h-4 bg-orange-500 rounded-full text-white text-[9px] font-bold flex items-center justify-center border-2 border-white">!</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+
+  <!-- Tabs + Type filter row -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
+    <!-- Tabs -->
+    <div class="grid grid-cols-3 sm:flex bg-slate-200/80 p-1 rounded-xl w-full sm:w-fit">
+      <button onclick="switchTab('feed')" id="tab-feed"
+        class="px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-white text-emerald-700 shadow-sm transition text-center">
+        最新フィード
+      </button>
+      <button onclick="switchTab('readlater')" id="tab-readlater"
+        class="px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-1">
+        <span>📌 未読</span>
+        <span id="readlater-count-badge" class="hidden bg-slate-700 text-white text-[10px] px-1.5 py-0.5 rounded-full">0</span>
+      </button>
+      <button onclick="switchTab('history')" id="tab-history"
+        class="px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-1.5">
+        <span>履歴</span>
+        <span id="history-count-badge" class="bg-slate-300 text-slate-700 text-[10px] px-1.5 rounded-full">0</span>
+      </button>
+    </div>
+
+    <!-- Type filter (feed only) -->
+    <div id="type-filter-row" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+      <span class="text-xs font-bold text-slate-400 shrink-0 hidden sm:inline">種別:</span>
+      <button onclick="setTypeFilter('ALL')" data-type="ALL" class="type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-600 text-white transition shrink-0 shadow-sm">すべて</button>
+      <button onclick="setTypeFilter('自治体')" data-type="自治体" class="type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition shrink-0">🏛️ 自治体</button>
+      <button onclick="setTypeFilter('企業・評価')" data-type="企業・評価" class="type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition shrink-0">🏢 企業・評価</button>
+      <button onclick="setTypeFilter('世界動向')" data-type="世界動向" class="type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition shrink-0">🌍 世界動向</button>
+    </div>
+  </div>
+
+  <!-- Tag filter bar (feed only) -->
+  <div id="tag-filter-container" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-3 mb-2"></div>
+
+  <!-- Add article accordion -->
+  <div class="glass-card rounded-2xl mb-4 sm:mb-6 shadow-sm overflow-hidden">
+    <button onclick="toggleAddBar()" class="w-full px-4 py-3 flex items-center justify-between text-left active:bg-slate-50 hover:bg-slate-50/60 transition">
+      <div class="flex items-center gap-2 text-emerald-700 font-bold text-xs sm:text-sm">
+        <i data-lucide="plus-circle" class="w-4 h-4"></i>
+        <span>見つけた環境記事を手動で追加する</span>
+      </div>
+      <i id="add-bar-chevron" data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform duration-200"></i>
+    </button>
+
+    <div id="add-bar-content" class="hidden px-4 pb-4 pt-2 border-t border-slate-100">
+      <!-- Basic inputs -->
+      <div class="flex flex-col sm:flex-row gap-2 mb-2.5">
+        <input type="text" id="custom-title-input" placeholder="記事タイトルを入力..."
+          class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 sm:py-2 focus:outline-none focus:border-emerald-500">
+        <input type="url" id="custom-url-input" placeholder="https://... (記事URL)"
+          class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 sm:py-2 focus:outline-none focus:border-emerald-500">
+      </div>
+      <!-- Detail tags toggle -->
+      <div class="mb-3">
+        <button onclick="toggleAddBarDetail()" class="text-[11px] font-bold text-slate-400 hover:text-slate-600 flex items-center gap-1 mb-2">
+          <i data-lucide="sliders" class="w-3 h-3"></i>
+          詳細タグ設定（種別 / 事例の性質 / 生協事業領域）
+          <i id="add-detail-chevron" data-lucide="chevron-down" class="w-3 h-3 transition-transform duration-150"></i>
+        </button>
+        <div id="add-bar-detail" class="hidden space-y-2.5">
+          <div class="flex flex-wrap gap-2">
+            <div class="flex-1 min-w-[110px]">
+              <label class="block text-[11px] font-bold text-slate-500 mb-1">テーマタグ</label>
+              <select id="custom-tag-input" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500">
+                <option value="フードロス">フードロス</option>
+                <option value="脱炭素・再エネ">脱炭素・再エネ</option>
+                <option value="プラスチック・資源循環">プラスチック・資源循環</option>
+                <option value="ESG評価・表彰">ESG評価・表彰</option>
+                <option value="生物多様性・森林">生物多様性・森林</option>
+                <option value="経済・ルール形成">経済・ルール形成</option>
+              </select>
+            </div>
+            <div class="flex-1 min-w-[110px]">
+              <label class="block text-[11px] font-bold text-slate-500 mb-1">種別</label>
+              <select id="custom-type-input" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500">
+                <option value="企業・評価">企業・評価</option>
+                <option value="自治体">自治体</option>
+                <option value="世界動向">世界動向</option>
+              </select>
+            </div>
+            <div class="flex-1 min-w-[110px]">
+              <label class="block text-[11px] font-bold text-slate-500 mb-1">事例の性質</label>
+              <select id="custom-nature-input" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500">
+                <option value="">未分類</option>
+                <option value="義務・規制動向">義務・規制動向</option>
+                <option value="先進事例・表彰">先進事例・表彰</option>
+                <option value="補助・連携機会">補助・連携機会</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 mb-1.5">生協事業領域（複数選択可）</label>
+            <div class="flex flex-wrap gap-1.5" id="add-coop-areas"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Action buttons -->
+      <div class="flex gap-2">
+        <button onclick="addCustomArticle(true)"
+          class="flex-1 bg-emerald-600 active:bg-emerald-700 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-3 sm:py-2.5 rounded-xl transition shadow-sm">
+          追加して読む
+        </button>
+        <button onclick="addCustomArticle(false)"
+          class="flex-1 bg-slate-700 active:bg-slate-800 hover:bg-slate-800 text-white text-xs font-bold px-4 py-3 sm:py-2.5 rounded-xl transition shadow-sm flex items-center justify-center gap-1.5">
+          <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+          あとで読む
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Article list -->
+  <div id="article-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"></div>
+
+</main>
+
+<!-- ================================================================
+     MODAL 1: ARTICLE READER (Full Screen)
+     ================================================================ -->
+<div id="reader-modal" class="fixed inset-0 bg-slate-900 z-40 hidden flex-col">
+  <div class="bg-white border-b border-slate-200 px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2"
+    style="padding-top: max(0.625rem, env(safe-area-inset-top))">
+    <div class="flex items-center gap-2 min-w-0">
+      <button onclick="closeReaderOnly()" class="p-2 text-slate-500 hover:text-slate-800 rounded-xl active:bg-slate-100 shrink-0">
+        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+      </button>
+      <div class="min-w-0">
+        <span id="reader-source-badge" class="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800"></span>
+        <h2 id="reader-title" class="font-bold text-xs sm:text-sm text-slate-800 truncate mt-0.5"></h2>
+      </div>
+    </div>
+    <div class="flex items-center gap-1.5 shrink-0">
+      <a id="reader-external-link" href="#" target="_blank" rel="noopener noreferrer"
+        class="flex items-center gap-1 text-xs font-bold text-slate-700 bg-slate-100 active:bg-slate-200 hover:bg-slate-200 px-3 py-2 sm:py-1.5 rounded-xl transition">
+        <i data-lucide="external-link" class="w-4 h-4 sm:w-3.5 sm:h-3.5"></i>
+        <span class="hidden sm:inline">外部で開く</span>
+      </a>
+      <button onclick="finishReading()"
+        class="flex items-center gap-1.5 bg-emerald-600 active:bg-emerald-700 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold px-3.5 py-2 sm:py-1.5 rounded-xl shadow-sm transition">
+        <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+        読了・メモ
+      </button>
+    </div>
+  </div>
+  <div class="flex-1 relative flex flex-col overflow-hidden bg-white">
+
+    <!-- ① 取得中 -->
+    <div id="reader-loading" class="flex flex-col items-center justify-center flex-1 gap-5 py-16">
+      <div class="relative w-14 h-14">
+        <div class="absolute inset-0 rounded-full border-4 border-emerald-100"></div>
+        <div class="absolute inset-0 rounded-full border-4 border-t-emerald-500 border-r-transparent border-b-transparent border-l-transparent spin-anim"></div>
+      </div>
+      <div class="text-center space-y-1">
+        <p id="reader-loading-msg" class="text-sm font-bold text-slate-700">記事を取得中...</p>
+        <p class="text-xs text-slate-400">CORSプロキシ経由でHTMLを取得し本文を抽出しています</p>
+      </div>
+    </div>
+
+    <!-- ② 本文表示 -->
+    <div id="reader-content" class="hidden flex-1 overflow-y-auto">
+      <!-- メタ情報バー -->
+      <div id="reader-meta-bar" class="sticky top-0 z-10 bg-white/90 backdrop-blur-sm border-b border-slate-100 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <p id="reader-meta-byline" class="text-[11px] text-slate-500 truncate"></p>
+        </div>
+        <a id="reader-open-btn" href="#" target="_blank" rel="noopener noreferrer"
+          class="shrink-0 flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1.5 rounded-lg hover:bg-emerald-100 transition whitespace-nowrap">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>元ページ
+        </a>
+      </div>
+      <!-- 記事本文 -->
+      <div class="px-4 sm:px-8 py-5 max-w-2xl mx-auto w-full">
+        <div id="reader-article-body"></div>
+      </div>
+    </div>
+
+    <!-- ③ 取得失敗フォールバック -->
+    <div id="reader-fallback" class="hidden flex-col items-center justify-center flex-1 gap-4 py-16 px-6 text-center">
+      <div class="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-2xl">🌐</div>
+      <div>
+        <p class="font-bold text-slate-800 text-sm mb-1">アプリ内での表示ができませんでした</p>
+        <p class="text-xs text-slate-500 leading-relaxed max-w-xs mx-auto">このサイトはアクセス制限が強く、自動取得できませんでした。外部ブラウザで読んでから「読了・メモ」を押してください。</p>
+      </div>
+      <a id="fallback-link" href="#" target="_blank" rel="noopener noreferrer"
+        class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-3.5 rounded-xl shadow-md transition text-sm">
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+        ブラウザで記事を開く
+      </a>
+      <p class="text-[11px] text-slate-400">読み終えたら戻って右上の「読了・メモ」を押してください</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================
+     MODAL 2: MEMO + OBSIDIAN (Bottom Sheet)
+     ================================================================ -->
+<div id="memo-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4">
+  <div class="bg-white rounded-t-3xl sm:rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden max-h-[95vh] flex flex-col"
+    style="padding-bottom: env(safe-area-inset-bottom)">
+    <!-- Header -->
+    <div class="bg-emerald-600 px-5 py-3.5 text-white flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-2">
+        <i data-lucide="book-open-check" class="w-5 h-5"></i>
+        <h3 class="font-bold text-sm sm:text-base">読了メモ ＆ Obsidianへ送信</h3>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-[11px] bg-emerald-700 px-2 py-0.5 rounded-full font-bold">+10pt</span>
+        <button onclick="closeMemoModal()" class="p-1 text-white/70 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="p-4 sm:p-5 space-y-3.5 overflow-y-auto">
+      <!-- Article title -->
+      <div>
+        <p class="text-[11px] text-slate-400 font-bold mb-1">読んだ記事</p>
+        <p id="memo-article-title" class="text-xs sm:text-sm font-bold text-slate-800 bg-slate-50 p-3 rounded-xl border border-slate-200 line-clamp-2"></p>
+      </div>
+
+      <!-- Memo textarea + template button -->
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <label class="text-xs font-bold text-slate-700">気づき・生協活動に活かせる視点</label>
+          <button onclick="insertMemoTemplate()"
+            class="text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-lg hover:bg-emerald-100 transition flex items-center gap-1 shrink-0">
+            <i data-lucide="clipboard-list" class="w-3 h-3"></i>
+            3問テンプレ
+          </button>
+        </div>
+        <textarea id="memo-textarea" rows="4"
+          placeholder="例：○○市のフードドライブの仕組みは、学食の食品ロス削減キャンペーンに応用できそう。"
+          class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none leading-relaxed"></textarea>
+      </div>
+
+      <!-- 事例の性質 -->
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1.5">事例の性質</label>
+        <div class="flex flex-wrap gap-1.5" id="memo-nature-sel"></div>
+      </div>
+
+      <!-- 生協事業領域タグ -->
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1.5">生協事業領域タグ（複数選択可）</label>
+        <div class="flex flex-wrap gap-1.5" id="memo-coop-areas"></div>
+      </div>
+
+      <!-- Obsidian destination preview -->
+      <div class="bg-purple-50 border border-purple-100 rounded-xl p-3 text-xs text-purple-900 flex items-start gap-2">
+        <i data-lucide="file-text" class="w-4 h-4 text-purple-600 shrink-0 mt-0.5"></i>
+        <div class="min-w-0">
+          <p class="font-bold text-[11px]">Obsidian URI連携先</p>
+          <p id="obsidian-target-preview" class="text-[11px] text-purple-700 mt-0.5 break-all"></p>
+        </div>
+      </div>
+
+      <!-- Clipboard fallback banner (hidden by default) -->
+      <div id="clipboard-banner" class="hidden bg-sky-50 border border-sky-200 rounded-xl p-3 text-xs">
+        <div class="flex items-start gap-2">
+          <i data-lucide="clipboard-check" class="w-4 h-4 text-sky-600 shrink-0 mt-0.5"></i>
+          <div>
+            <p class="font-bold text-sky-900">📋 Markdownをクリップボードにコピーしました</p>
+            <p class="mt-1 text-sky-800">ノート内容が長いため、Obsidianを開いた後、新規ノートを作成して <strong>Ctrl+V（Cmd+V）</strong> でペーストしてください。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex flex-col-reverse sm:flex-row gap-2 pt-1">
+        <button onclick="saveOnlyHistory()"
+          class="w-full sm:flex-1 px-4 py-3 sm:py-2.5 rounded-xl border border-slate-200 text-slate-600 active:bg-slate-100 hover:bg-slate-50 text-xs font-bold transition">
+          履歴にのみ保存
+        </button>
+        <button onclick="saveAndSendToObsidian()"
+          class="w-full sm:flex-1 px-4 py-3.5 sm:py-2.5 rounded-xl bg-purple-600 active:bg-purple-700 hover:bg-purple-700 text-white text-xs sm:text-sm font-bold shadow-md transition flex items-center justify-center gap-1.5">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          Obsidianにノート作成 (+15pt)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     MODAL 3: SETTINGS (4 tabs)
+     ================================================================ -->
+<div id="settings-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4">
+  <div class="bg-white rounded-t-3xl sm:rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden max-h-[92vh] flex flex-col"
+    style="padding-bottom: env(safe-area-inset-bottom)">
+    <!-- Header -->
+    <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-2">
+        <i data-lucide="settings" class="w-5 h-5 text-slate-700"></i>
+        <h3 class="font-bold text-base text-slate-800">EcoPulse 設定</h3>
+      </div>
+      <button onclick="closeSettingsModal()" class="p-1.5 text-slate-400 hover:text-slate-600 rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Tab buttons -->
+    <div class="flex overflow-x-auto no-scrollbar border-b border-slate-100 shrink-0">
+      <button onclick="switchSettingsTab('obsidian')" id="stab-obsidian"
+        class="shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-emerald-600 text-emerald-700 whitespace-nowrap">Obsidian設定</button>
+      <button onclick="switchSettingsTab('rss')" id="stab-rss"
+        class="shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">RSS購読</button>
+      <button onclick="switchSettingsTab('bookmarklet')" id="stab-bookmarklet"
+        class="shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">ブックマークレット</button>
+      <button onclick="switchSettingsTab('data')" id="stab-data"
+        class="shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">データ管理</button>
+    </div>
+
+    <!-- Tab content -->
+    <div class="overflow-y-auto flex-1">
+
+      <!-- ---- Obsidian Tab ---- -->
+      <div id="stab-content-obsidian" class="p-5 space-y-4">
+        <p class="text-xs text-slate-600 leading-relaxed">ObsidianアプリをインストールしていればURIスキームで自動的にノートが作成されます。</p>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Vault名（保管庫名）</label>
+          <input type="text" id="setting-vault-name" placeholder="例: MyVault"
+            class="w-full border border-slate-300 rounded-xl px-3 py-2.5 focus:outline-none focus:border-purple-500">
+          <p class="text-[11px] text-slate-400 mt-1">ObsidianのVault名と一致させてください</p>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">保存先フォルダパス</label>
+          <input type="text" id="setting-folder-path" placeholder="例: 大学生協/環境活動インプット"
+            class="w-full border border-slate-300 rounded-xl px-3 py-2.5 focus:outline-none focus:border-purple-500">
+        </div>
+
+        <!-- Save mode -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-2">保存モード</label>
+          <div class="flex gap-2">
+            <label class="flex-1 flex items-start gap-2 p-3 border-2 border-slate-200 rounded-xl cursor-pointer transition has-[:checked]:border-purple-400 has-[:checked]:bg-purple-50">
+              <input type="radio" name="obsidian-mode" value="new" id="mode-new" class="mt-0.5 accent-purple-600">
+              <div>
+                <p class="text-xs font-bold text-slate-800">新規ノート作成</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">記事ごとに独立ノート</p>
+              </div>
+            </label>
+            <label class="flex-1 flex items-start gap-2 p-3 border-2 border-slate-200 rounded-xl cursor-pointer transition has-[:checked]:border-purple-400 has-[:checked]:bg-purple-50">
+              <input type="radio" name="obsidian-mode" value="append" id="mode-append" class="mt-0.5 accent-purple-600">
+              <div>
+                <p class="text-xs font-bold text-slate-800">指定ノートへ追記</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">1つのノートに集約</p>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div id="append-path-row" class="hidden">
+          <label class="block text-xs font-bold text-slate-700 mb-1">追記先ノートのパス</label>
+          <input type="text" id="setting-append-path" placeholder="例: 大学生協/環境インプット/EcoStock"
+            class="w-full border border-slate-300 rounded-xl px-3 py-2.5 focus:outline-none focus:border-purple-500">
+          <p class="text-[11px] text-slate-400 mt-1">フォルダ/ファイル名（拡張子なし）</p>
+        </div>
+      </div>
+
+      <!-- ---- RSS Tab ---- -->
+      <div id="stab-content-rss" class="p-5 space-y-4 hidden">
+        <p class="text-xs text-slate-600 leading-relaxed">
+          RSSフィードURLを登録し「RSS更新」ボタンで新着記事を自動取得できます。外部プロキシ（rss2json.com / allorigins.win）を経由するため、一部フィードは取得できない場合があります。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input type="url" id="new-rss-url" placeholder="https://example.com/feed/"
+            class="flex-1 border border-slate-300 rounded-xl px-3 py-2.5 focus:outline-none focus:border-blue-500">
+          <input type="text" id="new-rss-name" placeholder="フィード名（任意）"
+            class="sm:w-32 border border-slate-300 rounded-xl px-3 py-2.5 focus:outline-none focus:border-blue-500">
+          <button onclick="addRSSFeed()" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shrink-0">追加</button>
+        </div>
+        <div id="rss-feed-list" class="space-y-2"></div>
+        <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 text-xs text-blue-800">
+          <p class="font-bold mb-1.5">おすすめ環境系RSSフィード</p>
+          <ul class="space-y-1 text-blue-700 font-mono">
+            <li>greenz.jp: <code class="text-[10px] bg-white px-1 rounded">https://greenz.jp/feed/</code></li>
+            <li>IDEAS FOR GOOD: <code class="text-[10px] bg-white px-1 rounded">https://ideasforgood.jp/feed/</code></li>
+            <li>Sustainable Japan: <code class="text-[10px] bg-white px-1 rounded">https://sustainablejapan.jp/feed</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ---- Bookmarklet Tab ---- -->
+      <div id="stab-content-bookmarklet" class="p-5 space-y-4 hidden">
+        <p class="text-xs text-slate-600 leading-relaxed">
+          ブラウザのブックマークバーに追加しておくと、ニュース記事を見ながらワンタップでEcoPulseへ記事URLを送れます。
+        </p>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 space-y-2.5">
+          <p class="text-xs font-bold text-amber-900">📌 設定手順</p>
+          <ol class="text-xs text-amber-800 space-y-1.5 pl-3 list-decimal">
+            <li>下のコードを「コピー」ボタンでコピーする</li>
+            <li>ブラウザのブックマーク管理画面を開く</li>
+            <li>新規ブックマークを作成し、URL欄にペーストする</li>
+            <li>記事ページでこのブックマークをタップすると、EcoPulseが開いて自動入力される</li>
+          </ol>
+          <p class="text-[11px] text-amber-700">※ローカルファイル（file://）から開いている場合、ブックマークレットが機能しないブラウザがあります。ChromeやSafariのホーム画面追加版で動作します。</p>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1.5">生成されたブックマークレット</label>
+          <textarea id="bookmarklet-code" readonly rows="4"
+            class="w-full font-mono bg-slate-900 text-green-400 border border-slate-700 rounded-xl p-3 focus:outline-none resize-none text-[11px]"></textarea>
+        </div>
+        <button onclick="copyBookmarklet()"
+          class="w-full bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          ブックマークレットをコピー
+        </button>
+      </div>
+
+      <!-- ---- Data Management Tab ---- -->
+      <div id="stab-content-data" class="p-5 space-y-4 hidden">
+        <div id="backup-status-box" class="rounded-xl p-3 text-xs bg-slate-50 border border-slate-200 text-slate-600"></div>
+        <div>
+          <p class="text-xs font-bold text-slate-700 mb-2">バックアップ（エクスポート）</p>
+          <button onclick="exportJSON()"
+            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            JSONファイルをダウンロード
+          </button>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-slate-700 mb-2">データ復元（インポート）</p>
+          <button onclick="importJSON()"
+            class="w-full bg-slate-700 hover:bg-slate-800 text-white text-xs font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
+            <i data-lucide="upload" class="w-4 h-4"></i>
+            JSONファイルからインポート
+          </button>
+          <p class="text-[11px] text-slate-400 mt-1.5">※インポートすると現在のデータは上書きされます</p>
+        </div>
+        <div class="border-t border-slate-100 pt-4">
+          <p class="text-xs font-bold text-red-500 mb-2">データリセット</p>
+          <button onclick="resetAllData()"
+            class="w-full border border-red-200 text-red-500 hover:bg-red-50 text-xs font-bold py-2.5 rounded-xl transition">
+            全データを初期化する
+          </button>
+        </div>
+      </div>
+
+    </div><!-- /tab content -->
+
+    <!-- Save button (Obsidian + RSS tabs) -->
+    <div class="p-4 border-t border-slate-100 shrink-0" id="settings-save-row">
+      <button onclick="saveSettings()"
+        class="w-full py-3 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm transition">
+        設定を保存する
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     MODAL 4: ECO GARDEN + BADGES + AREA BALANCE
+     ================================================================ -->
+<div id="collection-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4">
+  <div class="bg-white rounded-t-3xl sm:rounded-2xl max-w-xl w-full shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
+    style="padding-bottom: env(safe-area-inset-bottom)">
+    <div class="bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-4 text-white flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-2">
+        <i data-lucide="award" class="w-5 h-5"></i>
+        <h3 class="font-bold text-base">エコガーデン ＆ 実績バッジ</h3>
+      </div>
+      <button onclick="closeCollectionModal()" class="p-1.5 text-white/80 hover:text-white rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <div class="p-5 overflow-y-auto space-y-5">
+      <!-- Tree growth card -->
+      <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 text-center">
+        <div id="modal-tree-emoji" class="text-5xl sm:text-6xl mb-2 tree-bounce">🌱</div>
+        <h4 id="modal-tree-title" class="font-bold text-base sm:text-lg text-emerald-950">Lv.1 若葉の芽</h4>
+        <p id="modal-tree-desc" class="text-xs text-emerald-700 mt-1">環境記事を読んで、キャンパスに豊かな森を育てよう！</p>
+        <div class="max-w-xs mx-auto mt-3.5">
+          <div class="flex justify-between text-[11px] font-bold text-emerald-800 mb-1">
+            <span>現在: <span id="modal-pts">0</span> pt</span>
+            <span>次まで: <span id="modal-next-pts">30</span></span>
+          </div>
+          <div class="w-full h-2.5 bg-emerald-200 rounded-full overflow-hidden">
+            <div id="modal-progress-bar" class="h-full bg-emerald-600 transition-all duration-500" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Area balance visualization -->
+      <div>
+        <h4 class="font-bold text-sm text-slate-800 mb-3 flex items-center gap-1.5">
+          <i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-500"></i>
+          生協事業領域 インプットバランス
+        </h4>
+        <div id="area-balance-chart" class="space-y-2.5"></div>
+      </div>
+
+      <!-- Badges grid -->
+      <div>
+        <h4 class="font-bold text-sm text-slate-800 mb-2.5 flex items-center gap-1.5">
+          <i data-lucide="medal" class="w-4 h-4 text-amber-500"></i>
+          獲得バッジコレクション
+        </h4>
+        <div id="badges-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     MODAL 5: QUIZ
+     ================================================================ -->
+<div id="quiz-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-end sm:items-center justify-center p-0 sm:p-4">
+  <div class="bg-white rounded-t-3xl sm:rounded-2xl max-w-md w-full shadow-2xl overflow-hidden"
+    style="padding-bottom: env(safe-area-inset-bottom)">
+    <div class="bg-amber-500 px-5 py-4 text-white flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <i data-lucide="help-circle" class="w-5 h-5"></i>
+        <h3 class="font-bold text-base">環境知識ミニクイズ</h3>
+      </div>
+      <button onclick="closeQuizModal()" class="p-1.5 text-white/80 hover:text-white rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+    <div class="p-5 space-y-4">
+      <span class="inline-block text-[11px] font-bold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full">正解で +20 pt ボーナス！</span>
+      <p id="quiz-question" class="font-bold text-sm text-slate-800 leading-relaxed"></p>
+      <div id="quiz-options" class="space-y-2"></div>
+      <div id="quiz-feedback" class="hidden p-3.5 rounded-xl text-xs leading-relaxed"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     MODAL 6: SUMMARY DIGEST → OBSIDIAN
+     ================================================================ -->
+<div id="summary-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+  <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden max-h-[88vh] flex flex-col">
+    <div class="bg-indigo-600 px-5 py-4 text-white flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-2">
+        <i data-lucide="file-bar-chart" class="w-5 h-5"></i>
+        <h3 class="font-bold text-base">振り返りサマリー → Obsidian</h3>
+      </div>
+      <button onclick="closeSummaryModal()" class="p-1.5 text-white/80 hover:text-white rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+    <div class="p-5 space-y-4 overflow-y-auto">
+      <!-- Period selector -->
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-2">集計期間を選択</label>
+        <div class="flex gap-2">
+          <label class="flex-1 text-center cursor-pointer select-none">
+            <input type="radio" name="summary-period" value="7d" class="sr-only peer" checked>
+            <div class="border-2 border-slate-200 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-700 rounded-xl py-2.5 text-xs font-bold text-slate-500 transition">直近7日間</div>
+          </label>
+          <label class="flex-1 text-center cursor-pointer select-none">
+            <input type="radio" name="summary-period" value="30d" class="sr-only peer">
+            <div class="border-2 border-slate-200 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-700 rounded-xl py-2.5 text-xs font-bold text-slate-500 transition">直近30日間</div>
+          </label>
+          <label class="flex-1 text-center cursor-pointer select-none">
+            <input type="radio" name="summary-period" value="all" class="sr-only peer">
+            <div class="border-2 border-slate-200 peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-700 rounded-xl py-2.5 text-xs font-bold text-slate-500 transition">全期間</div>
+          </label>
+        </div>
+      </div>
+      <!-- Stats preview -->
+      <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-3">
+        <p class="text-xs font-bold text-indigo-900 mb-1">集計プレビュー</p>
+        <p id="summary-stats-text" class="text-xs text-indigo-700"></p>
+      </div>
+      <!-- Markdown preview -->
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <label class="text-xs font-bold text-slate-700">Markdownプレビュー</label>
+          <button onclick="refreshSummaryPreview()" class="text-[11px] font-bold text-slate-400 hover:text-slate-600 flex items-center gap-1">
+            <i data-lucide="refresh-cw" class="w-3 h-3"></i> 更新
+          </button>
+        </div>
+        <textarea id="summary-preview" readonly rows="9"
+          class="w-full font-mono bg-slate-900 text-slate-300 border border-slate-700 rounded-xl p-3 resize-none text-[11px] leading-relaxed"></textarea>
+      </div>
+      <!-- Actions -->
+      <div class="flex gap-2">
+        <button onclick="closeSummaryModal()" class="flex-1 py-3 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-50 transition">キャンセル</button>
+        <button onclick="sendSummaryToObsidian()"
+          class="flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-sm transition flex items-center justify-center gap-1.5">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          Obsidianへ出力
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 left-4 right-4 sm:left-auto sm:right-5 sm:max-w-xs bg-slate-800/95 text-white text-xs font-bold px-4 py-3.5 rounded-xl shadow-xl transform translate-y-24 opacity-0 transition-all duration-300 z-[60] flex items-center gap-2 pointer-events-none backdrop-blur-sm">
+  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+  <span id="toast-message"></span>
+</div>
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
+<script>
+// ════════════════════════════════════════════════════════════════
+// DATA CONSTANTS
+// ════════════════════════════════════════════════════════════════
+const INITIAL_ARTICLES = [
+  { id:'art-1', title:'東京都「食品ロス削減推進計画」改定、大学キャンパスや社員食堂での食べきり推進モデルを拡大（サンプル）', source:'東京都環境局', type:'自治体', tag:'フードロス', nature:'義務・規制動向', coopAreas:['食堂・フード','学生企画・啓発'], date:'2026-11-19', url:'https://www.kankyo.metro.tokyo.lg.jp/resource/foodloss/index.html', readLater:false },
+  { id:'art-2', title:'国内小売・生協グループ各社が「リユース容器シェアリング」実証実験を全国50拠点へ拡大（サンプル）', source:'サステナブル・ブランド ジャパン', type:'企業・評価', tag:'プラスチック・資源循環', nature:'先進事例・表彰', coopAreas:['購買・商品調達','店舗運営・省エネ'], date:'2026-11-18', url:'https://www.env.go.jp/recycle/plastic/index.html', readLater:false },
+  { id:'art-3', title:'EU「エコデザイン規則」本格適用へ、企業に製品の修理可能性とカーボンフットプリント開示を義務付け（サンプル）', source:'JETRO 環境ニュース', type:'世界動向', tag:'経済・ルール形成', nature:'義務・規制動向', coopAreas:['組織方針・ガバナンス'], date:'2026-11-17', url:'https://www.jetro.go.jp/theme/wto-eco/eu/', readLater:false },
+  { id:'art-4', title:'CDP気候変動・森林・水セキュリティ評価、日本企業過去最多の120社が最高ランク「Aリスト」獲得（サンプル）', source:'環境省 報道発表資料', type:'企業・評価', tag:'ESG評価・表彰', nature:'先進事例・表彰', coopAreas:['組織方針・ガバナンス'], date:'2026-11-16', url:'https://www.env.go.jp/press/index.html', readLater:false },
+  { id:'art-5', title:'仙台市「杜の都・脱炭素先行地域」プロジェクト、地域新電力と大学施設間の再エネ直接供給を開始（サンプル）', source:'仙台市 環境推進', type:'自治体', tag:'脱炭素・再エネ', nature:'補助・連携機会', coopAreas:['店舗運営・省エネ','組織方針・ガバナンス'], date:'2026-11-15', url:'https://www.city.sendai.jp/kankyo/index.html', readLater:false },
+  { id:'art-6', title:'自然関連財務情報開示（TNFD）提言賛同組織が世界500突破、食品・農林業のサプライチェーン評価が加速（サンプル）', source:'日経ESG', type:'世界動向', tag:'生物多様性・森林', nature:'先進事例・表彰', coopAreas:['購買・商品調達','組織方針・ガバナンス'], date:'2026-11-14', url:'https://www.env.go.jp/nature/biodiversity/index.html', readLater:false },
+  { id:'art-7', title:'神奈川県鎌倉市、市民参加型「コンポスト循環コミュニティ」で生ごみ焼却量を前年比18%削減（サンプル）', source:'IDEAS FOR GOOD', type:'自治体', tag:'フードロス', nature:'先進事例・表彰', coopAreas:['食堂・フード','学生企画・啓発'], date:'2026-11-12', url:'https://ideasforgood.jp/category/circular/', readLater:false },
+  { id:'art-8', title:'環境省「グッドライフアワード」受賞発表、学生団体と地元企業が協働したアップサイクル事業が選出（サンプル）', source:'環境省 グッドライフアワード', type:'企業・評価', tag:'ESG評価・表彰', nature:'先進事例・表彰', coopAreas:['学生企画・啓発','購買・商品調達'], date:'2026-11-10', url:'https://www.env.go.jp/policy/kihon_keikaku/goodlifeaward/', readLater:false }
+];
+
+const TAGS = ['すべて','フードロス','脱炭素・再エネ','プラスチック・資源循環','ESG評価・表彰','生物多様性・森林','経済・ルール形成'];
+
+const COOP_AREAS = [
+  { id:'食堂・フード',         emoji:'🍽️', label:'食堂・フード' },
+  { id:'購買・商品調達',       emoji:'📦', label:'購買・商品調達' },
+  { id:'店舗運営・省エネ',     emoji:'⚡', label:'店舗運営・省エネ' },
+  { id:'学生企画・啓発',       emoji:'🎓', label:'学生企画・啓発' },
+  { id:'組織方針・ガバナンス', emoji:'🏛️', label:'組織方針・ガバナンス' }
+];
+
+const NATURES = [
+  { id:'',          label:'未分類',       cls:'nature-sel-未' },
+  { id:'義務・規制動向', label:'義務・規制動向', cls:'nature-sel-義務' },
+  { id:'先進事例・表彰', label:'先進事例・表彰', cls:'nature-sel-先進' },
+  { id:'補助・連携機会', label:'補助・連携機会', cls:'nature-sel-補助' }
+];
+
+const TREE_LEVELS = [
+  { minPts:0,   emoji:'🌱', short:'Lv.1', title:'Lv.1 若葉の芽',         desc:'環境情報への第一歩！まずは1記事読んでみよう。' },
+  { minPts:30,  emoji:'🌿', short:'Lv.2', title:'Lv.2 すくすく苗木',     desc:'いいペース！日々のインプットが知識の根を張っています。' },
+  { minPts:80,  emoji:'🪴', short:'Lv.3', title:'Lv.3 希望の若木',       desc:'自治体や企業の動きが見えてきましたね！' },
+  { minPts:150, emoji:'🌳', short:'Lv.4', title:'Lv.4 キャンパスの大樹', desc:'立派な大樹に成長！生協の環境企画を牽引する存在です。' },
+  { minPts:250, emoji:'🏞️', short:'Lv.5', title:'Lv.5 豊かなエコの森',   desc:'マスターレベル！社会全体の環境トレンドを掌握しています。' }
+];
+
+const BADGES = [
+  { id:'first_read',    icon:'📖', name:'初めの一歩',         desc:'初めて記事を読了した',              check: s => s.readIds.length >= 1 },
+  { id:'obsidian_1',    icon:'🔮', name:'知識の錬金術師',     desc:'初めてObsidianへ送信した',          check: s => s.obsidianCount >= 1 },
+  { id:'read_5',        icon:'🔥', name:'継続ウォッチャー',   desc:'累計5記事を読了した',               check: s => s.readIds.length >= 5 },
+  { id:'read_10',       icon:'📚', name:'エコ読書家',         desc:'累計10記事を読了した',              check: s => s.readIds.length >= 10 },
+  { id:'muni_hunter',   icon:'🏛️', name:'自治体ハンター',     desc:'自治体の記事を2つ読んだ',           check: s => (s.typeCounts['自治体']||0) >= 2 },
+  { id:'esg_master',    icon:'🏆', name:'企業評価アナリスト', desc:'企業・評価の記事を2つ読んだ',       check: s => (s.typeCounts['企業・評価']||0) >= 2 },
+  { id:'quiz_winner',   icon:'💡', name:'エコクイズ王',       desc:'環境ミニクイズに正解した',          check: s => s.quizSolved >= 1 },
+  { id:'rss_user',      icon:'📡', name:'RSS活用家',          desc:'RSSフィードから記事を取得した',     check: s => (s.rssArticleCount||0) >= 1 },
+  { id:'summary_maker', icon:'📊', name:'振り返りの達人',     desc:'サマリーノートをObsidianへ出力した', check: s => (s.summaryCount||0) >= 1 },
+  { id:'all_areas',     icon:'🌈', name:'全領域カバー',       desc:'全5事業領域に各1件以上読んだ',      check: s => { const c = computeCoopAreaCounts(); return COOP_AREAS.every(a => (c[a.id]||0) >= 1); } }
+];
+
+const QUIZZES = [
+  { q:'日本の食品ロス量（年間約472万トン）のうち、「事業系」と「家庭系」の割合は？', options:['ほぼ半分ずつ（約50%：50%）','事業系が約90%で圧倒的に多い','家庭系が約85%を占める'], answer:0, explanation:'正解！事業系約236万トン、家庭系約236万トンとほぼ半分ずつです。学食・購買での対策と学生への意識啓発の両輪が重要です。' },
+  { q:'企業が自然資本や生物多様性リスクを評価・開示するための国際的枠組みの略称は？', options:['TNFD','GATT','OPEC'], answer:0, explanation:'TNFD（自然関連財務情報開示タスクフォース）です。TCFDに続き、食品・紙製品を扱う企業・生協でも注目度が急上昇中です。' },
+  { q:'プラスチック資源循環促進法で削減が求められる「特定プラスチック製品」に含まれないものは？', options:['木製・竹製の割り箸','プラスチック製スプーン・フォーク','プラスチック製ストロー'], answer:0, explanation:'木製・竹製の割り箸は対象外です。プラスチック製スプーン・フォーク・ストローなどが有料化・辞退ポイント付与の対象です。' },
+  { q:'ESGの「G（Governance）」に最も関連する取り組みはどれ？', options:['取締役会の多様性確保と情報開示','太陽光パネルの設置','プラスチック削減の目標設定'], answer:0, explanation:'ガバナンスは「企業統治」を意味します。取締役会の独立性・多様性確保と情報開示が典型例で、生協の組織方針にも直結します。' },
+  { q:'2050年カーボンニュートラルを国内法で義務付けた主な日本の法律は？', options:['地球温暖化対策推進法（温対法）','特定商取引法','フードロス削減推進法'], answer:0, explanation:'地球温暖化対策推進法（2021年改正）です。2050年ネットゼロが法律上明記され、生協の事業計画にも影響します。' }
+];
+
+// ════════════════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════════════════
+let state = {
+  articles: [...INITIAL_ARTICLES],
+  currentTab: 'feed',
+  selectedType: 'ALL',
+  selectedTag: 'すべて',
+  activeArticle: null,
+  points: 0,
+  readIds: [],
+  history: [],
+  obsidianCount: 0,
+  quizSolved: 0,
+  typeCounts: { '自治体':0, '企業・評価':0, '世界動向':0 },
+  obsidianVault: '',
+  obsidianFolder: '環境活動メモ',
+  obsidianMode: 'new',
+  obsidianAppendPath: '',
+  rssFeeds: [],
+  rssArticleCount: 0,
+  summaryCount: 0,
+  lastBackupDate: null,
+  backupMemoCount: 0
+};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem('ecopulse_state_v3');
+    if (saved) {
+      const p = JSON.parse(saved);
+      state = { ...state, ...p };
+      // Merge initial articles
+      const ids = new Set(state.articles.map(a => a.id));
+      INITIAL_ARTICLES.forEach(a => { if (!ids.has(a.id)) state.articles.push(a); });
+    } else {
+      // Migrate from v1 if exists
+      const old = localStorage.getItem('ecopulse_state_v1');
+      if (old) {
+        const op = JSON.parse(old);
+        state = { ...state, ...op };
+        state.articles = state.articles.map(a => ({ nature:'', coopAreas:[], readLater:false, ...a }));
+      }
+    }
+    // Ensure v3 fields
+    if (!state.rssFeeds) state.rssFeeds = [];
+    if (state.rssArticleCount == null) state.rssArticleCount = 0;
+    if (state.summaryCount == null) state.summaryCount = 0;
+    if (!state.obsidianMode) state.obsidianMode = 'new';
+    if (!state.obsidianAppendPath) state.obsidianAppendPath = '';
+    if (!state.typeCounts) state.typeCounts = { '自治体':0, '企業・評価':0, '世界動向':0 };
+  } catch(e) { console.error('loadState', e); }
+}
+
+function saveState() {
+  try { localStorage.setItem('ecopulse_state_v3', JSON.stringify(state)); }
+  catch(e) { console.error('saveState', e); }
+  updateDashboardUI();
+}
+
+// ════════════════════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════════════════════
+function init() {
+  loadState();
+  renderCoopAreaBtns('add-coop-areas');
+  renderTagFilters();
+  renderArticles();
+  updateDashboardUI();
+  checkURLParams();
+  checkBackupReminder();
+  updateReadLaterBadge();
+
+  // Obsidian mode radio
+  const isAppend = state.obsidianMode === 'append';
+  const modeNew = document.getElementById('mode-new');
+  const modeAppend = document.getElementById('mode-append');
+  if (modeNew) modeNew.checked = !isAppend;
+  if (modeAppend) modeAppend.checked = isAppend;
+  document.getElementById('append-path-row').classList.toggle('hidden', !isAppend);
+
+  document.addEventListener('change', e => {
+    if (e.target.name === 'obsidian-mode') {
+      document.getElementById('append-path-row').classList.toggle('hidden', e.target.value !== 'append');
+    }
+    if (e.target.name === 'summary-period') refreshSummaryPreview();
+  });
+
+  if (window.lucide) lucide.createIcons();
+}
+
+function checkURLParams() {
+  const p = new URLSearchParams(window.location.search);
+  const addUrl = p.get('add_url');
+  const addTitle = p.get('add_title');
+  if (addUrl) {
+    document.getElementById('custom-url-input').value = addUrl;
+    if (addTitle) document.getElementById('custom-title-input').value = decodeURIComponent(addTitle);
+    document.getElementById('add-bar-content').classList.remove('hidden');
+    document.getElementById('add-bar-chevron').classList.add('rotate-180');
+    window.history.replaceState({}, '', window.location.pathname);
+    showToast('記事URLを取得しました。タイトルを確認して追加してください');
+  }
+}
+
+// ════════════════════════════════════════════════════════════════
+// COOP AREA & NATURE BUTTONS
+// ════════════════════════════════════════════════════════════════
+function renderCoopAreaBtns(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = COOP_AREAS.map(a =>
+    `<button type="button" onclick="toggleCoopBtn(this)"
+      class="coop-btn px-2.5 py-1 rounded-lg text-[11px] font-bold bg-slate-100 text-slate-600 border border-slate-200 transition active:scale-95"
+      data-area="${a.id}">${a.emoji} ${a.label}</button>`
+  ).join('');
+}
+
+function toggleCoopBtn(btn) {
+  const sel = btn.classList.contains('coop-btn-sel');
+  if (sel) {
+    btn.classList.remove('coop-btn-sel');
+    btn.classList.add('bg-slate-100','text-slate-600','border-slate-200');
+  } else {
+    btn.classList.add('coop-btn-sel');
+    btn.classList.remove('bg-slate-100','text-slate-600','border-slate-200');
+  }
+}
+
+function getSelectedCoopAreas(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return [];
+  return Array.from(el.querySelectorAll('.coop-btn-sel')).map(b => b.dataset.area);
+}
+
+function renderNatureBtns(containerId, selected) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.dataset.nature = selected || '';
+  el.innerHTML = NATURES.map(n =>
+    `<button type="button" onclick="selectNature(this,'${n.id}','${containerId}')"
+      class="nature-btn px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${n.id === (selected||'') ? n.cls : 'bg-slate-100 text-slate-600 border-slate-200'}"
+      data-n="${n.id}">${n.label}</button>`
+  ).join('');
+}
+
+function selectNature(btn, natureId, containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.dataset.nature = natureId;
+  el.querySelectorAll('.nature-btn').forEach(b => {
+    b.className = 'nature-btn px-2.5 py-1 rounded-lg text-[11px] font-bold border transition bg-slate-100 text-slate-600 border-slate-200';
+  });
+  const n = NATURES.find(x => x.id === natureId);
+  if (n) btn.className = `nature-btn px-2.5 py-1 rounded-lg text-[11px] font-bold border transition ${n.cls}`;
+}
+
+function getSelectedNature(containerId) {
+  const el = document.getElementById(containerId);
+  return el ? (el.dataset.nature || '') : '';
+}
+
+// ════════════════════════════════════════════════════════════════
+// RENDERING
+// ════════════════════════════════════════════════════════════════
+function renderTagFilters() {
+  const el = document.getElementById('tag-filter-container');
+  el.innerHTML = TAGS.map(tag => {
+    const sel = state.selectedTag === tag;
+    return `<button onclick="setTagFilter('${tag}')"
+      class="px-3 py-1.5 rounded-xl text-xs font-bold transition shrink-0 ${sel ? 'bg-slate-800 text-white shadow-sm' : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'}">#${tag}</button>`;
+  }).join('');
+}
+
+function renderArticles() {
+  if (state.currentTab === 'history') { renderHistoryTab(); return; }
+  if (state.currentTab === 'readlater') { renderReadLaterTab(); return; }
+  renderFeedTab();
+}
+
+function typeBadgeColor(type) {
+  return type === '自治体' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+         type === '企業・評価' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+         'bg-teal-50 text-teal-700 border-teal-200';
+}
+
+function naturePill(nature) {
+  if (!nature) return '';
+  const colors = { '義務・規制動向':'bg-red-50 text-red-600', '先進事例・表彰':'bg-amber-50 text-amber-600', '補助・連携機会':'bg-sky-50 text-sky-600' };
+  return `<span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${colors[nature]||'bg-slate-100 text-slate-500'}">${nature}</span>`;
+}
+
+function coopAreaPills(areas) {
+  if (!areas || !areas.length) return '';
+  return `<div class="flex flex-wrap gap-1 mt-1.5">${areas.map(a => {
+    const area = COOP_AREAS.find(x => x.id === a);
+    return area ? `<span class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded">${area.emoji} ${area.label}</span>` : '';
+  }).join('')}</div>`;
+}
+
+function renderFeedTab() {
+  const container = document.getElementById('article-list');
+  const filtered = state.articles.filter(a => {
+    const mt = state.selectedType === 'ALL' || a.type === state.selectedType;
+    const mg = state.selectedTag === 'すべて' || a.tag === state.selectedTag;
+    return mt && mg;
+  });
+
+  if (!filtered.length) {
+    container.innerHTML = `<div class="col-span-full text-center py-12 bg-white rounded-2xl border border-slate-200"><p class="text-sm font-bold text-slate-600">条件に一致する記事がありません</p></div>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(art => {
+    const isRead = state.readIds.includes(art.id);
+    const rlBadge = art.readLater ? '<span class="text-[10px] font-bold bg-slate-700 text-white px-1.5 py-0.5 rounded">📌 未読</span>' : '';
+    return `
+      <div onclick="openArticleReader('${art.id}')" class="group bg-white active:scale-[0.99] hover:bg-emerald-50/30 rounded-2xl p-4 sm:p-5 border ${isRead ? 'border-slate-200 opacity-80' : art.readLater ? 'border-dashed border-slate-300' : 'border-slate-200 hover:border-emerald-400'} shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+        <div>
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-lg border ${typeBadgeColor(art.type)} shrink-0">${art.type}</span>
+            <div class="flex flex-wrap items-center gap-1 justify-end">
+              ${rlBadge}${naturePill(art.nature)}
+              ${isRead ? '<span class="text-[11px] font-bold text-emerald-600">✓既読</span>' : ''}
+              <span class="text-[11px] text-slate-400">${art.date}</span>
+            </div>
+          </div>
+          <h3 class="font-bold text-sm sm:text-[15px] text-slate-800 group-hover:text-emerald-800 leading-snug mb-1 transition">${escapeHtml(art.title)}</h3>
+          ${coopAreaPills(art.coopAreas)}
+        </div>
+        <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2 mt-2">
+          <div class="min-w-0">
+            <p class="text-xs font-bold text-slate-600 truncate">${escapeHtml(art.source)}</p>
+            <span class="text-[11px] font-bold text-emerald-700">#${art.tag}</span>
+          </div>
+          <span class="bg-slate-100 group-hover:bg-emerald-600 group-hover:text-white text-slate-600 p-2 rounded-xl transition shrink-0">
+            <i data-lucide="book-open" class="w-4 h-4"></i>
+          </span>
+        </div>
+      </div>`;
+  }).join('');
+  if (window.lucide) lucide.createIcons();
+}
+
+function renderHistoryTab() {
+  const container = document.getElementById('article-list');
+  if (!state.history.length) {
+    container.innerHTML = `<div class="col-span-full text-center py-14 bg-white rounded-2xl border border-slate-200 px-4"><p class="text-3xl mb-2">📚</p><p class="font-bold text-slate-700 text-sm">まだ読了履歴がありません</p><p class="text-xs text-slate-400 mt-1">「最新フィード」から記事を読んで学びを蓄積しましょう！</p></div>`;
+    return;
+  }
+
+  const header = `<div class="col-span-full mb-2 flex items-center justify-between flex-wrap gap-2">
+    <p class="text-xs font-bold text-slate-500">読了記事 ${state.history.length}件</p>
+    <button onclick="openSummaryModal()" class="flex items-center gap-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs font-bold px-3 py-2 rounded-xl transition">
+      <i data-lucide="file-bar-chart" class="w-3.5 h-3.5"></i>振り返りサマリー → Obsidian
+    </button>
+  </div>`;
+
+  const cards = state.history.slice().reverse().map((item, ri) => {
+    const oi = state.history.length - 1 - ri;
+    return `
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 truncate">${escapeHtml(item.article.source)}</span>
+            <div class="flex items-center gap-1.5 shrink-0">${naturePill(item.nature)}<span class="text-[11px] text-slate-400">${item.date}</span></div>
+          </div>
+          <h3 class="font-bold text-sm text-slate-800 leading-snug mb-1">${escapeHtml(item.article.title)}</h3>
+          ${coopAreaPills(item.coopAreas)}
+          ${item.memo
+            ? `<div class="bg-amber-50/80 border border-amber-200/80 rounded-xl p-3 text-xs text-slate-700 mt-2.5"><p class="font-bold text-[11px] text-amber-800 mb-1">✍️ 気づきメモ:</p><p class="whitespace-pre-wrap leading-relaxed">${escapeHtml(item.memo)}</p></div>`
+            : '<p class="text-xs text-slate-400 italic mt-2">（メモなし）</p>'}
+        </div>
+        <div class="flex items-center justify-between pt-2.5 border-t border-slate-100 mt-2">
+          <span class="text-[11px] font-bold text-emerald-700">#${item.article.tag}</span>
+          <div class="flex items-center gap-2">
+            ${item.sentToObsidian ? '<span class="text-[10px] font-bold bg-purple-100 text-purple-700 px-2 py-0.5 rounded-md">Obsidian済</span>' : ''}
+            <button onclick="reSendHistoryToObsidian(${oi})" class="text-xs font-bold text-purple-600 hover:underline py-1">再送信</button>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+
+  container.innerHTML = header + cards;
+  if (window.lucide) lucide.createIcons();
+}
+
+function renderReadLaterTab() {
+  const container = document.getElementById('article-list');
+  const rl = state.articles.filter(a => a.readLater);
+  if (!rl.length) {
+    container.innerHTML = `<div class="col-span-full text-center py-14 bg-white rounded-2xl border border-slate-200 px-4"><p class="text-3xl mb-2">📌</p><p class="font-bold text-slate-700 text-sm">未読ストックはありません</p><p class="text-xs text-slate-400 mt-1">記事追加時に「あとで読む」でストックできます</p></div>`;
+    return;
+  }
+  container.innerHTML = rl.map(art => `
+    <div class="bg-white rounded-2xl p-4 sm:p-5 border border-dashed border-slate-300 shadow-sm flex flex-col justify-between">
+      <div onclick="openArticleReader('${art.id}')" class="cursor-pointer">
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <span class="text-[11px] font-bold px-2 py-0.5 rounded-lg border ${typeBadgeColor(art.type)}">${art.type}</span>
+          <span class="text-[11px] text-slate-400">${art.date}</span>
+        </div>
+        <h3 class="font-bold text-sm text-slate-800 leading-snug mb-1">${escapeHtml(art.title)}</h3>
+        <p class="text-xs text-slate-500 truncate">${escapeHtml(art.source)}</p>
+        <span class="text-[11px] font-bold text-emerald-700">#${art.tag}</span>
+      </div>
+      <div class="flex items-center justify-between pt-2.5 border-t border-slate-100 mt-2">
+        <button onclick="openArticleReader('${art.id}')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">今すぐ読む</button>
+        <button onclick="removeReadLater('${art.id}')" class="text-xs font-bold text-slate-400 hover:text-slate-600 py-1">リストから削除</button>
+      </div>
+    </div>`).join('');
+  if (window.lucide) lucide.createIcons();
+}
+
+function removeReadLater(id) {
+  const a = state.articles.find(x => x.id === id);
+  if (a) { a.readLater = false; saveState(); updateReadLaterBadge(); renderArticles(); showToast('未読リストから削除しました'); }
+}
+
+function updateReadLaterBadge() {
+  const count = state.articles.filter(a => a.readLater).length;
+  const b = document.getElementById('readlater-count-badge');
+  if (b) { b.textContent = count; b.classList.toggle('hidden', count === 0); }
+}
+
+// ════════════════════════════════════════════════════════════════
+// FILTERS & TABS
+// ════════════════════════════════════════════════════════════════
+function setTypeFilter(type) {
+  state.selectedType = type;
+  document.querySelectorAll('.type-btn').forEach(b => {
+    b.className = b.dataset.type === type
+      ? 'type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-600 text-white transition shrink-0 shadow-sm'
+      : 'type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition shrink-0';
+  });
+  renderArticles();
+}
+
+function setTagFilter(tag) {
+  state.selectedTag = tag;
+  renderTagFilters();
+  renderArticles();
+}
+
+function switchTab(tab) {
+  state.currentTab = tab;
+  const inact = 'px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-1';
+  const act   = 'px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold bg-white text-emerald-700 shadow-sm transition flex items-center justify-center gap-1';
+  document.getElementById('tab-feed').className = tab === 'feed' ? act : inact;
+  document.getElementById('tab-readlater').className = tab === 'readlater' ? act : inact;
+  document.getElementById('tab-history').className = tab === 'history' ? act : inact;
+  const isFeed = tab === 'feed';
+  document.getElementById('type-filter-row').classList.toggle('hidden', !isFeed);
+  document.getElementById('tag-filter-container').classList.toggle('hidden', !isFeed);
+  renderArticles();
+}
+
+// ════════════════════════════════════════════════════════════════
+// ADD ARTICLE
+// ════════════════════════════════════════════════════════════════
+function toggleAddBar() {
+  document.getElementById('add-bar-content').classList.toggle('hidden');
+  document.getElementById('add-bar-chevron').classList.toggle('rotate-180');
+}
+
+function toggleAddBarDetail() {
+  document.getElementById('add-bar-detail').classList.toggle('hidden');
+  document.getElementById('add-detail-chevron').classList.toggle('rotate-180');
+}
+
+function checkDuplicate(url, title) {
+  const nu = url.toLowerCase().trim();
+  const nt = title.toLowerCase().trim();
+  return state.articles.some(a => (nu && a.url.toLowerCase() === nu) || a.title.toLowerCase() === nt);
+}
+
+function addCustomArticle(openNow) {
+  const titleEl = document.getElementById('custom-title-input');
+  const urlEl   = document.getElementById('custom-url-input');
+  const title = titleEl.value.trim();
+  const url   = urlEl.value.trim() || 'https://www.env.go.jp/';
+  if (!title) { showToast('記事タイトルを入力してください'); return; }
+  if (checkDuplicate(url, title)) { showToast('⚠️ 同一URL・タイトルの記事がすでに登録されています'); return; }
+
+  const tag    = document.getElementById('custom-tag-input').value;
+  const type   = document.getElementById('custom-type-input').value;
+  const nature = document.getElementById('custom-nature-input').value;
+  const coopAreas = getSelectedCoopAreas('add-coop-areas');
+
+  const art = { id:'custom-'+Date.now(), title, source:'マイクリッピング', type, tag, nature, coopAreas, date:new Date().toISOString().slice(0,10), url, readLater:!openNow };
+  state.articles.unshift(art);
+  titleEl.value = ''; urlEl.value = '';
+  saveState(); updateReadLaterBadge(); renderArticles();
+  if (openNow) { openArticleReader(art.id); }
+  else { showToast('📌 未読リストにストックしました'); }
+}
+
+// ════════════════════════════════════════════════════════════════
+// ARTICLE READER  (Readability.js + allorigins.win)
+// ════════════════════════════════════════════════════════════════
+function setReaderState(s) {
+  document.getElementById('reader-loading').className =
+    s === 'loading' ? 'flex flex-col items-center justify-center flex-1 gap-5 py-16' : 'hidden';
+  document.getElementById('reader-content').className =
+    s === 'content' ? 'flex-1 overflow-y-auto' : 'hidden';
+  document.getElementById('reader-fallback').className =
+    s === 'fallback' ? 'flex flex-col items-center justify-center flex-1 gap-4 py-16 px-6 text-center' : 'hidden';
+}
+
+function absolutifyUrls(html, base) {
+  try {
+    const b = new URL(base);
+    return html
+      .replace(/(<img[^>]+src=["'])(?!https?:|data:|\/\/)(\.?\/?[^"']+)(["'])/gi,
+        (m, pre, path, post) => { try { return pre + new URL(path, b).href + post; } catch(_){ return m; } })
+      .replace(/(<a[^>]+href=["'])(?!https?:|#|javascript:|mailto:)(\.?\/?[^"']+)(["'])/gi,
+        (m, pre, path, post) => { try { return pre + new URL(path, b).href + post; } catch(_){ return m; } });
+  } catch(_) { return html; }
+}
+
+async function fetchHTMLviaProxy(url) {
+  // 試行1: allorigins.win JSON エンドポイント
+  try {
+    const r = await fetchWithTimeout(
+      `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`, 14000);
+    if (!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    if (d.contents && d.contents.length > 500) return d.contents;
+    throw new Error('empty');
+  } catch(_) {}
+
+  // 試行2: allorigins.win raw エンドポイント
+  try {
+    const r2 = await fetchWithTimeout(
+      `https://allorigins.win/raw?url=${encodeURIComponent(url)}`, 14000);
+    if (!r2.ok) throw new Error(r2.status);
+    const text = await r2.text();
+    if (text && text.length > 500) return text;
+    throw new Error('empty');
+  } catch(_) {}
+
+  throw new Error('all proxies failed');
+}
+
+async function openArticleReader(id) {
+  const art = state.articles.find(a => a.id === id);
+  if (!art) return;
+  if (art.readLater) { art.readLater = false; updateReadLaterBadge(); saveState(); }
+  state.activeArticle = art;
+
+  // 上部バー
+  document.getElementById('reader-source-badge').textContent = `${art.type} | ${art.source}`;
+  document.getElementById('reader-title').textContent = art.title;
+  document.getElementById('reader-external-link').href = art.url;
+  document.getElementById('fallback-link').href = art.url;
+
+  // モーダルを開いてローディング表示
+  const modal = document.getElementById('reader-modal');
+  modal.classList.remove('hidden'); modal.classList.add('flex');
+  setReaderState('loading');
+  document.getElementById('reader-loading-msg').textContent = '記事を取得中...';
+
+  try {
+    // ── STEP 1: プロキシ経由でHTML取得 ──
+    const html = await fetchHTMLviaProxy(art.url);
+    document.getElementById('reader-loading-msg').textContent = '本文を抽出中...';
+
+    // ── STEP 2: DOMParser でパース ──
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // base URLを設定（相対パス解決のため）
+    const existingBase = doc.querySelector('base');
+    if (existingBase) existingBase.href = art.url;
+    else {
+      const base = doc.createElement('base');
+      base.href = art.url;
+      doc.head.prepend(base);
+    }
+
+    // ── STEP 3: Readabilityで本文抽出 ──
+    if (typeof Readability === 'undefined') throw new Error('Readability not loaded');
+    const reader = new Readability(doc, {
+      charThreshold: 20,
+      keepClasses: false,
+    });
+    const parsed = reader.parse();
+    if (!parsed || !parsed.content || parsed.content.trim().length < 100) {
+      throw new Error('extraction failed or content too short');
+    }
+
+    // ── STEP 4: URL絶対化 & サニタイズ ──
+    let content = absolutifyUrls(parsed.content, art.url);
+    if (typeof DOMPurify !== 'undefined') {
+      content = DOMPurify.sanitize(content, {
+        ALLOWED_TAGS: ['p','br','b','strong','i','em','u','s','del','ins',
+          'h1','h2','h3','h4','h5','h6','ul','ol','li','dl','dt','dd',
+          'blockquote','pre','code','table','thead','tbody','tr','th','td',
+          'figure','figcaption','img','a','span','div','article','section',
+          'hr','sup','sub','time'],
+        ALLOWED_ATTR: ['href','src','alt','title','class','id','datetime','target','rel'],
+        FORCE_BODY: true,
+      });
+    }
+
+    // ── STEP 5: 表示 ──
+    document.getElementById('reader-article-body').innerHTML = content;
+    document.getElementById('reader-open-btn').href = art.url;
+
+    // メタバー
+    const bylineParts = [];
+    if (parsed.byline) bylineParts.push(parsed.byline);
+    if (parsed.siteName) bylineParts.push(parsed.siteName);
+    bylineParts.push(art.date);
+    document.getElementById('reader-meta-byline').textContent = bylineParts.join('　|　');
+
+    setReaderState('content');
+    if (window.lucide) lucide.createIcons();
+
+    // 記事内のリンクは新タブで開く
+    document.querySelectorAll('#reader-article-body a').forEach(a => {
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
+
+  } catch(e) {
+    console.warn('Reader fetch/parse failed:', e.message);
+    setReaderState('fallback');
+    if (window.lucide) lucide.createIcons();
+  }
+}
+
+function closeReaderOnly() {
+  const modal = document.getElementById('reader-modal');
+  modal.classList.add('hidden'); modal.classList.remove('flex');
+  document.getElementById('reader-article-body').innerHTML = '';
+  setReaderState('loading'); // 次回表示のためリセット
+  state.activeArticle = null;
+}
+
+function finishReading() {
+  const artForMemo = state.activeArticle; // save ref before closeReaderOnly clears it
+  closeReaderOnly();
+  if (!artForMemo) return;
+  state.activeArticle = artForMemo; // restore for memo modal
+
+  document.getElementById('memo-article-title').textContent = state.activeArticle.title;
+  document.getElementById('memo-textarea').value = '';
+  document.getElementById('clipboard-banner').classList.add('hidden');
+
+  renderNatureBtns('memo-nature-sel', state.activeArticle.nature || '');
+  renderCoopAreaBtns('memo-coop-areas');
+  // Pre-select existing coopAreas
+  (state.activeArticle.coopAreas || []).forEach(aId => {
+    const btn = document.querySelector(`#memo-coop-areas [data-area="${aId}"]`);
+    if (btn) { btn.classList.add('coop-btn-sel'); btn.classList.remove('bg-slate-100','text-slate-600','border-slate-200'); }
+  });
+
+  const vault = state.obsidianVault;
+  const previewText = vault
+    ? (state.obsidianMode === 'append'
+        ? `追記先: ${state.obsidianAppendPath || '未設定'} (Vault: ${vault})`
+        : `Vault: 「${vault}」/ ${state.obsidianFolder || 'ルート'}`)
+    : '⚠️ Vault未設定（設定から指定できます）';
+  document.getElementById('obsidian-target-preview').textContent = previewText;
+
+  const mm = document.getElementById('memo-modal');
+  mm.classList.remove('hidden'); mm.classList.add('flex');
+  if (window.lucide) lucide.createIcons();
+}
+
+// ════════════════════════════════════════════════════════════════
+// MEMO & OBSIDIAN
+// ════════════════════════════════════════════════════════════════
+function insertMemoTemplate() {
+  document.getElementById('memo-textarea').value =
+    `【事実の核心】\n（この記事で最も重要な事実・数字は何か？）\n\n【生協への転用アイデア】\n（生協の食堂・購買・学生企画などにどう活かせるか？）\n\n【明日できる最初のアクション】\n（担当者として最初に動けることは？）`;
+  document.getElementById('memo-textarea').focus();
+}
+
+function recordCompletion(memo, sentObsidian, coopAreas, nature) {
+  const art = state.activeArticle;
+  if (!art) return;
+  if (!state.readIds.includes(art.id)) {
+    state.readIds.push(art.id);
+    state.points += 10;
+    if (state.typeCounts[art.type] !== undefined) state.typeCounts[art.type]++;
+  }
+  if (sentObsidian) { state.obsidianCount++; state.points += 15; }
+  state.history.push({ article:{...art}, memo, coopAreas:coopAreas||[], nature:nature||'', date:new Date().toISOString().slice(0,10), sentToObsidian:sentObsidian });
+  saveState(); checkBackupReminder(); renderArticles(); closeMemoModal();
+}
+
+function saveOnlyHistory() {
+  const memo = document.getElementById('memo-textarea').value.trim();
+  const coopAreas = getSelectedCoopAreas('memo-coop-areas');
+  const nature = getSelectedNature('memo-nature-sel');
+  recordCompletion(memo, false, coopAreas, nature);
+  showToast('読了履歴に保存しました (+10pt)');
+}
+
+async function saveAndSendToObsidian() {
+  const memo = document.getElementById('memo-textarea').value.trim();
+  const coopAreas = getSelectedCoopAreas('memo-coop-areas');
+  const nature = getSelectedNature('memo-nature-sel');
+  if (!state.activeArticle) return;
+  await triggerObsidianURI(state.activeArticle, memo, coopAreas, nature);
+  recordCompletion(memo, true, coopAreas, nature);
+  showToast('Obsidianを起動してノートを作成しました！ (+25pt)');
+}
+
+async function reSendHistoryToObsidian(idx) {
+  const item = state.history[idx];
+  if (!item) return;
+  await triggerObsidianURI(item.article, item.memo, item.coopAreas, item.nature);
+  showToast('Obsidianへ再送信しました');
+}
+
+function generateMarkdown(art, memo, coopAreas, nature, today) {
+  today = today || new Date().toISOString().slice(0,10);
+  const areas = coopAreas || [];
+  return [
+    '---',
+    `date: ${today}`,
+    `source: "${art.source}"`,
+    `category: "${art.type}"`,
+    `nature: "${nature||'未分類'}"`,
+    `coop_areas: [${areas.map(a=>`"${a}"`).join(', ')}]`,
+    `tags: [環境活動, ${art.tag}]`,
+    `url: "${art.url}"`,
+    '---','',
+    `# ${art.title}`,
+    '',
+    `- **情報源**: ${art.source}（${art.type}）`,
+    `- **テーマ**: #${art.tag}`,
+    `- **事例の性質**: ${nature||'未分類'}`,
+    `- **生協事業領域**: ${areas.length ? areas.join(', ') : '未設定'}`,
+    `- **URL**: [元記事を開く](${art.url})`,
+    '',
+    '## ✍️ 気づき・生協活動へのメモ',
+    '',
+    memo || '（メモ未記入）',
+    ''
+  ].join('\n');
+}
+
+async function triggerObsidianURI(art, memo, coopAreas, nature) {
+  const today = new Date().toISOString().slice(0,10);
+  const md = generateMarkdown(art, memo, coopAreas, nature, today);
+  const safeTitle = art.title.replace(/[\/:*?"<>|#^\[\]\\]/g,'').slice(0,40).trim();
+  const fileName = `${today}_${safeTitle}`;
+  const folderPfx = state.obsidianFolder ? state.obsidianFolder.replace(/\/$/,'')+'/' : '';
+  const fullPath = `${folderPfx}${fileName}`;
+
+  let filePath = fullPath;
+  let appendParam = '';
+  if (state.obsidianMode === 'append' && state.obsidianAppendPath) {
+    filePath = state.obsidianAppendPath;
+    appendParam = '&append=true';
+  }
+
+  let uri = `obsidian://new?file=${encodeURIComponent(filePath)}&content=${encodeURIComponent(md)}${appendParam}`;
+  if (state.obsidianVault) uri += `&vault=${encodeURIComponent(state.obsidianVault)}`;
+
+  if (uri.length > 2000) {
+    // ── Clipboard fallback ──
+    let copied = false;
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(md);
+        copied = true;
+      }
+    } catch(_) {}
+    if (!copied) {
+      // execCommand fallback
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = md; ta.style.position='fixed'; ta.style.top='-9999px';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        copied = true;
+      } catch(_) {}
+    }
+
+    const banner = document.getElementById('clipboard-banner');
+    if (banner) banner.classList.toggle('hidden', !copied);
+
+    if (copied) {
+      let shortUri = `obsidian://new?file=${encodeURIComponent(fullPath)}`;
+      if (state.obsidianVault) shortUri += `&vault=${encodeURIComponent(state.obsidianVault)}`;
+      showToast('📋 Markdownをクリップボードにコピー → Obsidianを起動します');
+      setTimeout(() => { window.location.href = shortUri; }, 900);
+    } else {
+      showToast('⚠️ ノートが長すぎます。メモを短くするか、Obsidianモードを「追記」にしてください');
+    }
+    return;
+  }
+
+  window.location.href = uri;
+}
+
+function closeMemoModal() {
+  const m = document.getElementById('memo-modal');
+  m.classList.add('hidden'); m.classList.remove('flex');
+  state.activeArticle = null;
+}
+
+// ════════════════════════════════════════════════════════════════
+// SUMMARY DIGEST
+// ════════════════════════════════════════════════════════════════
+function openSummaryModal() {
+  refreshSummaryPreview();
+  const m = document.getElementById('summary-modal');
+  m.classList.remove('hidden'); m.classList.add('flex');
+  if (window.lucide) lucide.createIcons();
+}
+
+function closeSummaryModal() {
+  const m = document.getElementById('summary-modal');
+  m.classList.add('hidden'); m.classList.remove('flex');
+}
+
+function getSelectedPeriod() {
+  const r = document.querySelector('input[name="summary-period"]:checked');
+  return r ? r.value : '7d';
+}
+
+function filterHistoryByPeriod(period) {
+  if (period === 'all') return state.history;
+  const days = period === '7d' ? 7 : 30;
+  const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - days);
+  return state.history.filter(h => { try { return new Date(h.date) >= cutoff; } catch(_){ return true; } });
+}
+
+function refreshSummaryPreview() {
+  const period = getSelectedPeriod();
+  const filtered = filterHistoryByPeriod(period);
+  const obsCount = filtered.filter(h => h.sentToObsidian).length;
+  document.getElementById('summary-stats-text').textContent = `読了記事: ${filtered.length}件 ／ Obsidian送信済: ${obsCount}件`;
+  document.getElementById('summary-preview').value = generateSummaryMarkdown(period, filtered);
+}
+
+function generateSummaryMarkdown(period, filtered) {
+  const today = new Date().toISOString().slice(0,10);
+  const pLabel = period === '7d' ? '週次（直近7日間）' : period === '30d' ? '月次（直近30日間）' : '全期間';
+
+  const tagC = {}, typeC = {}, areaC = {};
+  COOP_AREAS.forEach(a => { areaC[a.id] = 0; });
+  filtered.forEach(h => {
+    tagC[h.article.tag] = (tagC[h.article.tag]||0) + 1;
+    typeC[h.article.type] = (typeC[h.article.type]||0) + 1;
+    (h.coopAreas||[]).forEach(a => { if (areaC[a] !== undefined) areaC[a]++; });
+  });
+
+  let md = [
+    '---',
+    `date: ${today}`,
+    `type: 振り返りサマリー`,
+    `period: "${pLabel}"`,
+    `article_count: ${filtered.length}`,
+    `tags: [環境活動, 生協, 振り返り]`,
+    '---','',
+    `# 🌿 環境インプット振り返りノート（${pLabel}）`,
+    '',
+    `> 生成日: ${today} ｜ 読了記事数: ${filtered.length}件 ｜ Obsidian送信: ${filtered.filter(h=>h.sentToObsidian).length}件`,
+    '','## 📊 種別・テーマ別 読了件数',''
+  ];
+  Object.entries(typeC).forEach(([t,c]) => md.push(`- **${t}**: ${c}件`));
+  md.push('');
+  Object.entries(tagC).sort((a,b)=>b[1]-a[1]).forEach(([t,c]) => md.push(`- #${t}: ${c}件`));
+  md.push('','## 🏢 生協事業領域別 インプット件数','');
+  COOP_AREAS.forEach(a => {
+    const c = areaC[a.id]||0;
+    md.push(`- ${a.emoji} **${a.label}**: ${c}件${c===0?' ⚠️ 要インプット':' '+'█'.repeat(Math.min(c,10))}`);
+  });
+  md.push('','## 📚 読了記事一覧','');
+  filtered.slice().reverse().forEach((h,i) => {
+    md.push(`### ${i+1}. ${h.article.title}`);
+    md.push(`- **情報源**: ${h.article.source}（${h.article.type}）`);
+    md.push(`- **タグ**: #${h.article.tag}`);
+    if (h.nature) md.push(`- **性質**: ${h.nature}`);
+    md.push(`- **読了日**: ${h.date}`);
+    md.push(`- **URL**: [元記事](${h.article.url})`);
+    if (h.coopAreas && h.coopAreas.length) md.push(`- **生協領域**: ${h.coopAreas.join(' / ')}`);
+    if (h.memo) { md.push(''); h.memo.split('\n').forEach(l => md.push(`> ${l}`)); }
+    md.push('');
+  });
+  return md.join('\n');
+}
+
+async function sendSummaryToObsidian() {
+  const period = getSelectedPeriod();
+  const filtered = filterHistoryByPeriod(period);
+  const pLabel = period === '7d' ? '週次（直近7日間）' : period === '30d' ? '月次（直近30日間）' : '全期間';
+  const md = generateSummaryMarkdown(period, filtered);
+  const today = new Date().toISOString().slice(0,10);
+  const fname = `${today}_EcoPulse振り返り_${pLabel.replace(/[（）]/g,'')}`;
+  const fpfx = state.obsidianFolder ? state.obsidianFolder.replace(/\/$/,'') + '/サマリー/' : 'EcoPulse_サマリー/';
+  const fullPath = `${fpfx}${fname}`;
+
+  let uri = `obsidian://new?file=${encodeURIComponent(fullPath)}&content=${encodeURIComponent(md)}`;
+  if (state.obsidianVault) uri += `&vault=${encodeURIComponent(state.obsidianVault)}`;
+
+  if (uri.length > 2000) {
+    let copied = false;
+    try { if (navigator.clipboard) { await navigator.clipboard.writeText(md); copied = true; } } catch(_) {}
+    if (!copied) {
+      try {
+        const ta = document.createElement('textarea'); ta.value = md; ta.style.position='fixed'; ta.style.top='-9999px';
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); copied = true;
+      } catch(_) {}
+    }
+    if (copied) {
+      showToast('📋 サマリーをクリップボードにコピー → Obsidianを起動します');
+      state.summaryCount = (state.summaryCount||0)+1; saveState();
+      let shortUri = `obsidian://new?file=${encodeURIComponent(fullPath)}`;
+      if (state.obsidianVault) shortUri += `&vault=${encodeURIComponent(state.obsidianVault)}`;
+      closeSummaryModal();
+      setTimeout(() => { window.location.href = shortUri; }, 800);
+    } else { showToast('⚠️ 期間を短くするか、メモ数の少ない時期を選んでください'); }
+    return;
+  }
+
+  state.summaryCount = (state.summaryCount||0)+1; saveState();
+  closeSummaryModal();
+  showToast('サマリーノートをObsidianへ送信しました！');
+  setTimeout(() => { window.location.href = uri; }, 500);
+}
+
+// ════════════════════════════════════════════════════════════════
+// SETTINGS
+// ════════════════════════════════════════════════════════════════
+let currentStab = 'obsidian';
+
+function openSettingsModal() {
+  document.getElementById('setting-vault-name').value = state.obsidianVault || '';
+  document.getElementById('setting-folder-path').value = state.obsidianFolder || '';
+  document.getElementById('setting-append-path').value = state.obsidianAppendPath || '';
+  const isAppend = state.obsidianMode === 'append';
+  document.getElementById('mode-new').checked = !isAppend;
+  document.getElementById('mode-append').checked = isAppend;
+  document.getElementById('append-path-row').classList.toggle('hidden', !isAppend);
+  renderRSSFeedList();
+  updateBookmarkletCode();
+  updateBackupStatusBox();
+  switchSettingsTab(currentStab);
+  const m = document.getElementById('settings-modal');
+  m.classList.remove('hidden'); m.classList.add('flex');
+  if (window.lucide) lucide.createIcons();
+}
+
+function closeSettingsModal() {
+  const m = document.getElementById('settings-modal');
+  m.classList.add('hidden'); m.classList.remove('flex');
+}
+
+function switchSettingsTab(tab) {
+  currentStab = tab;
+  ['obsidian','rss','bookmarklet','data'].forEach(t => {
+    const btn = document.getElementById(`stab-${t}`);
+    const con = document.getElementById(`stab-content-${t}`);
+    if (t === tab) {
+      btn.className = 'shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-emerald-600 text-emerald-700 whitespace-nowrap';
+      con.classList.remove('hidden');
+    } else {
+      btn.className = 'shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap';
+      con.classList.add('hidden');
+    }
+  });
+  document.getElementById('settings-save-row').classList.toggle('hidden', tab === 'bookmarklet' || tab === 'data');
+}
+
+function saveSettings() {
+  state.obsidianVault = document.getElementById('setting-vault-name').value.trim();
+  state.obsidianFolder = document.getElementById('setting-folder-path').value.trim();
+  state.obsidianAppendPath = document.getElementById('setting-append-path').value.trim();
+  state.obsidianMode = document.getElementById('mode-append').checked ? 'append' : 'new';
+  saveState(); closeSettingsModal(); showToast('設定を保存しました');
+}
+
+// ════════════════════════════════════════════════════════════════
+// RSS
+// ════════════════════════════════════════════════════════════════
+function renderRSSFeedList() {
+  const el = document.getElementById('rss-feed-list');
+  if (!el) return;
+  if (!state.rssFeeds.length) {
+    el.innerHTML = `<p class="text-xs text-slate-400 text-center py-3">RSSフィードが登録されていません</p>`; return;
+  }
+  el.innerHTML = state.rssFeeds.map((f,i) => `
+    <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5">
+      <i data-lucide="rss" class="w-4 h-4 text-blue-500 shrink-0"></i>
+      <div class="flex-1 min-w-0">
+        <p class="text-xs font-bold text-slate-800 truncate">${escapeHtml(f.name||f.url)}</p>
+        <p class="text-[11px] text-slate-400 truncate">${escapeHtml(f.url)}</p>
+      </div>
+      <button onclick="removeRSSFeed(${i})" class="p-1.5 text-slate-400 hover:text-red-500 transition shrink-0">
+        <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>`).join('');
+  if (window.lucide) lucide.createIcons();
+}
+
+function addRSSFeed() {
+  const urlEl = document.getElementById('new-rss-url');
+  const nameEl = document.getElementById('new-rss-name');
+  const url = urlEl.value.trim();
+  const name = nameEl.value.trim() || new URL(url.startsWith('http') ? url : 'https://'+url).hostname;
+  if (!url || !url.startsWith('http')) { showToast('有効なRSS URLを入力してください'); return; }
+  if (state.rssFeeds.some(f => f.url === url)) { showToast('このフィードはすでに登録されています'); return; }
+  state.rssFeeds.push({ url, name });
+  urlEl.value = ''; nameEl.value = '';
+  saveState(); renderRSSFeedList();
+  showToast(`「${name}」を追加しました`);
+}
+
+function removeRSSFeed(i) {
+  state.rssFeeds.splice(i,1);
+  saveState(); renderRSSFeedList();
+}
+
+async function fetchWithTimeout(url, ms) {
+  const ctrl = new AbortController();
+  const id = setTimeout(() => ctrl.abort(), ms);
+  try { const r = await fetch(url, {signal:ctrl.signal}); clearTimeout(id); return r; }
+  catch(e) { clearTimeout(id); throw e; }
+}
+
+function parseRSSXML(xml, feedUrl, feedName) {
+  try {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xml, 'application/xml');
+    if (doc.querySelector('parsererror')) return [];
+    const items = doc.querySelectorAll('item, entry');
+    const ftitle = doc.querySelector('channel > title, feed > title')?.textContent?.trim() || feedName || '';
+    return Array.from(items).slice(0,20).map(it => {
+      const title = it.querySelector('title')?.textContent?.trim() || '(タイトルなし)';
+      const link  = it.querySelector('link')?.textContent?.trim() || it.querySelector('link[href]')?.getAttribute('href') || feedUrl;
+      const pub   = it.querySelector('pubDate, published, updated')?.textContent || '';
+      let date = new Date().toISOString().slice(0,10);
+      if (pub) { try { date = new Date(pub).toISOString().slice(0,10); } catch(_){} }
+      return { id:'rss-'+Date.now()+'-'+Math.random().toString(36).slice(2,8), title, source:ftitle, type:'世界動向', tag:'フードロス', nature:'', coopAreas:[], date, url:link.trim(), readLater:false, isFromRSS:true };
+    });
+  } catch(_) { return []; }
+}
+
+async function fetchSingleRSS(url, feedName) {
+  // Try rss2json.com
+  try {
+    const r = await fetchWithTimeout(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}&count=20`, 9000);
+    if (!r.ok) throw new Error('status '+r.status);
+    const d = await r.json();
+    if (d.status === 'ok' && Array.isArray(d.items)) {
+      return d.items.map(it => ({
+        id:'rss-'+Date.now()+'-'+Math.random().toString(36).slice(2,8),
+        title:(it.title||'(タイトルなし)').trim(),
+        source:d.feed?.title||feedName||new URL(url).hostname,
+        type:'世界動向', tag:'フードロス', nature:'', coopAreas:[],
+        date:it.pubDate?it.pubDate.slice(0,10):new Date().toISOString().slice(0,10),
+        url:(it.link||it.url||url).trim(),
+        readLater:false, isFromRSS:true
+      }));
+    }
+    throw new Error('invalid response');
+  } catch(_) {}
+
+  // Fallback: allorigins.win
+  try {
+    const r2 = await fetchWithTimeout(`https://allorigins.win/get?disableCache=true&url=${encodeURIComponent(url)}`, 9000);
+    if (!r2.ok) throw new Error('allorigins '+r2.status);
+    const d2 = await r2.json();
+    if (d2.contents) return parseRSSXML(d2.contents, url, feedName);
+    throw new Error('no contents');
+  } catch(e2) {
+    throw new Error(`RSS取得失敗 (${feedName||url})`);
+  }
+}
+
+async function fetchRSSFeeds() {
+  if (!state.rssFeeds.length) { showToast('RSSフィードが設定されていません（設定→RSS購読から追加してください）'); return; }
+  const btn = document.getElementById('rss-btn');
+  const icon = document.getElementById('rss-icon');
+  btn.disabled = true;
+  icon.classList.add('rss-spin');
+  let added = 0, errors = [];
+
+  for (const feed of state.rssFeeds) {
+    try {
+      const arts = await fetchSingleRSS(feed.url, feed.name);
+      arts.forEach(a => {
+        if (!checkDuplicate(a.url, a.title)) { state.articles.unshift(a); added++; state.rssArticleCount = (state.rssArticleCount||0)+1; }
+      });
+    } catch(e) { errors.push(feed.name||feed.url); }
+  }
+
+  btn.disabled = false;
+  icon.classList.remove('rss-spin');
+
+  if (added > 0) { saveState(); renderArticles(); updateReadLaterBadge(); showToast(`📡 ${added}件の新着記事を取得しました`); }
+  else if (errors.length) { showToast(`⚠️ フィード取得に失敗（${errors.slice(0,2).join(', ')}）`); }
+  else { showToast('新着記事はありませんでした'); }
+}
+
+// ════════════════════════════════════════════════════════════════
+// BOOKMARKLET
+// ════════════════════════════════════════════════════════════════
+function updateBookmarkletCode() {
+  const appUrl = window.location.href.split('?')[0];
+  const code = `javascript:(function(){var t=encodeURIComponent(document.title);var u=encodeURIComponent(location.href);window.open('${appUrl}?add_url='+u+'&add_title='+t,'_blank','noopener');})();`;
+  const el = document.getElementById('bookmarklet-code');
+  if (el) el.value = code;
+}
+
+async function copyBookmarklet() {
+  const code = document.getElementById('bookmarklet-code').value;
+  let copied = false;
+  try { if (navigator.clipboard) { await navigator.clipboard.writeText(code); copied = true; } } catch(_) {}
+  if (!copied) {
+    try {
+      const ta = document.createElement('textarea'); ta.value = code; ta.style.position='fixed'; ta.style.top='-9999px';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); copied = true;
+    } catch(_) {}
+  }
+  showToast(copied ? '📋 ブックマークレットをコピーしました' : '⚠️ コピーに失敗しました。テキストエリアから手動でコピーしてください');
+}
+
+// ════════════════════════════════════════════════════════════════
+// DATA MANAGEMENT
+// ════════════════════════════════════════════════════════════════
+function exportJSON() {
+  const blob = new Blob([JSON.stringify(state,null,2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `ecopulse_backup_${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+  state.lastBackupDate = new Date().toISOString().slice(0,10);
+  state.backupMemoCount = state.history.length;
+  saveState(); updateBackupBadge(false); updateBackupStatusBox();
+  showToast('JSONバックアップをダウンロードしました');
+}
+
+function importJSON() {
+  const inp = document.createElement('input');
+  inp.type='file'; inp.accept='.json';
+  inp.onchange = e => {
+    const f = e.target.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = ev => {
+      try {
+        const p = JSON.parse(ev.target.result);
+        if (!p.articles || !p.history) { showToast('⚠️ 有効なEcoPulseデータではありません'); return; }
+        state = { ...state, ...p };
+        saveState(); renderArticles(); renderTagFilters(); updateDashboardUI(); updateReadLaterBadge();
+        closeSettingsModal(); showToast('データをインポートしました');
+      } catch(_) { showToast('⚠️ インポートに失敗しました'); }
+    };
+    r.readAsText(f);
+  };
+  document.body.appendChild(inp); inp.click(); document.body.removeChild(inp);
+}
+
+function resetAllData() {
+  if (!confirm('全データを初期化しますか？この操作は元に戻せません。')) return;
+  localStorage.removeItem('ecopulse_state_v3'); localStorage.removeItem('ecopulse_state_v1');
+  location.reload();
+}
+
+function checkBackupReminder() {
+  const newMemos = state.history.length - (state.backupMemoCount||0);
+  let needs = false;
+  if (!state.lastBackupDate) { needs = state.history.length >= 5; }
+  else {
+    const days = Math.floor((new Date() - new Date(state.lastBackupDate)) / 86400000);
+    needs = days >= 7 || newMemos >= 5;
+  }
+  updateBackupBadge(needs);
+}
+
+function updateBackupBadge(show) {
+  const b = document.getElementById('backup-badge');
+  if (b) b.classList.toggle('hidden', !show);
+}
+
+function updateBackupStatusBox() {
+  const box = document.getElementById('backup-status-box');
+  if (!box) return;
+  if (!state.lastBackupDate) {
+    box.className = 'rounded-xl p-3 text-xs bg-orange-50 border border-orange-200 text-orange-800';
+    box.innerHTML = '<p class="font-bold">⚠️ まだバックアップを取っていません</p><p class="mt-0.5">JSONをダウンロードして、定期的にバックアップしましょう。</p>';
+  } else {
+    const days = Math.floor((new Date() - new Date(state.lastBackupDate)) / 86400000);
+    const newM = state.history.length - (state.backupMemoCount||0);
+    const stale = days >= 7 || newM >= 5;
+    box.className = `rounded-xl p-3 text-xs ${stale ? 'bg-orange-50 border border-orange-200 text-orange-800' : 'bg-emerald-50 border border-emerald-200 text-emerald-800'}`;
+    box.innerHTML = `<p class="font-bold">${stale ? '⚠️ バックアップを推奨' : '✓ バックアップ済'}</p><p class="mt-0.5">最終バックアップ: ${state.lastBackupDate}（${days}日前）／ バックアップ後 ${newM}件のメモを追加</p>`;
+  }
+}
+
+// ════════════════════════════════════════════════════════════════
+// COLLECTION MODAL + AREA BALANCE
+// ════════════════════════════════════════════════════════════════
+function computeCoopAreaCounts() {
+  const c = {};
+  COOP_AREAS.forEach(a => { c[a.id] = 0; });
+  state.history.forEach(h => { (h.coopAreas||[]).forEach(id => { if (c[id] !== undefined) c[id]++; }); });
+  return c;
+}
+
+function renderAreaBalance() {
+  const el = document.getElementById('area-balance-chart');
+  const counts = computeCoopAreaCounts();
+  const maxC = Math.max(...Object.values(counts), 1);
+
+  if (state.history.length === 0) {
+    el.innerHTML = `<p class="text-xs text-slate-400 text-center py-3">まだ読了記録がありません。<br>記事を読んで生協事業領域タグを設定しましょう！</p>`; return;
+  }
+
+  const barColors = ['bg-emerald-500','bg-teal-500','bg-blue-500','bg-purple-500','bg-indigo-500'];
+  el.innerHTML = COOP_AREAS.map((area,i) => {
+    const c = counts[area.id]||0;
+    const pct = Math.round((c/maxC)*100);
+    const weak = c === 0;
+    return `
+      <div class="mb-1">
+        <div class="flex items-center gap-2.5">
+          <div class="w-32 sm:w-40 text-[11px] font-bold text-slate-700 shrink-0 flex items-center gap-1 leading-tight">
+            ${area.emoji} <span class="truncate">${area.label}</span>
+          </div>
+          <div class="flex-1 bg-slate-100 rounded-full h-4 overflow-hidden">
+            <div class="area-bar h-full ${barColors[i]} rounded-full" style="width:${pct}%"></div>
+          </div>
+          <span class="text-[11px] font-bold ${weak?'text-orange-500':'text-slate-600'} w-10 text-right shrink-0">${weak?'⚠️ 0':c+'件'}</span>
+        </div>
+        ${weak?`<p class="text-[10px] text-orange-500 ml-36 sm:ml-44 font-bold mt-0.5">要インプット！</p>`:''}
+      </div>`;
+  }).join('');
+}
+
+function openCollectionModal() {
+  let lv = TREE_LEVELS[0], next = TREE_LEVELS[1];
+  TREE_LEVELS.forEach((t,i) => { if (state.points >= t.minPts) { lv = t; next = TREE_LEVELS[i+1]||null; } });
+
+  document.getElementById('modal-tree-emoji').textContent = lv.emoji;
+  document.getElementById('modal-tree-title').textContent = lv.title;
+  document.getElementById('modal-tree-desc').textContent = lv.desc;
+  document.getElementById('modal-pts').textContent = state.points;
+
+  if (next) {
+    document.getElementById('modal-next-pts').textContent = `${next.minPts-state.points} pt`;
+    const pct = Math.min(100, Math.round(((state.points-lv.minPts)/(next.minPts-lv.minPts))*100));
+    document.getElementById('modal-progress-bar').style.width = `${pct}%`;
+  } else {
+    document.getElementById('modal-next-pts').textContent = 'MAX';
+    document.getElementById('modal-progress-bar').style.width = '100%';
+  }
+
+  renderAreaBalance();
+
+  document.getElementById('badges-grid').innerHTML = BADGES.map(b => {
+    const unlocked = b.check(state);
+    return `<div class="p-3 rounded-xl border text-center transition ${unlocked?'bg-amber-50/70 border-amber-300':'bg-slate-50 border-slate-200 opacity-50 grayscale'}">
+      <div class="text-2xl mb-1">${b.icon}</div>
+      <p class="font-bold text-xs text-slate-800">${b.name}</p>
+      <p class="text-[10px] text-slate-500 mt-0.5">${b.desc}</p>
+    </div>`;
+  }).join('');
+
+  const m = document.getElementById('collection-modal');
+  m.classList.remove('hidden'); m.classList.add('flex');
+  if (window.lucide) lucide.createIcons();
+}
+
+function closeCollectionModal() {
+  const m = document.getElementById('collection-modal');
+  m.classList.add('hidden'); m.classList.remove('flex');
+}
+
+// ════════════════════════════════════════════════════════════════
+// QUIZ
+// ════════════════════════════════════════════════════════════════
+let currentQuizIdx = 0;
+
+function openQuizModal() {
+  currentQuizIdx = Math.floor(Math.random() * QUIZZES.length);
+  const q = QUIZZES[currentQuizIdx];
+  document.getElementById('quiz-question').textContent = q.q;
+  document.getElementById('quiz-feedback').classList.add('hidden');
+  document.getElementById('quiz-options').innerHTML = q.options.map((o,i) =>
+    `<button onclick="answerQuiz(${i})" class="w-full text-left px-4 py-3 rounded-xl border border-slate-200 active:bg-amber-100 hover:border-amber-400 hover:bg-amber-50 text-xs font-bold text-slate-700 transition">${i+1}. ${o}</button>`
+  ).join('');
+  const m = document.getElementById('quiz-modal');
+  m.classList.remove('hidden'); m.classList.add('flex');
+}
+
+function answerQuiz(idx) {
+  const q = QUIZZES[currentQuizIdx];
+  const fb = document.getElementById('quiz-feedback');
+  fb.classList.remove('hidden');
+  if (idx === q.answer) {
+    fb.className = 'p-3.5 rounded-xl text-xs leading-relaxed bg-emerald-50 border border-emerald-200 text-emerald-900 font-medium';
+    fb.innerHTML = `🎉 <strong>大正解！ (+20pt)</strong><br>${q.explanation}`;
+    state.points += 20; state.quizSolved++;
+    saveState();
+    document.getElementById('quiz-badge-dot').classList.add('hidden');
+  } else {
+    fb.className = 'p-3.5 rounded-xl text-xs leading-relaxed bg-rose-50 border border-rose-200 text-rose-900 font-medium';
+    fb.innerHTML = `惜しい！正解は「${q.options[q.answer]}」です。<br>${q.explanation}`;
+  }
+  document.querySelectorAll('#quiz-options button').forEach(b => b.disabled = true);
+}
+
+function closeQuizModal() {
+  const m = document.getElementById('quiz-modal');
+  m.classList.add('hidden'); m.classList.remove('flex');
+}
+
+// ════════════════════════════════════════════════════════════════
+// DASHBOARD UI
+// ════════════════════════════════════════════════════════════════
+function updateDashboardUI() {
+  document.getElementById('history-count-badge').textContent = state.history.length;
+  let lv = TREE_LEVELS[0], next = TREE_LEVELS[1];
+  TREE_LEVELS.forEach((t,i) => { if (state.points >= t.minPts) { lv = t; next = TREE_LEVELS[i+1]||null; } });
+  document.getElementById('header-tree-icon').textContent = lv.emoji;
+  document.getElementById('header-level-text').textContent = window.innerWidth < 640 ? lv.short : lv.title;
+  document.getElementById('header-pts-text').textContent = `${state.points}pt`;
+  let pct = 100;
+  if (next) { const r = next.minPts-lv.minPts; pct = Math.min(100, Math.round(((state.points-lv.minPts)/r)*100)); }
+  document.getElementById('header-progress-bar').style.width = `${pct}%`;
+}
+
+// ════════════════════════════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════════════════════════════
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-message').textContent = msg;
+  t.classList.remove('translate-y-24','opacity-0');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => t.classList.add('translate-y-24','opacity-0'), 3600);
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
+}
+
+window.addEventListener('resize', updateDashboardUI);
+window.addEventListener('DOMContentLoaded', init);
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(r => console.log('[EcoPulse] SW registered:', r.scope))
+      .catch(e => console.warn('[EcoPulse] SW failed:', e));
+  });
+}
+</script>
+</body>
+</html>
