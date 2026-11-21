@@ -14,9 +14,9 @@ const PRECACHE = [
   './',
   './index.html',
   './manifest.json',
-  './icons/icon-180.png',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
+  './icon-180.png',
+  './icon-192.png',
+  './icon-512.png',
 ];
 
 // キャッシュしない動的ホスト（通信が必須のサービス）
