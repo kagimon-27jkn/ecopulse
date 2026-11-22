@@ -1,20 +1,1654 @@
 {
- "updated": "2026-11-22T15:02:54.514Z",
- "count": 235,
+ "updated": "2026-11-22T15:31:05.178Z",
+ "count": 383,
  "items": [
   {
-   "t": "大の里が２場所連続Ｖ 決定戦で若元春下し７度目",
-   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5Ebkh4d281ckZndF9xRFk1QU0tN1RhSWQ3M1lKTkYtUnhtWDFMcjVLY0JXbnV3VG95T0NpVFJfRXlxVHdRYU5RUHFlOWtOTGM0?oc=5",
-   "s": "日本海新聞",
-   "d": "2026-11-22T09:35:23.000Z",
-   "q": ""
+   "t": "食品ロス削減先進地へ カリフォルニア州の試み 井出留美の「食品ロスの処方箋」【38】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1taFhUWld4ZVRlVmpXWGxSTlFKVG1LTVBSNTAzQnA4RGlmNG83WW5OeEZlb3V2dnk2Nkx0SWxPRGdpVlNuSFN0M0I1dUdYSlBxOXlkME9B?oc=5",
+   "s": "朝日新聞",
+   "d": "2024-11-06T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.668Z"
   },
   {
-   "t": "名和神社に全国の名和さん大集合 歴史学び親交深める",
-   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFA3RGhDUFlQUjZKaGhtYXhTcTVld3Zab21MOUVnZEpadXozVU81c3NGWFZXMWdGVkpULS1nOW82VGVqTDVBdFZiamVhem5JZDN0?oc=5",
-   "s": "日本海新聞",
-   "d": "2026-11-22T09:30:00.000Z",
-   "q": ""
+   "t": "飢餓ゼロに向けて私たちにできること｜食品ロス削減から寄付まで具体的な行動を解説",
+   "u": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5sZllvcFlSX0ZqZzZNYzFiMHRiekpJZFpuQmhlOHV3bHptS1BveFQzdXBRczdOQ204ZmhKVGRWRG05Rzc4VWc?oc=5",
+   "s": "mirasus.jp",
+   "d": "2021-09-24T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.668Z"
+  },
+  {
+   "t": "食品ロスは温暖化の主犯格？ 知られざる気候変動との関係 井出留美の「食品ロスの処方箋」【1】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB0Mmo4V1VaMGFBWEVtMXJRRTBIZ1ZyNHdfQW5lZVpubHlBTUV0SjlPbkhWdHlpbmdGNFlxb01xanM4VWlCQlk5bTVNQ0oyb2M2SEw4QlVn?oc=5",
+   "s": "朝日新聞",
+   "d": "2021-09-21T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.668Z"
+  },
+  {
+   "t": "食品ロス対策、コンビニ各社も動き始めた 動画で解説",
+   "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9tOGJFNWJRNGtteklsNFhobXpDLW9WcENROHBlM21nYlhQbllPaGJLWUJMSzNMSW9MSGN4eVhyV3BKYVFNSUllUnQ3bFZrTjV6eFdGZVZwWDZaSFB4SXJVdVk1Tk5UZw?oc=5",
+   "s": "朝日新聞",
+   "d": "2019-06-19T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.668Z"
+  },
+  {
+   "t": "10月は食品ロス削減月間です！ ～おいしく楽しく食べきろう！～",
+   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1FMTQ1VDZHY2RyMDNZN0FRcWVISFhob1JUQkNab0g5aUhXY3gtaTlhamxVeV9EcnNLZlY5S2c4cGRLamZEQzVlVE5fMUIzWnd2M0J1a055YWd0QTJRSUhz?oc=5",
+   "s": "枚方市",
+   "d": "2026-09-30T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食べものの「残しま宣言」運動 食品ロスをなくそう！",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFAzY29taVljSEhobVFtN1dkOV9KejNtRjRIODk3MkpnQWNENFpxUHpZd1hKekNCRzRaNE4zNUVCQzNnMUdWV0VXNUVvZ1ZRTGZPZnd4c2FFeG9EV0N3T3NHR1pwZC1PbGs?oc=5",
+   "s": "北九州市",
+   "d": "2026-05-11T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロスを減らすと食料不足になるという誤解 井出留美の「食品ロスの処方箋」【54】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFA2UUdTSm45cllyOHhEOFg3aGJ5RVpjTDRGYi1GVEVGSlFMSlhRa1llX294ZFl6eHhaSzhlWW9zM2I1Z2FLU3BQcjE5dVpMOW9YUk8waW9B?oc=5",
+   "s": "朝日新聞",
+   "d": "2026-03-02T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロス削減に成功した州 何が違っていたのか 井出留美の「食品ロスの処方箋」【48】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBIcndpTzlRNTBSWlEtdndaMUpESllkTzNvcXNPY0xHWFFZYXZoZm9hMHFBeUVDdW9Hd3lBWjZDVU5wdXpvNGI2NDJHeXpMTW9ab3Zob1ln?oc=5",
+   "s": "朝日新聞",
+   "d": "2025-09-04T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "2023年度の食品ロスは464万t 前年比8万t減、事業系・家庭系ともに減少傾向続く",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE05VWZCeHBKQkhtSjN6bEJRdXNiTlZmdmR2YXBiekFhTVAtZ0VhZVN4UVFwellTYVlzaldRTDhBTDVnSHJUOG1jZmZIUGNZZWZvTXNTZE53?oc=5",
+   "s": "朝日新聞",
+   "d": "2025-07-06T00:05:59.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "「3分の1ルール」など食品流通の商慣行、独禁法違反の恐れ 食品ロス削減へ実態を調査",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB1YXQ3QnBJaUNDRzN1cTlIeUtOOUp5c0Y5LWpaY2JFUkZoNWhGZzlHWGxJR0NuZ1EtWHJybGtVdmI3UXdkN1UyQ0xFNHBZQjlmbXdOUlNn?oc=5",
+   "s": "朝日新聞",
+   "d": "2025-05-27T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロス削減推進法の目的とは？政府が行っている取り組みもあわせて紹介",
+   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBmWGZGR1UzY1RoOG51YlNwOUx3QmFraW1Rc0hKSkhQUnRMdHpKZ0NnN2pKTzVna1FhQnZNdnFQd0RoMkZxeWpMQXhZV0RnNEVmZGU3THR1aktIZw?oc=5",
+   "s": "ベネッセ教育情報",
+   "d": "2024-09-25T04:27:57.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "2022年度の食品ロス量、51万t減の472万t 事業系は「半減」目標達成 経済損失は4兆円",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBZSGdIMEZKMXEwR0RQU01oUGFIcElxVzhqd1NfVHNZZVUtcFRadE1lMlJMeDdHQm5xa3d4UTY3bWpNQU9KcnNOZEdqR3JaNzNidXdpTVdR?oc=5",
+   "s": "朝日新聞",
+   "d": "2024-06-29T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "廃棄食品をパウダーにアップサイクル 「かくれフードロス」削減目指すスタートアップ",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE41a2JRVE1Uc3BJU3o2MWhybXRlY0JJcWZvc2g4cllXZzktYnhRa0NlNllueFF5cWZ0cnVRdk5yek5aREUtNFlpZ1lGdG16bjlYODVZSDNR?oc=5",
+   "s": "朝日新聞",
+   "d": "2024-04-08T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロス削減推進計画を策定しました",
+   "u": "https://news.google.com/rss/articles/CBMifEFVX3lxTE56aHNNb2xDdzdJTzFsZ2VwbWxYREZpZEJsQWwxT0pFNVFWc0xaZWs0WlVXUUFYN1dmZU9IYS1QM1QtZFlxeWFkUkZCNHlsUTNpVEpUQlQzVVotemxlSlZMZkVLSkFHWnlVUF9kMkZFSlliY3NFTEl2Rk1KN24?oc=5",
+   "s": "江別市",
+   "d": "2024-03-12T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "日本が参考にするべき食品ロス削減の国家戦略 アメリカの取り組みを読み解く 井出留美の「食品ロスの処方箋」【29】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1feElYekhfZGdfaFZUQ1JTZFJlN041WTFwSDRDeVNTNzJ4Ung5R0Q2THA3bUlWZmFCNW1CSG1ONUstR0JJLXhCUDZHTmVjU1VoWVZrWG5R?oc=5",
+   "s": "朝日新聞",
+   "d": "2024-02-01T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "日本の食品ロス、2021年度は523万tに 6年ぶり増加、コロナ禍で需要予測難しく",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9KRzZudkpHa2pEa3hVanZ1MURJM2J4dzEwU2JkcVRmRFhpdklsRkVXQUNZN1dvOFppZFN1X011RFdCdTB0VVBLQkFPazhDMy1tV0tJeXh3?oc=5",
+   "s": "朝日新聞",
+   "d": "2023-06-15T00:07:38.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "SDGs達成のため、「食品ロス」を減らそう、なくそう",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTFBrOVpvbjNYc2htcENtZWtNQ081NUxONWpwYVNoTHZKMGdMOTBES1loTW9hdWFNWnVMVHF2WmV1U2JsRklmdy1Zd1dTQUFlMjg2LW5mczdLV0FWeFg3cS1maFRFN0Q5SzVMTm9mT3JfbnBLQQ?oc=5",
+   "s": "千葉商科大学",
+   "d": "2023-03-15T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロス×脱炭素（前編）～食品ロスが気候変動に与える影響～",
+   "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1Kc2FPMFBpVV9yTXR4TUJLTXVrN3g3djVjMWRqNmpBbEZ2UUN1OTdJcERwTzlIOGpHUm5wNmJCMWFzT2Rqd296cW5hekJJeWNzbm9qMHNRMDA?oc=5",
+   "s": "三菱UFJリサーチ&コンサルティング",
+   "d": "2023-02-15T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "ノルウェーの食品ロス対策とは？現地在住者が語る、ゼロウェイストな暮らしのヒント",
+   "u": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5kS3lTQmljMlVNdTQ1VmN5RzlNTktjcUJENHdNN0xJR1M4bmtEYVNGMmdjNWdNbmtaRDZBbWRMUWZhMk8zdDdJZU9nWXJHN25DVmlRUmxydkkxRm12WUFUempJWQ?oc=5",
+   "s": "IDEAS FOR GOOD",
+   "d": "2023-01-10T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "3 食品ロス削減に向けた国民運動の展開",
+   "u": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQdHhPalU0TDIyZzdSVmRYUTgtZ3k3aElxc3NMOHZTLWM2M3pDYkZqdl9CNmlOUll6QW5qOGtfSXdFVzBCQmo1NHExU2NtMXdfZ3ZvWGt0WWd3VmNVbTNVVmZEZ0d6aWFwSjFkYlRLeDRqTnNrUmpRNEZ5MHJ4MEtDOGc5UFdqcC1z?oc=5",
+   "s": "農林水産省",
+   "d": "2022-11-07T19:14:37.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "フードロス（食品ロス）",
+   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBVNE5RRUJxSjZoQ0pwWWQ0Y2Rfcm5SRkFQRXUyb1FoYVZCbHAteE9sUFlWaldLaGp6cnFrRHk0TmZqZnlsaDZTMHZtaC1GUGQ0VFVUMjRROEoxLWEtZXRzcG1yejBDS1lPQTFodk8yNG8?oc=5",
+   "s": "日経BP",
+   "d": "2022-10-20T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "廃棄食品が資源に変わる「フードロスビジネス」とは? 注目のビジネスを5つのタイプに分類して事例を紹介!",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTFBPR0lzWUxzdmhBeTRtdFE1T0lJRGpxR3cxUUlFNU14WTNFb0Z1VDV5WFJIVl9qMjZYTjJQNng1REptNUNpNTRLM1h4TVpoUFRLS2NURzUxc1p4OTZpT0NVMXN1UmlUZXhaeU1ici16SGRyQQ?oc=5",
+   "s": "千葉商科大学",
+   "d": "2022-08-16T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロス（フードロス）問題をわかりやすく解説 削減に向けた取り組みや私たちにできる支援とは",
+   "u": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE9BZjI1ZzZONHcwcG1JOWY4Qmd0M05PU0Q3aVdyaUh2aG5jQzZvd0N4V19MSjB4d0M1dUo2SzAtWGNISWNuQ3RaTQ?oc=5",
+   "s": "ELEMINIST",
+   "d": "2022-07-07T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "〈SDGs×SEIKYO〉 解説編「食品ロスを減らすためには？」",
+   "u": "https://news.google.com/rss/articles/CBMieEFVX3lxTE05dlJ5eDBobXBtX2cwVmlPdlFKaS03NDdCTUVENzRrekRCeGh4WVpDekFoZ3g1QmZzWjgwWkN0N0NscEpGbkxJREUyRTlQTWxyTzhrc1A2a3pGVHVNZm9mZHZEWlJMckktRDdWOXVlQVVTMnJzTWZUNw?oc=5",
+   "s": "聖教新聞",
+   "d": "2022-06-21T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロスと食品廃棄物の違いは？ 国内外で区分にも差異 データで見るSDGs【13】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE02UjJJbm51bklNRjFWVmlYdFg4NnA3YkFNcVJBeXRYYWwwT1BZOUdQVXlINzN0R1ZFbTZtd2Y1LUJaSGMzM0piR2hwdHVJZmdsUXpaenZn?oc=5",
+   "s": "朝日新聞",
+   "d": "2022-02-25T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロス削減 経済・環境・社会から見る三つの意義とは？ 井出留美の「食品ロスの処方箋」【6】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE42a2llRG56Y3cwZzN3T3VWMnNmbnFpMS1ZVDFkUFRqeEZXUW5Jekx2SGtLakRRWElLbmp6QUhBMFl1ejQ5UzF6NjJEcUdPSzlxWUJRaTR3?oc=5",
+   "s": "朝日新聞",
+   "d": "2022-02-07T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "もったいないだけじゃない、「フードロス」は世界の大問題。世界の取り組みや「食品ロス削減推進法」などを紹介",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTFB5U3lSZnNhUjc5MFlKUEVwR1ExT21Ld1ZvY2J1TDJfVGhkZm1hYVd1V211c1FhUTk0XzVVQlZHcHpJRDhoQUZWUmJEMW4teXdZLVh5NmluTWhnQ1FUcDF2Vi1nQzU5UTdNc1pQQ2dNNXJYUQ?oc=5",
+   "s": "千葉商科大学",
+   "d": "2022-02-03T19:51:27.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロス削減推進法の見直しを 海外に学ぶ三つの提案 井出留美の「食品ロスの処方箋」【5】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5mUVVySmM3bHpSS3dEMzBYTTVQd3RTMjNqbl9seVFQTDdEVmxlYnlXRG54MWQtRndZYm9BVmhOUnZjNVVmazM2YzZhWDJIRHdpdEthR0ZR?oc=5",
+   "s": "朝日新聞",
+   "d": "2021-12-27T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロスに取り組む！ 自治体に広がる「フードドライブ」",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBGeUJsZko2cVB2YnZVMjVLRmJXRDhHMHRFWGhJbWtMSnVBZ1JJZWpIOGRTMkJLOVE0RXo5M3FIU21xUjRub2tUd0E0ajJUXzlrZVAtcXhB?oc=5",
+   "s": "朝日新聞",
+   "d": "2021-11-26T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "家庭で、飲食店で、フードロス削減のためにできること「12のアクション」～忙しい人や一人暮らしの人向けのアイディアも紹介!",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTFBySmwxRTNpbll4OGpjZ2NqX1dRUUZDZ3ZCeDlIbF9UdE1LZ2t3LUR3QmpZM2I5U0JkRDhuUzlmbW4tWTVUMFRiNGRaNDlsc3hVVXpGZlJYT2t5X3N6QlBIZXdjUDJELWkwS3d2TDJVdWszUQ?oc=5",
+   "s": "千葉商科大学",
+   "d": "2021-11-26T01:52:21.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "食品ロスと食料システムがなぜ気候変動対策の最重要課題なのか？ 井出留美の「食品ロスの処方箋」【3】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9TSmpiaFEyTVVSVFV6QVFuNzljN0Z2ZFBvNGZsUi1CdTZqeXlnNEE4LWNNNUxtWDNXMWZGVUFKUU5ncFFXd1FjN1RCeXc5MktFa2s3RS13?oc=5",
+   "s": "朝日新聞",
+   "d": "2021-11-01T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "1 食品ロス削減を目指した国民運動の展開",
+   "u": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOYWwwSEtWcHp0ZlA1WFpFOEsyVXFFckkySm5VSk9LSkVJeWxpbVRBczg3VF9fd2taUG40T09RME03VFZiY0g0VHRMVXVjdWJhejVjYzVMbDFReXhYX29mYWZwdzdHMTFEdWlyeXhOa05KRVhYQWV6VWw0bzlfTjVnWnlXZjVWMXhL?oc=5",
+   "s": "農林水産省",
+   "d": "2021-01-22T12:03:55.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "たべものを無駄にしないために何ができる? 食品ロスについて知るために読む3冊【大学の先生おススメ本】",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTE11d0hZSEdUb09uY0l1T19pRE5LLUtoaVlUdjNjcUM0OVdCbXdtVllmVGhNMzVPVGt1UmMxUjFRSjlybzJINnF5Q25yTlVkOWZGYm5WelY5c2ZHWm8yb0w1UXRNRzROeDNxSTJlcnQzbTFkUQ?oc=5",
+   "s": "千葉商科大学",
+   "d": "2020-09-16T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "スマート農業が食品ロス削減や貧困層救済にも貢献！【渡邊智之のスマート農業コラム 第12回】",
+   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9HWUN6Y3kyZUFENHNrbVpMeml1cWNmYkM5OXpOWUphbmM1Y0w4MFN4enB4VXV4bzBQLXU3VnpDaEhSOHlqbld3aV90TmlxaC1D?oc=5",
+   "s": "農業とITの未来メディア",
+   "d": "2020-04-16T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:31:03.667Z"
+  },
+  {
+   "t": "富士通、ファミリーマート様と因果AIを活用した脱炭素製品の購買行動分析と需要創出を目指した実証実験を開始",
+   "u": "https://news.google.com/rss/articles/CBMieEFVX3lxTE05SU5tdFN4MWJvYnFuRVctUDY0QmNTNkIxVlNWVjZRZGFXci1yVklRQTlsWm05U1JTbUFJNlhSV2xXX1cwalZrOG9xbFJLRExkU2NabkkwdzJ6YkhSRW5xbUJVN0h4aWtMMmM2MGpjeGlTU0ZUSlY4TA?oc=5",
+   "s": "ニコニコニュース",
+   "d": "2026-11-20T21:00:22.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "【アーカイブ録画あり】スクール・パリ協定プラス2026～脱炭素に関するシリーズ勉強会～気候変動に関する国連会議COP31の注目点",
+   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBVT2tYR0EtMlN0cHZKekE4c2R2TGRuQ0FwUUQyNFdzNEFqR1J0S2VibmVhUk1ka196a0k0aEdtdk5PbzRJTDNXMWJOemg2LTIyWUswdXktWWZIUQ?oc=5",
+   "s": "WWFジャパン",
+   "d": "2026-09-28T05:24:24.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "【入門】脱炭素時代を生き抜く！ エネルギーマネジメント・脱炭素の基礎知識をわかりやすく解説",
+   "u": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE1WQmZFVGNHSkJOVzYyZHg5RFF5ZWljSGdRS3lYZFM1RXhJaGNDWkU3bWNDNzFZUDZjZmQwdXllZXYyVkdnMllSYkFmMThYOEM0NEE?oc=5",
+   "s": "ソーラージャーナル",
+   "d": "2026-08-31T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "脱炭素型消費行動の学習・普及促進事業",
+   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1qbGd4YjA4OXVvcDJaT08yLW1oUmNnVTlxYjZVUmwtX2hDTms1bkFkbjBoOUV5b1ZPbXN6NkMyam55Wi1sLV9vOUNseklsTW9UOG8yT00xbEpwY1ZYbmg4Sk55d2R4Qk5RU1BrSGNGR3k?oc=5",
+   "s": "広島県公式ホームページ",
+   "d": "2026-06-01T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "カーボンニュートラルとは？意味・脱炭素との違い・日本の目標・企業の取り組みと補助金を徹底解説【2026年最新】",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1IX3Q0UnhMRFlPUHlsbW12UlhxMUh5SlFFWE81UUYtakxkbmxBbUVfdkUyaW5YT05GZlo1STZldHZ4a3YybjA0ZWNvdldmM1VNRGdzZ0NMTFBPUEUyaUE?oc=5",
+   "s": "補助金ポータル",
+   "d": "2026-05-18T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "脱炭素空港とは？実現への取り組みをわかりやすく解説｜日本の認定状況と課題",
+   "u": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9uTlVLa0hEa0hjRVFKRUwzMDNlMW83XzRLWUhYNEtjaTdCRUN4R2l6X1poUFU2VUlBaWZOX0VQUjgxRktvVTN1WkRFeHk?oc=5",
+   "s": "mirasus.jp",
+   "d": "2026-03-10T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "県民向け脱炭素ガイドブック【改訂版】",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTE1jSnp1Z25ydENVSEQxRFZnc1g1eDJyVG1JRFNSQWlSZldzV2lpWVlEa2o5SUhIbWpWUGprU0s1d1hRS2JyYjA3T0FNUlJiRm5ERDlfdnNhSTdyUnhmNmwwLXVzYWo4RmdROFlpZ2ZTY2IwZw?oc=5",
+   "s": "栃木県公式ホームページ",
+   "d": "2026-03-05T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "パリ協定とは？脱炭素に関する日本の取り組みと現在地をわかりやすく解説",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9HZHlCUnkwcDFvZi1FUURPTkdhWkdZYkJWU3BPYk1NVXliMUJWVWhYYmZXMWFPQW5KaFBiOHBTOVNvQ0ttczBHTks1SkF6MnF0M2wyNHhyNFJyOHNyTXBCLQ?oc=5",
+   "s": "MITSUI & CO., LTD.",
+   "d": "2025-11-18T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "温暖化は人間のせいじゃない？「気候変動の解説のおじさん」に懐疑論をぶつけてみた",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE4ybkFmOHB1cVlwWlpyUU9BRWpRTzhRcTBmM3dzMkJub0ZtcVJ6M3paMUJhcUhMSmZxZzczNzJ0bm5vQVh4MktFZDByWWtPMjVZOVBKYTdR?oc=5",
+   "s": "朝日新聞",
+   "d": "2025-10-22T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "CCUSとは何かをわかりやすく解説、デンソーやENEOSも仕掛ける脱炭素技術のスゴイ正体",
+   "u": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5MMm9tM09CMUZYeHhmVU4tU1hJUkhpQkJDYktXQzlyS0g5M2phT1BEeURkTE9HLWEwczlFTm9yWjc0YXItdUctc2Y2a3hUYVZ3X3c?oc=5",
+   "s": "ビジネス+IT",
+   "d": "2025-09-19T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "世界が大注目する「CCS」とは何か、二酸化炭素を回収・貯留する仕組みなど徹底解説",
+   "u": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5uSXZHN0ZjRXdaUmMwSDM1aEhUN1RoTzRDZUR2NnRsVjdOLVk1QUdaTjBIZ1VCdnptNWs5ODF4aE5MaXBHN3VSTXJnLWpiTzJwdEE?oc=5",
+   "s": "ビジネス+IT",
+   "d": "2025-09-19T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "脱炭素社会の行方は？トランプ政権の政策転換とその影響｜わらしべ瓦版（かわらばん）",
+   "u": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBLVTVZSXV5clFjRWJnOFZVSEM3aVJBeFhtR1RWc2JrdzQ2Qlc4MEk0MGxMZUpoTGZzMEhVWk5GTmRpdjRodkRuSHVqWlpUYVdWdWtaRzBYbVF5TEZMaGR3Z2FNQUhoUGYzNFUxOThhaXpXblh4X0E?oc=5",
+   "s": "アセットマネジメントOne",
+   "d": "2025-04-22T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "福島県地域脱炭素推進コンソーシアム",
+   "u": "https://news.google.com/rss/articles/CBMia0FVX3lxTE95U3hUU213OHJXVW52Y19EeUhVb3pzSVNhWE4xRjAzUzhjVDlDdlFTTmdaVmZrTk1PdVZwcDFXajlucDdORmJkVlFIdEJTWFhyN2t2Z3ZaX1FJS1E4UVNoVDFCR2tWaVhaRm5j?oc=5",
+   "s": "福島県ホームページ",
+   "d": "2025-03-24T05:47:46.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "脱炭素経営支援プログラム実施の様子",
+   "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTE8zYWhKLWtjMlVJY0ZVSEQzS0NvczVRMGZNR2pYMF8yLVBDNmx6dXVCdGJ1QkRORDlVSmx1UzFvOVU2NzcxVm9BNVg5OV95Y0J2RDd1d2tiMHpBSmoxdy1BZlI2STBKVjlPNUEyT00ybw?oc=5",
+   "s": "今治市",
+   "d": "2025-02-14T04:14:45.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "脱炭素ビジネスの極意｜担当者向けの必読書籍7選",
+   "u": "https://news.google.com/rss/articles/CBMi0AJBVV95cUxQWW5qU3FJVzF5U1Q5eFJYZnZROW0wVDRIRUNEaGV5eWsyaVdaanJoV1lLaW1zeURpeFFWZy1fd2hWNzZ1ZTBQM0s0ZDlIdUVrRHlaTFBaZTM2ZzlMQ2hGSjhmZTVBRzFvTXctYVE0bGQweVBFbnM4QngzYzVMT003SmlENmt4cVJoQlY3MzU0VTR4RlJXMHQtbW1DRjI1Z0RUTVU0dlJmam1VbmFQT01FdmpaQ0hyaTlGOVhUMnhIZEs1aWdxZWJLWmJLbjN4YzBuY29XdWNCMUlOZjRvOXFJNjBVTHc1RU0za0N6X0dBMVN1alM2NmlEcVNrd3pLREduYTBoYnNnbmlYOE5ZdEJqSlBCeHFSekdBTWFPcVlBQS1FNDBWT2NfdWFhZl9wRkxTd3FsbkR1bnZNYWNROUFLOFhOMGIxYTNEcnZENXI4QXY?oc=5",
+   "s": "addlight journal",
+   "d": "2025-01-17T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "「排出量取引制度」って何？脱炭素の切り札をQ＆Aで 基礎から学ぶ",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE85cmhTYlJHekpRSllCMEZXclk5dzdpRU1QbkdmdENZYVhGX1JTOFh4MnhTa21HbkVxdlg1M2hnejFUc2NHU0hXaC1ORWt3S3AwOE9lQnpUWWZKQ2c?oc=5",
+   "s": "経済産業省 METI Journal ONLINE",
+   "d": "2024-12-27T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "ガソリンに代わる新燃料の原料は、なんとCO2！？｜エネこれ",
+   "u": "https://news.google.com/rss/articles/CBMihwFBVV95cUxObnQ0MmRFdklkdDlwWEpkREcxaDNEZlBWeGVRdUVnV05yX0R4UTFxRnBRZVRpek1RMUFTSFVIQnFGQ2pnWHFVb1l6Vm1kVFY4UHA3RGJSeWNldnVHWDdUbFZ4NDhnYUtWSmRIRUx3cDlocTVtNUR5X1kyXzFMcFprazhvRV9pdWM?oc=5",
+   "s": "資源エネルギー庁",
+   "d": "2023-10-24T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "第2節 GXの実現に向けた日本の対応",
+   "u": "https://news.google.com/rss/articles/CBMidkFVX3lxTE0xS0VTWEE0ZTVBd0QxZ0xNSm5IQmRxV1BkYmZjNzZqeklaSVVrX3ZET0dwdzFSa3ZyUGRlVHJ6QTlneThHZzZYdUxqSzJFVkNQSUJnc2ZNRzlYVXV3eWhGcEtUUHlhMUFxNjE2ZmJQWm9OOFVUbXc?oc=5",
+   "s": "資源エネルギー庁",
+   "d": "2023-07-26T06:20:48.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "カーボンクレジットとは 取引制度や活用事例をわかりやすく解説",
+   "u": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE8tQU9NM0VTbFg4QWxVYS13WUFpQ1pPeGRHUHdxVmR6c1hsdjlLZ05EWDdULVRLRWs2MU5EOGhnc1hCQmRfOE1ETW5R?oc=5",
+   "s": "ELEMINIST(エレミニスト)",
+   "d": "2023-06-30T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "脱炭素へ向けてひとりひとりができること「ゼロカーボンアクション３０」",
+   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5obVQxaGg4azRCMDc4WFN6cUVPQmNzZV9aWXYwSEFFemVUYkNBYnpmcjkyeWMxekh4UTlINTBQN0xRN0VWZEFYSVBPRTc2QnFaWjY2ZDNIVmctY1FQQUtUR1NweVJNeTRm?oc=5",
+   "s": "登別市",
+   "d": "2023-01-25T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "パリ協定とは？ 決定した内容を、要点を絞ってわかりやすく解説",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5KNFpiWFlyRUtjT196V2ZvZFcta1htVlppcVNCYmpXTEgtTWpvMjZBOGtYbmJfU0Q4bVZDRDg0TFdxaU5hZEtFcUJJODZiRnc0cWRYYWFB?oc=5",
+   "s": "朝日新聞",
+   "d": "2022-11-14T01:18:54.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "なぜ、脱炭素に向けて再エネが重要なのか? ～再エネの基礎知識とClimate Week NYCの最新議論を交えて",
+   "u": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFA2RFpEeDlEbE9jNmFqV1pXd3dUaG1feUMyZHdFRjlnQlRKMmxwUjRUWmxTczJScWxYOFdVV2U4d2N6clBiOW5QSGF3QQ?oc=5",
+   "s": "JCLP | 日本気候リーダーズ・パートナーシップ",
+   "d": "2022-10-14T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "福島県２０５０年カーボンニュートラルロードマップについて",
+   "u": "https://news.google.com/rss/articles/CBMie0FVX3lxTE8wRkpCeHVMVFg2LTZOV3d1Vk9oNHJKRWxOaHF5NWZfQUxhdFhqWG5DRHRVSlJtT1JSbDlvY016QWQwMGRyc3plNnBHMGxybzdnZVEyYmcwcDN5cF9KcjcwU1BrekJ1a0FOZnV6TlZFdnktU1pOU3A2dTRpcw?oc=5",
+   "s": "福島県ホームページ",
+   "d": "2022-05-13T09:28:33.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "カーボンフットプリントとは？わかりやすく図解、製品のCO2排出量「見える化」の仕組み",
+   "u": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9lbjZQeTU5QjlsVVR0MTMweEpHODhlTnpuYnozM0pIV3ZOZnA4WWR3MHUtcUlrYlRUQ0hLOEhUNVYtQzB0Q0NhRlZlcjBYYWNWWVE?oc=5",
+   "s": "ビジネス+IT",
+   "d": "2022-04-20T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "「トランジション・ファイナンス」とは？～脱炭素社会の実現に向けた第一歩～｜わらしべ瓦版（かわらばん）",
+   "u": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBwdXdoZm8zWEdVb0JCcjJkX2U3RllFRVlyNUh5Um9kSVhFMWQwNGNjLTlTb04xbVBQSjYxRXJkS1FGR3g5TlVGUnRsMEIxR0pqNkpNQl8tRlVNM1pLNy1rYjNOT1kzMjZCd0gyejZoQXVackdDOGc?oc=5",
+   "s": "アセットマネジメントOne",
+   "d": "2022-03-11T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "動画で見る、2050年カーボンニュートラルへの道｜エネこれ",
+   "u": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPbHZodnlqdTZDaTZQUldTYUlwdzlXU2JtQWlRYVJSN05lNGdBbk85YzRLYXF5Y1BSNUktZWtUTjF4M2trc3lQTmxFbjlkNnRnWGxpVXJNVDBJTmlDUWFLdkRfUld1azJXbFFESFJFMnN5VHpBcjhpMmNzQ1lFWERxWENtdUQ5Q1FB?oc=5",
+   "s": "資源エネルギー庁",
+   "d": "2022-02-15T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "マンガで脱炭素を学ぶ旅に出よう！",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5Ccko0LTFibVJNbHA4bjNRemkyUVNSUFd3dUJQVXlRemtYRXJsM1UxMU5Tdk1IVWpZcHlNUFNsbG93cDVnNXRnN0ZEYUxXYW5hVU8zTW44T3lTWFk?oc=5",
+   "s": "WWFジャパン",
+   "d": "2021-12-01T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "「二国間クレジット制度」は日本にも途上国にも地球にもうれしい温暖化対策｜エネこれ",
+   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE0tOUV1SnRvUHdMRWF6WGwtUmI3RVd2aE1JSUxfYXBpTFItMG9JZENoS2tHdE1YcVAtWnZ0Z3dQRUd0TS1WZnFkTnZpMDJYMVUtYnVpNXRPREhIOGxJZDNYVUN5NjUwNWk2X01PcE5CeWg?oc=5",
+   "s": "資源エネルギー庁",
+   "d": "2018-01-09T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "今さら聞けない「パリ協定」 ～何が決まったのか？私たちは何をすべきか？～｜広報特集",
+   "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNb2dZaFc5aW9icjRJMXhXUlM0LWpKQUppWmtXRmx6VUlhR1d0aVU4NXI0ZnZna1BSYXY4RkZpc2hsVU1vWnZSWEVXekVDOFdBb3kzaU5TYkZjWHl6YUN2NHdOcEtsRHBSR1dNXzNPOThhVWdFbkw5TWJPTjhfc3Zzenl5d05OeG96R1E?oc=5",
+   "s": "資源エネルギー庁",
+   "d": "2017-08-17T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:31:01.892Z"
+  },
+  {
+   "t": "【教員便り】「開発途上国で広がる新たな環境問題―水銀汚染を前に学生に何ができるのか」セミナー＆ワークショップ開催報告",
+   "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9IN0E4MXg3c0h3YUp3T3lwR2dyZklpZzZBNk96eklPb0VNempwenJGTmxieWIybTQ0aUFiWnRBNUdOb0NQSTdTUVlxTlhfTXp6SVdhbmZwTWZEdFlCaUxQbW5nQWk?oc=5",
+   "s": "早稲田大学",
+   "d": "2026-10-22T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "なぜ環境問題は解決しないのか？ 40年追った記者がたどり着いた「取り戻すべきもの」【絶滅しない環境学】",
+   "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5LT2NxX2RwX180QWtTU245YU9wQ2dSMUxDOXcySEdoa0lOcHVRaHp1RmZCcnRwUFdfdXZqWGJ5ZjR0ZzNIdUNUMkNzX2ZVN0FfTFBBbktCc2E?oc=5",
+   "s": "AERA DIGITAL",
+   "d": "2026-08-30T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "ワールドカップで大躍進。ノルウェーのある選手による、環境問題への取組",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB6QkFRdm1OMWtKSm9aRDQxb3RRUnBxU3hvXzZnd2xIMkFVdWM4U3NLampaWUZLV1NFTHVJWk9TcURrTzZvS25rWkVWZjhoYW05M2ZnWG1R?oc=5",
+   "s": "文化放送",
+   "d": "2026-07-16T15:18:41.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "環境問題の一覧｜気候変動・海洋汚染・生物多様性など主要10課題をまとめて解説",
+   "u": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE1VZlpsd1VPRWpxVFlkSDg1dV92bENwUjNkdHYyTjFNTldIaEpTdDRrU3VKUnlmeG9OUmtWMUxfNUJWd0k2Y2VGek1CZ1o?oc=5",
+   "s": "mirasus.jp",
+   "d": "2026-06-13T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "27年４月からエアコンの新たな省エネ基準がスタート！エアコンについて知っておくべきポイントは？｜エネこれ",
+   "u": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPWDJuS3pKSTVjVGhxVUtPYlItOVVNOElKMWoyekZVc3pSYm1xQ185eTRGVFpScjVCM1E2YmZvUUVNdzN5N2o0M3RQcFhwQjVreTRPMGs3Z01DNXZpUTRWUUwtbUNTUG5iLXdSd3pucUhYXzJmWmMtaFNiTVJWRWtERjJTd1lWSTg?oc=5",
+   "s": "資源エネルギー庁",
+   "d": "2026-04-17T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "「人手不足」と「環境問題」を解決 経営インパクトを生む 日立の計画連携ソリューションTSPlanner",
+   "u": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPVmxJM0VRS1Y1dm42NEV3TmthTHJCY3EtV1B3UTNqOVN6MTBaVXlqVm82TTd6Nzlld25ROEJSTWYybG1KaHU4QV9uc1JVbnBPa29yWjNEY2VrTUEyQVcwc0dqM3VHNEpCY09saXdVY3EtNUMxQ2NjdFZDODFMeWtXTUJsUWZEakhDcW0tdjJvVGE0T0U?oc=5",
+   "s": "Hitachi Global",
+   "d": "2026-03-10T08:17:08.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "環境問題の解説「みんなで僕たち私たちの地球を守ろう！」",
+   "u": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPZlRzLTJ3cFNSREZValdncl90OWZIYjd5N1c3WTBqMHdKdld5V2JabjVrNXQzb0YyZE01UjBlamNhMHV2d2JlRnlYRGlqRzhMUGRzaHR2elNtSXJDWFhNT1JTcjh0WjY3N2N4MzlXYXFSelgtaUlCc3psSXhKcUtjOXNzZEJyblNNQkRxcVhncEg?oc=5",
+   "s": "十日町市",
+   "d": "2026-03-10T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "「紛争鉱物」で学ぶ、環境問題対応と社会問題対応が一致しないワケ",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTE9lZno3VHcwa1BOS2Qtal9ldWFGNmRaMkxzNThvNk1ScVp6cDdlTnpGSDdib0ZkbGx6bmh5dGNLaC1tWFZmVXd2QkcxUU1hZlBWN2pkd0tOQ0p0ME1KTWVTeFR0a1Y0MW05OC1nZE1CT1pkZw?oc=5",
+   "s": "千葉商科大学",
+   "d": "2025-08-04T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "環境問題と平和構築ー国際関係教員によるNews解説！｜ニュース一覧",
+   "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE0zbTNRaFhNTHZzN2dCODZMR1Jld0MzVzJlRHAwelRGQTVaa0NzTGM3dHdqRXFWVFV6a3lzM2pqUHN5d0Y0dmZWdnJFcW12RGlSQ0xCTm5QdnNUQ0oy?oc=5",
+   "s": "京都産業大学",
+   "d": "2025-06-23T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "SDGsにおける環境問題への取り組みとは？企業事例や私たちができること",
+   "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1HRENBWDhYRXRIc3FIS1Zhb1dNTUJob2hHZHR3bU9iZlJ5d1ZncklMTHJ6NElJaXA2Xy1ZcHhYU0pNV3lSVnkyRzF4VVF1aGhOR0hWaWxXSHo?oc=5",
+   "s": "ネスレ日本",
+   "d": "2025-01-31T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "ビジネスパーソンが押さえておくべき環境問題、東大・江守教授が解説する「気候危機のそもそもの話」",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAtdldOX2Nfa3hjclBlSkpVS1BQZzVhTVhOeWpzRkxpU3E4YnZfS2o4WU51aXVjSEhyeUlRUFBETWh4UHpGc01mekw0X3Y4VmgyVllFaUVn?oc=5",
+   "s": "JBpress",
+   "d": "2025-01-24T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "琵琶湖の環境問題の原因は？ 現状や取り組み、 私たちにできることを解説",
+   "u": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9sOU1OUjBWbEh5eDUta2J6Rzk0NTdpLXVsY1Njc2xMMkI5MFhfeURXODlMX1dGYXNIWkNtYk1ERWRMTnNmMGpYZE9R?oc=5",
+   "s": "ELEMINIST",
+   "d": "2024-12-29T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "都会の真ん中で海を感じて 環境問題をアートで考えるイベント 東京・渋谷で開催",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBGcUlicDNrNm9oQV9zUVBuM3JER0RXQTc2SzJ1eHJ0b3AzV0NUYWxENlJfY1hkVzdhcC1mQWw0eF8zT0gzNVVFOWtOSVpWbWtMQno4TnFB?oc=5",
+   "s": "朝日新聞",
+   "d": "2024-08-23T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "アフリカの環境問題の現状は？ 解決への取り組みやできることを解説",
+   "u": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5UMVI5Zm1NWXlQeV9XYkxoZU9KMmYtRklHeFo2SExLd3RBeXVfSlVQd3FwV2dWV3MyTy1zeGUtbm5TXzczRG1oY3lR?oc=5",
+   "s": "ELEMINIST(エレミニスト)",
+   "d": "2024-07-28T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "【コラム】「EV普及と環境問題への意識～1990年代のEV」舘内 端との対談（1/2）",
+   "u": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE14R0pPRjNEWS15YVJSX3U3OGRqN0FtVjNwaWsyR0ZrRkk1VVI0V2xjTHRrS2lSVFRMZnNJVER4ZW9RNWl2WGpROV9ycXNfUTRMMmtR?oc=5",
+   "s": "中古車のガリバー",
+   "d": "2024-06-06T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "【コラム】「EV普及と環境問題への意識～EVが身近になった現代」舘内 端との対談（2/2）",
+   "u": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBVZGJWb285SmsyeFQtT05qcEo4d0RXNlllSC1BbUdkRTBuU2xlUno0ZC04Z2RMQ0pNM1BGTklyQkNYQnRiaUUtTmExUjBMT3Bsellv?oc=5",
+   "s": "中古車のガリバー",
+   "d": "2024-06-06T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "地球温暖化を抑えるために一人ひとりができることは? すぐ実行したい身近な地球温暖化対策",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTFBZR2M5Ml8wU283SnRDcWotb3RYMFdOWFZuZGk3cFplWEVlWjFHbGxHWVZfMk1SR08xcTdTWC01QTMxckN6a1BvT3ZDODFzbzFOUk1qR3FFZGQ0Rk1TdzdtYVFXZkxfQm4zel9LVFl5YzY4QQ?oc=5",
+   "s": "千葉商科大学",
+   "d": "2024-02-26T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "【環境問題を考える人へ】地球温暖化は何が問題なのか？原因物質や仕組み、解決への課題を解説",
+   "u": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE5ySDNMRl9yWFhQZ2xkMlFjNlhhY0gwZWpCRzdBeFhDUndVel84VXptX1doR2hUVm1rLS1qWHpzMFQ0RWRiTllsTUVKM1Y0UFJEY013?oc=5",
+   "s": "Wedge ONLINE(ウェッジ・オンライン)",
+   "d": "2024-02-10T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "経営者がいま読むべき本6冊 「環境問題を知る」編",
+   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9Qdkc1cTNKbzNyMHF3TkdtSTQ0Mm5BSnZmVXllSmlYazVoTFVDSm4tbzlhRmhKaXB2UXRWUnpUd0hRcVRJRzRMS3ItbHdoTWNWMEdnUklTT1dKS0JXcjkw?oc=5",
+   "s": "100年企業戦略オンライン",
+   "d": "2023-10-12T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "森林環境税とは？ 創設の背景や問題点、税金の活用事例を解説",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5NNzVnUl9zc0lUZ3VQYkxDaFpNNWlWR1pZazFtRFFjaUxJV3N5eGplWkZOUVlaWEFyWFdKMGwwVlhzR1hrVTExQ2FtY01VOG5yYmszM2pn?oc=5",
+   "s": "朝日新聞",
+   "d": "2023-09-08T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "オリンピックと環境問題 歴史や課題、 持続可能性を考慮した取り組みを解説",
+   "u": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE82WXV6QTlKbF9NTHkxSTNpaXNGQ1pOY0xLU3ZZZUg1WVV5MUxZcUh1ZFhrTTZRdGwwempjMFVCU21YLWh0eTY0OGR3?oc=5",
+   "s": "ELEMINIST",
+   "d": "2023-07-06T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "スポーツが環境問題にもたらす影響とは 具体例や環境への取り組みを解説",
+   "u": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE4yTlBTZmR5Z2FaTmNEVlMxUGNROVp5VmpjemNLV1g1a29tT2lkOGVXbVU4LXNqS1h1N1hqWjQzT0czQXZ4Vy1qU2F3?oc=5",
+   "s": "ELEMINIST(エレミニスト)",
+   "d": "2023-06-29T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "気候変動を食い止めるカギは女性？ジェンダーと環境問題の深すぎる関係",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBLc05LYmJORm9yR25sM2NTTmNCa2JOM3JGOTNhNXZBa2l6OXBfcTBUQ1Zob0t0S0hjN2Q4ZERieWxQbEtqdkFzdWl0dVRnWnZwRzlIVy1MRTVCQWF2YXh5Q1RfNmVUOXc?oc=5",
+   "s": "IDEAS FOR GOOD",
+   "d": "2022-12-02T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "COPとは？気候変動への世界的な取り組みを分かりやすく解説｜わらしべ瓦版（かわらばん）",
+   "u": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5wTzExNXc4NHl6bXBGamFNdzUtbWxHLS1IYW9MZHNhdUtaRnB6MnRsNzhMWU9hRzdsal9jeDRETi1BV0hfUnRVS01yNUprS0JncUQwaVBwTm5relZvb1EyS3I0WkZIbUl2TUtjSmxMcXBQX2xxa2c?oc=5",
+   "s": "アセットマネジメントOne",
+   "d": "2022-11-10T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "■1 道路交通環境問題への対応",
+   "u": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBzMW5xR0psUnlTQmxIZDAyUi1adVItV0RhbDRUc0VaeWdWMGV0SGNpeUg1cGstSDF6N1BDU2hLeXdQdVhjclRDbHdZVERXM0xmYkVQMTliUl9vVXRtWXFfNmxyeE9EdG5zUndiZjI0ZFVJbHltcTdZVXV3?oc=5",
+   "s": "国土交通省",
+   "d": "2022-09-29T00:10:26.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "＜解説＞The 1975と社会問題：ジェンダー、環境問題、ペーパーレスなど世界を変える行動とは",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE85OVBWcy1kV2FIYlRacjFXdnVWUlFobWpBZTlKbGlOQ2NCVXkzeW5iNmZZcGphV0ozcTA5cFZIOXV4NzZ3SUJSMURBS0xjdXZMaGhSM0loUWdYZGRYRndCNjk3cnJHYjNfOTBqNg?oc=5",
+   "s": "UNIVERSAL MUSIC JAPAN",
+   "d": "2020-04-03T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "4 環境問題への対応 ： 平成12年版 通信白書",
+   "u": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNbS1ZX3Fid1lvY1NNZ3BGdmpjT28wT2RWMlZDQkljaDlpa05YbFRpV01qMXItX1RldDJ0NVdmc3dGeEsyRlc3RDZhcXktdzZqT1lCQldiS0J4Q0NTMWh2bk0zSzJPWS1iX1NMQlh1UTJaZElZU09BTUpBNlo0YW5QXw?oc=5",
+   "s": "総務省",
+   "d": "2019-12-18T13:16:59.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "ニュージーランドの酪農業界における環境問題への取り組み",
+   "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1LektkNFZCd3I4bFZ2aWdob2RtZS0xYzdJT1A4YXlqUTVjV01hdEpBa3dVR21PMTNvLTZHNXdDVDhmV3N1a1o5SnZWWFJQSFlsZ0xXX2xVQ0VoNGhS?oc=5",
+   "s": "独立行政法人 農畜産業振興機構",
+   "d": "2019-07-25T16:43:52.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "今、なぜプラスチック問題が注目されているのか",
+   "u": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1FRmxvTGRQZ3pRNWZJU3NRWjgwVzFLbVZyU1ZDM3JJckNJMUFzU1FTS0ZBd2VHcHVSbFYzeUdVNmM1aHhqWkdvMjFCNWNUMnJTX19yV2pFc1dOUzVfWjRNRDln?oc=5",
+   "s": "MRI 三菱総合研究所",
+   "d": "2018-12-21T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "環境問題を解決する、ブロックチェーン技術の8つの可能性",
+   "u": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNN05OZl82MlN1Nnp1VzdlZHhVcVN4RWdXR292a29MOXBVYkxuTnJRcmZ4blVnWVZ2MXN3X0F6R1ptRFNCMGJsQ1ZuaWljODZkTkZVTnFJNDAzZExnbDFzVVpxNlFnUlk2NXo1SVdUZF8zVUJiSXJzZGR6NzBFVkEwX0tZTQ?oc=5",
+   "s": "IDEAS FOR GOOD",
+   "d": "2018-10-11T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "考えよう地球環境問題！広めようSDGs！｜インターンコラム",
+   "u": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE9EZlJJVDk5UWNENHBMc19Va1VYVkdBR1d4elRLWWZvM3BzSVhUSENNdEJndzlVQS05MFVXR01fUXJmemhieExJQUxwcWJRQQ?oc=5",
+   "s": "新電力ネット",
+   "d": "2017-08-25T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:31:00.022Z"
+  },
+  {
+   "t": "名古屋市の「SDGsグリーンパートナーズ」優秀賞にメ〜テレが受賞　番組制作や学校での環境学習など評価",
+   "u": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE44eEtvMnVqMndLcE1QZFlFZDBoT3pUckJGUDVlVzMzdl9PeW1OUGNQMXFxWGduNEl3Rkl4aWs5ZW5Lb19JZXNFbG5oUGhLOWM4TWfSAWRBVV95cUxPdDY4N3JFRGs2NkNoVnB4SVNLc1ZvVXJPMFZBbHV2azNBaU5JeTZpcS1MajhpTnlJTVZZd3VYSFg2a25MSVBPWDlPN2oxT1VLRVUyZktvNDluZUhDSjlNcFdxS2lB?oc=5",
+   "s": "名古屋テレビ【メ～テレ】",
+   "d": "2026-11-21T10:43:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "■瀬戸内の海と里山の課題を解決する商品開発",
+   "u": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1HMlFxYTRIb2w1Y2ZMaXNmRVhyZ2RFdkJ6dERmRklEWmZJb1doNWdOS3ppUmdIQ3o3Q2ZaMm9Oc0I2WDQ?oc=5",
+   "s": "Digital PR Platform",
+   "d": "2026-11-18T02:23:23.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "【広島工業大学】大学・自治体・商業施設による産学官連携 「食」から考えるSDGsイベントを開催",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1iLTZ4UGNZOFItYXJoRFpGel8tMnRreEkxdU1YLWZQemFING1oS2htNHVjRFRoZEF1SHJTM29Qc1h5M1hpdHVBdm84QUJWaWFXWk8ySjdkNjRuejhfSEx5bEVRQS1sVG1Ld1E?oc=5",
+   "s": "PR TIMES",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "「BEYOND SDGs エコプロ」に「青いビブスｘこもれび」と「東洋大学SDGsアンバサダー」が出展します",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE02UlFVMm5lZTN0WU9kZ3RqVVYtZEpDQ1I3WXpXM045ZF9EaWZXVEk0SHNXNmhfenVsbDl4aFJwN1ZuMlFCNHc4ZjhhUjJhZGlMNTNLWGRNcklOVGM?oc=5",
+   "s": "東洋大学",
+   "d": "2026-11-11T06:27:54.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "持続可能な社会を目指して～ＳＤＧｓの実現～",
+   "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1SUmVpd29ZeHRmSHlvajl3SmFlcmJCUlJkd29pbDRYLU5OVC00NzNTRURBUENidzVyRFlXbXpNMEVibzB5a0dDWHFaZWYtUG00R3d6elJ4a01IYk5u?oc=5",
+   "s": "大分県ホームページ",
+   "d": "2026-11-06T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "甲南大学が11月14日・15日に「KOBE SDGsマルシェ in 御影クラッセ」を開催 ～ “食べる、着る",
+   "u": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE1DU2dqUnk2MXFYLUd2T0NTRmVpTlI3U1ZHaExub2pHOEM2T0l4UzJPdFZQV0wwRTBMSWZ2RDY3d2RTLVk?oc=5",
+   "s": "Digital PR Platform",
+   "d": "2026-11-05T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "テクノロジーで寄付文化に変革、NPOの活動支える サステナブルHUBスタジオ【13】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1idVpWY3VBcDhSTXNqUFF1eGdOUHNMUTR0VzV6VkJUZ3ppV1JZT25KYWJCbm9YenZra3NxMExlNENZSGdTeERpazBIUjAyVXRuZDN0azVB?oc=5",
+   "s": "朝日新聞",
+   "d": "2026-11-05T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "2026年度 SDGs推進 衣料品リユース・フードドライブ実施報告／ニュース",
+   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE82SndCWFNQV01ZbHVOalpSOHk3eDlHTUVlRHh2V0s1V0YteldueEhZTFBmMFJISHN6VVhuLVV0QnNiTUFrdkxVaXZOSGFRYmszd3pNZHQ1bzQ3Zw?oc=5",
+   "s": "大東文化大学",
+   "d": "2026-11-02T08:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "御影クラッセ、神戸の大学や行政と連携した「KOBE SDGsマルシェ」を11月14日・15日に開催",
+   "u": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBKeXg5UkVJNjlNR2d2NU9LSEthVDloTk1vdWtULUttcWZzRG5WNGJlanFCVXRHWjlEYmVGZkR5Y21MLS1MWVlVUDNLa0RjVXZFcjhwSDY3Z3laZWdqVUttQ053WGo5aVRYQzE1eHlR?oc=5",
+   "s": "au Webポータル",
+   "d": "2026-10-30T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "「理科好き」育てる青空サイエンス教室 ビジネスパーソンのためのSDGs講座【46】",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFA2azdBR3lrbXd1VUotelIxdlI0R0c3MG5JNHRhVnRIU3VoMXB3eGNwR1Z2UF91NU1NQndiYWlBZXE3ZmdyVmNhVWx1c0t6VVlPU1l2VzVn?oc=5",
+   "s": "朝日新聞",
+   "d": "2026-10-28T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "【SDGs NewsLetter】子どもの声に耳を傾け 一人ひとりに寄り添った子どもの安全保障を考える",
+   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBTZFhER3RYLVp4M3RFU3JLRV9lY0t5RzlXUG9xZDNHMGQzd2xtUzR6Y3Ria1NILVZyb055SDk1Z1hKNjYxZS1CbHBxS1diQXFoR0ZNVHFHNmd3dV9SQUE?oc=5",
+   "s": "東洋大学",
+   "d": "2026-10-28T07:00:00.000Z",
+   "q": "",
+   "f": "2026-11-22T15:30:58.215Z"
+  },
+  {
+   "t": "プラスチック製飲料用キャップの世界市場（2026年～2032年）、市場規模（スクリュー、フリップトップ、スパウト、その他）・分析レポートを発表",
+   "u": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9iLUt5NnJoYTlNUUJWRGZfdDY4bERGX1JIWlQ3WHlFeldrekJna3F6dFoyZW5vYktSMlhibFE3VnhXMzJvZnE1aWJqUU5Xc3M?oc=5",
+   "s": "Newscast.jp",
+   "d": "2026-11-22T04:30:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "ベトナム再生プラスチック市場規模は、2026年から2033年にかけて年平均成長率（CAG",
+   "u": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE5XOWphVEdPTEN1NHhjZ2pRaEFrWW9ZT0NYM182d3NaQVVqQmZYQmwxa1h2OHhVNlRyRVIxUE1KOTl1RFV5WHQyc0JR?oc=5",
+   "s": "pando.life",
+   "d": "2026-11-18T17:14:24.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "軟質プラスチック包装市場の戦略分析（2026年から2033年の予測CAGR 4.3%）",
+   "u": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE43ZXNrSnJ6b2RGd0NCZmtBX0t6cGxvMENTdGRLd244WGlKUHpTRlp1cFhycmdvS3dIc0J4VmlPaFhUN2UzczA4MGFn?oc=5",
+   "s": "pando.life",
+   "d": "2026-11-18T13:22:21.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "環境省、廃棄物選別にフィジカルAI導入へ官民コンソーシアム設立。リチウムイオン電池や廃プラの自動選別を想定",
+   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTFA1cGl5RElUN2FyOGVSODEtZVZhSDRaN3c1RE4xUXN0eGhtU1k4TW5ObEhzbG5iUnB0TlZETHROTXJyaktIUlNjNWN5UlUyMkE4WFlQWWswMUdfT3B5TEt3alZRWTE1UEZ0UFBWaDVXdjc?oc=5",
+   "s": "Circular Economy Hub",
+   "d": "2026-11-17T03:00:32.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "環境省、プラスチックのマテリアル・ケミカルリサイクル連携モデル事業に6件を採択。ヴェオリア・JEPLAN・日鉄リサイクルなど",
+   "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOdXdQN2ZVUHpYUEp0MktrTXNUaUNDUFpyVUNPTkxlUEtSWlhHRUFzUmV2VVNyTGZMa0JIWUg5QUFxU2R0VlFjVmpNMXZRM2dFbXJER1pSdHp5UF8tdzVWNFA0ZWl3SFVXWlE4X3FuQndnTXdrMGRMSW9mOXZtNkxtZlExZEx1WG1sdkE?oc=5",
+   "s": "Circular Economy Hub",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "福山市の一般廃棄物プラごみ 選別・再商品化業務の受注候補者に Ｊ＆Ｔ環境代表の企業グループ",
+   "u": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB0Qm9HbGUtREpfMmNEYzRMOFp3M1dMMmtBdlJVT0ZESWpmdDBUMnVoOEVMV1lBbExhUUItalpoXzV5NDMxZUtSaVhjLUYzU1N5U1N3LWd0bTFGX2F0c0dsYzk0RExTWkJQQWVvNUx4S3ozYnhFcEk4TzBVOA?oc=5",
+   "s": "環境新聞オンライン",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "経産省、PETボトルの再生プラスチック利用率目標を検討 2026年度中に制度の基本方針整理へ",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5HSEphdy14SzZyY0U3ZHhZU0plTTZMd1hRWllYam9hS3VtLVh3UG02NHpYVFI3a04tU3MtYWpXVEo1elpIVnNKNlVTa3RLVndDSGlLYzF2OV92bmc?oc=5",
+   "s": "ESG Journal",
+   "d": "2026-11-09T08:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "ヴェオリアと住友化学、マテリアルリサイクル残渣をケミカルリサイクルで基礎化学品に。環境省モデル事業に参画",
+   "u": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQWUxfdElYOHlYLUZvQ1lxVk80Y1VTcWl5M05aME50bXl2NDNIZE14UTZKYkhnTzRRN1V6VWF4c1hpYmVXZFd6eDVCNmpBRnpNMFZuUnNPdFBZTWNIMUxCZWdFS1RadFJNTjM2ZmlqVXFnYUpKYXpzWWVXZWFDbXN5ZUJuR3NMQQ?oc=5",
+   "s": "Circular Economy Hub",
+   "d": "2026-11-05T08:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "環境省 集約拠点、トレーサビリティの仕組みなど議論 自動車向け再生プラ市場構築コンソーシアム",
+   "u": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9pMUNHLXZfZTdSM0xQaVhZQzFDbi1CVUQzdFBTSklMVEZVa3E3bjVNdFFZYWxnNWdReDJVN2VRaW5YTGo1QjNoMlVvN1Q3RkVCYmNObFM0SHZJWE1RZFlLTUM5YmdSalFNMEl2cU1BVFJNWXNfY0oyZFNTYw?oc=5",
+   "s": "環境新聞オンライン",
+   "d": "2026-11-04T08:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "環境対応から“競争力ある産業”へ――テクノロジーが拓く、クルマの資源循環の未来",
+   "u": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNdTItTHpWQkpMNHJjblJOQTdKbE4tOXdoc1d2N1pSa0c2TGhXMjc4Yjlpc0FwdnR0UFU1ZGhyREphQWVvZUJyeUVIdzJKcVh2QkhtdzBlcWRpQlFsMEVsTHk3YmYtaEtQTzktMWNtSmsxY0Y4UElUbngxOUFRQzFqWGZhZ3U0V2xTVVpxelRFX2g?oc=5",
+   "s": "PwC",
+   "d": "2026-11-03T11:04:34.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "大栄環境、トーシンらのリサイクルPET事業を承継し子会社化",
+   "u": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBEcmpZTmZmQVdWNlhwYTJtTktGYTNCRk1QSE9QUHhSUXloRFUwMXZkSHg4eHEyU0dGWDNzcGtNSlpqeFI4dldFem1QanI2U3ZNNUZV?oc=5",
+   "s": "ニュースメディアVOIX",
+   "d": "2026-11-02T08:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "【環境】プラスチッククレジットの現在地 ～制度ごとに異なる追加性・検証とEPRへの接続～ | Sustainable Japan | 世界のサステナビリティ・ESG投資・SDGs",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9mYTNEa2g5ZjBfdzk2aDZxS19YbHVTSDlzTUFxYi15WmIzUVVyNG5pa0pqUFJiVGVNVk4yRE5rLVBmSE8xN1cxcGVldjEzVzUxTW9JVm8xeFloYkFHcHdwUGpHaGhzVDh3OUhXQUpKcGl0RjlKbGhvY2VSeFpHSzTSAYQBQVVfeXFMUG5jUEFoQktHWjh1eGUxM2wxWDF4emRwbk80WmNKRUltbWRIT3lyTF9mTy1oLTM5SXVQUUZySElDTUdiSGUySEN1ZktWcTVJV1M3ZmM0MnpXVEctdGtNS3RFTHduci0tZzd3VFNENUo4SGZuWlNtWWtmaVdYVmFUNTcxSmxz?oc=5",
+   "s": "Sustainable Japan",
+   "d": "2026-10-30T07:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "「再生材」なくして新車売れない時代 環境対策から資源安全保障へ",
+   "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE13czF3dDJ0dnFEYUhxUThwTVRvVkgzcExTb3Z5Q0JONmVvNkhhTE1QMjR1WXNDeS1MR29hbE9DMHktV29RdHZQTEdsd0JSZ05XY3prRDhyUmI0WkREcHotUVdUSDc?oc=5",
+   "s": "日経ビジネス電子版",
+   "d": "2026-10-30T07:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "「ごみ」から湧く油田 資源小国の新たな鉱脈、眠る国富稼ぐ資源に",
+   "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE55dTUxNktTeV9ZeGRHczg1WmxQLUZEWlNjQUlRR3VoTklDOTFoTWgyaU41amJIYmJRTmZHelB1SWY4eUpBTGdMeVZnTFhmWkRUcXdPMkRjekVYangzeExSdV9ubUw?oc=5",
+   "s": "日経ビジネス電子版",
+   "d": "2026-10-30T07:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "【11/17・東京開催】『産学官金民の共創―多糖類バイオプラスチックがひろがる社会づくり』金沢大学COI-NEXT「めぐみがめぐるコンソーシアム」第1回フォーラム",
+   "u": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBFUlBNVmktNThkdGlqemY2OGNQZ2w1OWxyejNlMHlEbW85Y0VQOEx5Nnl3b2NRZ2t4YXVZVDBueXRqV0YyNlpXRmdUZTNfWnFkNGpz?oc=5",
+   "s": "Circular Economy Hub",
+   "d": "2026-10-28T07:00:00.000Z",
+   "q": "経済・ルール形成",
+   "f": "2026-11-22T15:30:56.372Z"
+  },
+  {
+   "t": "嬉野市の茶農家でつくる「グリーンレタープロジェクト」 政府の「自然共生サイト」に認定、茶園で生物多様性を保全",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5QMDlDbmlNVFZOU3FCZkk1VXNWMmFCWkpxQTQyNi0zNlAwQVMxY2c2a3g4UDE3eWhrR1NYbG5BUVY3djJoS1hWdnlXbzZER1RWR2VCczh3?oc=5",
+   "s": "佐賀新聞",
+   "d": "2026-11-14T00:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.612Z"
+  },
+  {
+   "t": "生物多様性COP17後のネイチャーポジティブ対応とは ―評価・データ整備・情報開示を企業行動につなぐ",
+   "u": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE14YzFjU1F0SG9aQmNhR0JVaTYydjB2QWxRYnZiQ2VnWl9BR3V6NUxiQ2pCRVZ1R2g0RGtVVWVEcC1paDBlX09OZVljMWRTaV9wbTJN?oc=5",
+   "s": "ABeam Consulting",
+   "d": "2026-11-20T05:31:35.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "預金特典にＪクレ 農林中央金庫、法人向け定期 森林保全後押し",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9wSnZXX0N4bnpsOExwWTFMM3VZQzdxSWxrMVc4aVZvU2FGR2ZidjJidWRvaW9oUDV2MGhDNVg1Z2pFM0lPRmxNc3R6Zll6Q0NUbmhzRg?oc=5",
+   "s": "日本農業新聞",
+   "d": "2026-11-20T03:29:57.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "COP17（生物多様性条約締約国会議）閉幕",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0wR21VRGoxNDlJRGFkN3QyZ2RDa09tbU4tSGhIQlJ6TXY0YXJ2X25fQjFNaWwydFRaSFhGZUhJZFNoRUx5cFltQUk5M0Vka1BvbUNxSGdMX2xHY1JzOVJfbDlMQ1ZvSFlySkpBX2ctSlZkQzFCSnZNQW1LVlVwc0E?oc=5",
+   "s": "大和総研",
+   "d": "2026-11-19T07:11:47.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "生物多様性保全啓発イベント「いきものイロイロ」参加者募集！",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1QOUZqNGp6aS1xU29xeHVZbUZSdV9RUl9zQlEtM3k0ZVM0TXYxT1Nxb2ppNjdTSkgxUmRsLUM2bXAtQU5aN19xRzdXOVp5bWEwenJHM0hEeFJuMlFWcVhtYy1yQmNXaENZV1E?oc=5",
+   "s": "亀岡市公式ホームページ",
+   "d": "2026-11-14T22:51:58.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "★生物多様性総合情報サイト★～広島県の生物多様性を知ろう！～",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE8tMmRPX3IyVDduSm1pVzFuUXB5LW1GUEFST3VCOEFMQ2xqZVh4dDNOTC1IN3BTMU4xNjJYaU9wakVJOWYtdEpobUtxZnBwLVdXbHE0RldpbUhaQVU?oc=5",
+   "s": "広島県公式ホームページ",
+   "d": "2026-11-13T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "石垣島のウミショウブ群落に19種類の生物 生物多様性を確認（RBC琉球放送）",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTFB6RzZDOVJfWC1SM280UkxPX0lyQ1VObUtMclY5ZThTSjlBUlhRdFppTHdhMGRyb0pMLWFjbUo5c3hFMDlSYnNwNk8yQWtTQlJsejVjVkRWdk1sbkVGU3prR3pDM1V1NFpyVE1rdGxfYV9ZMXNpMTVmV2doYWxHUFE?oc=5",
+   "s": "Yahoo!ニュース",
+   "d": "2026-11-13T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "「変わり続ける水辺」が川の生物多様性を支える―伝統河川工法「聖牛」周辺に生まれる「小さな水辺」から見えた河川管理の新たな視点",
+   "u": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1kanE4aHgxTFJWVU9yTE1CZWdPaWJrRWJla1lDLWlrb25UUDYxM2U3ZzNuOXQ2bjZBcFY3X2E0dGU4dEtMSEtwVG1DanFMeXltWGxlZlR2YzJvSDFqdXNpb1VRNA?oc=5",
+   "s": "京都大学",
+   "d": "2026-11-12T12:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "国連の生物多様性条約締約国会議（COP17）派遣事業",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9QbzVtY0xWYkhEOXVCVTJtZHd1aW56dDhaN0lRcUk4S1h0UG5HSkdKOFF4LTZ5SnJucktiVnRmX0hEd0tJdGNFMWZ2LVJHNnU1YkFZRjZtbTZwR3prSzdERFRlQ0RvQWtxQ285QWdsLVZveEd0YU5LZzNzenJxOVE?oc=5",
+   "s": "神戸市",
+   "d": "2026-11-12T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "九州の森林保全を英バンド「レディオヘッド」が支援 故坂本龍一さん創立団体に公演収益の一部寄付（西日本新聞me）",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5sNndvYlZhVDJRcnAwX19uQmVnREd4YklfUW14TFFMd2ZybTN2RFBUVkQ0eE9sZHpZYm45Mm9FRk5mS1NoM0hhRGlJbVFFM25oRW5TUTF3Y0NCYXR3Q1ZTTnZVOGRBWlVGMVRFaVliYVpvUWFUWFU1SnFZUVFTVE0?oc=5",
+   "s": "Yahoo!ニュース",
+   "d": "2026-11-12T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "森林保全と生態系は密接 オオカミ犬と暮らす原田さん（益田・匹見） 写真展通じ関係性訴え",
+   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE81RkhRLUlmQ2JyTUMyOTBnbWxDSVR4NFlnMHZTeUc5elZDVFFDN0lDOVcyWjV3R3B0ZkVkNm1xTjlFd1dvSFlpNnZicXNSZWJQSnRFZXRZMmtvYzg?oc=5",
+   "s": "山陰中央新報デジタル",
+   "d": "2026-11-11T19:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "京都市域における「自然共生サイト」への認定について",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBCSGZWRmhWbUhWS091V2plV2RacVkyMXY3dDFlZUp1SnRpTjd4emxXLTJLSHFMcjhCN2xnZTlvdUlSa1JkRU9RSjJHSU9hQkVlX0RNOUhWZ21BWENETG0yeU9rcWxweHc?oc=5",
+   "s": "京都市",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "日本バドミントン協会が挑むスポーツ界の生物多様性（井本直歩子）",
+   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE12RlJycEhUQVJvU2JqeFhaM080NmIwS1FQODl4T3JkZWoycURRUk1JSHlNcjN1Vjk2RnVPRjdOWVZOeHd4MmRUU1lQNHFrbHNKeXRyZ3E3Y0FuN2lFVV9ZQVhkVlU3Q2FpN1NwcA?oc=5",
+   "s": "日本経済新聞",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "脅かされる生物多様性",
+   "u": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5nak4wQ1hMeUxfQ2ZLRUMwUkUweTJwOXJGa1hnVU8xNElXZ0FkM3JXcGdVbDMyNmxqVl9FNEVEcHdsS2ZnQmRpbmpzUE5IRTRyMkE?oc=5",
+   "s": "山陽新聞",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "生物多様性の指標、半世紀余りで73％低下 WWFが報告書",
+   "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1Ydmd6a0RkZWVDOTgyOVoyRHBSR3NtYW9lVERROXhhQTNpNlBtbERZbEphNzhrNEpnS0JCeE9Kb3RQWlUxcHAybnBEaVAzR3dpc1J3YTRFYm9mQmxBa2F4RDctc25Ndw?oc=5",
+   "s": "Science Portal",
+   "d": "2026-11-10T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "COP17閉幕 ネイチャーポジティブの実現へ「エレバン・パスウェイ」を採択",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTFBRaXNFYnZncFMwbGZpcmkydU9QM3laMTlXUkRVWXRmZ0lGVlNDSkd6NExPOFdqbnFUSXJOY0p3aGlGeFl4TTFOeUJfU0pucXNJOXI2ZkFRRlFpOU1RZ1VyMDY0c1EtbHR6Y18tMFFTbll6UQ?oc=5",
+   "s": "日経BP",
+   "d": "2026-11-09T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "生物多様性の国際会議、前半から企業向けルールの提案相次ぐ（オルタナ）",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5NbHYyamZfTGYyLWhKRHRxX3RYUDd5OEhxSnZfWl9pU3o1bHRUbWpfa2ZBYTdoaFZOZHdHX2Q3M1piWExJTFlna2J2cGIzWHdRMmNIc1FwZE1pMXUwZU41d2FubmJRTXBmV0NLUzFUV1F6bHo1RlVhQUEzemJjMXM?oc=5",
+   "s": "Yahoo!ニュース",
+   "d": "2026-11-09T08:00:00.000Z",
+   "q": "生物多様性・森林",
+   "f": "2026-11-22T15:30:54.611Z"
+  },
+  {
+   "t": "リサイクル日本一「大崎システム」立役者、町初代環境係長の徳禮さん 大臣表彰――ごみの分別ルール浸透に奔走、海外での技術指導が評価",
+   "u": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5pd2lXbzlSTWFuSXNBOHUzWU9tUHFaLUFSZWZTZ01fMmw5c3YzajdfYlhfcmVHT2lOODhzQU84a1JCbkVsZmloZW1zTnM4NzBKYzlvZlFEaw?oc=5",
+   "s": "南日本新聞",
+   "d": "2026-11-22T11:20:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.851Z"
+  },
+  {
+   "t": "瀬戸内海環境保全功労でとくしま自然観察の会表彰 新・風景30選には吉野川河口と渦潮",
+   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBkQXpGdS1jc0ZoMERYMDFzdzVpcXNqNC1HYnBQdW9lV0VEd3I2cVk1OTFHQlEyRzhyTnNNZXB3MHJpQ0kxMHYwTi1xa0tFT1h5SGdWdU5B?oc=5",
+   "s": "徳島新聞デジタル",
+   "d": "2026-11-13T20:00:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.851Z"
+  },
+  {
+   "t": "江南吹奏楽クラブ、阿多古川環境保全協議会が浜松市長賞 2026年度市民活動表彰",
+   "u": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBaWG1USkplMENLZ1JVYUc3SzZXZTEzM1hzYUNHakJnWWVrUWJQY2p0dTZhMFVHVUZTSWNmaE5DY1dzRkJNVzQ3R0tJeUt1UQ?oc=5",
+   "s": "静岡新聞DIGITAL",
+   "d": "2026-11-07T08:00:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.851Z"
+  },
+  {
+   "t": "業界一体型「消火器リサイクルシステム」が 令和8年度 循環型社会形成推進功労者環境大臣表彰を受賞",
+   "u": "https://news.google.com/rss/articles/CBMickFVX3lxTE9DOU1vcGw2b2ttUmxBeENGWjdEOEd4dDhUMzctVnVXaUk0SWd4VWstaVNZSEtyRGFTWlA4TkpEYWkwcW5HamRVTXZ6MWVXSmtGdWRURElKOGJqbUVsMG9WVnI4eWRQT01WbFFRckxwYjdqZw?oc=5",
+   "s": "Infoseek",
+   "d": "2026-11-06T07:00:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.851Z"
+  },
+  {
+   "t": "環境課題の解決へ 「静岡県SDGsビジネスアワード2026」８団体がアイデア披露 来年３月に表彰式",
+   "u": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8yd2xzVGJqNzdGZURWUEM4aG90XzN2eWtwVHJ1ZmEycGlSTWRMbnh1NXRkV3p6U2FPaTVWSVJPaUw1OUgxbUh0YTJnZTZqZw?oc=5",
+   "s": "静岡新聞DIGITAL",
+   "d": "2026-11-05T08:00:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.851Z"
+  },
+  {
+   "t": "廃ホテル解体の市川組が環境省表彰 ２ 年連続受賞",
+   "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1tRHM1VjI3TU9CV1BhLUJ1c2kwT3p4eUItV0YwYzRMUkpjODRsVmt0ZjBlRVBIV2FrVnFjTlMxYWluNG8yX3RUU3RmZERnNWhFbHVZNng4Ri1wT0dpWjY3WkNRZHE?oc=5",
+   "s": "十勝毎日新聞",
+   "d": "2026-11-05T08:00:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.851Z"
+  },
+  {
+   "t": "マンションEV推進、新ZEBなど、住民の暮らしに資する自治体脱炭素施策を表彰ーー「第二回 市民が選ぶ！カーボンゼローカル大賞」表彰式を開催 - 国際環境NGOグリーンピース",
+   "u": "https://news.google.com/rss/articles/CBMifEFVX3lxTE01RV9aM3pPQXM1WnJPVTYtaEVKWjY5RDRqeDZKcW5xTVVaLXFlLTRuWl9uRHMtZERIT0M5T1BPb1hmU1ZPdWNYalFzZFNFLVpUR2pIOXdwVEh5cnYwN3ltazd6VmpraTJyZmlTQ0Z0UV84WVlNZGF2ZFRsSHY?oc=5",
+   "s": "Greenpeace",
+   "d": "2026-10-28T07:00:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.851Z"
+  },
+  {
+   "t": "「環境課題への関心深めるきっかけになれば」環境保全 ポスター表彰式 岩手県盛岡市",
+   "u": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBqLU1Dbng1TmFYdVZSZGI3MEN4NmN0M0hpTV90ajZnUEl2cVk4SkJ6SDZPZjRRVlJSQ2w3NlBLbUh4MkdIYXpscUFCaw?oc=5",
+   "s": "TVer",
+   "d": "2026-10-24T03:33:30.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.851Z"
+  },
+  {
+   "t": "京都環境文化学術フォーラム 国際シンポジウム第16回KYOTO 地球環境の殿堂ー表彰式・国際シンポジウムー",
+   "u": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQUlBvRlNjY0JlY0xfTk9fdWluUGM1OEJNRXBIaEFTRUY0X1F5UldYdGxicUlWZ3lxWUxud1FCMldnQmdELW9JOE41YWlGSDhnNGtLM2dpMEppRmVwdENHMnpSYlk0RDlIb2t0V3V2cXdZYmloQUVWdm5vRHVLRXNQUw?oc=5",
+   "s": "京都新聞デジタル",
+   "d": "2026-10-24T00:21:44.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.851Z"
+  },
+  {
+   "t": "「いいね金沢環境活動賞」の表彰式（HAB北陸朝日放送）",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1vS2syT1lyVjdRdDlkT29aeWJ0ZEF0cTBBdDkzM1lkSVVSSXZpb0QzTHBsUWpIMVMwUlJNbGtmVXIwSXlFNEtzeFduYnRxTXhtRXhjeS1rZ0QzcWFqQ2VFeGhPeTUyYTh2ZzFLUDdlT2JjaDZOS3dsUF94RHRMZTA?oc=5",
+   "s": "Yahoo!ニュース",
+   "d": "2026-11-12T08:00:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.850Z"
+  },
+  {
+   "t": "令和8年度山口県環境保全活動功労者等表彰式",
+   "u": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5MUmJzUGxBSXZUeWJGMHBhNndQSEJPbTJoS09jem5JWkpFYlpqdm44LVdRX3U1MW83bFk1bjM3QThHVHU0RktTd2hnZzB5ejlGQmV6WnBrZ19TbGdGdE5zSThMQ1N3QQ?oc=5",
+   "s": "山口県ホームページ トップページ",
+   "d": "2026-11-09T08:00:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.850Z"
+  },
+  {
+   "t": "【募集は終了しました】環境保全や脱炭素の取り組みを表彰します！（おやまグリーン・アクションアワード2026）",
+   "u": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQRU1XM3czUHlhNkU4UG1pZVFKTl9qcFRCdXdYb0NXY21na1VnRHFLZzI1Yl9rekFpTzh5SnB5SmcwajBJSHpXdDdtLWhoTGs4VDQ0clJVeDZPZnMtbk5hWkpUMjYtMkViV1QzNUhjdkRfOHduUHdaS3JMLTNEQnY5SEFQbU03STZ2aEFSUUppUVJNUmtBQ3AtM2Qwcw?oc=5",
+   "s": "小山市",
+   "d": "2026-11-02T08:00:00.000Z",
+   "q": "ESG評価・表彰",
+   "f": "2026-11-22T15:30:52.850Z"
+  },
+  {
+   "t": "学習プラザ「めぐる」（八尾市立リサイクルセンター）のご案内｜大阪府八尾市公式ホームページ",
+   "u": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNUWJBeHh2QUxMTEV6SzBfOXVfYXBIUWROc1A0NkNVTEFEMkt0TkxCREJlQnVQYkJPVDBRR1lwTEUzakhyQndXR3dEZ2lpdDNWc0V1WG9CenF3RnczRjZLbGZqZDN4bXFHelRoZ0c4NzduOTlYbmRjVEVnVENwdDNvZlVTVERzVEZpQ0ZXckN4WU54UEhIb1dOZ05yRjJJUmRZNlE?oc=5",
+   "s": "www.city.yao.osaka.jp",
+   "d": "2026-11-14T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "環境センターのリユース事業の開催について",
+   "u": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQX0RmQlk4YTY0SnlqaVVyWkRwZ2g2a0Y0WThFcExoTjREbkdVTllqOVZobm9sUG9rM0FjLThmSUFhcVdCLUUyeE9TcUtGbzNwX0FNU2EyaGlXQ25XbklSWHg0TV9oemdjcW9HOXdyTEtSV3A4cklGcWpHcThaQW5HU3ZoOHZHS2c3Z1FPRA?oc=5",
+   "s": "高島市",
+   "d": "2026-11-14T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "小型家電のリサイクルについて",
+   "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9xcC1tN0pVNXpLU1RYUnV5RU00ZlBQY2I0QmN5dHFqY095MzJGLWh6ZFJKWnpQOTlySzZZeDVvQ3NSbFZhZTJoNTRvMTNsQnNaUDluTHpTS3QzNHZnNVVocWVTR0VrYVBCS3JrNFNiNA?oc=5",
+   "s": "船橋市公式ホームページ",
+   "d": "2026-11-13T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "クルーズ船の外国人に『リサイクル品』が人気！？青森市西部には外国人客対応の新しいリサイクルショップもオープン",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBaeUxTOTVtNGhzOUdQNHo1Slc1UldaOGFRSXA4TTNLVUp4U3R3enFyRERaRmZDbGJQWGJ4MmFzRDB4UHRvUzZXUzhsdUgxN1ByMWVwb2kyUkhobUU2X0tjRWxtNDFuSEVSZXF6akFsNDhINXJYWTV6dGR6YzVHTTA?oc=5",
+   "s": "Yahoo!ニュース",
+   "d": "2026-11-13T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "横浜緑地も関わる「横浜・八景島シーパラダイス」での資源循環の取り組みが開始いたします。",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1COXBMMjB6SUl1YkhOT0tnRmRPZm13NXRGQnhDWnhUbHQ5OFdQWnhzZy1wcGh6aVFkdGxOajdYX1Juc2dDR3QtVlRiZDdHWWh1VTZkakJvcU0xTFc2d1BkTHRqeXBmemxuaVE?oc=5",
+   "s": "西武造園株式会社",
+   "d": "2026-11-13T01:48:35.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "パネル・リサイクル制度、「ガラスを回収し、ほぼ全て再資源化」 - ニュース - メガソーラービジネス plus",
+   "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5jYldGWVNyMVI5S3lPSk5uckdhNzRERmV2RnJJTFV6MzJuSVdVak5FT3FpQUFfU2Z6cTBCWktFSXN2Q2J0dndzSXpwb1MySDViVjlhQXdmNXduM29vam54cmlROE1mdmNWU3JGODduVXdrVHVJ?oc=5",
+   "s": "日経BP",
+   "d": "2026-11-12T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "令和8年度家電リサイクルプラント見学会を開催しました",
+   "u": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQY29fRk9LWU5OWHA2azFmV3RMaThGaE56cmFHSXE5NV9HSnFPTWJoQkFTRlVybkE2VkRiTVhhSnpmb2Y4bGxicUJ6Sk1xeTEzc1FkcC1QMFpjbFVoRzVSMlpYbXVmam1WYXgxa3kyUjBmV3FpMU9ZLVVvd3doZWhJLXVBQTh5cGhXUDFUY1cxcC1GYTB1d0E1MTRwdFZEZWNpSDBnYkNzcERGYVYzaVRRXzF0RQ?oc=5",
+   "s": "東北経済産業局",
+   "d": "2026-11-12T06:25:53.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "「彩の国リサイクル製品」令和8年度分の認定申請の受付を開始します",
+   "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1jWlN6R3hpUXU5UHYyYmJmb2dTZlB3dXhNYThzVHlLRXBBZ1MxVHNPbVYtRU9vMkZPLVNPVWtiaWVBYUU3YTdFb1RSd1lUR0xhNHQxWTNFNjlhTHMzYjVlcUlITWhEZ1l5Z0VVcGJpSzdlVjd4?oc=5",
+   "s": "埼玉県",
+   "d": "2026-11-12T03:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "リサイクルステーション一部休止のお知らせ",
+   "u": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5lYkVoWHFYRjRRbFBobUFvU1FGZUl2R0VDa0c2OHVVVnNyOHBJM2pmYzg3UjlicmRFUGhuTWM2WU9McnUxUF84SG5JU2Zfckp4YXZXd2k0dFh2Vk5GSFd0TE9mZw?oc=5",
+   "s": "飯田市",
+   "d": "2026-11-12T00:51:24.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "リサイクル広場を開催します",
+   "u": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPSml3aEtVb0pfSXdLQXFWVTI4VWVjXzdtQUFVc2JUVU1OeFE1RC1ZejljT3F2NkRlbmJOU2FxSE1WSG5oSkxwSUlZZDZhSGRacDBvWUc4b3JUQlNXVW5iQmVlZnE0LVhoaVVVQWxpV2t0OU9CbjcwZElfSUZyb0IyTzlwN3lKMVYtZ3c?oc=5",
+   "s": "高島市",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "ひょうご資源循環フォーラムの開催",
+   "u": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9EY0lYQUJDZzJvdFR6NjJLejNKR3ZBVEZ5U0p0T0hTT19GU05kMWRSSll2Q0Jydm4ybU15c2NDbWRfSXJyV0tTZWtoOVR6SEZBOVAxTzM0bFJBYnAtblpjV1UzVjdsaFZwUEVmTnJ1ZEdZNDA?oc=5",
+   "s": "兵庫県",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "製品プラスチックのリサイクルにチャレンジ！",
+   "u": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxORUdjX3kxeTFKcmRudVV5RE1SclF6VEhiTWRZM1hPLXJYYUROU1NWa3ZxSDVVTGhEN0FTeWVrcGVQWE1kQXZYM1Z6VUtRalNqVkkyX09JZ2ZmRWJGWVZrR2Q0enJCYkF0RjFoNjQ4ZEtpNEx2S1QweUROaWJ0anAwODFTeS1PUDZaNWhzU1o3MWhTYUl4XzZVVkMzbXRvNUxzcFhRQmU3NnVyLTA?oc=5",
+   "s": "豊中市",
+   "d": "2026-11-11T06:47:16.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "人生いきいき講座「資源循環の取り組み、ゴミ分別のコツ」を開催しました | 東与賀",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5pVkFYb3EtQTFfa3pVbHFXN3J1SXZGWDJ4UndrbkpncmZFV0s4UG5obm0tM0owZDJmaDY0R2pZV0cwcl9xcWFZN1Q1S3F4ZXVHNmRaUk52Mm5CRmNMR0FmR3pPTGs3ZEpZdkE?oc=5",
+   "s": "つながるさがし",
+   "d": "2026-11-11T05:11:10.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "家庭から出る使用済み油のリサイクル（SAF等への利活用）",
+   "u": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5yVzRKdlB1VktOSThpZVcxVEQ3c0VvRzRsN3YzSklXRVNSLVBXTTNkQXpCMURVVVZfanRQME9ZRkVObFBvcTFyVXVIdlh6dWJVSWV3QWhvMjdwV184WFhIXzJTWDJtYnNET2JvQWVHekNzcHVvR1pDOGhaWQ?oc=5",
+   "s": "堺市",
+   "d": "2026-11-10T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "使い捨てコンタクトレンズ空ケースはリサイクルできます！（令和7年は、21万9千個集まりました）",
+   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBXY2FxdVBZbDRncGEtU3I2cmlPZmI0V2d0YmlwSnJ6OUkzMm9OMi1kWmJoTUpBZlNKMGFFOXVRTV91S0QtTTY3eEhqYlpaaGtZZGJzOERkdUw5RHBKTjM0MXc1cG96UnRsakhlWmtwaU4?oc=5",
+   "s": "石垣市",
+   "d": "2026-11-10T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "【令和８年10月~段階導入】プラスチック資源物の分別収集・リサイクルが始まります！",
+   "u": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNUGpkSW55U3l5eDhfbUhqdFk2c00taW84ZDJ0TWNRbVdEcldleWxTUGhCV3dhOG1YWDBlSXpPUjJFNTJiNU52LVZ3eVktc0hfWVFWZl9XMUZHYVNxYXhLdjc1VVVuVzRBQlZVNzVNaXRiUmV3R3dXX2wwcUxnWE80LXV4WEZ3OFJFX2Jj?oc=5",
+   "s": "筑西市",
+   "d": "2026-11-09T08:00:00.000Z",
+   "q": "プラスチック・資源循環",
+   "f": "2026-11-22T15:30:50.971Z"
+  },
+  {
+   "t": "脱炭素先行地域 脱炭素化達成施設について",
+   "u": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNZFpYcUNWdWF4TkduMVB2QS1xSnFtVlZrc1Y4cFg1SlpiTm92cGFreXhfUEZQZEhLb3p2R3NGazh5MnRBR0J3eXp3THozOWh3blRMWGM5ZWVkZzIwWFJjdzBNTnlZdTVtQ0JSOWpOZFJjbWFVWERfei1kdV9iQzA5Mm1raHJqNHptenRLcmFDSTdHbDI4dVpFVzF3?oc=5",
+   "s": "横浜市",
+   "d": "2026-11-18T03:36:28.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "みなとみらい21地区における脱炭素先行地域の取組紹介冊子",
+   "u": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQNU52YmUyYWYwTEVFME1hOS01NklBX3gxeGRmbFJwQ2Y3ZEo4N0ZQWWhHNXdnMERhMjZWb1JBb2lkeGVkZ0cyRGl3MFZRYzc1a2lqVEFXUjVpX2NuTHRpUnZ3bFhKaHJLTzA5Y1dCb0Q0Zk5ESXFCd3N4T1VIZTZDMXpfQVJncTF6cHZYSGJ2RXREOEhfNlNmcWpEZXc?oc=5",
+   "s": "横浜市",
+   "d": "2026-11-13T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "岐阜県美濃加茂市、大垣共立銀行、バイウィルが「環境価値の活用によるゼロカーボンシティの実現に向けた連携協定」を締結",
+   "u": "https://news.google.com/rss/articles/CBMie0FVX3lxTE14SXRlY0JlV0JDOGthUGhFaDJnMndHOGNOSXp3ako3OG01VWlUWkFSVW9FU0RQNEVxdHhsOS1GSE9zUVRWdnRoajBHMTBycGN2b2U4a0dzSVRQTTQ5MXU4UzRjdml3bGxZMWU4emJEM2MzSmJVd0xZU1p4NA?oc=5",
+   "s": "ニコニコニュース",
+   "d": "2026-11-11T05:30:30.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "【申請様式】【補助金交付状況】ゼロカーボンシティふくろい推進事業補助金",
+   "u": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPQVY2RWlONlRPVE5LUTJUMVhGWTN6dHRXXzR5MmM0YkxGQ1ludXp2VTRIV2xoUTBDNWZzb204V2FhcHdRMU13UVh4TTlEVC1mV2pib2JXQks5NkFwM25mQ21TUlcxNUtvZEJmRXI0NGs4RWRLNXhGQ19wVHVFeTk5ZlJn?oc=5",
+   "s": "袋井市",
+   "d": "2026-11-06T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "笠間市が第7回環境省脱炭素先行地域に選定されました",
+   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9wcDFINjM2MlRiMk9XV05VczliTVlkeHVyNjRLazd0MzNfeTBHcE54YnpiNEVBTTRXTTVDZ3lCZmtiTzdBLWVGTml2dmp4RUpUZkJMamdaTERneDNfVjRJ?oc=5",
+   "s": "笠間市",
+   "d": "2026-11-05T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "加須市ゼロカーボンシティ推進協議会",
+   "u": "https://news.google.com/rss/articles/CBMieEFVX3lxTE8zaTAyUEhoOXF3WVpZZnp5RkE0dkw2RC0wZGVhcUptQzZKWlFCU1lOOXVhUGpDbU80T1JLMXBON0lXUTl3dDV5Q3pQYjczdWJQYjkxY2F4WnB5ZnNfVmVaUGU5ZkVNSXlvS1I1bDdRWTRLa0tLa1JoQQ?oc=5",
+   "s": "加須市",
+   "d": "2026-11-05T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "ゼロカーボンシティ宣言について",
+   "u": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5RelhsUjFkblIzTzVJQUJhMGVJWTFELWkwcndFOFc5UUtWTG1raWE0M3I4c29NbU8wcEphQUY1R3pLbWhWdnlLLUtSdl93TGQyUFlIcEw3VHR0MWpVMUxPQms2Qk9hR0xaYnUw?oc=5",
+   "s": "西都市",
+   "d": "2026-11-02T11:52:59.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "脱炭素先行地域評価委員会委員による現地視察が行われました",
+   "u": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQblRuMXZORDVXdnJFejJyM1c2LXQ2YTFUZGxxTG1HcnlOZnROUlhjMnByV2xTSjZCYnVHV2s0SFQ2NHhsVGhLNnJYeDNoN1VoYnRNWFkyNEJkb1pIOXZweUs2N1k2dl92Y1VZZ2Y0dDhqd3FPcVZYUl9Qa2pYN2NiOEdQNTJseURBRDZqTUxZTjlQcjVBSlJiNHBiUQ?oc=5",
+   "s": "大分市",
+   "d": "2026-11-02T08:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "阪急阪神不動産ら、京都初の脱炭素先行地域「KYOTO COCO CITY」開発 2028年春開業予定",
+   "u": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBWQU5EcUtZdFRLRG9PaDItdVZleHB1Zno5LVAxVU5lLThRQ2Z3c3BPMzBvcEM5NDVSdlpIZTAwTVdTaENRSHhxdVFlaw?oc=5",
+   "s": "LIGARE（リガーレ）",
+   "d": "2026-10-30T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "太陽光発電の関連事業に10億円 箕輪町が目指す｢ゼロカーボンシティ｣の現在地",
+   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1yQS1aVDBqZUZsbnJ2SDRmZUxGMTlkeVF4ckxnZWZvNi1ZeHdWNjAzaTU2UkVnNEU2bGpxdEVFRlBWTk0yUGdpZzYxSks2cXhxODFaVVJwc05yWlBGYlFiU3NOLU1ScEZ5a0xPc1YtVEk?oc=5",
+   "s": "信濃毎日新聞デジタル",
+   "d": "2026-10-28T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "エコ活動やイベント参加でポイントが貯まる！「ゼロカーボンシティ推進」プレゼントキャンペーンを実施中",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE13U2JBc18xZno5TzNuY0g2ZGZHNGl2MmdQaWZNMFR0WkJlUXllcDM1M1Z4NVg0Q0tLRzl4YjZEcklIV1hMdUotRXJVZTdnQlFlZmlBQzNCSW9VWUhDUHNHZFNTV1RKbEc5d0E?oc=5",
+   "s": "PR TIMES",
+   "d": "2026-10-28T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "「伏見工業高等学校跡地」および 「元南部配水管理課用地」における 大規模街区開発事業 京都初の「脱炭素先行地域」における4ha超の 大規模な複合開発 街の名称が『KYOTO COCO CITY』に決定",
+   "u": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE93cmNVZ241Nnpna1A3NkZ4QnJQb2MxYm80Ql9ZYUZZdWF5SHNCTFk4QmF3NGZxYTBjX3FDT19idWlDbUkzLWphS2JfVnhJdw?oc=5",
+   "s": "アットプレス",
+   "d": "2026-10-26T07:00:00.000Z",
+   "q": "脱炭素・再エネ",
+   "f": "2026-11-22T15:30:49.094Z"
+  },
+  {
+   "t": "【長崎】坂本小の児童が「エコ・クッキング」学ぶ 省エネや食品ロス削減を意識した料理の方法を学んでもらう（長崎文化放送）",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE8zQ21HZXc2dUE0R283aXdRcUp0WGVyUkYycXpQSlVTY20wOE1qa2Zua3JGdDZ1d0FzOGVVN1JTVDUwUWJES3JNUjk4aGVrU0VqUVZTUGYtQURvM3RuV0xEczk0TDZJR0lRTEx6MmFlb2xaaVZJREhoX2JySVRrZG8?oc=5",
+   "s": "Yahoo!ニュース",
+   "d": "2026-11-20T10:09:12.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "APU学生団体「フードバンク彩鳥」× 大分ダイハツ販売株式会社 地域の食支援活動の推進に向け覚書を締結",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5GYVJGdHRnVkR6cTJfNUNReGlQZEJNRkhSTGQ2NGtUY180NVc5MzZEOVE1UUJyLWh6U1FibG5IalA1dVQtLVhvS0xtNlB3ZVpYMkllbzFUWVZuOEIwcWxVS2xWSUh3SzZXS2c?oc=5",
+   "s": "PR TIMES",
+   "d": "2026-11-19T01:00:02.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "江田島市、都会の食品ロスを地域食堂へ 無償提供の仕組みに広島県内初参加",
+   "u": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9HX2JQYzMwQWVTRzFUNTNEdHI2WFd2ckJYNXI4ejdKYWZ0QnJNTzBlRjUtNVVyemd4ZTJMMmVlaG85WmpkYkVzOUJyQQ?oc=5",
+   "s": "47NEWS",
+   "d": "2026-11-17T08:17:49.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "工大祭で「限界食堂」2日間約800食販売、食品ロス削減とDECARBO AWARD初開催",
+   "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5UU2p5YTZ1Q3gwZmY5aktOUGM0Y0VZRlNZTThWWkZCVEVIc3BjVVFrRmQ5OGI3Zk01TDdlREFQXzJJTnJGNXJtT0N6M1RlZ2d5SExZT2NUVExhQ3hsa01vNUd6SjNzLXVvU0tfWkl2NA?oc=5",
+   "s": "SDGs NAVI",
+   "d": "2026-11-14T22:01:37.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "Earth hacks、東京科学大学「工大祭2026」で食品ロス食材を活用した「限界（ギリギリ）食堂」を出店、2日間で約800食を販売！",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9ETTRhR25ub2xxWjlhS1F4NVoxT2xTdVJJc29EbHZJYTRHQWJHLUxKdXBBeHd1TEZWaDA2WUd1NGVxdWtpd2VxcVpBa01kLWlDa2dDdldzZXpQUmhueHVsNk9KMG93MHE2a1E?oc=5",
+   "s": "PR TIMES",
+   "d": "2026-11-13T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "名城食品、愛知の食品ロス削減イベント 出展で環境配慮PR",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1XRGZEQVpoajJVSzJCMW84cEtfTzFhLUs4Q1FGU21LOUt5eXZUSmNLMTVDc2tOdEZ1elIyVnJDN052V1ZncTllanZwRnY1X3lNbC1fMHNHRjNnMHVWcEN4Yml6S2d6YjQ?oc=5",
+   "s": "日本食糧新聞・電子版",
+   "d": "2026-11-12T15:10:37.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "食品ロス削減を考えカレー作り/宇部市の子ども食堂 みんにゃ食堂２００回目で",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5VQ21WeEhZRmZDanZpcDN2cTY1M3NLN2R1Y1VrN3pRci1XdTNzMU50RlgyaElFQlFvS0phZ05SRjVlQlA5b2tMXzdHVExqNmE2M0E0OVlodTZobXFRS1VsdzJKYjN5YXRyc1E?oc=5",
+   "s": "山口新聞 電子版",
+   "d": "2026-11-10T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "食品ロス考え調理体験 小学生～大学生の9人参加 こども食堂、カレー企画 宇部 ／山口",
+   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9DeHJlSHM0R2w0ejVmLUZYSG9RMUdRalVmc2d0a1NBNzdlclJWTjBTanZNdC1DNWd4ZzF4dVdIdmtxX2xIZW54QThqa1JYM3RPQVo0VjhadzV3eVFXRVdWM29yMFgyVXRl?oc=5",
+   "s": "毎日新聞",
+   "d": "2026-11-07T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "【大東文化大学 × SDGs】本学の取り組み／ニュース",
+   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9va1Z5TXNLVjBJdWRXSnRvT0NvRVdZcXZmRUxJdkRSUXdycU5tQ1dnTHV2MzhURVdGV3hCY3NMZzVJWnRES0dlZW9iTS1hazBSZFJuNHlvQ0daQQ?oc=5",
+   "s": "大東文化大学",
+   "d": "2026-11-02T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "宇部で200回目の「みんにゃ食堂」開催へ 食品ロス学べる特別企画も（みんなの経済新聞ネットワーク）",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBVSXJpVUlHX28yYXFSeWRXTVlPWjhmLTN2Q21fRzVrcXpkTU15U0hXcXJTVHVGOFZZY29EVEpUZVZyNmxpYnlfdTJfLXVDNkV1VUFvV055VjhyYVQ3UGgxWXhYeXVDaENRVHQ4aGg4NG5hRC1WT1g4ajdFZkJIVHM?oc=5",
+   "s": "Yahoo!ニュース",
+   "d": "2026-10-30T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "【10月30日は食品ロス削減の日】IT企業が「毎月1,000kg（1トン）超」の規格外野菜を買い取り、社員の食卓へ",
+   "u": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFAybGszUUNYcVE5cVB0RnIyT0locHZwZ3A1RlRMU1ZBc3FmbkxERjRGdV9rWGNPMjRraHN1TkZTQi1WRTNzLVdQbTJ1TDVqSUhYWmNGcA?oc=5",
+   "s": "ASCII.jp",
+   "d": "2026-10-28T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "食品ロスをゼロに！丹波県民局たすけあいフードドライブin兵庫県柏原総合庁舎開催のお知らせ！",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE0zSVhCM2lxSHJZZzhLcXE0MVJZQ1BMMXdzZjVud0ViR0EyOGhJRTNNeHVETkJuTTg5dDBEdWl4RjN4RHhQQWV0VF9iNHFIQVpTOXcxbEduZTRrN09JY1cxcTRKclFCRGM?oc=5",
+   "s": "兵庫県",
+   "d": "2026-10-27T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "食品ロスの削減とこどもの機会創出を、ふるさと納税と未利用食品で両立。ネッスーが「第10回 食品ロス削減全国大会in那須塩原」に出展・登壇",
+   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9yMFdndTBjVjI5Zl9xTXA2dUdicENCektCS2FpbW41bUprb3A1T3JIUExsY1ZsQmJOLURhSDZGZ0dXOTJWNjNCSE9LRndDQ180QmQxV2FWQ2c3c2xoaEFZTHRFakszNlYtVEE?oc=5",
+   "s": "PR TIMES",
+   "d": "2026-10-27T07:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:45.425Z"
+  },
+  {
+   "t": "認定NPO法人フードバンク山梨様「フードドライブ」食品寄付",
+   "u": "https://news.google.com/rss/articles/CBMid0FVX3lxTE0tV2JVVER3eWtmeWtYS2NRWnlkQzRFdGFqOHlrNkxla1kzYlZwU0FwLXk5dU5mSW1uYjdKSVExMGNFNTJqZWtfNnByUExabE5sZjF5TkhGREVDZjRPRnFjZXhkQlVraTJvWndBckxEMVlQSGRNcVFB?oc=5",
+   "s": "ダイハツ工業",
+   "d": "2026-11-14T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "フードバンク支援へ APUの学生団体と大分ダイハツ販売が覚書締結 大分",
+   "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5LRGNTc1VVUW1rcFlsZEx4NkQzZGRzSURMdUlXMFRXQ2tIYmloMlN6RGJMU3dQMGxCWi1XMXBBYXVSeE1sMEdnRlFiOHRBYkROV19XajJKTFhrNHF3?oc=5",
+   "s": "TOSオンライン",
+   "d": "2026-11-14T05:55:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "食品ロスをおいしく削減 小田原市がアイデアレシピを表彰",
+   "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5ObGM5ak5UX3pqdmUwQ3BLMXRLZ0J1YlNMY05Vd3kzUEJWdkNRRmVPQ2xxOThISVFxcGYxRFRsdWt1aHZZMzJHZjNOTmVuc2N5aUU3a0M5NktxdEdWZFEwNHJOREg?oc=5",
+   "s": "タウンニュース",
+   "d": "2026-11-13T15:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "フードシェアリングサービスを活用した食品ロス削減の実証について",
+   "u": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5nQ2lWcnBObTlCMUVtcG9ueTk3Q2lBa1g5WHpWM0RIdlk3RFJrME92ZFJvS0ctUlBZTVhWM0dkUmRHWDlMQlFqNUJXc1pBcmNhMlhiRXdrVWtxM01XMk9rR3RXYw?oc=5",
+   "s": "川崎市",
+   "d": "2026-11-13T08:23:43.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "フードバンク活動について",
+   "u": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBCQXNCSTByYy0tSUQ1eFpUOThUWmZSTGNOSkZhSzNPOFZLamhwRFFxaURwbVFRSENYNkt6cHRHMlN2TFRlNDFKXzBQalJ0OW9SRy1ISXdPcUhPaEZVeWFVc2tFczU5VUdxT3pPem43bUM?oc=5",
+   "s": "札幌市",
+   "d": "2026-11-13T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "熊本県八代市にフードバンクひのくにの県南食支援拠点が開設されました",
+   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9IR3RHNjJwVE1LcHRMXzY2b3Fac0NiR3J3TDhtblFzZU1uZElsVXB6X3lXOHhTU3VGM2l6NkpiRDFGX2xoMkc4cVBzYmllZzk3VmEzOU1BQWJRdw?oc=5",
+   "s": "musubie.org",
+   "d": "2026-11-13T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "福岡県庁に集まった“フードドライブ”食品を寄贈 食品ロス削減の取り組み（テレQ（TVQ九州放送））",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE8wa05pd0laZ1JJV2FlaXB6aEI2V3gwWFduYmlZMVAyLTFMQzJUdkFpT3Zub29SNlpuRGR0TTk2RU1kMkNXMVVNTGhOMzRaVmQyYzhhM0FfLVg4VTRtekxidXlVZjhIV0RBd01NYnZKTjhiTFlNVjRWcG5GRzVTYVE?oc=5",
+   "s": "Yahoo!ニュース",
+   "d": "2026-11-13T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "【食品ロス】使い切れずに捨ててしまうことが多い食品…「野菜類」を抑えた1位は？（まいどなニュース）",
+   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5WTnNNVGhJb3pWbUhUYVdtaUtPY1VnYXVCcDBpRklXWXh4akY0ajhMN3hkcHhtZ1k4YXo3ZGVOd1Z2ZkVkTnZIV3EyTjVCTk5wa1MtbVF2WWltYU5NMFc3cUx0SlNndWFnLUVVaDBLWVI4VGNBWDNaWlZSaGRxNDA?oc=5",
+   "s": "Yahoo!ニュース",
+   "d": "2026-11-12T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "食品ロス削減につながる菓子やキムチ 川崎の若者と企業が商品化 [神奈川県]",
+   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5QMklrWURqSDJJa3pmNmlxUVVIWS1TUVpZUC1KX1l1YlFlM1l5Sk43VjFiR2wtbGxUa0EyVV9XejRpOGxockUzbmZLYm1Vdzh3YXMzcjNHSDMxLS1PRDlXSUtOYzVTOTA?oc=5",
+   "s": "朝日新聞",
+   "d": "2026-11-12T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "「どさんこ食べきり協力店制度」について",
+   "u": "https://news.google.com/rss/articles/CBMifkFVX3lxTE4wa1loeXI3N3BnRFpVel91WXp5VTl0VU5rUzFWcmlxcHNXMFp5LWFTMkdvTDc2NmluWkJoSUdSV09XRjJ0a2VRYjhpT2d4dzg4QzF0anN3ODlzd2xiMVNvcElWQnl6OUExbWJrRlY5OW9kNU5raEVoZUg4ZEdjQQ?oc=5",
+   "s": "北海道のホームページ",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "「フードバンクあきた」へ秋田県産食材を贈呈～フードドライブで集められた食品も提供",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1UWTNrcGRLOExQRl9rY2hwTjgtaW1GWWdOZzVCeXpEMnNGc2NweGZod2dVd3k3SG1Yei1RMG9ZTko3Y1RPTG94NC1wV3ZBRHlVYnFMVjdMTXNCdmFtTVc1dQ?oc=5",
+   "s": "全農",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "食品ロス削減啓発活動について",
+   "u": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5rNldqQU5MMG1Ba1dxUlZTSW54ZmY5Q0ZOc2NsczdSR20tZk5vRzhZOXNLMkpBM1NiTW55NHBkbUtSa3ZFNFcydTB0TkZGWEkzU3FVb0JwY0pHWG43dEJBQmswcmRTRkhoQjhJaWZ3?oc=5",
+   "s": "札幌市",
+   "d": "2026-11-11T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "フードドライブ情報発信ページ",
+   "u": "https://news.google.com/rss/articles/CBMifkFVX3lxTE0tT29ja3h1Z0ZtSEktLWxTWF9IejYzS25pcWRYcklkTHE3WEsyUDZOZ0V1MmNGd1ZlWGVScXpqbC1TeEtZT2NkeE03TGpLUlN5c2JHRHF0ZlZYYUZmZjdfUkRjdEYxZV9uZVBLR2QtVUJuOEU2Tkl5aEN5Z0k5UQ?oc=5",
+   "s": "福岡市",
+   "d": "2026-11-10T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "食品ロス削減に取り組む枚方市内の協力店をご紹介します！",
+   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE42OV95N3dSSVJlLXZZb1hJVHg4bGY2cUNKN0QxOTVzcS1FMF9mTzQ0SWlFTmV3Rkw2U1RPMVU2b0Nod180Qm5xV2hXR3V5LTlBV01ReDFWT3A3NEh3SGFB?oc=5",
+   "s": "枚方市",
+   "d": "2026-11-10T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "【令和8年10月25日(日曜)】食品ロス削減イベント「スマイル！ひろしま広場」を開催しました",
+   "u": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPVkdnd1RWeWw1NkVMQlRLcURIQmRRTDc5ODQ4RnBfNUwtTElCcXRrMW9rblRfbV9abUxnUnRxYkQ0RnFFc2V4WXVIdTBZWFdZdURNcEN2aGtoSlFLOVA5YmJHMmdMNUpsMWw2YWRzN2FYZVBVWFczN29RM2tQQVNSY3hGWTR1TVU?oc=5",
+   "s": "広島市公式ウェブサイト",
+   "d": "2026-11-09T08:00:00.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.705Z"
+  },
+  {
+   "t": "令和8年度 食品ロス削減推進表彰",
+   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9RN1BaUHExN3h2V1ltMEp4TC1Pc2plaGRPQVJHWW1xT2ZNNHFVSjB4ZTcxR0p0SWJOSWIwVGFWMUttakdNaXZ3UUVjZnkxTkQ2MzlRVHJwdGw4VHBzVE5USA?oc=5",
+   "s": "環境省",
+   "d": "2026-11-10T02:14:59.000Z",
+   "q": "フードロス",
+   "f": "2026-11-22T15:30:43.704Z"
   },
   {
    "t": "不要品集めフリマで販売スタート リサイクルで「こども食堂」資金に 福山のＮＰＯ",
@@ -29,13 +1663,6 @@
    "s": "日本経済新聞",
    "d": "2026-11-22T07:30:00.000Z",
    "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "政府は、低排出ガス地域におけるガソリン車の規制のため、移行を支援する政策を実施する予定である。",
-   "u": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPMEhwNEpTWTVLSlgtRjJOdXVhd1pjV0N5NU1NSWdfeEM2MzBQYmhTMEZxMzUtUjhGOFFHc2RyNlpNLXcxVWlObFUwSDNHcnIxQmc0OUN0OTM2dVB1cEt2LUtQZnBqVTlEdVQ4ZjI3OGNGNjh3c1FCMmpyMzNBdS1lajBkNGNVNVZZMmhyeWZpWTNrMmZuWWR0c1F0SDcyWS1RRFlqQUZsOFNoU1NfRlk0?oc=5",
-   "s": "Vietnam.vn",
-   "d": "2026-11-22T07:03:09.000Z",
-   "q": "経済・ルール形成"
   },
   {
    "t": "なぜYahoo!「みんなの意見」の食品ロス対策に「作りすぎない」がないのか AIが作った選択肢の盲点 #エキスパートトピ",
@@ -59,13 +1686,6 @@
    "q": ""
   },
   {
-   "t": "腸内環境の見える化と精密栄養学が拓く健康社会の近未来像【食品と開発11月号 特集II-3】🔒",
-   "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1pbTRDUUozRXFoS3Q3a3RMcjRCanB5Ri1VemVTNkxocXhYWm9pYVJQcm1yZFBpV0ZRWE5KM1JLVGNrbnhKd0NIQ0dNcXVuTU4tN3hUcExCbGc?oc=5",
-   "s": "健康メディア.com",
-   "d": "2026-11-21T23:30:44.000Z",
-   "q": "フードロス"
-  },
-  {
    "t": "ゼロカーボンシティ宣言で日本の自治体は何が変わる？まちの本気度を見る3つの目印",
    "u": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5CaEVWQU93Y3R6RklaNUpEUFIwVWpwRm5wR1RtSGZmYmQ2OExNZk10TjlTa2FwVWxremtBMGQ4cEUteklvRnByVTRTN3c?oc=5",
    "s": "MIRASUS（ミラサス）",
@@ -78,13 +1698,6 @@
    "s": "号外NET 茨木",
    "d": "2026-11-21T22:11:01.000Z",
    "q": "生物多様性・森林"
-  },
-  {
-   "t": "ガスクロマトグラフ市場2035年予測：医薬品QA/QCと環境検査が需要を加速 - ニュースと統計",
-   "u": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNMjJxeEFHbmEyS0VleE9oT2VBX1BjN01RTklfbUhNaTNkOUU3WG5MZVNqTERGb0NGN2dOT2ZqSlU3WTFOSXk5TWJoaV9DeWhXLUFXMGxfVVBaUTVmdnNJakZ3UXF5THM0YzlGNzRxSWlnb2ZKeGlJVHRfMkFyUldrOV9nUlFZY3BLZW42TFBVM0pwR0FWRzJjd19vUUdZOVk0NE03TUl6YWEtTG5LTWU0TEtfQ3ZtRTVnWFZHWUt4RkZEN3U0aXpLYjJrakZaVVFHV2ZsbUZRLWFZUQ?oc=5",
-   "s": "IndexBox",
-   "d": "2026-11-21T20:41:06.000Z",
-   "q": "経済・ルール形成"
   },
   {
    "t": "食品ロスをアプリで削減、窮地の店を助けて「消費の満足度アップ」",
@@ -108,39 +1721,11 @@
    "q": ""
   },
   {
-   "t": "環境守る取り組み発信 鳥取環境大・学生ＥＭＳ委 １７年ぶり報告書 地域連携活動など紹介",
-   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBFemVDYjVVNEU2a184Z0g2U1ZVaHZZTlJkSjJjWWtYYURWUTdpanpMVUNTNF96Qk9kaE5KS253RGJ2dkxBaHlzR0NvdFo1U1Y2?oc=5",
-   "s": "www.nnn.co.jp",
-   "d": "2026-11-21T20:00:00.000Z",
-   "q": ""
-  },
-  {
-   "t": "排出規制の厳格化を追い風に、不透明度モニター市場は2035年まで拡大へ",
-   "u": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxORzJLeDdYSC16d2VnUVJYVlg2Y1lVUFhxRVlrU3c4V0Ezb1pTMVVLRkNaQk5IS1J6REpJeDZSZ1NiMkhPb3FqTjF3U00xX3ptMlNPWVFGRmNuVG9Db3lnMTVOa2R3OTFXTnoybDR4WGRWcUt3QUlpd1U3SmlmVFQtal83MTd5bWo1WDFyYWxOSUJUazV3QVRXRFF0RmMtdGhrY1JwZlE3YmFFRjR0dEhfMkQ0eWVjdjAxN09vQU9ENXFZOGIyamw1QjRQOTFUMVpo?oc=5",
-   "s": "IndexBox",
-   "d": "2026-11-21T19:16:04.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
    "t": "粒状活性炭市場、2035年までの成長見通し：水質規制の強化が追い風 - ニュースと統計",
    "u": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQUERVZDZHQ0pkVnFlV2JRMHI2NDFHT0RieTQ0a0JVNGhGMmpsaUE1dEZFMVhXalVfS080NlEtM0xpNE5lMHExR3NGWVM2ZGNLNnFFZmFTcVFIQk9VSDRhUkh2cHNreklwYklKelJlempKSk9iX1puZkhKOVAzTVNpS3ZaV2dXS25TcWV5Vlg1VjI4U3JpTFJRdTItdkJYYmZnNHFxdUN5WmtyYnhMSGxvTU1LTl9wbE1HX0NEUUJR?oc=5",
    "s": "IndexBox",
    "d": "2026-11-21T18:56:04.000Z",
    "q": "経済・ルール形成"
-  },
-  {
-   "t": "難燃フィルム市場、2035年までの成長予測：EV電池の安全性と防火規制がけん引 - ニュースと統計",
-   "u": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNZjdqM051c3hCV3VmWUFNMVFxTldNaVNNOGtsbHJuYjVhQUtRMW9NSkVVeWZXN1p4VnFCR1EyYzFuZHVPUGRBZjJSUi1fem50cno1SHVsLThSc1F2cFNGbUtYd3F5VlFIX1NfODMtdDY2UUlmUnZyQV9ab3hHaEs5clJEVjAyRjlubkdqLVQyOF9QX09TVW5CRjFBS2VHeXJ3NWpNMXVFUTlCRFB4ay1Gb1hmWExXV3N3ckJSMExUd3B6d0JlSjdueUpJVUtOSl9RT3kycWxn?oc=5",
-   "s": "IndexBox",
-   "d": "2026-11-21T17:46:04.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
-   "t": "日本生協連 コープクオリティから和洋菓子3品を2026年10月より順次発売へ",
-   "u": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE8tYVlEc0dzREFIUmc5QnFvOXFNd3R3UHJYdmtDTGItZUZyUi0wMXlmZG5ETE00eHkzcDRRSGgtYlVBeG9fdHc?oc=5",
-   "s": "Dellows News",
-   "d": "2026-11-21T15:43:51.000Z",
-   "q": ""
   },
   {
    "t": "脱炭素達成に感謝の盾 ＭＭ21地区の26施設に",
@@ -150,25 +1735,11 @@
    "q": "脱炭素・再エネ"
   },
   {
-   "t": "ユニリーバ・ベトナムが環境賞を2つ受賞できた背景には、社員の力とイノベーション文化があった。",
-   "u": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOVGd2N0pFekFIcUZaTVg5YlZ0VEtrUXBpZjZ1OWJjUzlOZEIwMFNFWWZMRjIzR3Y4dWloSVloQm5KU1FxbFBMbTIyWHd2QVhSYlF5VVppRkdHNzJUbllnNV9nV20zSWllVFJqd1E2SGQtbE40Nmd0RFFPeGZfWmZwQ3NvSndlRkViOTVRNk10YWxwMlNuUUpDajViZHZudzdKZldCNDNNRUY2UEFfbGNnYmcwUmROZ29xTGhMOGxB?oc=5",
-   "s": "Vietnam.vn",
-   "d": "2026-11-21T14:42:24.000Z",
-   "q": "ESG評価・表彰"
-  },
-  {
    "t": "NTT西日本 生成AI活用の自治体向け脱炭素計画策定支援手法を確立",
    "u": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9YMVlSYXhkaHlPXzVBd3lwWlU3TXN5bGJBQ2xIM1VOS0g5RGxQMDNRNllqR0MzV1JkSlhiSk1TNVFvVmd3TlE?oc=5",
    "s": "Dellows News",
    "d": "2026-11-21T11:02:02.000Z",
    "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "境高出身の仙台大・瀬川が活躍 明治神宮野球",
-   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5OYjc3aml4M09hQXVzdlRKZlpSa05hZk1JS3h4MklEWk16ZVViMkotMDdoSGVld21KV2xfbUlKYUxhZXZaOU1DMFRoNERjX05K?oc=5",
-   "s": "日本海新聞",
-   "d": "2026-11-21T11:00:00.000Z",
-   "q": ""
   },
   {
    "t": "食品ロス削減サークルがクッキング教室を開催！手作りピザで楽しく食を学ぶ｜キャンパスライフ",
@@ -199,24 +1770,10 @@
    "q": "経済・ルール形成"
   },
   {
-   "t": "単なる経済成長のために、環境や人々の生活を犠牲にしてはならない。",
-   "u": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPcnJhbjVvZjNCM0dUYjRNbzMzM2IxYzYwclZtd3pGeFd2amVUUl8yR1ZfUEJaZ3pqemViaVVmcXVzSEpVNmgxR243SVk2Y0kxYUFBWE4zMFJnSndmSnVWRC1xQkZiZnU2b3cxNzJFaVdlRkVXdmVrWTlpR1pRMWNTZ3lSVnQ5b0xlS0Jwd2JIakh2UQ?oc=5",
-   "s": "Vietnam.vn",
-   "d": "2026-11-21T05:24:58.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
    "t": "国会、環境保護法改正案を最終決定：多くの手続きを削減し、汚染対策における責任を強化。",
    "u": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPR0lYV3R2eUNyVTBEYUNOaFVfcTVwSnUwZmxxdllyZko1cHF5TW1XdlFkYVc4WTM2TE1WTGhLRUwxSms1TkNXV3ZIRUpGSW1EUXlYWXlLdk9RRENxa2pnaUg0VHl2SGpoSW10Uy0xTTkzTXFRbThjcndqMHhCQVlNcjJCLUYzakpHQ2MyR05ZUkl2SEY5ZV9idWpfem1nYlRuUE9jelB2ZTQwbHk5SWFrQUVtcHRkbGhqR0V2Wm9WWVBXdw?oc=5",
    "s": "Vietnam.vn",
    "d": "2026-11-21T05:21:08.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
-   "t": "第16期国会第2回会期：海洋空間管理及び環境管理の強化",
-   "u": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQUU9TTjY0MzRPb1Z1bmVGN1dFMDBnZW5wOXRhdWc2d2VuOTJmWXBxeTdiSV9nTWNtZG5xYmNJa1NFbEp5WnhFLUNpc3F5TDFtWThGbFVCMG1XQUtoa3pyTWZ6NWRYRU10dFpSZ2U0QzliZ2xjZUlwM3I4SEw4a1hVdXpxelE3UGw0Q3UwRXJjQV9mOVNaaUhrRUh0VURNbUpZMjJ3a1FpZnF4UEg0cmM2X09R?oc=5",
-   "s": "Vietnam.vn",
-   "d": "2026-11-21T05:20:46.000Z",
    "q": "経済・ルール形成"
   },
   {
@@ -225,13 +1782,6 @@
    "s": "Yahoo!ニュース",
    "d": "2026-11-21T04:18:27.000Z",
    "q": "フードロス"
-  },
-  {
-   "t": "議会は、低排出ガス地域におけるガソリン車の規制を最優先事項としている。",
-   "u": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNRkI4eVQ4THVRaTVXNjJ5TS1wa2k1RmJPaVVPTkNuNnVYdF90a3hqdVBLOTZJbVRjelQ5NWljV256SVlQXzBDMTU5YmR0V0NFcGRJWDBGUWx3QmFuYTBKYTAtalJGSm55aWhBazBqTHJQLTg3MFJTQ0tZbVh4Mlg5Z2ZvSks4T0c1MU9fUDZPc0Q?oc=5",
-   "s": "Vietnam.vn",
-   "d": "2026-11-21T03:43:05.000Z",
-   "q": "経済・ルール形成"
   },
   {
    "t": "気候変動アクション環境大臣表彰2026、大賞にJAL・LIXILら8件 「紙」と「天気予報」が選ばれた理由",
@@ -288,13 +1838,6 @@
    "s": "琉球新報デジタル",
    "d": "2026-11-20T20:00:00.000Z",
    "q": "フードロス"
-  },
-  {
-   "t": "中規模ハイグレードオフィス「BIZCORE」9物件の緑化効果を定量評価",
-   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBfbmtwX2tzRHROU3FRcUl1N0U5X3pXMzRNSGJJZENzaDRoRnVoWFN2QXhKWlYydTBTQmF3NGRaZTBVNUN4d3hDRGlBM0x3NjM1Qm5KWXdBRUVtSGI1RU00RkRfMXR2T3pS?oc=5",
-   "s": "ニコニコニュース",
-   "d": "2026-11-20T17:21:36.000Z",
-   "q": "生物多様性・森林"
   },
   {
    "t": "夢の丘小 「夢野菜」で食品ロス削減へ 児童が規格外品を販売",
@@ -360,13 +1903,6 @@
    "q": "脱炭素・再エネ"
   },
   {
-   "t": "韓国貿易協会、ブリュッセルでEU規制対応チャネルを稼働…CBAM・IAA負担軽減に総力",
-   "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTE14amc2TzZGSkdNMmtMMlFZOHNYZy1DeTVBVWtuR1EyU0tTVFFVTC1RWFV2ZEF4ajhBX005ODRtS2hsdEtXZzhlYThWTVhTN3kwbzYwTjd2M1c4LW5nMDVUVkkxRGVRdXB0a3gybUllOFFSVUU1?oc=5",
-   "s": "BigGo ファイナンス",
-   "d": "2026-11-20T08:26:00.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
    "t": "アフリカの再生可能エネルギー：市場シェア分析、業界動向と統計、成長予測（2026年～2031年）",
    "u": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5JZXFWb3J3RkJoZUVIbEtQNks5UUdwWUhRcFNlUXV3WktPMTQ4Q092T0t3MG54bUVEbnJoVWZURXFNZXJjdDJ5VjlUZDVqY1k?oc=5",
    "s": "Newscast.jp",
@@ -388,13 +1924,6 @@
    "q": "脱炭素・再エネ"
   },
   {
-   "t": "自動車排気ガス抽出機の世界市場（2026年～2032年）、市場規模（移動式、据え置き式）・分析レポートを発表",
-   "u": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1kd29Xc1FzUVJVS0Y0elhubXQ1STQwZGNpclhBeXg4WlNDbG82OEJTc2loR3JTTEhDUjNzdUEzWWl3M1NnUDdxWXpfd0tleG8?oc=5",
-   "s": "アットプレス",
-   "d": "2026-11-20T07:30:00.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
    "t": "「ポケモンと海洋プラスチックを考える アート・環境教育展 in PLA PLA」開催のお知らせ",
    "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NZUtJWDlzeGY0TS1iUEM0WmVKQ2haWWkwaXlmZHZXZXdWZ2RySHhGZEE0aVNPODd2SnVpNG9KY0JMVU1RSWt3MXlBOHpCUmV6M29vSUotdkIxQQ?oc=5",
    "s": "ポケモン・ウィズ・ユー財団",
@@ -407,13 +1936,6 @@
    "s": "ベガルタ仙台オフィシャルサイト",
    "d": "2026-11-20T04:05:42.000Z",
    "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "主要地域生協の10月度供給高（売上高）速報",
-   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1kNW1mTURwRDFidzBBR2RDX0xTejhiUTVpNENfd1UwM29hYVByOVY0TE00QzBKWG1xX1NlTFlTd0ZKYzZPRmxnamQ2ZHhESkNsQ2NFVnpRRURqYnlldzZLaFhHSVVmWXRxTmc?oc=5",
-   "s": "PR TIMES",
-   "d": "2026-11-20T04:00:01.000Z",
-   "q": ""
   },
   {
    "t": "デンマーク発の食品ロス削減アプリ「Too Good To Go」、日本上陸後も躍進を続ける（オルタナ）",
@@ -444,13 +1966,6 @@
    "q": "脱炭素・再エネ"
   },
   {
-   "t": "日印産連、環境表彰制度を「第22回 印刷産業環境表彰」として再開",
-   "u": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9TM2Z0Vmw4bVdvcUxlYm5fQ0N1M1U2Ql9UVlB1Y1NTWFZ2TDdSbTB6MklvV0pKdFo4V1lHRWJsTnJvT3pvU2hkdXhvRHNiNFk3VjEyejBwUDd4dWVWWlA2TA?oc=5",
-   "s": "印刷ジャーナルDIGITAL",
-   "d": "2026-11-20T01:25:00.000Z",
-   "q": "ESG評価・表彰"
-  },
-  {
    "t": "フードバンクの輸送課題、学生と企業が連携",
    "u": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBfdXN6WkNfMm5RWTdnTGR6RzFsRmx5VGR3RzR2anVyNjFfVmxtRWFGcGZ0MDUyc0d0RVp1SEpNS0o2RldUWGE2VDJn?oc=5",
    "s": "LOGISTICS TODAY",
@@ -465,20 +1980,6 @@
    "q": "プラスチック・資源循環"
   },
   {
-   "t": "6自治体が「自走式ロープウェイ推進等協議会」を設立、Zip Infrastructureがオブザーバーとして参画",
-   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9INGlFWVdvMXBwRXNvSURjWGFFWm5hRERXdVZlc0t1dWRWcFlhUDZVODZkUmxlMm52YWtKdkphSlpqdnhmN2tGRi1IbWJ5andiRy1PMHA0UF9FTzJTUGxQd3RWcmJzZ3pUdkE?oc=5",
-   "s": "PR TIMES",
-   "d": "2026-11-20T01:00:03.000Z",
-   "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "2026年11月21日（土） 神奈川県藤沢市で「ReBONE∞祭・秋」を開催。骨密度測定 ×ICT×エンタメで、骨の健康を身近に感じよう。",
-   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5ta2pTSURvcS16S1MwSWo1RFhNMks0dDJRN3p0Y0FRbTJ5Ym5ZMmNVRUttaC1oOWpnclpmRGdfSUtpV1pQSE5uUDBlakwwV3hZeEVOSGs3M24zS25pOTIzS0ozNmE3RzVzaXc?oc=5",
-   "s": "PR TIMES",
-   "d": "2026-11-20T00:30:02.000Z",
-   "q": ""
-  },
-  {
    "t": "北欧発の食品ロス削減アプリ「Too Good To Go」、日本上陸後も躍進続ける",
    "u": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBxSjdwSVh2WVdkNmc3ZndPLXhXdXdGcGVoZ2xBQmU3UnlTc1dvOHQyeE5fWWY4VllSWHFiMjAyRGo1dTRLd0p3cg?oc=5",
    "s": "オルタナ",
@@ -491,20 +1992,6 @@
    "s": "Yahoo!ニュース",
    "d": "2026-11-19T23:02:16.000Z",
    "q": "フードロス"
-  },
-  {
-   "t": "日本印刷産業連合会 「環境優良工場表彰制度」を「印刷産業環境表彰」に改め再開 第22回の募集を12月10日（木）から開始",
-   "u": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9KajNnVC1CVWtKSzNyQkdTQ19ubDZYeF9vRmhmNXRhQkh3cnZrTy0xUjdKZGh5V20xa2l1d0wxX0FYSFhfQkEwRE9hTQ?oc=5",
-   "s": "プリント&プロモーション",
-   "d": "2026-11-19T22:50:37.000Z",
-   "q": "ESG評価・表彰"
-  },
-  {
-   "t": "「環境テーマ」に児童ら自主研究 港区、優秀作品7点を表彰",
-   "u": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE90QW12MEFQZU5UV1RGQ2lHSF8yT0N1NVBzby1sd08zZkxlOThqN0h6NFFrcktxWHNkSWZWMUxUUWpGTzdRanRobjg1cTlETnhwSjhN?oc=5",
-   "s": "東京新聞",
-   "d": "2026-11-19T22:21:27.000Z",
-   "q": "ESG評価・表彰"
   },
   {
    "t": "国交省／港湾工事の脱炭素化推進／グリーン鉄、３０年度以降に本格導入",
@@ -556,13 +2043,6 @@
    "q": ""
   },
   {
-   "t": "環境違反に対する罰則に関する多くの新たな規制。",
-   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9KUFJIRUlVcGR4NDlmY3Q1T0FaeWMwTzA0RmRlZk1DenBUUklxTmx4SWRVeVNOSkxha2NsS3kzRUdZcmptRGpEWUl4OVBDSE9sTDFVRURjUkFVQ0tmR3RDVmI3M0ZYTUhSSEFLOUIyanhrYWFvdDhMVzdDdkxEaFk?oc=5",
-   "s": "Vietnam.vn",
-   "d": "2026-11-19T16:24:32.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
    "t": "TASS2026 台湾最大級サステナ展開催 資源循環、日常生活の視点で",
    "u": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE9TS0ViZXFCU2I2Y0tSNDRGckF0X3lodDFCV01BQkxHVFlxcHBORl9xT2xMWnlFalJJc3FJRFZPaHpZNWVxblVURHQ1WUpwT0RyT01yZTlDdlhlTnFLeTE1SUQwTQ?oc=5",
    "s": "WEB産業新聞",
@@ -584,20 +2064,6 @@
    "q": "経済・ルール形成"
   },
   {
-   "t": "【岡山大学】TEDx Okayama University 2026「BEYOND」を開催",
-   "u": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFByN1VoZEpuRGo4eTJDLVF4c3d0YUpRSXlFS2tscTFKYThXdkRDMFhCQ3pENG1oclVnTjZLRjdFQ2gtSjJvWllvMHFiS2JzYmtjemc?oc=5",
-   "s": "山陽新聞",
-   "d": "2026-11-19T13:48:00.000Z",
-   "q": ""
-  },
-  {
-   "t": "5回連続の表彰、今回は環境貢献賞を受賞！日本インフォメーション「スマートセッション」 (2026年11月19日掲載)",
-   "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBMdEo2ZHN1YWFydTFDUll0MjJnMzlfdGFlWWR3SjdWNzFOOE9iSFpGMEk3b0lUQmlTa2VMWTR0ZFlWdFdiSlB4aGJ5Y0t2M1VFU1NLdC1UR2ZBVlNMbVE?oc=5",
-   "s": "ライブドアニュース",
-   "d": "2026-11-19T13:27:36.000Z",
-   "q": "ESG評価・表彰"
-  },
-  {
    "t": "農林環境省は、違法・無報告・無規制（IUU）漁業対策における不備に対処するため、断固たる措置を講じるよう要求する。",
    "u": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPaTZvUnhNd0RERHRFQ2ZQakQ3eDJNa2NLZTVZcXZ3TkhWUWZ3TlJsekdJMl9qWVlmZmZ6UU9waElZQ0tjUlZMM2wwTXhrTkRCUDU4RjFPZlBORTFhQVRhanRySDNfbTU0aFNpcWdTRm1HSDJoWGw4enJMc1VBVGF4dnhabnNFVlkxeWFjVmFrU28zbVQ1TmZpWmFXRS1hZEpEZGVtWkF2Q3lST2Rsd1dMd2htVUhoUUxM?oc=5",
    "s": "Vietnam.vn",
@@ -610,20 +2076,6 @@
    "s": "Yahoo!ニュース",
    "d": "2026-11-19T12:12:48.000Z",
    "q": "プラスチック・資源循環"
-  },
-  {
-   "t": "東都生協、平和堂、SSK 動物に配慮した食品の選択肢が広がる",
-   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9KY093TVNoV2UybldaMExaY25yOEctMDVGSjhwemxYTXBUSF9md3lsZ1JHMTdNX1VaczMtMzlibkhSLW4wU2pLRkFkNFkyWjN2bXJuOGpGcXpXNDg3VF9zTFdmMThKLXFOSEtmbA?oc=5",
-   "s": "アニマルライツセンター",
-   "d": "2026-11-19T10:14:16.000Z",
-   "q": ""
-  },
-  {
-   "t": "環境への取り組みを「語らない企業」ほど株価が上がる ただし条件付きで（クーリエ・ジャポン）",
-   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5KS2pqRFpma0ptelVoWUNOakZweUZzcmREMkRFdDNHUTJzWGFSb3ZZRkdTWlhHNjJPcFhWUFlQVy0tdTh0eTRLOFVzcjZ0NmJqdUxDQTZZc2ZXMF9hMW5wbXc3Y0h3VE9PdDZhYUUyVGZOSVNuLVlqeEMwd0lPVWc?oc=5",
-   "s": "Yahoo!ニュース",
-   "d": "2026-11-19T09:30:00.000Z",
-   "q": ""
   },
   {
    "t": "エフピコ、汚れごと表面はがせる容器 リサイクル原料を安定的に回収",
@@ -654,13 +2106,6 @@
    "q": "脱炭素・再エネ"
   },
   {
-   "t": "新エネルギー等のシーズ発掘・事業化に向けた技術研究開発事業",
-   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE85bmM0S0hQWk9aRU1LbU1YeEJSWHJaWGgxMjd1VmJZSEl1RGtodENrY09VUmRfczIwY24yTXRXRFQwOG9sWVpLYU1NRm4xSW4tVU50VU9MNUl4NVE?oc=5",
-   "s": "NEDO",
-   "d": "2026-11-19T08:00:00.000Z",
-   "q": "脱炭素・再エネ"
-  },
-  {
    "t": "ごみ減量と資源循環の拠点～ 枚方市リサイクルセンター",
    "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE95dzNvUWJ5RWMzTnVvR0tuU1dhekdCenVwNHc3dWJMcm1mbXJqTTRGQk9jMlZjUGN4R1E1ME1wMzl1YXlPNm5uTTQxR2hKb3R5Z3VFNUVKVjY2bXlJYV80?oc=5",
    "s": "枚方市",
@@ -687,13 +2132,6 @@
    "s": "株式会社バイウィル",
    "d": "2026-11-19T05:42:16.000Z",
    "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "10年以上にわたる地域再生の取り組みを美加の台地区へ展開◆ 関西大学と河内長野市・関西フードマーケットがまちづくり連携協定 ～11月7日（土）「美加の台ブロッサムテラス」で締結式を実施",
-   "u": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9hcXFTSWZ2c2lRS1dJRERoYlBmeDBYV0VITms0S185YjFiZllYd0d0ZVkwdjJ3blFCNTN0TUxNS2VZd3QtcTdNY2VyeU50N2U2TG5DT293?oc=5",
-   "s": "大学プレスセンター",
-   "d": "2026-11-19T05:00:00.000Z",
-   "q": ""
   },
   {
    "t": "バッテリーリサイクル：市場シェア分析、産業動向・統計データ、成長予測（2026年～2031年）",
@@ -738,39 +2176,11 @@
    "q": "経済・ルール形成"
   },
   {
-   "t": "乗用車用EGRシステムの世界市場（2026年～2032年）、市場規模（高電圧EGRシステム、低電圧EGRシステム）・分析レポートを発表",
-   "u": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE82OFktN1FJQmM4NS1pY3BlNVZDLUZ5OHhWdUt1LUxiaEdxZGJrX0t5WC1zUURVc3JJNE9TbXUtakNTWllXbWcxRmlGclRSR1k?oc=5",
-   "s": "アットプレス",
-   "d": "2026-11-19T02:30:00.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
    "t": "脱炭素目標を「原料産地での具体的な取り組み」へ。TOWING、環境ビジネスチームを拡充し、バイオ炭によるカーボンインセット支援を強化",
    "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5IZ2ZuamdkcUI0MUJtdUEzQW9CTW9aSHFVZmtod1U2dG5aTjRWaHpHVVIxUEZIZk5FcjVWc3Bpc2dzVnNnQnhhRkpta19oTlBtUEdyLTA1NGVMaTAxU0xHa3VPbFdldkVvNEE?oc=5",
    "s": "PR TIMES",
    "d": "2026-11-19T02:10:01.000Z",
    "q": ""
-  },
-  {
-   "t": "ASPIC AI・クラウドアワード2026COOOLa WESがASPIC会長特別賞を受賞B-LuckがAI環境貢献賞と環境貢献賞を受賞",
-   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5PLUxacVJwWWJEZGk1UWlNWXVDalBNeFRxRDBtNEdwRFk1VzdLampwVGhkUkh5YzhCNklFSFpFenViQ1dTRGdzbzhrZHdyM0o0M2w1VjlQRVZQQQ?oc=5",
-   "s": "上毛新聞電子版",
-   "d": "2026-11-19T02:00:00.000Z",
-   "q": "ESG評価・表彰"
-  },
-  {
-   "t": "株式会社ユーキャンパス、2026年12月より名城大学2キャンパスにて学食トレイ広告の新規取扱いを開始",
-   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBGZUlaRHdQUnM3cUxFSlpTZmZjSUowdm1fOGtLUkhBWEtENjF5aEk5d0ozZ2xSZ0RmdEJubDNTZ25VWWtzUlNwZ2phX3RGa1JrSjV3OWdZZ2xMRlNySFdVRnhoS3Y5NEdXaGc?oc=5",
-   "s": "PR TIMES",
-   "d": "2026-11-19T01:44:27.000Z",
-   "q": "フードロス"
-  },
-  {
-   "t": "KAMIYAの「インワードフレーム」が日本商環境デザイン協会主催の『PRODUCT OF THE YEAR 2026』で 準グランプリ受賞",
-   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5yTWpSY0xMMGZxSkJaSVlpTHNMaXZIUWFhMGJuUm81amdFaTVzMUVLUVhGcHEwa2V3Umxpd1dFUm1aTVhTRkhoUGxYSmh3VDJSeTBzM3lwTHllaHpXZ0JQblZ4QWpUVUhVdmc?oc=5",
-   "s": "PR TIMES",
-   "d": "2026-11-19T01:00:02.000Z",
-   "q": "ESG評価・表彰"
   },
   {
    "t": "「第21回再生可能エネルギー世界展示会―同時開催：RE2026国際会議―」への出展",
@@ -792,20 +2202,6 @@
    "s": "環境新聞オンライン",
    "d": "2026-11-19T00:27:05.000Z",
    "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "日本の環境モニタリング市場は、汚染管理、大気質評価、環境規制への対応ソリューションに対する需要の高まりを背景に発展しており、市場規模は2034年までに米ドル1,563.8ミリオンに達すると予測され、CAGRは5.42%となる見込みです | IMARC Group",
-   "u": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5xS0Z1a0h6WWUxS0tsMGVvNml3TkdZWWRPVW4xcGlBTlNRYnB0Y1FyNVM0cFBobld5REFCRjlpT19WbzFGT1BSRVZaMFlyX0k?oc=5",
-   "s": "Newscast.jp",
-   "d": "2026-11-18T23:25:00.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
-   "t": "【農協研究会】報告⑥ 今こそ発揮する産直の底力 パルシステム生協連理事長 渋澤温之氏",
-   "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBUZjFkcmVacnNhMlF6SHdScEJuSnBlTVhwUHBpa095dnkwZHlHQWt2REhxRFhvWFdhQmc5V1VGWHZCcmdLaDlzZ2hXM19GUUVhQzE0SDZXNFN5Y0FNYS1SdzlYUWM?oc=5",
-   "s": "JAcom 農業協同組合新聞",
-   "d": "2026-11-18T21:52:00.000Z",
-   "q": ""
   },
   {
    "t": "燕市の森井紙器工業が「新潟県環境賞」受賞 下村企販もエコ事業所表彰",
@@ -836,13 +2232,6 @@
    "q": "プラスチック・資源循環"
   },
   {
-   "t": "京都市北区、素晴らしい洋食が「学食並み価格」の名店 米国人夫妻も「オウマイガー」「これ4ドル以下?」",
-   "u": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9CbGtBeHBSUVY4TWttVDg0T3J5QXRKOUtOeVNfcnZ0alRxbGh0bGhKRVpLTnFkems5WERwUXVEWEpScTEyVTVYMVp0bkEtamJFajloTlZYVWc?oc=5",
-   "s": "京都新聞デジタル",
-   "d": "2026-11-18T20:00:00.000Z",
-   "q": "フードロス"
-  },
-  {
    "t": "自然回復目標「達成に深い懸念」 国連の生物多様性条約会議で採択",
    "u": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE4wMUp6dHM2Z1Q2MFhKX19ITjQ4NWFydTh3WWZ4WUhqTFZhZmhsekRIRkJGOUQ5cFNUV1NRaXljTjg2MHVWM3AtdTNFUEFPME1BaEJOZ3hWS0xVSExm?oc=5",
    "s": "山陽新聞",
@@ -864,25 +2253,11 @@
    "q": "プラスチック・資源循環"
   },
   {
-   "t": "那智勝浦町、慶應義塾大学SFC研究所、アドソル日進が海洋DXで産官学連携協定",
-   "u": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE84bnZmWjVGZnNtdFBKeDRGenlkNGVkeUVfUzBXUzF5a3VHc09pd2Z4NkxmX1ZxSWJHV1hyWmpaMHdLaVhYMmc?oc=5",
-   "s": "Dellows News",
-   "d": "2026-11-18T14:33:04.000Z",
-   "q": "脱炭素・再エネ"
-  },
-  {
    "t": "みやぎ生協6店舗へ国内初のAI活用リサイクル実証実験を拡大 SKグループら",
    "u": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE1PTkRXdFZZcmhqWnFTWXBnZnNfWDlqNVlWSF9XX0o2UW9NczFiRmc0eG5QOTBZZ1QtbW1jbmVRVTNhYmt1cFE?oc=5",
    "s": "Dellows News",
    "d": "2026-11-18T12:53:52.000Z",
    "q": ""
-  },
-  {
-   "t": "マレーシア･７-９月GDPはAI・半導体需要を追い風に堅調な拡大が続く",
-   "u": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5ndHhTODUxdzlTQ0VYeWNrLWdVeUtaNTJpUFNXOEN4YmZLQW5XQUJVb3l1ZW9fSUQyMmEyTlRjMk84OHByeE0yQTNFYkRGNUZiSGxNVHFtbDgyUE0?oc=5",
-   "s": "第一ライフ資産運用経済研究所",
-   "d": "2026-11-18T11:51:54.000Z",
-   "q": "経済・ルール形成"
   },
   {
    "t": "ヘルメットの材料は特産の富士ヒノキやスギ! 安全基準を満たした認証付きで生徒の登下校時の安全を守る 使い終わった後は再利用【SDGs】=静岡・富士市（静岡放送（SBS））",
@@ -913,32 +2288,11 @@
    "q": "フードロス"
   },
   {
-   "t": "名古屋の小学校でデジタルとの向き合い方を学ぶ特別授業 「1日6時間利用」の児童も…「規制ではなく考える環境を」",
-   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBVN2RzZ2FRZHdRcGpQYmw2RHZKd0tTOEljSWJ1dEdQV1BPa1RtLUJhZ3BMTWp4S0VCX0xpM19FT0cyeXhNTEIyelhYSUJWYkFYcEZOa2htNVY3WlVNemRHQXJ6eV9UanNJd3R1b1NwaUNSMkJwOFlsS0dlNGxGcTg?oc=5",
-   "s": "Yahoo!ニュース",
-   "d": "2026-11-18T09:45:31.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
-   "t": "名古屋の小学校でデジタルとの向き合い方を学ぶ特別授業 ｢1日6時間利用｣の児童も…「規制ではなく考える環境を」",
-   "u": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1YSFFCcXFDdzJFbGJmdlVsWEN2dU9tWmczVGxzVFZGNHppelFxWlBjZlNTUjVXZGJQUnhQNU9xbF96M3F6bDFsQ2ZBT1doU1dVWHhvTEt4WQ?oc=5",
-   "s": "TBS NEWS DIG",
-   "d": "2026-11-18T09:44:00.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
    "t": "ＹＫＫＡＰ・黒部越湖製造所 再エネ導入、脱炭素化推進（日刊産業新聞）",
    "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9RR1BxUXFCWXlKVDVLQXZzc2pfR1hZdUhwX1AwaGpNa3dvZkthbGRBcE1jY0JEVGhBTEtJQlVFQlFyTHZFVTZVTU02ZXRud2JBNDgtYTM2UGhHV3E0Q0VqWElSZGVBTDkzb3FDSWJDdkRQNG5MbVRnN3ROcjBSTU0?oc=5",
    "s": "Yahoo!ニュース",
    "d": "2026-11-18T08:30:01.000Z",
    "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "職場で男女ともに活躍する環境づくり「とも活」 宮崎市のホテル運営企業が表彰",
-   "u": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9FMXNEaUFKMFZkSTR4REd0MTV3Mm95NVZOR0JvUl9mbzB6bThYdndIRUl3MllQdXVJRWpsZy12SkRvQjIzVWdLQnNvaUZQMHlVOWdWb19BYXNoSzdadENBQzZKd0huZFE?oc=5",
-   "s": "TBS NEWS DIG",
-   "d": "2026-11-18T08:15:00.000Z",
-   "q": "ESG評価・表彰"
   },
   {
    "t": "環境学習リサイクル講座受講者募集！",
@@ -1018,13 +2372,6 @@
    "q": "プラスチック・資源循環"
   },
   {
-   "t": "第31回（令和8年度）新潟県環境賞 受賞者の活動紹介",
-   "u": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQQUFNQ1BoZkV4RTB3UTRGZV94cEUwdk5GMDluTlJuaGRzNFoycDhtb0NSeUFfSGlwYTVZdWxsSUNqZmROMkZBLTcxbUpNblV6d2U2ZlhqYmEwcjd2eWUtMGJYNy1aRnFCVDlYdjJYVGowenJ6V0RRMExkNkxMYlBsc0RfX3VNYWlPblAwaVZQS1dsQQ?oc=5",
-   "s": "新潟県",
-   "d": "2026-11-18T06:09:34.000Z",
-   "q": "ESG評価・表彰"
-  },
-  {
    "t": "NEXYZ.、銅系リサイクル業のMERFと業務提携し業務用空調に含まれる金属素材のリサイクルを開始",
    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1jNWowVXlHbktCY25YNlhpRDR3c0pBb2k2czJ2cVBDNzJhZHVyNndkUjE5RElBYUgyTkYxOHRZMFM4ZTUtSzVCTGZiaF83TWNKU2V6UHFMYy1jSEMxUndmdlQzVDRDU1JMa2xpTA?oc=5",
    "s": "日本経済新聞",
@@ -1067,13 +2414,6 @@
    "q": "ESG評価・表彰"
   },
   {
-   "t": "広島にバスガイドいなくなる？ かつての「花形」、若手は数人 法改正で環境変化",
-   "u": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE83eWNoMWwxMy1MYlhTdGRQTzc0YkxLUC1VQ0QxNjU3VlJTV2ZUb2NObGR0dlBlSkxfVFphUGlMVVNya1hFczBIMS1zQ3h0QlN6SW5kaE5RV2tiZw?oc=5",
-   "s": "中国新聞デジタル",
-   "d": "2026-11-18T03:20:00.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
    "t": "10トン超の古着を資源循環へ「古着アップサイクルプロジェクト」『アジア大会 愛知・名古屋』 開会式で披露",
    "u": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1EaGZyZEd0dW9rSjljSEdVMVZrSS0tUzgydFc5TU40RmcwMlNhTzd6LWZETTVKeERKYm1ZSy1ZZjBaMmV2SVRkUkdwX19pN2ZaN3JpUkRmbng1ekJodkE?oc=5",
    "s": "TBSテレビ",
@@ -1081,25 +2421,11 @@
    "q": "プラスチック・資源循環"
   },
   {
-   "t": "【忠岡町×アース製薬×いずみ市民生協×大塚製薬】忠岡町健幸まつりでブース出展等を実施",
-   "u": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE4xRHRLb3dvZXBBUW4xejI1YzdySFdDd2x2YTJwaGszbHZZOEJOUmNnYlUzUnFEUUtzTFRjNi1fT2xBXzdILXRaQmpOWkdGTUx6MGlVYnc3NGxQclpmdTF6N2wxYUE?oc=5",
-   "s": "Infoseek",
-   "d": "2026-11-18T03:00:23.000Z",
-   "q": ""
-  },
-  {
    "t": "「コカ・コーラ ボトラーズジャパン 水源の森ざおう」が「地域生物多様性増進法」に基づく「自然共生サイト」に認定",
    "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE01X0loeTNHQ1lmTnRZWk1xY1hDOEZuNl95UnJsZk1wTDhOME50R21xRGJsSjF0VnhNMU0wU1I5dlNlS1FxNzRwYWYzRmVYaWpEMThOcVlDQ19YR1dzNjk4NllhLXdOWlk0dFE?oc=5",
    "s": "PR TIMES",
    "d": "2026-11-18T02:13:40.000Z",
    "q": "生物多様性・森林"
-  },
-  {
-   "t": "熊本県で家庭用廃食油の店頭回収店舗を拡大 計25店舗で実施｜ローソン公式サイト",
-   "u": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNcFpSSmU0cFZGSl9rc2F4WEF4VW9rR3FCNFRNOU5qS3gySUpKSWhEcUw5R08zT3R3SGRiUmE0UjdkODAyVkNYYWR0T3lrU3FMeGUwYi0zMldEUUlTWjRDallsbUZtNnF0dHRmZEx6WG5rRlhYR2xST0c0bUVkQnY1UjFwcw?oc=5",
-   "s": "LAWSON",
-   "d": "2026-11-18T02:07:25.000Z",
-   "q": "プラスチック・資源循環"
   },
   {
    "t": "サーキュラーエコノミーの実現に向け新しいテクノロジーの社会実装を推進",
@@ -1114,20 +2440,6 @@
    "s": "ログミーFinance",
    "d": "2026-11-18T02:00:01.000Z",
    "q": "プラスチック・資源循環"
-  },
-  {
-   "t": "【東京都港区】令和8年度 小・中学生の環境に関する自主研究の表彰式を開催しました",
-   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9HSE16bUdjQ3didUh2VFY2VzhlbzVsQTA0dThfYVFvMmJta2pzcUdEcGdlMFo3UUZUQVI0RWJVVzRwUnc4bnFxbXVVMlhzbDdNeE1TNUNHcUlxSG5vQlB6WlE2eDhFY242YVE?oc=5",
-   "s": "PR TIMES",
-   "d": "2026-11-18T01:00:39.000Z",
-   "q": "ESG評価・表彰"
-  },
-  {
-   "t": "日本住環境防音協会（JACReS）、大分大学への研究委託で防音賃貸マンション「THE MUSIC COURT」の遮音性能・室内音響性能を測定 初の年次フォーラムで研究の取り組みを賛助会員と共有",
-   "u": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9aOGpVV3JtcEU0NEtvX3NCLWZabnhKdXFSOVo2MUEydmlCRW1NUDVlOW9zV1dndjU4cS03UHc5M1VIWU40bVptcTVFaU1qakJKVm14OUMzdHB3ckItcE9WNkVEREg3bENYQXc?oc=5",
-   "s": "PR TIMES",
-   "d": "2026-11-18T01:00:02.000Z",
-   "q": ""
   },
   {
    "t": "「森を守るクリスマスリース」から、森林保全に参加する新しい形を。全国9拠点でプロジェクト開催中",
@@ -1172,13 +2484,6 @@
    "q": "生物多様性・森林"
   },
   {
-   "t": "1.3L4気筒エンジンの絶滅理由は環境規制とコスト削減だった。「次世代エンジンにおいて1.5リッターを再び4気筒に戻す」驚きの未来",
-   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE14MjhRcVJLTnNrZmdJVi1hUWxaWjI0MWRHTE5RVW0zcW5KM3NtQnJkYksxbjZ2M2RIc21JWjJ3WHZYM1llOF9qRThMVFFHdzREUmxSZ1pDNDd1UU54SnNR?oc=5",
-   "s": "ライブドアニュース",
-   "d": "2026-11-17T22:41:00.000Z",
-   "q": "経済・ルール形成"
-  },
-  {
    "t": "ホンダ初、完成車工場でカーボンニュートラル達成 CO2排出量を年間2600トン削減：脱炭素（1/3 ページ）",
    "u": "https://news.google.com/rss/articles/CBMib0FVX3lxTFB2ZkFkajJiVWpXQVhNUjZoaU5yU2w5Q3o1Z3ZIdzZLMmNkSUItMUpSdTN3d1lmV05TeXYtV2Y0RzY0UE1jXzEzOHJRWlNTM08yZElranNUMDY5UXA1Ujg1R0I5bHRRX0hYMzMtOVJ0VQ?oc=5",
    "s": "MONOist",
@@ -1214,25 +2519,11 @@
    "q": "ESG評価・表彰"
   },
   {
-   "t": "「我慢して健康害さないよう」福祉灯油制度に県独自支援など県生協連が要望＜宮城＞",
-   "u": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE9DbjV1RlpTRHU3WkRsQS01OW0zMk5KU1YzSHNOcTVfUnZlbmstTWItTE5VdG54clZfX3gxMlNOTWxSZlJpOTVPZldycw?oc=5",
-   "s": "TVer",
-   "d": "2026-11-17T12:51:03.000Z",
-   "q": ""
-  },
-  {
    "t": "「シウマイ弁当」の余剰米でビール 崎陽軒、食品ロス削減",
    "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9CMHVnUlJ6NUNrcC1feTk5MXI2VXNaclpRV3ZVdnB3LVdveDFtLVM0VHZDZ1RuYXBHblBoTXRHOTFjLVp6aDZOdXo2dlY2Zm1oeFd6dEVZRk9BN2FBQnpIeGN3YjN0cmNVZ3hJcg?oc=5",
    "s": "日本経済新聞",
    "d": "2026-11-17T09:06:15.000Z",
    "q": "フードロス"
-  },
-  {
-   "t": "テーマは「環境美化」 香川県の小中学生が描いた絵画やイラストの表彰式",
-   "u": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5zUTVsQi1pR3FpampFQ0FwUmxxZWNKZ2FuaDhjLXJpR1VNZ05yUjlibENNY2x4el8xd2JUczlHbmoyVlNvTWU5akZKSTh5T2ZP?oc=5",
-   "s": "KSBニュース",
-   "d": "2026-11-17T08:51:00.000Z",
-   "q": "ESG評価・表彰"
   },
   {
    "t": "気象データを活かした需要予測で食品ロス・CO₂を削減｜食品SCM最適化の取り組みが気候変動アクション大賞を受賞",
@@ -1252,13 +2543,6 @@
    "t": "再生可能エネルギー計画書・達成状況等報告書",
    "u": "https://news.google.com/rss/articles/CBMidEFVX3lxTE51aFBwQ3FTWFZfVUVmbkFPN3BMdlBHSG81ei16V0NCWVk2RGpMbUNmRGZySk4zNkFGMHZEaGVpWjZFOV93NmhIazY3M3Y2ZFlvNlZrdS1BYU8wUnhPa0NWYUcxeW9DV1pXZlZZUmlqUHF5ZVdR?oc=5",
    "s": "北海道のホームページ",
-   "d": "2026-11-17T08:00:00.000Z",
-   "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "[特設ページ] SBTi、RE100、GHGプロトコルの動向 | プロジェクト",
-   "u": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9HUzRLQXI2cVdKcGdJb1FHaldUY3ZSWWl5UTNTR1lYWlpwNjRGT193emM2LVphZl8zUENYZi1FV19OckZNT0U1RjJ2OG9GbWlnSGhOa3V0V1V2U0tzVlQ0M3ppbEFhYXNmXzhZUmQ2X1JLTjZzYzlv?oc=5",
-   "s": "自然エネルギー財団",
    "d": "2026-11-17T08:00:00.000Z",
    "q": "脱炭素・再エネ"
   },
@@ -1338,27 +2622,6 @@
    "s": "日テレNEWS NNN",
    "d": "2026-11-17T04:51:00.000Z",
    "q": "生物多様性・森林"
-  },
-  {
-   "t": "【メンバー主催】第12回わぉ！な生きものフォトコンテスト",
-   "u": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE84clJuQ1pFZTJLSGowS2pZQXVtckJRTDhFMFBEWnJVUEs1T3RTUm9jZjFnNVhwek5rNVZaa3owZmNMTTJCRGlQUTJGc1VDQ3paYWNYNW03a1M2Y2dlanp3V3YtQ19UTmRN?oc=5",
-   "s": "群馬県",
-   "d": "2026-11-17T03:53:59.000Z",
-   "q": "生物多様性・森林"
-  },
-  {
-   "t": "大和村は不参加 「共同研究すでに取り組み」 奄美大島共同キャンパス推進協 鹿児島県（奄美新聞）",
-   "u": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBlQnhtSTVQMUNQTkxFdGdIazZuZVlPWmRkdTVLNUVDVXRnZzRXcFZKTVlPQ1hJUTFnTjBYanYxOFk1cHhEZDJnS21DSEd4aERMYURuVTUzUVZCVXpYcDRJV0xrcUVCOXV1UkJWT3B2S0lOenlmLWJ6OFgtSDlFWUU?oc=5",
-   "s": "Yahoo!ニュース",
-   "d": "2026-11-17T02:41:23.000Z",
-   "q": ""
-  },
-  {
-   "t": "ホーチミン市の企業は、環境規制に違反した場合、電気と水道の供給停止に直面する。",
-   "u": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQNTZ2cGtINFhoWkZaYW9jZzc1OEc3Yk54cGtpMGdzOGlRbEJIck43Y0FuX0RlV1dWaHE0VV9CcWdMOXFEZHBmUFVfVGpIUkJ5Y0JEOU9xb2RrVmNSeTJXaThXMU9ncGxiZTVtZ0tLc1pIRktvbXRNNXBnOFVMMC05dmhLeE1HclJrbi1jdnRVR1ZxZ3dXakg4RW5fMy0tV2c?oc=5",
-   "s": "Vietnam.vn",
-   "d": "2026-11-17T02:17:19.000Z",
-   "q": "経済・ルール形成"
   },
   {
    "t": "【日本】ホンダ、寄居工場で同社初の脱炭素工場達成。塗装熱源を電化 | Sustainable Japan | 世界のサステナビリティ・ESG投資・SDGs",
@@ -1480,13 +2743,6 @@
    "q": "脱炭素・再エネ"
   },
   {
-   "t": "【グリーンサイエンス研究センター】第55回セミナー：理想の水族館を目指した取り組み",
-   "u": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFByTFpYWmg4b25RaWlzQ1hzbWR6a0U3dW9tWGoyTU9BQS1FdEFEVkg4TmE0RDFEUmUtdldMWnA4Yndvb3dGYWRBdWNub0tiWENxcnhLYmt3NnkxMHpoanM0?oc=5",
-   "s": "福山大学",
-   "d": "2026-11-16T08:24:01.000Z",
-   "q": ""
-  },
-  {
    "t": "食品ロス削減啓発店頭イベント",
    "u": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5SSVV1MjNhSlpnUjRyM1dFRFJ4RGdnaFpzZ1FMeDlDTmpiZ1hCbjBVWWhFTTVLWUtIN2VkQV9icGppYTdva28zcW4tMHJ4bGFrYWV0SjFpeTVHS0RHZ0RTUW1NVm1haE9oaWdNaENCNWE4LUVvWEE?oc=5",
    "s": "広島県公式ホームページ",
@@ -1527,13 +2783,6 @@
    "s": "PR TIMES",
    "d": "2026-11-16T06:27:09.000Z",
    "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "韓国の大学の学生食堂、メニューや雰囲気は？ソウルの高麗大学の学生食堂に行ってみた【韓国の個人旅行ガイド】",
-   "u": "https://news.google.com/rss/articles/CBMibEFVX3lxTFAtVmdrVEFPQm5JbllteXhNWlVUT0FMblJDR0VPdjZ5X1d5NHJUdDhhLUkzWHp1OGlsa0I5YXN1NkhlVS1wVTJ3c09nNmd6VWFlRU1xdk82NkVDMnNvLWJNZktuT1BKWUVmbEEtdg?oc=5",
-   "s": "ふねぽ",
-   "d": "2026-11-16T06:00:00.000Z",
-   "q": "フードロス"
   },
   {
    "t": "環境部ECOLO「リサイクル市2027」",
@@ -1632,13 +2881,6 @@
    "s": "MONOist",
    "d": "2026-11-15T21:30:00.000Z",
    "q": "脱炭素・再エネ"
-  },
-  {
-   "t": "大阪大学の学食に栄養満点の無料朝食セットが登場！",
-   "u": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBlS3BwSWt4T0FjbFRLMUJuYlg2TW5CMFFJM0JDM0FJRDVIazhWVjJsbVlxQlpGU2VPYVVELW5LaEs5RzJsb0dyaWU5czFqSTBLZWY40gFYQVVfeXFMUF9DU25vNU5HSHM4d1JUMXZLS2UyZnJvdFhmYnVYd3RNUmtodHpEbUFqd29aUDN5aE5EbTgwYW9kLXNpTkVnaWUxZ0ExRWlsX1ByckxjUkNfdw?oc=5",
-   "s": "ウォーカープラス",
-   "d": "2026-11-15T21:18:55.000Z",
-   "q": "フードロス"
   },
   {
    "t": "トランプ政権に逆らい「脱炭素化」進める米国の州政府・企業、だがAIデータセンター急増が招く新たな化石燃料依存(1/5)",
