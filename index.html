@@ -496,6 +496,7 @@
         <div class="min-w-0">
           <p class="font-bold text-[11px]">Obsidian URI連携先</p>
           <p id="obsidian-target-preview" class="text-[11px] text-purple-700 mt-0.5 break-all"></p>
+          <p id="obsidian-links-preview" class="text-[11px] text-purple-900 font-bold mt-1 break-all"></p>
         </div>
       </div>
 
@@ -599,11 +600,6 @@
             class="w-full border border-slate-300 rounded-xl px-3 py-2.5 focus:outline-none focus:border-purple-500">
           <p class="text-[11px] text-slate-400 mt-1">フォルダ/ファイル名（拡張子なし）</p>
         </div>
-        <label class="flex items-start gap-2.5 p-3 bg-emerald-50 border border-emerald-200 rounded-xl cursor-pointer">
-          <input type="checkbox" id="setting-garden-obsidian" class="mt-0.5 accent-emerald-600 w-4 h-4">
-          <span><span class="block text-xs font-bold text-slate-800">ノートに庭の記録を含める</span>
-          <span class="block text-[11px] text-slate-500 mt-0.5">フロントマターに庭レベル・連続日数・アイテム数・生き物数を追記します</span></span>
-        </label>
       </div>
 
       <!-- ---- RSS Tab ---- -->
@@ -1766,30 +1762,25 @@ async function reSendHistoryToObsidian(idx) {
 // Obsidianのタグに使えない記号（・など）を _ に置き換える
 function obsTag(t) { return String(t||'').replace(/[^\p{L}\p{N}_\-\/]/gu, '_'); }
 
+// Obsidianのリンク名に使えない記号を除く
+function obsLinkName(t) { return String(t||'').replace(/[#^\[\]|\\/:*?"<>]/g, '').trim(); }
+// 記事のタグ（テーマ＋生協事業領域）→ [[リンク]] の一覧
+function obsLinksFor(art, coopAreas) {
+  const names=[art && art.tag, ...(coopAreas||[])].map(obsLinkName).filter(Boolean);
+  return [...new Set(names)].map(n=>`[[${n}]]`);
+}
+// シンプルなノート：タイトル／記事リンク／関連リンク／メモ
 function generateMarkdown(art, memo, coopAreas, nature, today) {
-  today = today || new Date().toISOString().slice(0,10);
-  const areas = coopAreas || [];
+  const links=obsLinksFor(art, coopAreas);
   return [
-    '---',
-    `date: ${today}`,
-    `source: "${art.source}"`,
-    `category: "${art.type}"`,
-    `nature: "${nature||'未分類'}"`,
-    `coop_areas: [${areas.map(a=>`"${a}"`).join(', ')}]`,
-    `tags: [環境活動, ${obsTag(art.tag)}]`,
-    `url: "${art.url}"`,
-    '---','',
     `# ${art.title}`,
     '',
-    `- **情報源**: ${art.source}（${art.type}）`,
-    `- **テーマ**: #${obsTag(art.tag)}`,
-    `- **事例の性質**: ${nature||'未分類'}`,
-    `- **生協事業領域**: ${areas.length ? areas.join(', ') : '未設定'}`,
-    `- **URL**: [元記事を開く](${art.url})`,
+    `記事リンク：${art.url}`,
     '',
-    '## ✍️ 気づき・生協活動へのメモ',
+    `関連：${links.length ? links.join(' ') : '（なし）'}`,
     '',
-    memo || '（メモ未記入）',
+    '## メモ',
+    memo && memo.trim() ? memo.trim() : '（メモなし）',
     ''
   ].join('\n');
 }
@@ -3501,16 +3492,7 @@ answerQuiz = function(idx) {
   if (correct) { G().water += 2; questProgress('quiz'); gToastLater('💡 クイズ正解ボーナス 💧+2'); gAfterChange(); }
 };
 
-const _gOrigMd = generateMarkdown;
-generateMarkdown = function(art, memo, coopAreas, nature, today) {
-  let md = _gOrigMd(art, memo, coopAreas, nature, today);
-  if (G().includeInObsidian !== false) {
-    const s = gardenSnapshot();
-    md = md.replace(/^---\n/, `---\ngarden_level: "${s.level}"\nstreak_days: ${s.streak}\ngarden_items: ${s.items}\ncreatures_found: ${s.creatures}\n`);
-    md += `\n---\n🌱 記録時の庭：${s.level} ／ 🔥 連続${s.streak}日 ／ アイテム${s.items}個 ／ 生き物${s.creatures}種\n`;
-  }
-  return md;
-};
+// （ノートはシンプル形式のため、庭の記録は書き込まない）
 
 const _gOrigSwitch = switchView;
 switchView = function(v) { _gOrigSwitch(v); if (v === 'garden') { G().moveFrom = null; renderGarden(); } };
@@ -4117,6 +4099,17 @@ openSettingsModal = function() { _sOrigOpenSettings(); syncRenderPanel(); };
 const _sOrigInit = init;
 init = function() { _sOrigInit(); syncDeviceId(); syncActDays(G()); };
 
+
+// ── メモ画面：ノートに入るリンクをその場で表示 ──
+function obsUpdateLinksPreview() {
+  const el=document.getElementById('obsidian-links-preview'); if (!el || !state.activeArticle) return;
+  const links=obsLinksFor(state.activeArticle, getSelectedCoopAreas('memo-coop-areas'));
+  el.textContent='ノートに入るリンク：'+(links.length?links.join(' '):'（なし）');
+}
+const _oOrigToggleCoop = toggleCoopBtn;
+toggleCoopBtn = function(btn) { _oOrigToggleCoop(btn); if (btn.closest && btn.closest('#memo-coop-areas')) obsUpdateLinksPreview(); };
+const _oOrigOpenMemo = openArticleMemo;
+openArticleMemo = function(id) { _oOrigOpenMemo(id); obsUpdateLinksPreview(); };
 window.addEventListener('resize', updateDashboardUI);
 window.addEventListener('DOMContentLoaded', init);
 </script>

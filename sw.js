@@ -6,7 +6,7 @@
  *   - 外部プロキシ / RSS / API リクエスト: ネットワーク専用 (キャッシュしない)
  */
 
-const CACHE_VERSION = 'v7-sync';
+const CACHE_VERSION = 'v8-simple-note';
 const CACHE_NAME = `ecopulse-${CACHE_VERSION}`;
 
 // インストール時に事前キャッシュするファイル
