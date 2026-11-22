@@ -1755,8 +1755,8 @@ async function saveAndSendToObsidian() {
 async function reSendHistoryToObsidian(idx) {
   const item = state.history[idx];
   if (!item) return;
-  await triggerObsidianURI(item.article, item.memo, item.coopAreas, item.nature);
-  showToast('Obsidianへ再送信しました');
+  await triggerObsidianURI(item.article, item.memo, item.coopAreas, item.nature, { overwrite:true, date:item.date });
+  showToast('Obsidianへ再送信しました（同じノートを上書き）');
 }
 
 // Obsidianのタグに使えない記号（・など）を _ に置き換える
@@ -1785,60 +1785,38 @@ function generateMarkdown(art, memo, coopAreas, nature, today) {
   ].join('\n');
 }
 
-async function triggerObsidianURI(art, memo, coopAreas, nature) {
-  const today = new Date().toISOString().slice(0,10);
+// クリップボードにコピー（成功したら true）
+async function obsCopy(text) {
+  try { if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return true; } } catch(_) {}
+  try {
+    const ta=document.createElement('textarea'); ta.value=text; ta.setAttribute('readonly','');
+    ta.style.position='fixed'; ta.style.top='-9999px'; document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, text.length);
+    const ok=document.execCommand('copy'); document.body.removeChild(ta); return !!ok;
+  } catch(_) { return false; }
+}
+// Obsidian URI を組み立てる（direct：本文をURIに入れる／base：clipboard用）
+const OBS_URI_LIMIT = 8000;
+function obsBuildURIs(art, memo, coopAreas, nature, opts) {
+  opts = opts || {};
+  const today = (typeof gToday==='function') ? gToday() : new Date().toISOString().slice(0,10);
   const md = generateMarkdown(art, memo, coopAreas, nature, today);
   const safeTitle = art.title.replace(/[\/:*?"<>|#^\[\]\\]/g,'').slice(0,40).trim();
-  const fileName = `${today}_${safeTitle}`;
   const folderPfx = state.obsidianFolder ? state.obsidianFolder.replace(/\/$/,'')+'/' : '';
-  const fullPath = `${folderPfx}${fileName}`;
-
-  let filePath = fullPath;
-  let appendParam = '';
-  if (state.obsidianMode === 'append' && state.obsidianAppendPath) {
-    filePath = state.obsidianAppendPath;
-    appendParam = '&append=true';
-  }
-
-  let uri = `obsidian://new?file=${encodeURIComponent(filePath)}&content=${encodeURIComponent(md)}${appendParam}`;
-  if (state.obsidianVault) uri += `&vault=${encodeURIComponent(state.obsidianVault)}`;
-
-  if (uri.length > 2000) {
-    // ── Clipboard fallback ──
-    let copied = false;
-    try {
-      if (navigator.clipboard) {
-        await navigator.clipboard.writeText(md);
-        copied = true;
-      }
-    } catch(_) {}
-    if (!copied) {
-      // execCommand fallback
-      try {
-        const ta = document.createElement('textarea');
-        ta.value = md; ta.style.position='fixed'; ta.style.top='-9999px';
-        document.body.appendChild(ta); ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        copied = true;
-      } catch(_) {}
-    }
-
-    const banner = document.getElementById('clipboard-banner');
-    if (banner) banner.classList.toggle('hidden', !copied);
-
-    if (copied) {
-      let shortUri = `obsidian://new?file=${encodeURIComponent(fullPath)}`;
-      if (state.obsidianVault) shortUri += `&vault=${encodeURIComponent(state.obsidianVault)}`;
-      showToast('📋 Markdownをクリップボードにコピー → Obsidianを起動します');
-      setTimeout(() => { window.location.href = shortUri; }, 900);
-    } else {
-      showToast('⚠️ ノートが長すぎます。メモを短くするか、Obsidianモードを「追記」にしてください');
-    }
-    return;
-  }
-
-  window.location.href = uri;
+  let filePath = `${folderPfx}${opts.date || today}_${safeTitle}`, extra = '';
+  if (state.obsidianMode === 'append' && state.obsidianAppendPath) { filePath = state.obsidianAppendPath; extra = '&append=true'; }
+  else if (opts.overwrite) extra = '&overwrite=true';
+  const vault = state.obsidianVault ? `&vault=${encodeURIComponent(state.obsidianVault)}` : '';
+  const base = `obsidian://new?file=${encodeURIComponent(filePath)}${extra}${vault}`;
+  return { md, base, direct: `${base}&content=${encodeURIComponent(md)}` };
+}
+async function triggerObsidianURI(art, memo, coopAreas, nature, opts) {
+  const u = obsBuildURIs(art, memo, coopAreas, nature, opts);
+  if (u.direct.length <= OBS_URI_LIMIT) { window.location.href = u.direct; return; }
+  // 長いメモ：本文をクリップボード経由で渡す（Obsidianが自動で本文に入れる）
+  const copied = await obsCopy(u.md);
+  if (copied) showToast('📋 長いメモのため、クリップボード経由でObsidianに送ります');
+  window.location.href = copied ? `${u.base}&clipboard` : u.direct;
 }
 
 function closeMemoModal() {
@@ -1945,7 +1923,7 @@ async function sendSummaryToObsidian() {
   let uri = `obsidian://new?file=${encodeURIComponent(fullPath)}&content=${encodeURIComponent(md)}`;
   if (state.obsidianVault) uri += `&vault=${encodeURIComponent(state.obsidianVault)}`;
 
-  if (uri.length > 2000) {
+  if (uri.length > OBS_URI_LIMIT) {
     let copied = false;
     try { if (navigator.clipboard) { await navigator.clipboard.writeText(md); copied = true; } } catch(_) {}
     if (!copied) {
@@ -1957,7 +1935,7 @@ async function sendSummaryToObsidian() {
     if (copied) {
       showToast('📋 サマリーをクリップボードにコピー → Obsidianを起動します');
       state.summaryCount = (state.summaryCount||0)+1; saveState();
-      let shortUri = `obsidian://new?file=${encodeURIComponent(fullPath)}`;
+      let shortUri = `obsidian://new?file=${encodeURIComponent(fullPath)}&clipboard`;
       if (state.obsidianVault) shortUri += `&vault=${encodeURIComponent(state.obsidianVault)}`;
       closeSummaryModal();
       setTimeout(() => { window.location.href = shortUri; }, 800);
