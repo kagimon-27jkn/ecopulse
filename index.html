@@ -658,23 +658,24 @@
 
       <!-- ---- Data Management Tab ---- -->
       <div id="stab-content-data" class="p-5 space-y-4 hidden">
+        <div id="sync-panel" class="rounded-xl p-3 bg-emerald-50 border border-emerald-200 text-xs"></div>
         <div id="backup-status-box" class="rounded-xl p-3 text-xs bg-slate-50 border border-slate-200 text-slate-600"></div>
         <div>
-          <p class="text-xs font-bold text-slate-700 mb-2">バックアップ（エクスポート）</p>
+          <p class="text-xs font-bold text-slate-700 mb-2">書き出し（バックアップ・同期用）</p>
           <button onclick="exportJSON()"
             class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
             <i data-lucide="download" class="w-4 h-4"></i>
-            JSONファイルをダウンロード
+            JSONファイルを書き出す
           </button>
         </div>
         <div>
-          <p class="text-xs font-bold text-slate-700 mb-2">データ復元（インポート）</p>
+          <p class="text-xs font-bold text-slate-700 mb-2">取り込み（統合・復元）</p>
           <button onclick="importJSON()"
             class="w-full bg-slate-700 hover:bg-slate-800 text-white text-xs font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-sm">
             <i data-lucide="upload" class="w-4 h-4"></i>
-            JSONファイルからインポート
+            JSONを取り込む（統合／上書きを選べます）
           </button>
-          <p class="text-[11px] text-slate-400 mt-1.5">※インポートすると現在のデータは上書きされます</p>
+          <p class="text-[11px] text-slate-400 mt-1.5">※取り込み時に「統合（両方の記録を合わせる）」か「上書き」を選べます</p>
         </div>
         <div class="border-t border-slate-100 pt-4">
           <p class="text-xs font-bold text-red-500 mb-2">データリセット</p>
@@ -1762,6 +1763,9 @@ async function reSendHistoryToObsidian(idx) {
   showToast('Obsidianへ再送信しました');
 }
 
+// Obsidianのタグに使えない記号（・など）を _ に置き換える
+function obsTag(t) { return String(t||'').replace(/[^\p{L}\p{N}_\-\/]/gu, '_'); }
+
 function generateMarkdown(art, memo, coopAreas, nature, today) {
   today = today || new Date().toISOString().slice(0,10);
   const areas = coopAreas || [];
@@ -1772,13 +1776,13 @@ function generateMarkdown(art, memo, coopAreas, nature, today) {
     `category: "${art.type}"`,
     `nature: "${nature||'未分類'}"`,
     `coop_areas: [${areas.map(a=>`"${a}"`).join(', ')}]`,
-    `tags: [環境活動, ${art.tag}]`,
+    `tags: [環境活動, ${obsTag(art.tag)}]`,
     `url: "${art.url}"`,
     '---','',
     `# ${art.title}`,
     '',
     `- **情報源**: ${art.source}（${art.type}）`,
-    `- **テーマ**: #${art.tag}`,
+    `- **テーマ**: #${obsTag(art.tag)}`,
     `- **事例の性質**: ${nature||'未分類'}`,
     `- **生協事業領域**: ${areas.length ? areas.join(', ') : '未設定'}`,
     `- **URL**: [元記事を開く](${art.url})`,
@@ -1916,7 +1920,7 @@ function generateSummaryMarkdown(period, filtered) {
   ];
   Object.entries(typeC).forEach(([t,c]) => md.push(`- **${t}**: ${c}件`));
   md.push('');
-  Object.entries(tagC).sort((a,b)=>b[1]-a[1]).forEach(([t,c]) => md.push(`- #${t}: ${c}件`));
+  Object.entries(tagC).sort((a,b)=>b[1]-a[1]).forEach(([t,c]) => md.push(`- #${obsTag(t)}: ${c}件`));
   md.push('','## 🏢 生協事業領域別 インプット件数','');
   COOP_AREAS.forEach(a => {
     const c = areaC[a.id]||0;
@@ -1926,7 +1930,7 @@ function generateSummaryMarkdown(period, filtered) {
   filtered.slice().reverse().forEach((h,i) => {
     md.push(`### ${i+1}. ${h.article.title}`);
     md.push(`- **情報源**: ${h.article.source}（${h.article.type}）`);
-    md.push(`- **タグ**: #${h.article.tag}`);
+    md.push(`- **タグ**: #${obsTag(h.article.tag)}`);
     if (h.nature) md.push(`- **性質**: ${h.nature}`);
     md.push(`- **読了日**: ${h.date}`);
     md.push(`- **URL**: [元記事](${h.article.url})`);
@@ -3850,6 +3854,268 @@ init = function() {
     gBadgeMigrate(); gCheckBadges(true); _bOrigSave();
   }
 };
+
+
+// ════════════════════════════════════════════════════════════════
+// 🔄 SYNC — スマホ⇄PCのマージ（統合）インポート
+//   ・数値（pt・どんぐり等）は「端末ごとの増加分」を台帳(ledger)で管理
+//     → 何回統合しても二重計算にならない
+//   ・履歴/記事/バッジ等は和集合、連続記録は活動日から再計算
+//   ・庭の配置は最後に配置を変えた端末を採用
+// ════════════════════════════════════════════════════════════════
+const SYNC_COUNTERS = [
+  ['s','points',0], ['s','obsidianCount',0], ['s','quizSolved',0], ['s','rssArticleCount',0],
+  ['s','summaryCount',0], ['s','backupCount',0],
+  ['s','typeCounts.自治体',0], ['s','typeCounts.企業・評価',0], ['s','typeCounts.世界動向',0],
+  ['g','bonus',0], ['g','spent',0], ['g','water',5], ['g','streak.guards',1],
+  ['g','stats.placed',0], ['g','stats.waters',0], ['g','stats.harvests',0], ['g','stats.questsDone',0],
+  ['g','stats.perfectDays',0], ['g','stats.guardsUsed',0], ['g','stats.early',0], ['g','stats.night',0],
+];
+function syncGet(obj, path) { return path.split('.').reduce((o,k)=>(o==null?undefined:o[k]), obj); }
+function syncSet(obj, path, v) { const ks=path.split('.'); let o=obj; ks.slice(0,-1).forEach(k=>{ if (o[k]==null||typeof o[k]!=='object') o[k]={}; o=o[k]; }); o[ks[ks.length-1]]=v; }
+function syncRoot(st, which) { return which==='s' ? st : (st.garden||{}); }
+function syncKey(which, path) { return which+':'+path; }
+
+function syncDeviceId() {
+  if (!state.deviceId) state.deviceId = 'dev-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2,7);
+  if (!state.deviceName) {
+    const ua = navigator.userAgent;
+    state.deviceName = /iPhone/.test(ua) ? 'iPhone' : /iPad/.test(ua) ? 'iPad' : /Android/.test(ua) ? 'Android' : /Windows/.test(ua) ? 'Windows PC' : /Mac/.test(ua) ? 'Mac' : 'この端末';
+  }
+  if (!state.ledger) state.ledger = {};
+  return state.deviceId;
+}
+// 自分の端末の「増加分」を台帳に書き込む（合計 − 初期値 − 他端末の分）
+function syncLedgerUpdate() {
+  const me = syncDeviceId(); G();
+  const others = Object.keys(state.ledger).filter(d=>d!==me);
+  const vals = {};
+  SYNC_COUNTERS.forEach(([w,p,def])=>{
+    const k=syncKey(w,p), total=Number(syncGet(syncRoot(state,w),p))||0;
+    vals[k] = total - def - others.reduce((a,d)=>a+(Number(state.ledger[d].vals[k])||0),0);
+  });
+  state.ledger[me] = { t:Date.now(), name:state.deviceName, vals };
+}
+// 台帳から合計を組み立て直す
+function syncApplyLedger() {
+  G();
+  SYNC_COUNTERS.forEach(([w,p,def])=>{
+    const k=syncKey(w,p);
+    const sum=Object.values(state.ledger).reduce((a,e)=>a+(Number(e.vals[k])||0),0);
+    syncSet(syncRoot(state,w), p, def + sum);
+  });
+}
+// 取り込むファイルの台帳を用意（旧形式のファイルは丸ごと1台分として扱う）
+function syncRemoteLedger(p) {
+  if (p.ledger && Object.keys(p.ledger).length) return p.ledger;
+  const vals={};
+  SYNC_COUNTERS.forEach(([w,path,def])=>{ vals[syncKey(w,path)]=(Number(syncGet(syncRoot(p,w),path))||(w==='g'&&!p.garden?def:0))-def; });
+  const id='legacy-'+gHash(JSON.stringify({h:(p.history||[]).length, pts:p.points, ids:(p.readIds||[]).slice(0,50)}));
+  return { [id]:{ t:0, name:'以前のバックアップ', vals } };
+}
+
+// ── 活動日（連続記録の再計算用） ─────────────────────────────────
+function syncActDays(g) {
+  const st=g.stats||(g.stats={});
+  if (!st.actDays) {
+    const set=new Set(st.days||[]);
+    if (g.streak && g.streak.lastDate && g.streak.count>0) {
+      const d=new Date(g.streak.lastDate+'T00:00:00');
+      for (let i=0;i<Math.min(g.streak.count,400);i++) { set.add(gToday(d)); d.setDate(d.getDate()-1); }
+    }
+    st.actDays=[...set].sort();
+  }
+  return st.actDays;
+}
+function syncRunEnding(days, end) {
+  const set=new Set(days); let n=0; const d=new Date(end+'T00:00:00');
+  while (set.has(gToday(d))) { n++; d.setDate(d.getDate()-1); }
+  return n;
+}
+const _sOrigMark = markActivityToday;
+markActivityToday = function() {
+  _sOrigMark();
+  const g=G(), days=syncActDays(g), t=gToday();
+  if (!days.includes(t)) { days.push(t); days.sort(); }
+};
+// 庭の配置を変えた時刻を記録（どちらの庭を採用するかの判定用）
+['gPlace','gRemove','gBuy','gExpand'].forEach(fn=>{
+  const orig=window[fn];
+  window[fn]=function(...a){ G().layoutAt=Date.now(); return orig.apply(this,a); };
+});
+const _sOrigTap = gTileTap;
+gTileTap = function(key) { if (G().moveFrom) G().layoutAt=Date.now(); return _sOrigTap(key); };
+
+// ── マージ本体 ───────────────────────────────────────────────────
+function syncHistKey(h) { const a=h.article||{}; return [a.url||a.id, h.date, (h.memo||'').slice(0,200), h.sentToObsidian?1:0].join('|'); }
+function syncPreview(p) {
+  const hk=new Set((state.history||[]).map(syncHistKey));
+  const aid=new Set((state.articles||[]).map(a=>a.id)), aurl=new Set((state.articles||[]).map(a=>a.url));
+  const bg=state.badgesGot||{}, cr=new Set(G().creatures);
+  return {
+    hist:(p.history||[]).filter(h=>!hk.has(syncHistKey(h))).length,
+    arts:(p.articles||[]).filter(a=>!aid.has(a.id) && !aurl.has(a.url)).length,
+    badges:Object.keys(p.badgesGot||{}).filter(k=>!bg[k]).length,
+    creatures:((p.garden||{}).creatures||[]).filter(c=>!cr.has(c)).length,
+    gardenFromRemote:((p.garden||{}).layoutAt||0) > (G().layoutAt||0),
+  };
+}
+function syncMerge(p) {
+  const me=syncDeviceId(); const g=G();
+  syncLedgerUpdate();
+  // 1) 数値：台帳を統合（端末ごとに新しい記録を採用）
+  const rl=syncRemoteLedger(p);
+  Object.keys(rl).forEach(d=>{ if (d===me) return; if (!state.ledger[d] || (rl[d].t||0) > (state.ledger[d].t||0)) state.ledger[d]=rl[d]; });
+  // 2) 記事
+  const byId=new Map(state.articles.map(a=>[a.id,a])), urls=new Set(state.articles.map(a=>a.url));
+  (p.articles||[]).forEach(a=>{
+    const ex=byId.get(a.id);
+    if (ex) { ex.readLater = !!(ex.readLater && a.readLater); return; }
+    if (urls.has(a.url) && !/^https?:\/\/[^/]+\/?$/.test(a.url||'')) return;
+    state.articles.push(a); byId.set(a.id,a); urls.add(a.url);
+  });
+  state.articles.sort((x,y)=>String(y.date||'').localeCompare(String(x.date||'')));
+  // 3) 読了・履歴・バッジ・RSS
+  state.readIds=[...new Set([...(state.readIds||[]), ...(p.readIds||[])])];
+  const hk=new Set(state.history.map(syncHistKey));
+  (p.history||[]).forEach(h=>{ const k=syncHistKey(h); if (!hk.has(k)) { state.history.push(h); hk.add(k); } });
+  state.history.sort((x,y)=>String(x.date||'').localeCompare(String(y.date||'')));
+  state.badgesGot=state.badgesGot||{};
+  Object.entries(p.badgesGot||{}).forEach(([k,d])=>{ if (!state.badgesGot[k] || d<state.badgesGot[k]) state.badgesGot[k]=d; });
+  const feeds=new Set((state.rssFeeds||[]).map(f=>f.url));
+  (p.rssFeeds||[]).forEach(f=>{ if (!feeds.has(f.url)) { state.rssFeeds.push(f); feeds.add(f.url); } });
+  if (p.lastBackupDate && (!state.lastBackupDate || p.lastBackupDate>state.lastBackupDate)) state.lastBackupDate=p.lastBackupDate;
+  // 4) 庭
+  const rg=p.garden;
+  if (rg) {
+    ['creatures','known','milestones'].forEach(k=>{ g[k]=[...new Set([...(g[k]||[]), ...(rg[k]||[])])]; });
+    if ((rg.layoutAt||0) > (g.layoutAt||0) && rg.tiles) {
+      g.tiles=JSON.parse(JSON.stringify(rg.tiles)); g.inv=JSON.parse(JSON.stringify(rg.inv||{}));
+      g.size=Math.max(rg.size||4, 4); g.layoutAt=rg.layoutAt;
+    } else g.size=Math.max(g.size, rg.size||4);
+    g.moveFrom=null;
+    const rs=rg.stats||{}, ls=g.stats;
+    ls.days=[...new Set([...(ls.days||[]), ...(rs.days||[])])].sort();
+    ls.dayReads=ls.dayReads||{}; Object.entries(rs.dayReads||{}).forEach(([d,n])=>{ ls.dayReads[d]=Math.max(ls.dayReads[d]||0,n); });
+    ls.daysInit=true;
+    // 連続記録：両端末の活動日を合わせて再計算
+    const la=syncActDays(g), ra=syncActDays(JSON.parse(JSON.stringify(rg)));
+    ls.actDays=[...new Set([...la, ...ra])].sort();
+    const L=g.streak, R=rg.streak||{};
+    const last=[L.lastDate,R.lastDate].filter(Boolean).sort().pop()||null;
+    if (last) {
+      const run=syncRunEnding(ls.actDays, last);
+      L.count=Math.max(run, L.lastDate===last?L.count:0, R.lastDate===last?(R.count||0):0);
+      L.lastDate=last;
+    }
+    L.best=Math.max(L.best||0, R.best||0, L.count||0);
+    // クエスト：同じ日なら進み具合を合わせる
+    if (rg.quests && rg.quests.date) {
+      if (!g.quests.date || rg.quests.date>g.quests.date) g.quests=JSON.parse(JSON.stringify(rg.quests));
+      else if (rg.quests.date===g.quests.date) {
+        g.quests.list.forEach(q=>{ const r=(rg.quests.list||[]).find(x=>x.id===q.id); if (r) { q.p=Math.max(q.p,r.p); q.done=q.done||r.done; } });
+        g.quests.allDone=g.quests.allDone||!!rg.quests.allDone;
+      }
+    }
+  }
+  // 5) 数値を台帳から組み立て直す
+  syncApplyLedger();
+}
+// 上書き：ファイルの内容に置き換え（この端末の設定・端末IDは維持）
+function syncOverwrite(p) {
+  const keep={ deviceId:state.deviceId, deviceName:state.deviceName, obsidianVault:state.obsidianVault, obsidianFolder:state.obsidianFolder,
+    obsidianMode:state.obsidianMode, obsidianAppendPath:state.obsidianAppendPath };
+  const rl=syncRemoteLedger(p);
+  state={ ...state, ...JSON.parse(JSON.stringify(p)), ...keep };
+  state.ledger={}; Object.keys(rl).forEach(d=>{ if (d!==keep.deviceId) state.ledger[d]=rl[d]; });
+  syncLedgerUpdate();   // この端末の増加分は0になる
+}
+
+// ── エクスポート／インポート（既存機能を置き換え） ────────────────
+exportJSON = function() {
+  syncDeviceId();
+  state.backupCount=(state.backupCount||0)+1;
+  state.lastBackupDate=gToday(); state.backupMemoCount=state.history.length;
+  syncLedgerUpdate();
+  state.exportedAt=new Date().toISOString();
+  const blob=new Blob([JSON.stringify(state,null,2)], {type:'application/json'});
+  const url=URL.createObjectURL(blob), a=document.createElement('a');
+  const dev=(state.deviceName||'device').replace(/[^\p{L}\p{N}_-]/gu,'');
+  a.href=url; a.download=`ecopulse_${dev}_${gToday()}.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+  saveState(); updateBackupBadge(false); updateBackupStatusBox();
+  showToast('📤 JSONを書き出しました。もう一方の端末で「統合」してください');
+};
+let _syncPending=null;
+importJSON = function() {
+  const inp=document.createElement('input'); inp.type='file'; inp.accept='.json,application/json';
+  inp.onchange=e=>{
+    const f=e.target.files[0]; if (!f) return;
+    const r=new FileReader();
+    r.onload=ev=>{
+      let p; try { p=JSON.parse(ev.target.result); } catch(_) { showToast('⚠️ ファイルを読み込めませんでした'); return; }
+      if (!p || !Array.isArray(p.articles) || !Array.isArray(p.history)) { showToast('⚠️ 有効なEcoPulseデータではありません'); return; }
+      if (p.deviceId && p.deviceId===syncDeviceId()) { showToast('ℹ️ これはこの端末で書き出したファイルです'); return; }
+      _syncPending=p; closeSettingsModal(); syncOpenImportSheet(p);
+    };
+    r.readAsText(f);
+  };
+  document.body.appendChild(inp); inp.click(); document.body.removeChild(inp);
+};
+function syncOpenImportSheet(p) {
+  const pv=syncPreview(p);
+  const when=p.exportedAt ? new Date(p.exportedAt).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '不明';
+  gOpenSheet('🔄 データの取り込み', `
+    <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-700">
+      <p class="font-bold">📱 ${escapeHtml(p.deviceName||'別の端末')} のデータ</p>
+      <p class="text-[11px] text-slate-500 mt-0.5">書き出し：${when} ／ 読了 ${(p.readIds||[]).length}本 ／ ${p.points||0}pt</p>
+    </div>
+    <div class="mt-3 bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-900">
+      <p class="font-bold mb-1">統合すると増えるもの</p>
+      <p>📚 読了・メモ履歴 +${pv.hist}件 ／ 📰 記事 +${pv.arts}件</p>
+      <p>🏅 バッジ +${pv.badges}種 ／ 🐾 生き物 +${pv.creatures}種</p>
+      <p class="mt-1 text-[11px] text-emerald-700">ポイント・どんぐりは端末ごとの増加分を合算（二重計算なし）。<br>🏡 庭の配置：${pv.gardenFromRemote?'相手の端末の庭を採用（あちらで最後に配置を変更）':'この端末の庭をそのまま使用'}</p>
+    </div>
+    <button onclick="syncDoImport('merge')" class="w-full mt-4 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold">🔄 統合する（おすすめ）</button>
+    <button onclick="syncDoImport('overwrite')" class="w-full mt-2 py-3 rounded-xl border border-rose-200 text-rose-600 hover:bg-rose-50 text-xs font-bold">この端末のデータを捨てて上書きする</button>
+    <p class="text-[10px] text-slate-400 mt-2 leading-relaxed">※Obsidianの設定（Vault名・フォルダ）はどちらを選んでもこの端末のものが残ります。</p>`);
+}
+function syncDoImport(mode) {
+  const p=_syncPending; if (!p) return;
+  if (mode==='overwrite' && !confirm('この端末の記録を消して、ファイルの内容で上書きします。よろしいですか？')) return;
+  const before={ pts:state.points, reads:state.readIds.length };
+  try { if (mode==='merge') syncMerge(p); else syncOverwrite(p); }
+  catch(e) { console.error(e); showToast('⚠️ 取り込みに失敗しました（データは変更されていません）'); loadState(); return; }
+  _syncPending=null; closeGSheet();
+  _bctx=null; gSilent=true; try { gCheckBadges(true); checkUnlocks(); refreshCreatures(); } finally { gSilent=false; }
+  saveState(); renderTagFilters(); renderArticles(); updateReadLaterBadge(); updateDashboardUI();
+  if (typeof currentView!=='undefined' && currentView==='garden') renderGarden();
+  if (typeof currentView!=='undefined' && currentView==='badges') renderBadgesView();
+  showToast(mode==='merge' ? `✅ 統合しました（読了 ${before.reads}→${state.readIds.length}本 ／ ${before.pts}→${state.points}pt）` : '✅ 上書きしました');
+}
+function syncSaveDeviceName(v) { syncDeviceId(); state.deviceName=(v||'').trim()||state.deviceName; saveState(); showToast('端末名を保存しました'); }
+function syncRenderPanel() {
+  const el=document.getElementById('sync-panel'); if (!el) return;
+  syncDeviceId();
+  const others=Object.entries(state.ledger||{}).filter(([d])=>d!==state.deviceId);
+  el.innerHTML=`
+    <p class="text-xs font-bold text-slate-800 flex items-center gap-1.5">🔄 スマホ⇄PCの同期（統合）</p>
+    <div class="mt-2 flex gap-2 items-center">
+      <span class="text-[11px] text-slate-500 shrink-0">この端末の名前</span>
+      <input type="text" value="${escapeHtml(state.deviceName)}" onchange="syncSaveDeviceName(this.value)" class="flex-1 min-w-0 border border-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-emerald-500">
+    </div>
+    <p class="text-[11px] text-slate-500 mt-2">統合済みの端末：${others.length ? others.map(([,e])=>`<b>${escapeHtml(e.name||'端末')}</b>`).join('・') : 'まだありません'}</p>
+    <ol class="text-[11px] text-slate-600 mt-2 space-y-0.5 list-decimal pl-4">
+      <li>使い終わった端末で「JSONファイルを書き出す」</li>
+      <li>ファイルをGoogle Drive等でもう一方の端末へ</li>
+      <li>もう一方の端末で「JSONを取り込む」→「統合する」</li>
+    </ol>`;
+}
+const _sOrigOpenSettings = openSettingsModal;
+openSettingsModal = function() { _sOrigOpenSettings(); syncRenderPanel(); };
+
+const _sOrigInit = init;
+init = function() { _sOrigInit(); syncDeviceId(); syncActDays(G()); };
 
 window.addEventListener('resize', updateDashboardUI);
 window.addEventListener('DOMContentLoaded', init);

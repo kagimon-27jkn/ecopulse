@@ -6,7 +6,7 @@
  *   - 外部プロキシ / RSS / API リクエスト: ネットワーク専用 (キャッシュしない)
  */
 
-const CACHE_VERSION = 'v5-badges100';
+const CACHE_VERSION = 'v7-sync';
 const CACHE_NAME = `ecopulse-${CACHE_VERSION}`;
 
 // インストール時に事前キャッシュするファイル
