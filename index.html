@@ -654,6 +654,7 @@
 
       <!-- ---- Data Management Tab ---- -->
       <div id="stab-content-data" class="p-5 space-y-4 hidden">
+        <div id="cloud-panel" class="rounded-xl p-3 bg-sky-50 border border-sky-200 text-xs"></div>
         <div id="sync-panel" class="rounded-xl p-3 bg-emerald-50 border border-emerald-200 text-xs"></div>
         <div id="backup-status-box" class="rounded-xl p-3 text-xs bg-slate-50 border border-slate-200 text-slate-600"></div>
         <div>
@@ -4088,6 +4089,161 @@ const _oOrigToggleCoop = toggleCoopBtn;
 toggleCoopBtn = function(btn) { _oOrigToggleCoop(btn); if (btn.closest && btn.closest('#memo-coop-areas')) obsUpdateLinksPreview(); };
 const _oOrigOpenMemo = openArticleMemo;
 openArticleMemo = function(id) { _oOrigOpenMemo(id); obsUpdateLinksPreview(); };
+
+// ════════════════════════════════════════════════════════════════
+// ☁️ CLOUD — GitHub Gist による自動同期
+//   ・トークンはこの端末の localStorage（ecopulse_gist）だけに保存
+//     → 書き出しJSON・Gistの中身には含まれない
+//   ・取得 → 統合(syncMerge) → 保存 を自動で行う
+// ════════════════════════════════════════════════════════════════
+const GIST_FILE = 'ecopulse_sync.json';
+const GIST_KEY = 'ecopulse_gist';
+const GIST_API = 'https://api.github.com';
+let _gistBusy = false, _gistTimer = null, _gistErrShown = false;
+let gistStatus = { msg:'', ok:true };
+
+function gistCfg() { try { return JSON.parse(localStorage.getItem(GIST_KEY)) || {}; } catch(_) { return {}; } }
+function gistSaveCfg(c) { try { localStorage.setItem(GIST_KEY, JSON.stringify(c)); } catch(_) {} }
+function gistOn() { const c=gistCfg(); return !!(c.token && c.gistId); }
+
+async function gistFetch(path, opts) {
+  const c=gistCfg(); opts=opts||{};
+  const res=await fetch(GIST_API+path, { method:opts.method||'GET', cache:'no-store',
+    headers:{ 'Accept':'application/vnd.github+json', 'Authorization':'Bearer '+(opts.token||c.token), 'X-GitHub-Api-Version':'2022-11-28', ...(opts.body?{'Content-Type':'application/json'}:{}) },
+    body:opts.body ? JSON.stringify(opts.body) : undefined });
+  if (res.status===401) throw new Error('auth');
+  if (res.status===403 || res.status===404) throw new Error('perm'+res.status);
+  if (!res.ok) throw new Error('http'+res.status);
+  return res.json();
+}
+// クラウドに置くデータ（この端末だけの一時情報は除く）
+function gistPayload() {
+  syncLedgerUpdate();
+  const p=JSON.parse(JSON.stringify(state));
+  ['activeArticle','activeMemoArticleId'].forEach(k=>delete p[k]);
+  if (p.garden) p.garden.moveFrom=null;
+  p.exportedAt=new Date().toISOString();
+  return p;
+}
+function gistRefreshUI() {
+  renderTagFilters(); renderArticles(); updateReadLaterBadge(); updateDashboardUI();
+  if (typeof currentView!=='undefined' && currentView==='garden') renderGarden();
+  if (typeof currentView!=='undefined' && currentView==='badges') renderBadgesView();
+  gistRenderPanel();
+}
+// 取得 → 統合 → 保存
+async function gistSync(reason) {
+  if (!gistOn() || _gistBusy) return;
+  if (!navigator.onLine) { gistStatus={ msg:'オフライン（通信が戻ったら同期します）', ok:false }; gistRenderPanel(); return; }
+  _gistBusy=true; clearTimeout(_gistTimer);
+  const c=gistCfg();
+  try {
+    const gist=await gistFetch('/gists/'+c.gistId);
+    const f=gist.files && gist.files[GIST_FILE];
+    let remote=null;
+    if (f) {
+      let text=f.content;
+      if (f.truncated && f.raw_url) text=await (await fetch(f.raw_url, { cache:'no-store' })).text();
+      try { remote=JSON.parse(text); } catch(_) { remote=null; }
+    }
+    if (remote && Array.isArray(remote.articles) && Array.isArray(remote.history)) {
+      const before=JSON.stringify([state.points, state.readIds.length, state.history.length, Object.keys(state.badgesGot||{}).length, G().layoutAt||0]);
+      gSilent=true;
+      try { syncMerge(remote); _bctx=null; gCheckBadges(true); checkUnlocks(); refreshCreatures(); } finally { gSilent=false; }
+      _bOrigSave();   // ローカル保存（自動同期の再予約はしない）
+      const after=JSON.stringify([state.points, state.readIds.length, state.history.length, Object.keys(state.badgesGot||{}).length, G().layoutAt||0]);
+      if (before!==after) gistRefreshUI();
+    }
+    const payload=JSON.stringify(gistPayload());
+    const sig=gHash(payload.replace(/"exportedAt":"[^"]*"/,'').replace(/"t":\d+/g,''));
+    if (sig!==c.lastSig || !remote) {
+      await gistFetch('/gists/'+c.gistId, { method:'PATCH', body:{ files:{ [GIST_FILE]:{ content:payload } } } });
+      c.lastSig=sig;
+    }
+    _bOrigSave();
+    c.lastSync=new Date().toISOString(); gistSaveCfg(c);
+    gistStatus={ msg:'同期済み', ok:true }; _gistErrShown=false;
+  } catch(e) {
+    const m=String(e.message||e);
+    gistStatus={ ok:false, msg: m==='auth' ? 'トークンが無効です（期限切れの可能性）。新しいトークンで接続し直してください'
+      : m.startsWith('perm') ? 'Gistにアクセスできません（トークンの権限「Gists：読み書き」を確認してください）'
+      : '通信エラー（あとで自動で再試行します）' };
+    if (!_gistErrShown) { showToast('☁️ '+gistStatus.msg); _gistErrShown=true; }
+  } finally { _gistBusy=false; gistRenderPanel(); }
+}
+function gistSchedule(ms) { if (!gistOn()) return; clearTimeout(_gistTimer); _gistTimer=setTimeout(()=>gistSync('auto'), ms||4000); }
+
+// ── 接続・解除 ───────────────────────────────────────────────────
+async function gistConnect() {
+  const inp=document.getElementById('cloud-token'); const token=(inp&&inp.value||'').trim();
+  if (!token) { showToast('トークンを貼り付けてください'); return; }
+  const btn=document.getElementById('cloud-connect-btn'); if (btn) { btn.disabled=true; btn.textContent='接続中…'; }
+  try {
+    // 既存のEcoPulse用Gistを探す（2台目の端末は自動で見つかる）
+    let gistId=null;
+    for (let page=1; page<=5 && !gistId; page++) {
+      const list=await gistFetch(`/gists?per_page=100&page=${page}`, { token });
+      const hit=list.find(g=>g.files && g.files[GIST_FILE]); if (hit) gistId=hit.id;
+      if (list.length<100) break;
+    }
+    let created=false;
+    if (!gistId) {
+      const g=await gistFetch('/gists', { method:'POST', token, body:{ description:'EcoPulse 自動同期データ（アプリが自動で更新します）', public:false,
+        files:{ [GIST_FILE]:{ content:JSON.stringify(gistPayload()) } } } });
+      gistId=g.id; created=true;
+    }
+    gistSaveCfg({ token, gistId });
+    gistStatus={ msg:'接続しました', ok:true };
+    showToast(created ? '☁️ 同期用のGistを作成しました。自動同期を開始します' : '☁️ 既存の同期データを見つけました。統合します');
+    await gistSync('connect');
+  } catch(e) {
+    const m=String(e.message||e);
+    showToast(m==='auth' ? '⚠️ トークンが正しくありません' : m.startsWith('perm') ? '⚠️ トークンに「Gists：読み書き」の権限がありません' : '⚠️ 接続できませんでした（通信を確認してください）');
+  } finally { gistRenderPanel(); }
+}
+function gistDisconnect() {
+  if (!confirm('この端末の自動同期を解除します（Gistのデータと、この端末のデータは残ります）。よろしいですか？')) return;
+  localStorage.removeItem(GIST_KEY); gistStatus={ msg:'', ok:true }; gistRenderPanel(); showToast('自動同期を解除しました');
+}
+function gistRenderPanel() {
+  const el=document.getElementById('cloud-panel'); if (!el) return;
+  const c=gistCfg();
+  if (!gistOn()) {
+    el.innerHTML=`
+      <p class="text-xs font-bold text-slate-800">☁️ 自動同期（GitHub Gist）</p>
+      <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">GitHubで作った「Gistsの読み書き」だけを許可したトークンを貼ると、スマホとPCのデータが自動で同期されます。2台とも同じトークンを貼ってください。</p>
+      <input id="cloud-token" type="password" autocomplete="off" placeholder="github_pat_… を貼り付け"
+        class="w-full mt-2 border border-slate-300 rounded-lg px-2.5 py-2 focus:outline-none focus:border-sky-500 font-mono">
+      <button id="cloud-connect-btn" onclick="gistConnect()" class="w-full mt-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold py-2.5 rounded-lg">接続して自動同期を始める</button>
+      <p class="text-[10px] text-slate-500 mt-1.5">トークンはこの端末のブラウザだけに保存され、書き出しファイルやGistには入りません。</p>`;
+    return;
+  }
+  const last=c.lastSync ? new Date(c.lastSync).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '—';
+  el.innerHTML=`
+    <div class="flex items-center justify-between gap-2">
+      <p class="text-xs font-bold text-slate-800">☁️ 自動同期：<span class="${gistStatus.ok?'text-emerald-700':'text-rose-600'}">${gistStatus.ok?'オン':'要確認'}</span></p>
+      <span class="text-[10px] text-slate-500">最終同期 ${last}</span>
+    </div>
+    ${gistStatus.msg?`<p class="text-[11px] mt-1 ${gistStatus.ok?'text-slate-600':'text-rose-600 font-bold'}">${escapeHtml(gistStatus.msg)}</p>`:''}
+    <p class="text-[10px] text-slate-500 mt-1">アプリを開いたとき・他のアプリから戻ったとき・データが変わった数秒後に自動で同期します。</p>
+    <div class="flex gap-2 mt-2">
+      <button onclick="gistSync('manual')" class="flex-1 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold py-2 rounded-lg">${_gistBusy?'同期中…':'今すぐ同期'}</button>
+      <button onclick="gistDisconnect()" class="px-3 border border-slate-300 text-slate-600 hover:bg-slate-50 text-xs font-bold py-2 rounded-lg">解除</button>
+    </div>`;
+}
+
+// ── 自動実行のきっかけ ───────────────────────────────────────────
+const _cOrigSave = saveState;
+saveState = function() { _cOrigSave(); if (!_gistBusy) gistSchedule(4000); };
+document.addEventListener('visibilitychange', ()=>{ if (!gistOn()) return; if (document.visibilityState==='visible') gistSync('visible'); else if (_gistTimer) gistSync('hidden'); });
+window.addEventListener('online', ()=>gistSync('online'));
+setInterval(()=>{ if (document.visibilityState==='visible') gistSync('interval'); }, 120000);
+
+const _cOrigOpenSettings = openSettingsModal;
+openSettingsModal = function() { _cOrigOpenSettings(); gistRenderPanel(); };
+const _cOrigInit = init;
+init = function() { _cOrigInit(); if (gistOn()) setTimeout(()=>gistSync('startup'), 800); };
+
 window.addEventListener('resize', updateDashboardUI);
 window.addEventListener('DOMContentLoaded', init);
 </script>

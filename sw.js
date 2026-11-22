@@ -6,7 +6,7 @@
  *   - 外部プロキシ / RSS / API リクエスト: ネットワーク専用 (キャッシュしない)
  */
 
-const CACHE_VERSION = 'v9-obs-content';
+const CACHE_VERSION = 'v10-gist-sync';
 const CACHE_NAME = `ecopulse-${CACHE_VERSION}`;
 
 // インストール時に事前キャッシュするファイル
@@ -25,6 +25,8 @@ const DYNAMIC_HOSTS = [
   'api.allorigins.win',
   'rss2json.com',
   'corsproxy.io',
+  'api.github.com',
+  'githubusercontent.com',
 ];
 
 // ─── Install ──────────────────────────────────────────────────────
