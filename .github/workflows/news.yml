@@ -34,25 +34,30 @@ jobs:
           // Googleニュースから環境・生協関連の記事の「見出し・媒体名・リンク・日付」だけを集め、news.json に保存します。
           import fs from 'node:fs';
 
-          // ── 検索テーマ（tag はアプリでの分類のヒント） ──────────────────────
+          // ── 検索テーマ（tag はアプリでの分類のヒント／when は期間。空欄は期間指定なし＝過去の解説・コラムも含む） ──
           const QUERIES = [
-            { q: '食品ロス OR フードロス OR フードバンク',               tag: 'フードロス' },
-            { q: '学食 OR 学生食堂 OR 大学生協 食品ロス OR 環境',         tag: 'フードロス' },
-            { q: '脱炭素 OR カーボンニュートラル OR 再生可能エネルギー', tag: '脱炭素・再エネ' },
-            { q: '自治体 ゼロカーボン OR 脱炭素先行地域',                 tag: '脱炭素・再エネ' },
-            { q: 'プラスチック削減 OR 資源循環 OR リサイクル',           tag: 'プラスチック・資源循環' },
-            { q: '環境 表彰 OR 受賞 OR アワード',                         tag: 'ESG評価・表彰' },
-            { q: '生物多様性 OR 森林保全 OR ネイチャーポジティブ',       tag: '生物多様性・森林' },
-            { q: '環境 規制 OR 法改正 OR 義務化',                         tag: '経済・ルール形成' },
-            { q: '大学 環境 取り組み OR SDGs',                            tag: '' },
-            { q: '大学生協 OR 生協 環境 OR サステナブル',                 tag: '' },
+            { q: '食品ロス OR フードロス OR フードバンク',             tag: 'フードロス',             when: '14d' },
+            { q: '学食 食品ロス OR 大学 食品ロス OR 大学生協 環境',     tag: 'フードロス',             when: '30d' },
+            { q: '脱炭素 OR カーボンニュートラル OR 再生可能エネルギー', tag: '脱炭素・再エネ',       when: '7d'  },
+            { q: 'ゼロカーボンシティ OR 脱炭素先行地域',               tag: '脱炭素・再エネ',         when: '30d' },
+            { q: 'プラスチック削減 OR 資源循環 OR リサイクル',         tag: 'プラスチック・資源循環', when: '14d' },
+            { q: '環境大臣賞 OR グッドライフアワード OR 環境 表彰',    tag: 'ESG評価・表彰',          when: '30d' },
+            { q: '生物多様性 OR 森林保全 OR ネイチャーポジティブ',     tag: '生物多様性・森林',       when: '14d' },
+            { q: '環境規制 OR 環境 法改正 OR プラスチック 義務化',     tag: '経済・ルール形成',       when: '30d' },
+            { q: '大学 SDGs 環境 取り組み',                            tag: '',                       when: '30d' },
+            { q: '環境問題 解説 OR コラム',                            tag: '',                       when: ''    },
+            { q: '脱炭素 わかりやすく OR 基礎知識',                    tag: '脱炭素・再エネ',         when: ''    },
+            { q: '食品ロス 解説 OR コラム',                            tag: 'フードロス',             when: ''    },
           ];
+          // ── 環境フィルター：見出しに環境に関わる言葉がない記事は取り込まない ──
+          const ENV_RE = /食品ロス|フードロス|食ロス|食べ残し|食べきり|フードバンク|フードドライブ|子ども食堂|余剰食品|規格外|食品廃棄|賞味期限|脱炭素|カーボン(?:ニュートラル|オフセット|プライシング|クレジット|フットプリント)|ゼロカーボン|再エネ|再生可能エネルギー|自然エネルギー|太陽光|風力発電|洋上風力|地熱|バイオマス|省エネ|節電|CO2|ＣＯ２|二酸化炭素|温室効果ガス|温暖化|気候変動|気候危機|GX|水素|蓄電池|電気自動車|排出量|プラスチック|プラごみ|マイクロプラ|リサイクル|リユース|リデュース|3R|資源循環|循環型|循環経済|サーキュラー|アップサイクル|ごみ|ゴミ|廃棄物|分別|レジ袋|マイボトル|マイバッグ|容器包装|生物多様性|生態系|森林|里山|里海|植樹|植林|外来種|絶滅危惧|ネイチャーポジティブ|自然保護|自然共生|自然環境|TNFD|30by30|海洋汚染|海洋ごみ|サンゴ|干潟|湿地|ESG|SDGs|ＳＤＧｓ|サステナ|持続可能|エシカル|フェアトレード|環境(?:省|大臣|保全|問題|配慮|負荷|教育|学習|活動|対策|政策|経営|ビジネス|影響|汚染|保護|団体|アセスメント|白書|基本計画|に(?:優しい|やさしい|配慮))|地球環境|公害|水質|大気汚染|COP\d|ＣＯＰ|パリ協定|エコ(?!ノミー|ー)|ビオトープ|コンポスト|堆肥|有機農業|オーガニック|地産地消|グリーン(?:成長|水素|電力|購入|インフラ|トランスフォーメーション)/;
+          const isEnv = t => ENV_RE.test(String(t || ''));
           // 追加キーワード（GitHubの「Settings → Secrets and variables → Actions → Variables」で
           // NEWS_KEYWORDS に「〇〇県 環境,〇〇大学 SDGs」のようにカンマ区切りで登録できます）
-          const EXTRA = (process.env.NEWS_KEYWORDS || '').split(/[,、]/).map(s => s.trim()).filter(Boolean).map(q => ({ q, tag: '' }));
+          const EXTRA = (process.env.NEWS_KEYWORDS || '').split(/[,、]/).map(s => s.trim()).filter(Boolean).map(q => ({ q, tag: '', when: '30d' }));
 
           const BASE = process.env.GN_BASE || 'https://news.google.com';
-          const KEEP_DAYS = 21, MAX_ITEMS = 500, PER_QUERY = 40;
+          const KEEP_DAYS = 45, MAX_ITEMS = 600, PER_QUERY = 40;   // KEEP_DAYS は「集めた日」から数える
 
           const dec = s => s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
             .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
@@ -63,11 +68,11 @@ jobs:
 
           let old = [];
           try { old = JSON.parse(fs.readFileSync('news.json', 'utf8')).items || []; } catch { /* 初回 */ }
-          const map = new Map(old.map(i => [keyOf(i.t), i]));
-          let fetched = 0, failed = 0;
+          const map = new Map(old.filter(i => isEnv(i.t)).map(i => [keyOf(i.t), i]));   // 以前の環境以外の記事もここで取り除く
+          let fetched = 0, failed = 0, skipped = 0;
 
-          for (const { q, tag } of [...QUERIES, ...EXTRA]) {
-            const url = `${BASE}/rss/search?q=${encodeURIComponent(q + ' when:7d')}&hl=ja&gl=JP&ceid=JP:ja`;
+          for (const { q, tag, when } of [...QUERIES, ...EXTRA]) {
+            const url = `${BASE}/rss/search?q=${encodeURIComponent(when ? `${q} when:${when}` : q)}&hl=ja&gl=JP&ceid=JP:ja`;
             try {
               const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (EcoPulse news collector)' } });
               if (!res.ok) { console.log('skip', res.status, q); failed++; continue; }
@@ -80,19 +85,20 @@ jobs:
                 const pd = pick(it, 'pubDate');
                 const d = pd && !isNaN(new Date(pd)) ? new Date(pd).toISOString() : new Date().toISOString();
                 if (!t || !u) continue;
+                if (!isEnv(t)) { skipped++; continue; }
                 const k = keyOf(t);
-                if (!map.has(k)) { map.set(k, { t, u, s, d, q: tag }); fetched++; }
+                if (!map.has(k)) { map.set(k, { t, u, s, d, q: tag, f: new Date().toISOString() }); fetched++; }
               }
             } catch (e) { console.log('error', q, e.message); failed++; }
             await new Promise(r => setTimeout(r, 1500));   // 相手に負担をかけないよう間隔をあける
           }
 
           const cutoff = Date.now() - KEEP_DAYS * 86400000;
-          const items = [...map.values()].filter(i => new Date(i.d).getTime() >= cutoff)
-            .sort((a, b) => b.d.localeCompare(a.d)).slice(0, MAX_ITEMS);
+          const items = [...map.values()].filter(i => new Date(i.f || i.d).getTime() >= cutoff)
+            .sort((a, b) => (b.f || b.d).localeCompare(a.f || a.d) || b.d.localeCompare(a.d)).slice(0, MAX_ITEMS);
           const changed = JSON.stringify(items) !== JSON.stringify(old);
           if (changed) fs.writeFileSync('news.json', JSON.stringify({ updated: new Date().toISOString(), count: items.length, items }, null, 1));
-          console.log(`新規 ${fetched} 件 / 合計 ${items.length} 件 / 失敗 ${failed} 件 / ${changed ? '更新あり' : '変更なし'}`);
+          console.log(`新規 ${fetched} 件 / 環境以外で除外 ${skipped} 件 / 合計 ${items.length} 件 / 失敗 ${failed} 件 / ${changed ? '更新あり' : '変更なし'}`);
           if (failed === QUERIES.length + EXTRA.length) process.exit(1);
 
           SCRIPT_END
