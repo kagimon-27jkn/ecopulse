@@ -177,9 +177,9 @@
       <!-- RSS refresh -->
       <button onclick="fetchRSSFeeds()" id="rss-btn"
         class="relative flex items-center gap-1 bg-blue-50 active:bg-blue-100 hover:bg-blue-100 text-blue-800 border border-blue-200 p-2 sm:px-3 sm:py-1.5 rounded-xl text-xs font-bold transition shadow-sm"
-        title="RSSフィード更新">
+        title="ニュースを更新">
         <i data-lucide="rss" id="rss-icon" class="w-4 h-4 text-blue-500"></i>
-        <span class="hidden md:inline rss-label">RSS更新</span>
+        <span class="hidden md:inline rss-label">更新</span>
       </button>
 
       <!-- Quiz -->
@@ -214,12 +214,12 @@
       </button>
       <button onclick="switchTab('readlater')" id="tab-readlater"
         class="px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-1">
-        <span>📌 未読</span>
+        <span>📌 あとで</span>
         <span id="readlater-count-badge" class="hidden bg-slate-700 text-white text-[10px] px-1.5 py-0.5 rounded-full">0</span>
       </button>
       <button onclick="switchTab('history')" id="tab-history"
         class="px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition flex items-center justify-center gap-1.5">
-        <span>履歴</span>
+        <span>✅ 既読</span>
         <span id="history-count-badge" class="bg-slate-300 text-slate-700 text-[10px] px-1.5 rounded-full">0</span>
       </button>
     </div>
@@ -231,6 +231,7 @@
       <button onclick="setTypeFilter('自治体')" data-type="自治体" class="type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition shrink-0">🏛️ 自治体</button>
       <button onclick="setTypeFilter('企業・評価')" data-type="企業・評価" class="type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition shrink-0">🏢 企業・評価</button>
       <button onclick="setTypeFilter('世界動向')" data-type="世界動向" class="type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition shrink-0">🌍 世界動向</button>
+      <button onclick="setTypeFilter('大学・生協')" data-type="大学・生協" class="type-btn px-3 py-1.5 rounded-full text-xs font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 transition shrink-0">🎓 大学・生協</button>
     </div>
   </div>
 
@@ -281,6 +282,7 @@
                 <option value="企業・評価">企業・評価</option>
                 <option value="自治体">自治体</option>
                 <option value="世界動向">世界動向</option>
+                <option value="大学・生協">大学・生協</option>
               </select>
             </div>
             <div class="flex-1 min-w-[110px]">
@@ -549,7 +551,7 @@
       <button onclick="switchSettingsTab('obsidian')" id="stab-obsidian"
         class="shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-emerald-600 text-emerald-700 whitespace-nowrap">Obsidian設定</button>
       <button onclick="switchSettingsTab('rss')" id="stab-rss"
-        class="shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">RSS購読</button>
+        class="shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">ニュース・RSS</button>
       <button onclick="switchSettingsTab('bookmarklet')" id="stab-bookmarklet"
         class="shrink-0 px-4 py-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700 whitespace-nowrap">ブックマークレット</button>
       <button onclick="switchSettingsTab('data')" id="stab-data"
@@ -604,6 +606,8 @@
 
       <!-- ---- RSS Tab ---- -->
       <div id="stab-content-rss" class="p-5 space-y-4 hidden">
+        <div id="news-panel" class="rounded-xl p-3 bg-blue-50 border border-blue-200 text-xs"></div>
+        <p class="text-xs font-bold text-slate-700 pt-1">自分でRSSを追加する（任意）</p>
         <p class="text-xs text-slate-600 leading-relaxed">
           RSSフィードURLを登録し「RSS更新」ボタンで新着記事を自動取得できます。外部プロキシ（rss2json.com / allorigins.win）を経由するため、一部フィードは取得できない場合があります。
         </p>
@@ -1468,6 +1472,7 @@ function renderHistoryTab() {
           <span class="text-[11px] font-bold text-emerald-700">#${item.article.tag}</span>
           <div class="flex items-center gap-2">
             ${item.sentToObsidian ? '<span class="text-[10px] font-bold bg-purple-100 text-purple-700 px-2 py-0.5 rounded-md">Obsidian済</span>' : ''}
+            <a href="${escapeHtml(item.article.url)}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-emerald-700 hover:underline py-1">記事を開く</a>
             <button onclick="reSendHistoryToObsidian(${oi})" class="text-xs font-bold text-purple-600 hover:underline py-1">再送信</button>
           </div>
         </div>
@@ -4243,6 +4248,263 @@ const _cOrigOpenSettings = openSettingsModal;
 openSettingsModal = function() { _cOrigOpenSettings(); gistRenderPanel(); };
 const _cOrigInit = init;
 init = function() { _cOrigInit(); if (gistOn()) setTimeout(()=>gistSync('startup'), 800); };
+
+
+// ════════════════════════════════════════════════════════════════
+// 📰 NEWS — ニュース自動取得・自動分類・既読タブ
+// ════════════════════════════════════════════════════════════════
+const NEWS_PRESETS = [
+  { q:'食品ロス OR フードロス OR フードバンク',               tag:'フードロス' },
+  { q:'脱炭素 OR カーボンニュートラル OR 再生可能エネルギー', tag:'脱炭素・再エネ' },
+  { q:'プラスチック削減 OR 資源循環 OR リサイクル',           tag:'プラスチック・資源循環' },
+  { q:'大学 環境 取り組み OR SDGs',                            tag:'' },
+  { q:'生物多様性 OR 森林保全 OR ネイチャーポジティブ',       tag:'生物多様性・森林' },
+  { q:'環境 表彰 OR 受賞 OR アワード',                         tag:'ESG評価・表彰' },
+];
+const NEWS_THEMES = [
+  ['フードロス',             /食品ロス|フードロス|食べ残し|食べきり|フードバンク|フードドライブ|余剰食品|賞味期限|規格外|食品廃棄|mottECO|生ごみ|食ロス|給食/g],
+  ['脱炭素・再エネ',         /脱炭素|カーボンニュートラル|再エネ|再生可能エネルギー|太陽光|風力|省エネ|CO2|ＣＯ２|二酸化炭素|温室効果ガス|GX|気候変動|温暖化|水素|蓄電池|ゼロカーボン|排出/g],
+  ['プラスチック・資源循環', /プラスチック|プラごみ|リサイクル|リユース|資源循環|サーキュラー|循環経済|レジ袋|マイボトル|ごみ削減|分別|古着|アップサイクル|廃棄物|容器包装|包装/g],
+  ['ESG評価・表彰',          /ESG|表彰|受賞|アワード|大賞|ランキング|認証|CDP|格付|環境大臣賞|優秀賞|金賞/g],
+  ['生物多様性・森林',       /生物多様性|森林|里山|生態系|ネイチャー|TNFD|30by30|絶滅|植樹|外来種|海洋|サンゴ|野生|自然保護|自然共生|湿地/g],
+  ['経済・ルール形成',       /法改正|規制|義務化|義務|条例|制度|政策|指針|開示|基準|課税|補助金|COP|交渉|国会|閣議|省令|規則/g],
+];
+const NEWS_AREAS = [
+  ['食堂・フード',         /食堂|学食|給食|食品|食べ|フード|メニュー|弁当|食材/],
+  ['購買・商品調達',       /商品|調達|販売|容器|包装|購買|サプライ|小売|レジ袋|ブランド/],
+  ['店舗運営・省エネ',     /省エネ|電力|再エネ|太陽光|店舗|照明|空調|冷蔵|エネルギー/],
+  ['学生企画・啓発',       /学生|啓発|イベント|ワークショップ|授業|教育|若者|子ども|講座|体験/],
+  ['組織方針・ガバナンス', /方針|計画|目標|開示|ガバナンス|経営|戦略|報告書|宣言|指針/],
+];
+function newsCount(re, text) { return (text.match(re) || []).length; }
+function newsClassify(title, source, hint) {
+  const t = String(title||''), s = String(source||''), all = t + ' ' + s;
+  // テーマ：キーワードの出現数＋検索テーマのヒント
+  let best = hint || '', bestScore = 0;
+  NEWS_THEMES.forEach(([tag, re])=>{ const sc = newsCount(re, t)*2 + (tag===hint ? 1 : 0); if (sc > bestScore) { best = tag; bestScore = sc; } });
+  if (!best) best = '脱炭素・再エネ';
+  // 種別
+  let type = '企業・評価';
+  if (/大学|大学生|学生|キャンパス|生協|高専|学園|研究室|短大/.test(all)) type = '大学・生協';
+  else if (/[一-龥々〇ぁ-んァ-ヶー0-9０-９]{1,6}(?:市|町|村|県|都|府|区)|自治体|知事|市長|町長|村長|役所|県庁|都庁|府庁|議会/.test(t.replace(/政府|都市|市場|市販|府省|首都/g,'')) || /(?:市|町|村|県|都|府)$|役所/.test(s)) type = '自治体';
+  else if (/世界|海外|国際|国連|EU|ＥＵ|欧州|米国|米政府|中国|英国|ドイツ|フランス|COP|グローバル|インド|アジア|アフリカ/.test(t)) type = '世界動向';
+  // 事例の性質
+  let nature = '';
+  if (/義務|規制|法改正|条例|施行|禁止|基準|省令|閣議|規則/.test(t)) nature = '義務・規制動向';
+  else if (/表彰|受賞|大賞|先進|全国初|初めて|初の|導入|開始|スタート|実証|発表/.test(t)) nature = '先進事例・表彰';
+  else if (/補助|助成|募集|公募|連携|協定|支援|提携|協働/.test(t)) nature = '補助・連携機会';
+  // 生協事業領域（最大2つ）
+  const coopAreas = NEWS_AREAS.filter(([,re])=>re.test(t)).map(([a])=>a).slice(0,2);
+  return { tag:best, type, nature, coopAreas };
+}
+function newsClassifyArticle(a) { Object.assign(a, newsClassify(a.title, a.source, a.hint||'')); a.cls = true; return a; }
+function newsKey(t) { return String(t||'').replace(/[\s　「」『』【】()（）・、。!！?？:：\-–—|｜"'”“]/g,'').toLowerCase(); }
+function newsCfg() {
+  if (!state.news) state.news = {};
+  const n = state.news;
+  if (n.auto === undefined) n.auto = true;
+  if (!Array.isArray(n.keywords)) n.keywords = [];
+  return n;
+}
+
+// ── 記事の取り込み・整理 ─────────────────────────────────────────
+function newsMerge(items) {
+  const ids = new Set(state.articles.map(a=>a.id)), keys = new Set(state.articles.map(a=>newsKey(a.title))), urls = new Set(state.articles.map(a=>a.url));
+  let added = 0;
+  (items||[]).forEach(it=>{
+    if (!it || !it.t || !it.u) return;
+    const k = newsKey(it.t); if (!k || keys.has(k) || urls.has(it.u)) return;
+    const id = 'gn-' + gHash(k).toString(36);
+    if (ids.has(id) || state.readIds.includes(id)) return;
+    const d = new Date(it.d || Date.now());
+    const art = { id, title:it.t, source:it.s || 'Googleニュース', url:it.u, date: isNaN(d) ? gToday() : gToday(d),
+      readLater:false, isFromRSS:true, auto:true, hint:it.q || '', addedAt:Date.now() };
+    newsClassifyArticle(art);
+    state.articles.push(art); ids.add(id); keys.add(k); urls.add(it.u); added++;
+  });
+  return added;
+}
+function newsPrune() {
+  const read = new Set(state.readIds), cutoff = Date.now() - 21*86400000;
+  state.articles = state.articles.filter(a=>!(a.auto && !read.has(a.id) && !a.readLater && new Date(a.date+'T00:00:00').getTime() < cutoff));
+  const autoUnread = state.articles.filter(a=>a.auto && !read.has(a.id) && !a.readLater).sort((x,y)=>String(y.date).localeCompare(String(x.date)));
+  if (autoUnread.length > 400) { const drop = new Set(autoUnread.slice(400).map(a=>a.id)); state.articles = state.articles.filter(a=>!drop.has(a.id)); }
+  state.articles.sort((x,y)=>String(y.date||'').localeCompare(String(x.date||'')));
+}
+function newsReclassifyOld() {
+  const read = new Set(state.readIds); let n = 0;
+  state.articles.forEach(a=>{ if (a.isFromRSS && !a.cls && !read.has(a.id)) { newsClassifyArticle(a); n++; } });
+  return n;
+}
+
+// ── 取得 ─────────────────────────────────────────────────────────
+function newsJsonUrls() {
+  const urls = [], h = location.hostname, repo = (location.pathname.split('/')[1] || '').trim();
+  if (/\.github\.io$/.test(h) && repo && !repo.includes('.')) urls.push(`https://raw.githubusercontent.com/${h.split('.')[0]}/${repo}/main/news.json`);
+  try { urls.push(new URL('news.json', location.href).href); } catch(_) {}
+  return urls;
+}
+const NEWS_PROXIES = [
+  u => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(u),
+  u => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u),
+  u => 'https://corsproxy.io/?url=' + encodeURIComponent(u),
+];
+function newsGnUrl(q) { return 'https://news.google.com/rss/search?q=' + encodeURIComponent(q + ' when:7d') + '&hl=ja&gl=JP&ceid=JP:ja'; }
+async function newsViaProxy(url) {
+  for (const p of NEWS_PROXIES) {
+    try { const r = await fetchWithTimeout(p(url), 12000); if (!r.ok) continue; const t = await r.text(); if (t.includes('<item')) return t; } catch(_) {}
+  }
+  throw new Error('proxy');
+}
+function newsParseXML(xml, hint) {
+  const doc = new DOMParser().parseFromString(xml, 'application/xml');
+  return [...doc.querySelectorAll('item')].slice(0, 30).map(it=>{
+    const s = (it.querySelector('source')||{}).textContent || '';
+    let t = ((it.querySelector('title')||{}).textContent || '').trim();
+    if (s && t.endsWith(' - ' + s.trim())) t = t.slice(0, -(s.trim().length + 3)).trim();
+    return { t, u:((it.querySelector('link')||{}).textContent || '').trim(), s:s.trim(), d:(it.querySelector('pubDate')||{}).textContent || '', q:hint };
+  });
+}
+let _newsBusy = false;
+function newsSpin(on) { const b=document.getElementById('rss-btn'), i=document.getElementById('rss-icon'); if (b) b.disabled=on; if (i) i.classList.toggle('rss-spin', on); }
+async function newsRefresh(force) {
+  const N = newsCfg(); if (_newsBusy) return;
+  if (!force && (!N.auto || Date.now() - (N.lastCheck||0) < 60*60*1000)) return;
+  _newsBusy = true; newsSpin(true);
+  let added = 0, got = false;
+  try {
+    // ① GitHubが集めた news.json（安定）
+    for (const u of newsJsonUrls()) {
+      try {
+        const r = await fetchWithTimeout(u + (u.includes('?')?'&':'?') + 't=' + Date.now(), 10000);
+        if (!r.ok) continue;
+        const j = await r.json();
+        if (j && Array.isArray(j.items)) { added += newsMerge(j.items); N.source = 'github'; N.remoteUpdated = j.updated || ''; got = true; break; }
+      } catch(_) {}
+    }
+    // ② 未設定のときは直接取得（予備）
+    if (!got) {
+      for (const p of NEWS_PRESETS) { try { added += newsMerge(newsParseXML(await newsViaProxy(newsGnUrl(p.q)), p.tag)); got = true; } catch(_) {} }
+      if (got) N.source = 'direct';
+    }
+    // ③ 追加キーワード（6時間ごと）
+    if (N.keywords.length && (force || Date.now() - (N.lastKw||0) > 6*3600000)) {
+      for (const kw of N.keywords.slice(0, 5)) { try { added += newsMerge(newsParseXML(await newsViaProxy(newsGnUrl(kw)), '')); got = true; } catch(_) {} }
+      N.lastKw = Date.now();
+    }
+    // ④ 自分で登録したRSS（6時間ごと）
+    if (state.rssFeeds.length && (force || Date.now() - (N.lastRss||0) > 6*3600000)) {
+      for (const f of state.rssFeeds) {
+        try { (await fetchSingleRSS(f.url, f.name)).forEach(a=>{ if (!checkDuplicate(a.url, a.title) && !state.articles.some(x=>newsKey(x.title)===newsKey(a.title))) { newsClassifyArticle(a); a.addedAt=Date.now(); state.articles.push(a); added++; state.rssArticleCount=(state.rssArticleCount||0)+1; } }); got = true; } catch(_) {}
+      }
+      N.lastRss = Date.now();
+    }
+    N.lastCheck = Date.now(); if (got) N.lastOk = Date.now();
+    newsPrune(); saveState(); renderArticles(); updateReadLaterBadge();
+    if (force || added) showToast(added ? `📰 新しい記事を${added}件取得しました` : got ? '新しい記事はありませんでした' : '⚠️ ニュースを取得できませんでした（通信を確認してください）');
+  } finally { _newsBusy = false; newsSpin(false); newsRenderPanel(); }
+}
+
+// ── 最新フィード（未読のみ・30件ずつ） ───────────────────────────
+let newsShown = 30;
+function newsMore() { newsShown += 30; renderArticles(); }
+renderFeedTab = function() {
+  const container = document.getElementById('article-list');
+  const read = new Set(state.readIds);
+  const list = state.articles.filter(a=>!read.has(a.id)
+    && (state.selectedType==='ALL' || a.type===state.selectedType)
+    && (state.selectedTag==='すべて' || a.tag===state.selectedTag))
+    .sort((x,y)=>String(y.date||'').localeCompare(String(x.date||'')));
+  const N = newsCfg();
+  const when = N.lastOk ? new Date(N.lastOk).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '未取得';
+  const head = `<div class="col-span-full flex items-center justify-between gap-2 text-[11px] text-slate-500 -mb-1">
+      <span>未読 <b class="text-slate-700">${list.length}</b> 件 ／ 読んだ記事は「既読」タブへ</span><span>🔄 ${when}</span></div>`;
+  if (!list.length) {
+    container.innerHTML = head + `<div class="col-span-full text-center py-12 bg-white rounded-2xl border border-slate-200 px-4"><p class="text-3xl mb-2">🎉</p>
+      <p class="text-sm font-bold text-slate-700">未読の記事はありません</p><p class="text-xs text-slate-400 mt-1">上の「更新」ボタンで新しいニュースを取得できます</p></div>`;
+    return;
+  }
+  const dayAgo = Date.now() - 86400000;
+  container.innerHTML = head + list.slice(0, newsShown).map(art=>`
+      <div onclick="openArticleReader('${art.id}')" class="group bg-white active:scale-[0.99] hover:bg-emerald-50/30 rounded-2xl p-4 sm:p-5 border ${art.readLater?'border-dashed border-slate-300':'border-slate-200 hover:border-emerald-400'} shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+        <div>
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-lg border ${typeBadgeColor(art.type)} shrink-0">${art.type}</span>
+            <div class="flex flex-wrap items-center gap-1 justify-end">
+              ${(art.addedAt||0) > dayAgo ? '<span class="text-[10px] font-black bg-rose-500 text-white px-1.5 py-0.5 rounded">NEW</span>' : ''}
+              ${art.readLater ? '<span class="text-[10px] font-bold bg-slate-700 text-white px-1.5 py-0.5 rounded">📌 あとで</span>' : ''}${naturePill(art.nature)}
+              <span class="text-[11px] text-slate-400">${art.date}</span>
+            </div>
+          </div>
+          <h3 class="font-bold text-sm sm:text-[15px] text-slate-800 group-hover:text-emerald-800 leading-snug mb-1 transition">${escapeHtml(art.title)}</h3>
+          ${coopAreaPills(art.coopAreas)}
+        </div>
+        <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-2 mt-2">
+          <div class="min-w-0">
+            <p class="text-xs font-bold text-slate-600 truncate">${escapeHtml(art.source)}</p>
+            <span class="text-[11px] font-bold text-emerald-700">#${art.tag}</span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button onclick="event.stopPropagation(); openArticleMemo('${art.id}')" class="bg-purple-100 hover:bg-purple-200 active:bg-purple-300 text-purple-700 px-2.5 py-2 rounded-xl transition text-xs font-bold flex items-center gap-1" title="読了メモを書く">✍️ <span class="hidden sm:inline">メモ</span></button>
+            <span class="bg-slate-100 group-hover:bg-emerald-600 group-hover:text-white text-slate-600 p-2 rounded-xl transition"><i data-lucide="external-link" class="w-4 h-4"></i></span>
+          </div>
+        </div>
+      </div>`).join('')
+    + (list.length > newsShown ? `<div class="col-span-full text-center"><button onclick="newsMore()" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold px-6 py-3 rounded-xl shadow-sm">もっと見る（残り ${list.length - newsShown} 件）</button></div>` : '');
+  if (window.lucide) lucide.createIcons();
+};
+const _nOrigType = setTypeFilter; setTypeFilter = function(t) { newsShown = 30; _nOrigType(t); };
+const _nOrigTag = setTagFilter;   setTagFilter  = function(t) { newsShown = 30; _nOrigTag(t); };
+
+// 種別「大学・生協」の色
+const _nOrigTypeColor = typeBadgeColor;
+typeBadgeColor = function(type) { return type === '大学・生協' ? 'bg-purple-50 text-purple-700 border-purple-200' : _nOrigTypeColor(type); };
+SYNC_COUNTERS.push(['s','typeCounts.大学・生協',0]);
+
+// ── 設定画面：ニュース自動取得 ───────────────────────────────────
+function newsSaveSettings() {
+  const N = newsCfg();
+  N.auto = !!(document.getElementById('news-auto')||{}).checked;
+  N.keywords = ((document.getElementById('news-keywords')||{}).value || '').split(/[,、\n]/).map(s=>s.trim()).filter(Boolean).slice(0,5);
+  N.lastKw = 0; saveState(); showToast('ニュースの設定を保存しました'); newsRenderPanel();
+}
+function newsRenderPanel() {
+  const el = document.getElementById('news-panel'); if (!el) return;
+  const N = newsCfg();
+  const fmt = v => v ? new Date(v).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '—';
+  const src = N.source==='github' ? `<span class="text-emerald-700 font-bold">✅ GitHub自動収集（3時間ごと）</span>　収集：${fmt(N.remoteUpdated)}`
+            : N.source==='direct' ? `<span class="text-amber-700 font-bold">⚠️ 直接取得で動作中</span>（GitHub自動収集が未設定です。不安定なことがあります）`
+            : '<span class="text-slate-500">まだ取得していません</span>';
+  el.innerHTML = `
+    <p class="text-xs font-bold text-slate-800">📰 ニュース自動取得</p>
+    <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">新聞社・テレビ・地方紙・自治体・大学などのニュースを、Googleニュースから環境・生協関連のテーマで自動で集めます。RSSの登録は不要です。</p>
+    <p class="text-[11px] mt-2">${src}</p>
+    <p class="text-[11px] text-slate-500 mt-0.5">アプリでの最終確認：${fmt(N.lastCheck)}</p>
+    <label class="flex items-center gap-2 mt-2.5 text-xs font-bold text-slate-700"><input id="news-auto" type="checkbox" ${N.auto?'checked':''} class="w-4 h-4 accent-blue-600">アプリを開いたときに自動で更新する</label>
+    <label class="block text-[11px] font-bold text-slate-700 mt-2.5">追加キーワード（カンマ区切り・最大5つ）</label>
+    <input id="news-keywords" type="text" value="${escapeHtml(N.keywords.join(', '))}" placeholder="例：〇〇県 環境, 〇〇大学 SDGs"
+      class="w-full mt-1 border border-slate-300 rounded-lg px-2.5 py-2 focus:outline-none focus:border-blue-500">
+    <div class="flex gap-2 mt-2.5">
+      <button onclick="newsSaveSettings()" class="flex-1 bg-white border border-blue-300 text-blue-700 text-xs font-bold py-2 rounded-lg hover:bg-blue-50">設定を保存</button>
+      <button onclick="newsRefresh(true)" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 rounded-lg">今すぐ取得</button>
+    </div>`;
+}
+const _nOrigOpenSettings = openSettingsModal;
+openSettingsModal = function() { _nOrigOpenSettings(); newsRenderPanel(); };
+
+// ── ヘッダーの「更新」ボタン・自動更新 ────────────────────────────
+fetchRSSFeeds = function() { return newsRefresh(true); };
+document.addEventListener('visibilitychange', ()=>{ if (document.visibilityState==='visible') newsRefresh(false); });
+const _nOrigInit = init;
+init = function() {
+  _nOrigInit();
+  if (!state.typeCounts) state.typeCounts = {};
+  if (state.typeCounts['大学・生協'] == null) state.typeCounts['大学・生協'] = 0;
+  newsCfg();
+  if (newsReclassifyOld()) saveState();
+  renderArticles();
+  setTimeout(()=>newsRefresh(false), 1500);
+};
 
 window.addEventListener('resize', updateDashboardUI);
 window.addEventListener('DOMContentLoaded', init);

@@ -6,7 +6,7 @@
  *   - 外部プロキシ / RSS / API リクエスト: ネットワーク専用 (キャッシュしない)
  */
 
-const CACHE_VERSION = 'v10-gist-sync';
+const CACHE_VERSION = 'v11-news';
 const CACHE_NAME = `ecopulse-${CACHE_VERSION}`;
 
 // インストール時に事前キャッシュするファイル
@@ -27,6 +27,8 @@ const DYNAMIC_HOSTS = [
   'corsproxy.io',
   'api.github.com',
   'githubusercontent.com',
+  'news.google.com',
+  'codetabs.com',
 ];
 
 // ─── Install ──────────────────────────────────────────────────────
@@ -72,6 +74,12 @@ self.addEventListener('fetch', event => {
   // ① 動的ホスト → キャッシュせずブラウザに任せる
   if (DYNAMIC_HOSTS.some(h => url.hostname.includes(h))) {
     return; // fall through to network
+  }
+
+  // news.json は常に最新を取りに行く（通信できないときだけ保存版）
+  if (url.origin === self.location.origin && url.pathname.endsWith('/news.json')) {
+    event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+    return;
   }
 
   // ② 同一オリジン（アプリ本体）→ Cache-first + バックグラウンド更新
