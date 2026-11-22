@@ -1,0 +1,112 @@
+# EcoPulse ニュース自動収集
+# 3時間ごとにGoogleニュースから環境・生協関連の記事を集め、news.json を更新します。
+name: EcoPulse ニュース収集
+
+on:
+  schedule:
+    - cron: '17 */3 * * *'   # 3時間ごと（時刻は混雑を避けて17分にしています）
+  workflow_dispatch:          # Actionsの画面から手動でも実行できます
+
+permissions:
+  contents: write             # news.json を保存するための権限
+
+concurrency:
+  group: ecopulse-news
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: ニュースを集める
+        env:
+          NEWS_KEYWORDS: ${{ vars.NEWS_KEYWORDS }}
+        run: |
+          cat > /tmp/fetch-news.mjs <<'SCRIPT_END'
+          // EcoPulse ニュース収集（GitHub Actions が3時間ごとに実行）
+          // Googleニュースから環境・生協関連の記事の「見出し・媒体名・リンク・日付」だけを集め、news.json に保存します。
+          import fs from 'node:fs';
+
+          // ── 検索テーマ（tag はアプリでの分類のヒント） ──────────────────────
+          const QUERIES = [
+            { q: '食品ロス OR フードロス OR フードバンク',               tag: 'フードロス' },
+            { q: '学食 OR 学生食堂 OR 大学生協 食品ロス OR 環境',         tag: 'フードロス' },
+            { q: '脱炭素 OR カーボンニュートラル OR 再生可能エネルギー', tag: '脱炭素・再エネ' },
+            { q: '自治体 ゼロカーボン OR 脱炭素先行地域',                 tag: '脱炭素・再エネ' },
+            { q: 'プラスチック削減 OR 資源循環 OR リサイクル',           tag: 'プラスチック・資源循環' },
+            { q: '環境 表彰 OR 受賞 OR アワード',                         tag: 'ESG評価・表彰' },
+            { q: '生物多様性 OR 森林保全 OR ネイチャーポジティブ',       tag: '生物多様性・森林' },
+            { q: '環境 規制 OR 法改正 OR 義務化',                         tag: '経済・ルール形成' },
+            { q: '大学 環境 取り組み OR SDGs',                            tag: '' },
+            { q: '大学生協 OR 生協 環境 OR サステナブル',                 tag: '' },
+          ];
+          // 追加キーワード（GitHubの「Settings → Secrets and variables → Actions → Variables」で
+          // NEWS_KEYWORDS に「〇〇県 環境,〇〇大学 SDGs」のようにカンマ区切りで登録できます）
+          const EXTRA = (process.env.NEWS_KEYWORDS || '').split(/[,、]/).map(s => s.trim()).filter(Boolean).map(q => ({ q, tag: '' }));
+
+          const BASE = process.env.GN_BASE || 'https://news.google.com';
+          const KEEP_DAYS = 21, MAX_ITEMS = 500, PER_QUERY = 40;
+
+          const dec = s => s.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
+            .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
+            .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n)).replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+            .replace(/&amp;/g, '&');
+          const pick = (x, tag) => { const m = x.match(new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)</${tag}>`)); return m ? dec(m[1]).trim() : ''; };
+          const keyOf = t => t.replace(/[\s　「」『』【】()（）・、。!！?？:：\-–—|｜"'”“]/g, '').toLowerCase();
+
+          let old = [];
+          try { old = JSON.parse(fs.readFileSync('news.json', 'utf8')).items || []; } catch { /* 初回 */ }
+          const map = new Map(old.map(i => [keyOf(i.t), i]));
+          let fetched = 0, failed = 0;
+
+          for (const { q, tag } of [...QUERIES, ...EXTRA]) {
+            const url = `${BASE}/rss/search?q=${encodeURIComponent(q + ' when:7d')}&hl=ja&gl=JP&ceid=JP:ja`;
+            try {
+              const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (EcoPulse news collector)' } });
+              if (!res.ok) { console.log('skip', res.status, q); failed++; continue; }
+              const xml = await res.text();
+              for (const it of xml.split('<item>').slice(1, PER_QUERY + 1)) {
+                const s = pick(it, 'source');
+                let t = pick(it, 'title');
+                if (s && t.endsWith(' - ' + s)) t = t.slice(0, -(s.length + 3)).trim();
+                const u = pick(it, 'link');
+                const pd = pick(it, 'pubDate');
+                const d = pd && !isNaN(new Date(pd)) ? new Date(pd).toISOString() : new Date().toISOString();
+                if (!t || !u) continue;
+                const k = keyOf(t);
+                if (!map.has(k)) { map.set(k, { t, u, s, d, q: tag }); fetched++; }
+              }
+            } catch (e) { console.log('error', q, e.message); failed++; }
+            await new Promise(r => setTimeout(r, 1500));   // 相手に負担をかけないよう間隔をあける
+          }
+
+          const cutoff = Date.now() - KEEP_DAYS * 86400000;
+          const items = [...map.values()].filter(i => new Date(i.d).getTime() >= cutoff)
+            .sort((a, b) => b.d.localeCompare(a.d)).slice(0, MAX_ITEMS);
+          const changed = JSON.stringify(items) !== JSON.stringify(old);
+          if (changed) fs.writeFileSync('news.json', JSON.stringify({ updated: new Date().toISOString(), count: items.length, items }, null, 1));
+          console.log(`新規 ${fetched} 件 / 合計 ${items.length} 件 / 失敗 ${failed} 件 / ${changed ? '更新あり' : '変更なし'}`);
+          if (failed === QUERIES.length + EXTRA.length) process.exit(1);
+
+          SCRIPT_END
+          node /tmp/fetch-news.mjs
+
+      - name: news.json を保存
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add news.json
+          if git diff --cached --quiet; then
+            echo "変更なし"
+          else
+            git commit -m "📰 ニュース更新"
+            git pull --rebase
+            git push
+          fi
