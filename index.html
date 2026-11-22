@@ -17,7 +17,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@mozilla/readability@0.5.0/Readability.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap');
     body {
       font-family: 'Inter', 'Noto Sans JP', sans-serif;
       background-color: #f0f7f4;
@@ -51,6 +51,18 @@
       input[type=text], input[type=url], textarea, select { font-size: 0.75rem !important; }
     }
     .rss-spin { animation: spin-anim 1s linear infinite; }
+    /* ── Left Drawer ── */
+    #left-drawer { transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
+    #left-drawer.open { transform: translateX(0); }
+    #drawer-overlay { opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+    #drawer-overlay.open { opacity: 1; pointer-events: all; }
+    .drawer-nav-item.active { background:#d1fae5 !important; color:#065f46 !important; }
+    .drawer-nav-item.active .drawer-sub { color:#059669 !important; }
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
+    @keyframes splash-rise { from { transform:translateY(60px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+    #splash-inner { animation: splash-rise 0.45s cubic-bezier(0.34,1.4,0.64,1); }
+    #v4-iframe { width:100%; border:0; height:calc(100dvh - 56px); height:calc(100svh - 56px); display:block; }
     .peer:checked ~ div { border-color: #6366f1 !important; background:#eef2ff !important; color: #4338ca !important; }
     /* ── Reader article content ── */
     #reader-article-body { font-size:0.925rem; line-height:1.8; color:#334155; }
@@ -85,9 +97,13 @@
 <!-- ===== HEADER ===== -->
 <header class="bg-white/95 backdrop-blur-md border-b border-emerald-100 sticky top-0 z-30 shadow-sm"
   style="padding-top: env(safe-area-inset-top)">
-  <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-2">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center justify-between gap-1.5">
 
-    <!-- Logo -->
+    <!-- Left: hamburger + logo -->
+    <div class="flex items-center gap-0.5 shrink-0">
+      <button onclick="openDrawer()" class="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition -ml-1.5" title="メニュー">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
     <div class="flex items-center gap-2 shrink-0">
       <div class="bg-emerald-600 text-white p-1.5 sm:p-2 rounded-xl shadow-sm">
         <i data-lucide="sprout" class="w-4 h-4 sm:w-5 sm:h-5"></i>
@@ -100,6 +116,7 @@
         <p class="text-[10px] sm:text-[11px] text-emerald-700 font-medium mt-0.5 hidden sm:block">環境動向トラッカー × Obsidian連携</p>
       </div>
     </div>
+    </div><!-- /left-nav -->
 
     <!-- Right controls -->
     <div class="flex items-center gap-1.5 sm:gap-2">
@@ -143,6 +160,7 @@
 </header>
 
 <!-- ===== MAIN ===== -->
+<div id="view-news" class="view-panel active">
 <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
 
   <!-- Tabs + Type filter row -->
@@ -259,6 +277,40 @@
   <div id="article-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"></div>
 
 </main>
+</div><!-- /view-news -->
+
+<!-- VIEW: V4 -->
+<div id="view-v4" class="view-panel">
+  <iframe id="v4-iframe" title="V4 サステナUniv. Co-op 詳細" src="about:blank"></iframe>
+</div>
+
+<!-- VIEW: バッジ -->
+<div id="view-badges" class="view-panel">
+  <div class="max-w-xl mx-auto px-4 py-6 space-y-5 w-full">
+    <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 text-center">
+      <div id="bv-tree-emoji" class="text-6xl mb-2 tree-bounce">🌱</div>
+      <h2 id="bv-tree-title" class="font-bold text-xl text-emerald-950">Lv.1 若葉の芽</h2>
+      <p id="bv-tree-desc" class="text-xs text-emerald-700 mt-1 leading-relaxed max-w-xs mx-auto"></p>
+      <div class="max-w-xs mx-auto mt-4">
+        <div class="flex justify-between text-[11px] font-bold text-emerald-800 mb-1.5">
+          <span>現在: <span id="bv-pts">0</span> pt</span>
+          <span>次まで: <span id="bv-next-pts">30</span></span>
+        </div>
+        <div class="w-full h-3 bg-emerald-200 rounded-full overflow-hidden">
+          <div id="bv-progress-bar" class="h-full bg-emerald-600 transition-all duration-700 rounded-full" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+      <h3 class="font-bold text-sm text-slate-800 mb-3.5 flex items-center gap-2"><i data-lucide="bar-chart-3" class="w-4 h-4 text-emerald-500"></i>生協事業領域 インプットバランス</h3>
+      <div id="bv-area-chart" class="space-y-2.5"></div>
+    </div>
+    <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
+      <h3 class="font-bold text-sm text-slate-800 mb-3 flex items-center gap-2"><i data-lucide="medal" class="w-4 h-4 text-amber-500"></i>獲得バッジコレクション</h3>
+      <div id="bv-badges-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-2.5"></div>
+    </div>
+  </div>
+</div>
 
 <!-- ================================================================
      MODAL 1: ARTICLE READER (Full Screen)
@@ -734,6 +786,181 @@
   </div>
 </div>
 
+<!-- ================================================================
+     DRAWER OVERLAY
+     ================================================================ -->
+<div id="drawer-overlay" onclick="closeDrawer()"
+  class="fixed inset-0 bg-slate-900/50 z-30 backdrop-blur-sm"></div>
+
+<!-- ================================================================
+     LEFT DRAWER
+     ================================================================ -->
+<nav id="left-drawer" class="fixed left-0 top-0 h-full w-72 bg-white shadow-2xl z-40 flex flex-col overflow-hidden"
+  style="padding-top:env(safe-area-inset-top)">
+  <!-- Drawer header -->
+  <div class="bg-gradient-to-br from-[#164A31] to-[#1D6E41] p-4 text-white shrink-0">
+    <div class="flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2.5">
+        <img src="icon-180.png" alt="EcoPulse" class="w-10 h-10 rounded-xl shadow-sm">
+        <div>
+          <p class="font-bold text-sm leading-tight">EcoPulse</p>
+          <p class="text-[11px] text-emerald-200 mt-0.5">東北ブロック 環境活動トラッカー</p>
+        </div>
+      </div>
+      <button onclick="closeDrawer()" class="p-1.5 text-white/70 hover:text-white rounded-lg">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <!-- V4 badge in drawer header -->
+    <div class="bg-black/20 rounded-xl px-3 py-2 flex items-center gap-2.5">
+      <span class="font-black text-[#F4C34F] leading-none" style="font-size:28px;font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif">V4</span>
+      <div>
+        <p class="text-xs font-bold text-emerald-100 leading-tight">サステナUniv. Co-op</p>
+        <p class="text-[10px] text-emerald-300 mt-0.5">東北ブロック中期ビジョン2028</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nav items -->
+  <div class="flex-1 overflow-y-auto p-3 space-y-1">
+    <button onclick="switchView('news')" id="drawerItem-news"
+      class="drawer-nav-item active w-full flex items-center gap-3 p-3.5 rounded-xl text-left transition hover:bg-slate-50">
+      <span class="text-xl shrink-0">📰</span>
+      <div>
+        <p class="text-sm font-bold text-slate-800">NEWSを見る</p>
+        <p class="text-[11px] text-slate-500 drawer-sub mt-0.5">環境記事フィード・読了メモ</p>
+      </div>
+    </button>
+    <button onclick="switchView('v4')" id="drawerItem-v4"
+      class="drawer-nav-item w-full flex items-center gap-3 p-3.5 rounded-xl text-left transition hover:bg-slate-50">
+      <span class="text-xl shrink-0">🌿</span>
+      <div>
+        <p class="text-sm font-bold text-slate-800">V4の詳細を見る</p>
+        <p class="text-[11px] text-slate-500 drawer-sub mt-0.5">3つのKPIと取り組み内容</p>
+      </div>
+    </button>
+    <button onclick="switchView('badges')" id="drawerItem-badges"
+      class="drawer-nav-item w-full flex items-center gap-3 p-3.5 rounded-xl text-left transition hover:bg-slate-50">
+      <span class="text-xl shrink-0">🏆</span>
+      <div>
+        <p class="text-sm font-bold text-slate-800">バッジを見る</p>
+        <p class="text-[11px] text-slate-500 drawer-sub mt-0.5">成長ツリー・実績バッジ</p>
+      </div>
+    </button>
+
+    <div class="border-t border-slate-100 pt-2 mt-2">
+      <button onclick="showSplash()" class="w-full flex items-center gap-3 p-3 rounded-xl text-left hover:bg-slate-50 transition">
+        <span class="text-lg shrink-0">📋</span>
+        <p class="text-xs font-bold text-slate-600">V4ポスターを表示</p>
+      </button>
+    </div>
+  </div>
+
+  <!-- Bottom quick actions -->
+  <div class="p-3 border-t border-slate-100 flex gap-2 shrink-0"
+    style="padding-bottom:calc(env(safe-area-inset-bottom) + 0.75rem)">
+    <button onclick="openSettingsModal();closeDrawer();" class="flex-1 flex items-center justify-center gap-1.5 p-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold text-slate-700 transition">
+      <i data-lucide="settings" class="w-3.5 h-3.5"></i>設定
+    </button>
+    <button onclick="exportJSON()" class="flex-1 flex items-center justify-center gap-1.5 p-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold text-slate-700 transition">
+      <i data-lucide="download" class="w-3.5 h-3.5"></i>バックアップ
+    </button>
+  </div>
+</nav>
+
+<!-- ================================================================
+     SPLASH MODAL (V4 ポスター / 起動時表示)
+     ================================================================ -->
+<div id="splash-modal" class="fixed inset-0 bg-slate-900/75 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+  <div id="splash-inner" class="bg-white rounded-t-3xl sm:rounded-2xl max-w-md w-full shadow-2xl overflow-hidden max-h-[92vh] flex flex-col"
+    style="padding-bottom:env(safe-area-inset-bottom)">
+    <!-- Splash header bar -->
+    <div class="bg-[#164A31] px-5 py-3 flex items-center justify-between shrink-0">
+      <div>
+        <p class="text-[11px] font-medium text-[#CFE3D6]">東北ブロック中期ビジョン2028｜Goal 4</p>
+        <p class="text-xs font-bold text-white mt-0.5">サステナUniv. Co-op ビジョンポスター</p>
+      </div>
+      <button onclick="closeSplash()" class="p-1.5 text-white/70 hover:text-white rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Poster content (scrollable) -->
+    <div class="overflow-y-auto flex-1" style="background:#EEF3EC;">
+      <!-- Green header section -->
+      <div style="background:#164A31;color:#F2F8F3;padding:24px 20px 20px;">
+        <p style="font-size:11px;font-weight:500;color:#CFE3D6;margin:0 0 4px;">大学生協 東北ブロック中期ビジョン2028｜Goal 4</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+          <div>
+            <p style="font-size:68px;line-height:0.9;font-weight:900;color:#F4C34F;margin:0;font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;letter-spacing:-2px;">V4</p>
+            <h1 style="font-size:17px;font-weight:900;color:#F2F8F3;margin:8px 0 0;line-height:1.3;font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;">持続可能な社会実現のために<br>実践し、発信する大学生協</h1>
+          </div>
+          <svg width="92" height="92" viewBox="0 0 520 520" style="flex-shrink:0;">
+            <circle cx="260" cy="260" r="200" fill="none" stroke="#F4C34F" stroke-width="72" stroke-dasharray="392 865" transform="rotate(-86 260 260)"/>
+            <circle cx="260" cy="260" r="200" fill="none" stroke="#7CC59A" stroke-width="72" stroke-dasharray="392 865" transform="rotate(34 260 260)"/>
+            <circle cx="260" cy="260" r="200" fill="none" stroke="#E4F0E8" stroke-width="72" stroke-dasharray="392 865" transform="rotate(154 260 260)"/>
+            <text x="433" y="168" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" font-size="30" fill="#123A26">4-1</text>
+            <text x="260" y="470" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" font-size="30" fill="#123A26">4-2</text>
+            <text x="87" y="168" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" font-size="30" fill="#123A26">4-3</text>
+            <text x="260" y="248" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-weight="900" font-size="44" fill="#F2F8F3">サステナ</text>
+            <text x="260" y="300" text-anchor="middle" font-family="Zen Kaku Gothic New, sans-serif" font-weight="700" font-size="34" fill="#F2F8F3">Univ. Co-op</text>
+          </svg>
+        </div>
+      </div>
+      <!-- KPI section -->
+      <div style="padding:16px 20px 20px;font-family:'Noto Sans JP',sans-serif;">
+        <p style="font-size:12px;font-weight:700;color:#1D6E41;margin:0 0 10px;">3つのKPI（行動指標）</p>
+        <!-- 4-1 -->
+        <div style="border-top:2px solid #164A31;padding:12px 0;display:flex;gap:10px;align-items:flex-start;">
+          <span style="font-size:28px;font-weight:900;color:#1D6E41;min-width:48px;line-height:1.1;font-family:'Zen Kaku Gothic New',sans-serif;">4-1</span>
+          <div style="flex:1;min-width:0;">
+            <p style="font-weight:900;font-size:14px;margin:0 0 4px;font-family:'Zen Kaku Gothic New',sans-serif;">サステナUniv. Co-opブランドの確立</p>
+            <p style="font-size:12px;margin:0 0 2px;line-height:1.5;color:#334155;">内製弁当を供給する全生協で、リ・リパック回収率を＋10%アップ。</p>
+            <p style="font-size:12px;margin:0;line-height:1.5;color:#334155;">環境配慮型商品の展開、消費者教育・平和・社会貢献活動を年間計画に。</p>
+          </div>
+          <div style="background:#164A31;border-radius:10px;padding:8px 10px;text-align:center;min-width:70px;flex-shrink:0;">
+            <p style="font-size:9px;color:#CFE3D6;margin:0;line-height:1.5;">リ・リパック<br>回収率</p>
+            <p style="font-size:22px;font-weight:900;color:#F4C34F;margin:0;font-family:'Zen Kaku Gothic New',sans-serif;">＋10%</p>
+          </div>
+        </div>
+        <!-- 4-2 -->
+        <div style="border-top:1px solid #A9C2B2;padding:12px 0;display:flex;gap:10px;align-items:flex-start;">
+          <span style="font-size:28px;font-weight:900;color:#1D6E41;min-width:48px;line-height:1.1;font-family:'Zen Kaku Gothic New',sans-serif;">4-2</span>
+          <div style="flex:1;min-width:0;">
+            <p style="font-weight:900;font-size:14px;margin:0 0 4px;font-family:'Zen Kaku Gothic New',sans-serif;">実践の仕組み化と定期報告</p>
+            <p style="font-size:12px;margin:0;line-height:1.5;color:#334155;">理事会・総代会・事業報告書におけるサステナビリティ報告の定例化と、部内学習・職員教育への全会員の取組。</p>
+          </div>
+          <div style="background:#164A31;border-radius:10px;padding:8px 10px;text-align:center;min-width:70px;flex-shrink:0;">
+            <p style="font-size:9px;color:#CFE3D6;margin:0;line-height:1.5;">サステナ<br>報告</p>
+            <p style="font-size:22px;font-weight:900;color:#F4C34F;margin:0;font-family:'Zen Kaku Gothic New',sans-serif;">定例化</p>
+          </div>
+        </div>
+        <!-- 4-3 -->
+        <div style="border-top:1px solid #A9C2B2;border-bottom:2px solid #164A31;padding:12px 0;display:flex;gap:10px;align-items:flex-start;">
+          <span style="font-size:28px;font-weight:900;color:#1D6E41;min-width:48px;line-height:1.1;font-family:'Zen Kaku Gothic New',sans-serif;">4-3</span>
+          <div style="flex:1;min-width:0;">
+            <p style="font-weight:900;font-size:14px;margin:0 0 4px;font-family:'Zen Kaku Gothic New',sans-serif;">情報発信の強化</p>
+            <p style="font-size:12px;margin:0;line-height:1.5;color:#334155;">新学期・総代会・店頭等で全会員が情報発信し、組合員の社会的課題解決に関する認知肯定回答率を＋10%向上させる。</p>
+          </div>
+          <div style="background:#164A31;border-radius:10px;padding:8px 10px;text-align:center;min-width:70px;flex-shrink:0;">
+            <p style="font-size:9px;color:#CFE3D6;margin:0;line-height:1.5;">認知肯定<br>回答率</p>
+            <p style="font-size:22px;font-weight:900;color:#F4C34F;margin:0;font-family:'Zen Kaku Gothic New',sans-serif;">＋10%</p>
+          </div>
+        </div>
+        <p style="font-size:10px;color:#47594D;text-align:right;margin-top:10px;">全国大学生活協同組合連合会 東北ブロック</p>
+      </div>
+    </div>
+
+    <!-- Close button -->
+    <div class="p-4 border-t border-slate-100 shrink-0">
+      <button onclick="closeSplash()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-sm">
+        <i data-lucide="newspaper" class="w-4 h-4"></i>
+        閉じてNEWSを見る
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast -->
 <div id="toast" class="fixed bottom-6 left-4 right-4 sm:left-auto sm:right-5 sm:max-w-xs bg-slate-800/95 text-white text-xs font-bold px-4 py-3.5 rounded-xl shadow-xl transform translate-y-24 opacity-0 transition-all duration-300 z-[60] flex items-center gap-2 pointer-events-none backdrop-blur-sm">
   <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i>
@@ -965,6 +1192,9 @@ function init() {
   });
 
   if (window.lucide) lucide.createIcons();
+
+  // Show V4 poster splash on every startup
+  showSplash();
 }
 
 function checkURLParams() {
@@ -2143,6 +2373,437 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
 }
 
+
+// ════════════════════════════════════════════════════════════════
+// V4 HTML CONTENT (stored for Blob URL iframe)
+// ════════════════════════════════════════════════════════════════
+const V4_HTML_CONTENT = `<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>V4 持続可能な社会実現のために実践し、発信する大学生協</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF3EF; --surface:#FBFCFA; --ink:#17251D; --sub:#4B5B52; --line:#CBD8CF;
+  --green:#1D6E41; --green-soft:#DCEBE1; --leaf:#E2A92B; --leaf-soft:#FBF0D4;
+  --on-green:#F4FAF6;
+  --ethic:#2F5F9E; --peace:#B4562A; --sus:#1D6E41;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121A15; --surface:#1A241E; --ink:#E6EEE8; --sub:#A9B8AE; --line:#2E3D34;
+    --green:#5DBB86; --green-soft:#1F3328; --leaf:#F0C25A; --leaf-soft:#3A3120;
+    --on-green:#0F1A13;
+    --ethic:#7FA9E0; --peace:#E5926A; --sus:#5DBB86;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121A15; --surface:#1A241E; --ink:#E6EEE8; --sub:#A9B8AE; --line:#2E3D34;
+  --green:#5DBB86; --green-soft:#1F3328; --leaf:#F0C25A; --leaf-soft:#3A3120;
+  --on-green:#0F1A13;
+  --ethic:#7FA9E0; --peace:#E5926A; --sus:#5DBB86;
+  color-scheme:dark;
+}
+:root{ box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); }
+html{ scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px); scroll-behavior:smooth; }
+*,*::before,*::after{ box-sizing:inherit; }
+body{ margin:0; background:var(--bg); color:var(--ink);
+  font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif; font-size:16px; line-height:1.75;
+  -webkit-text-size-adjust:100%; }
+body::before{ content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:10; background:var(--surface); }
+.wrap{ max-width:640px; margin:0 auto; padding:0 20px; }
+h1,h2,h3{ font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif; margin:0; line-height:1.35; }
+p{ margin:0; }
+ul,ol{ margin:0; padding:0; list-style:none; }
+
+/* hero */
+.hero{ background:var(--green); color:var(--on-green); padding:40px 0 36px; }
+.hero .org{ font-size:13px; opacity:.85; }
+.hero .code{ font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:64px; line-height:1; margin-top:20px; letter-spacing:.02em; }
+.hero h1{ font-size:27px; font-weight:900; margin-top:12px; }
+.hero .intro{ font-size:15px; margin-top:16px; opacity:.92; }
+
+/* sticky nav */
+.nav{ position:sticky; top:env(safe-area-inset-top,0px); z-index:5; background:var(--surface); border-bottom:1px solid var(--line); }
+.nav ul{ display:flex; max-width:640px; margin:0 auto; }
+.nav a{ flex:1; display:block; text-align:center; padding:12px 4px 10px; text-decoration:none; color:var(--sub); font-size:13px; line-height:1.3; }
+.nav a b{ display:block; color:var(--green); font-size:15px; }
+.nav a:focus-visible{ outline:3px solid var(--leaf); outline-offset:-3px; }
+
+/* overview ladder */
+.overview{ padding:32px 0 8px; }
+.overview h2{ font-size:20px; }
+.overview .note{ font-size:14px; color:var(--sub); margin-top:6px; }
+.ladder{ margin-top:18px; display:flex; flex-direction:column; gap:0; }
+.rung{ display:grid; grid-template-columns:56px 1fr; gap:14px; text-decoration:none; color:inherit; padding:14px 0; border-top:1px solid var(--line); }
+.rung:last-child{ border-bottom:1px solid var(--line); }
+.rung .n{ font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:22px; color:var(--green); }
+.rung .t{ font-weight:700; font-size:16px; }
+.rung .v{ font-size:14px; color:var(--sub); }
+.rung:focus-visible{ outline:3px solid var(--leaf); }
+
+/* pillar */
+.pillar{ padding:44px 0 12px; }
+.pillar-head{ display:flex; align-items:baseline; gap:12px; }
+.pillar-head .n{ font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:44px; color:var(--green); line-height:1; }
+.pillar-head .verb{ font-size:14px; color:var(--sub); }
+.pillar h2{ font-size:24px; font-weight:900; margin-top:10px; }
+
+.kpi{ margin-top:20px; background:var(--leaf-soft); border-left:6px solid var(--leaf); border-radius:4px 14px 14px 4px; padding:16px 18px; }
+.kpi .lbl{ font-size:13px; font-weight:700; color:var(--sub); }
+.kpi li{ margin-top:8px; font-weight:500; }
+.kpi .big{ font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:22px; color:var(--ink); white-space:nowrap; }
+
+.part{ margin-top:28px; }
+.part h3{ font-size:17px; font-weight:700; display:flex; align-items:center; gap:10px; }
+.part h3::before{ content:""; width:10px; height:10px; border-radius:50%; background:var(--green); flex:none; }
+.key{ margin-top:12px; font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:20px; line-height:1.5; color:var(--green); }
+.dots{ margin-top:10px; }
+.dots li{ position:relative; padding-left:18px; margin-top:10px; }
+.dots li::before{ content:""; position:absolute; left:2px; top:.72em; width:6px; height:6px; background:var(--sub); border-radius:1px; }
+
+.coops{ margin-top:14px; display:grid; gap:10px; }
+.coop{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:12px 14px; border-top:4px solid var(--c); }
+.coop .name{ font-weight:700; color:var(--c); }
+.coop .what{ font-size:15px; }
+.coop .tags{ font-size:13px; color:var(--sub); margin-top:4px; }
+
+.checks{ margin-top:12px; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:4px 16px; }
+.checks li{ display:grid; grid-template-columns:26px 1fr; gap:8px; padding:12px 0; border-top:1px solid var(--line); }
+.checks li:first-child{ border-top:none; }
+.checks .m{ width:20px; height:20px; border:2px solid var(--green); border-radius:5px; margin-top:4px; }
+.checks .num{ font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; color:var(--green); font-size:17px; line-height:1.6; }
+.checks .goal{ background:var(--green-soft); margin:0 -16px; padding:12px 16px; border-radius:0 0 13px 13px; }
+.checks .goal .m{ background:var(--green); }
+.goal-tag{ display:inline-block; font-size:12px; font-weight:700; color:var(--green); margin-bottom:2px; }
+
+.measure{ margin-top:28px; background:var(--green); color:var(--on-green); border-radius:14px; padding:16px 18px; }
+.measure .lbl{ font-size:13px; font-weight:700; opacity:.85; }
+.measure li{ margin-top:8px; font-weight:500; display:grid; grid-template-columns:22px 1fr; }
+
+/* summary */
+.summary{ padding:44px 0 56px; }
+.summary h2{ font-size:20px; }
+.summary .tbl-wrap{ overflow-x:auto; margin-top:14px; }
+.summary table{ width:100%; border-collapse:collapse; font-size:14px; background:var(--surface); border-radius:12px; overflow:hidden; min-width:320px; }
+.summary th,.summary td{ text-align:left; vertical-align:top; padding:12px; border-top:1px solid var(--line); }
+.summary th{ white-space:nowrap; color:var(--green); font-family:'Zen Kaku Gothic New',sans-serif; font-weight:900; font-size:16px; }
+.summary tr:first-child th,.summary tr:first-child td{ border-top:none; }
+.summary td li{ margin-top:4px; }
+.summary td li:first-child{ margin-top:0; }
+.foot{ font-size:12px; color:var(--sub); margin-top:24px; }
+.totop{ display:inline-block; margin-top:12px; color:var(--green); font-size:14px; }
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="org">東北ブロック中期ビジョン2028｜Goal 4 持続可能な社会</p>
+    <p class="code">V4</p>
+    <h1>持続可能な社会実現のために実践し、発信する大学生協</h1>
+    <p class="intro">サステナブルな行動を「特別なこと」から「当たり前」へ。3つのKPIと、その進め方をまとめました。</p>
+  </div>
+</header>
+
+<nav class="nav" aria-label="KPIへ移動">
+  <ul>
+    <li><a href="#k41"><b>4-1</b>ブランド確立</a></li>
+    <li><a href="#k42"><b>4-2</b>仕組み化</a></li>
+    <li><a href="#k43"><b>4-3</b>情報発信</a></li>
+    <li><a href="#sum"><b>指標</b>まとめ</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+  <section class="overview" aria-labelledby="ov">
+    <h2 id="ov">3つのKPIの関係</h2>
+    <p class="note">ブランドとして「つくり」、仕組みで「続け」、発信で「伝える」流れです。</p>
+    <div class="ladder">
+      <a class="rung" href="#k41"><span class="n">4-1</span><span><span class="t">サステナUniv. Co-opブランドの確立</span><br><span class="v">日々の利用そのものが社会課題解決への参加になる状態をつくる</span></span></a>
+      <a class="rung" href="#k42"><span class="n">4-2</span><span><span class="t">実践の仕組み化と定期報告</span><br><span class="v">学習と報告をルーチンにし、個人の熱量に頼らず続ける</span></span></a>
+      <a class="rung" href="#k43"><span class="n">4-3</span><span><span class="t">情報発信の強化</span><br><span class="v">成果をデータとストーリーで見せ、組合員の共感につなげる</span></span></a>
+    </div>
+  </section>
+
+  <!-- 4-1 -->
+  <section class="pillar" id="k41" aria-labelledby="h41">
+    <div class="pillar-head"><span class="n">4-1</span><span class="verb">つくる</span></div>
+    <h2 id="h41">サステナUniv. Co-opブランドの確立</h2>
+
+    <div class="kpi">
+      <p class="lbl">KPI（行動指標）</p>
+      <ul>
+        <li>内製弁当を供給する全生協で、リ・リパック回収率を <span class="big">＋10%</span> アップさせる</li>
+        <li>環境配慮型商品の展開、消費者教育・平和・社会貢献活動を年間計画に位置づけ実践する</li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h3>最も重要な成功要因</h3>
+      <p class="key">サステナブルな行動を「特別」から「当たり前」へ転換する</p>
+      <ul class="dots">
+        <li>サステナビリティに関する活動を、一部の担い手による取り組みから、組織の日常運営に組み込まれた仕組みへと転換する。</li>
+        <li>「サステナUniv. Co-op」の理念をブランド化し、店舗・商品・サービス・組合員活動を通じて一貫して発信する。</li>
+      </ul>
+      <div class="coops">
+        <div class="coop" style="--c:var(--ethic)"><p class="name">エシカル・コープ</p><p class="what">賢い消費者・市民として成長する</p><p class="tags">消費者課題／食の安全／公正な取引／人権</p></div>
+        <div class="coop" style="--c:var(--peace)"><p class="name">ピース・コープ</p><p class="what">個人の尊厳が守られる社会づくり</p><p class="tags">平和、構造的暴力のない社会、多様性、包摂</p></div>
+        <div class="coop" style="--c:var(--sus)"><p class="name">サステナ・コープ</p><p class="what">持続可能な社会づくり</p><p class="tags">脱炭素、持続可能な環境</p></div>
+      </div>
+      <ul class="dots">
+        <li>組合員が意識せずとも、日々の利用や購買行動が社会課題解決への参加となる環境を整備する。</li>
+        <li>持続可能な消費行動と協同の価値を学ぶ機会を、日常的な生協利用の中で提供する。</li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h3>取り組みの展開イメージ</h3>
+      <ul class="checks">
+        <li><span class="m" aria-hidden="true"></span><span>「〇〇大学生協 サステナ宣言」を全会員で策定・店頭掲示する。</span></li>
+        <li><span class="m" aria-hidden="true"></span><span>リ・リパック回収箱や指定資材を学部棟・店舗に最低1つ設置する（回収率0%からの脱却）。</span></li>
+        <li><span class="m" aria-hidden="true"></span><span>新歓企画やお弁当企画でのリ・リパック利用・ワーク体験を年間計画に組み込む。</span></li>
+        <li><span class="m" aria-hidden="true"></span><span>フェアトレード商品、エコ弁当、そう政治カレーやバナナカレー等の寄付付きメニューを定期展開する。</span></li>
+        <li class="goal"><span class="m" aria-hidden="true"></span><span><span class="goal-tag">目指す状態</span><br>大学生協の事業（購買・食堂メニュー等）に持続可能性要素（脱炭素・エシカル等）が当たり前のように組み込まれている状態を作る。</span></li>
+      </ul>
+    </div>
+
+    <div class="measure">
+      <p class="lbl">全国モニタリング指標</p>
+      <ol>
+        <li><span>①</span><span>「〇〇大学生協 サステナ宣言」実施生協数</span></li>
+        <li><span>②</span><span>サステナUniv. Co-opブランドの実践として、環境活動／消費者教育／平和・社会貢献活動を年間計画へ位置づけて実践している生協数</span></li>
+        <li><span>③</span><span>リ・リパック回収率</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4-2 -->
+  <section class="pillar" id="k42" aria-labelledby="h42">
+    <div class="pillar-head"><span class="n">4-2</span><span class="verb">続ける</span></div>
+    <h2 id="h42">サステナUniv. Co-op実践の仕組み化と定期報告</h2>
+
+    <div class="kpi">
+      <p class="lbl">KPI（行動指標）</p>
+      <ul>
+        <li>理事会・総代会・事業報告書におけるサステナビリティ報告の定例化と、部内学習・職員教育への全会員の取組</li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h3>最も重要な成功要因</h3>
+      <p class="key">インプット（学習）とアウトプット（報告）のルーチン化</p>
+      <ul class="dots">
+        <li>理事会・総代会・事業報告書におけるサステナビリティ報告の定例化と、部内学習・職員教育に全会員で取り組み、個人の熱量に依存しない経営・事業ルーチンへと組み込む。</li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h3>取り組みの展開イメージ</h3>
+      <ul class="checks">
+        <li><span class="m" aria-hidden="true"></span><span>既存の活動（フードロス記録や回収実績など）を、まず理事会や総代会議案書・報告書に1行でも記載・報告する。</span></li>
+        <li><span class="m" aria-hidden="true"></span><span>連帯で開催される研修やセミナーに、職員・学生がまず1名以上参加する。</span></li>
+        <li><span class="m" aria-hidden="true"></span><span>理事会・総代会・大学向け報告書へのサステナビリティ報告（年次報告の共通フォーマット）を定例化する。</span></li>
+        <li><span class="m" aria-hidden="true"></span><span>定期的な部内学習会や、新任・全階層職員向けの学習を年間ルーチンに組み込む。</span></li>
+        <li><span class="m" aria-hidden="true"></span><span>環境・社会活動への貢献を、職員の半期目標やキャリア評価制度に連動させ評価する。</span></li>
+        <li class="goal"><span class="m" aria-hidden="true"></span><span><span class="goal-tag">目指す状態</span><br>自生協独自のサステナビリティ実行計画を継続的に更新・改善・報告する。</span></li>
+      </ul>
+    </div>
+
+    <div class="measure">
+      <p class="lbl">全国モニタリング指標</p>
+      <ul>
+        <li><span>・</span><span>理事会・職員会議等・総代会・大学への定期報告の実施率</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4-3 -->
+  <section class="pillar" id="k43" aria-labelledby="h43">
+    <div class="pillar-head"><span class="n">4-3</span><span class="verb">伝える</span></div>
+    <h2 id="h43">情報発信の強化</h2>
+
+    <div class="kpi">
+      <p class="lbl">KPI（行動指標）</p>
+      <ul>
+        <li>新学期・総代会・店頭等で全会員が情報発信し、組合員の社会的課題解決に関する認知肯定回答率を <span class="big">＋10%</span> 向上させる</li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h3>最も重要な成功要因</h3>
+      <ul class="dots">
+        <li>リ・リパック回収率等の「その先」の成果をデータとストーリーで見せ、コストを「生協のブランド価値」へ転換する。</li>
+        <li>意識的な参加を求めずとも、学食で食べること自体が脱炭素や社会貢献に繋がる仕組みを作り、参加のハードルを下げる。</li>
+        <li>職員教育の中にサステナ課題を位置づけて、個人の熱量に依存せず組織全体の優先順位を引き上げる。</li>
+      </ul>
+    </div>
+
+    <div class="part">
+      <h3>取り組みの展開イメージ</h3>
+      <ol class="checks">
+        <li><span class="num">①</span><span>全国の大学生協共通ポスターやチラシを店頭掲示・配布する。</span></li>
+        <li><span class="num">②</span><span>新入生保護者説明会等で「持続可能な社会づくりに取り組む生協」であることを知らせる。</span></li>
+        <li><span class="num">③</span><span>リ・リパックの回収成果や環境負荷削減数（データ）を店頭POPやSNSで可視化・発信する。</span></li>
+        <li><span class="num">④</span><span>大学の環境センター・自治体・地域生協・外部団体等との定期的な連携・協働企画を定着させる。</span></li>
+        <li class="goal"><span class="num">⑤</span><span><span class="goal-tag">目指す状態</span><br>組合員が日常の利用を通じて自然と活動に共感し、大学生協に好感を持っている状態を実現する。</span></li>
+      </ol>
+    </div>
+
+    <div class="measure">
+      <p class="lbl">全国モニタリング指標</p>
+      <ul>
+        <li><span>・</span><span>認知肯定回答率</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- summary -->
+  <section class="summary" id="sum" aria-labelledby="hsum">
+    <h2 id="hsum">全国モニタリング指標まとめ</h2>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th scope="row">4-1</th><td><ul><li>①「〇〇大学生協 サステナ宣言」実施生協数</li><li>② 環境活動／消費者教育／平和・社会貢献活動を年間計画へ位置づけて実践している生協数</li><li>③ リ・リパック回収率</li></ul></td></tr>
+        <tr><th scope="row">4-2</th><td>理事会・職員会議等・総代会・大学への定期報告の実施率</td></tr>
+        <tr><th scope="row">4-3</th><td>認知肯定回答率</td></tr>
+      </table>
+    </div>
+    <p class="foot">全国大学生活協同組合連合会 東北ブロック｜東北ブロック中期ビジョン2028</p>
+    <a class="totop" href="#top">ページの先頭へ戻る</a>
+  </section>
+
+</main>
+</body>
+</html>
+`;
+
+// ════════════════════════════════════════════════════════════════
+// DRAWER & VIEW SWITCHING
+// ════════════════════════════════════════════════════════════════
+let currentView = 'news';
+let v4BlobUrl = null;
+
+function openDrawer() {
+  document.getElementById('left-drawer').classList.add('open');
+  document.getElementById('drawer-overlay').classList.add('open');
+  if (window.lucide) lucide.createIcons();
+}
+
+function closeDrawer() {
+  document.getElementById('left-drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+}
+
+function switchView(viewName) {
+  // Hide all views
+  document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.drawer-nav-item').forEach(b => b.classList.remove('active'));
+
+  // Show target view
+  const viewEl = document.getElementById('view-' + viewName);
+  if (viewEl) viewEl.classList.add('active');
+  const drawerBtn = document.getElementById('drawerItem-' + viewName);
+  if (drawerBtn) drawerBtn.classList.add('active');
+
+  currentView = viewName;
+  closeDrawer();
+
+  // Lazy-initialize views
+  if (viewName === 'v4') initV4View();
+  if (viewName === 'badges') renderBadgesView();
+  if (window.lucide) lucide.createIcons();
+}
+
+// ════════════════════════════════════════════════════════════════
+// V4 VIEW (Blob URL iframe)
+// ════════════════════════════════════════════════════════════════
+function initV4View() {
+  if (v4BlobUrl) return; // already created
+  const blob = new Blob([V4_HTML_CONTENT], {type: 'text/html; charset=utf-8'});
+  v4BlobUrl = URL.createObjectURL(blob);
+  document.getElementById('v4-iframe').src = v4BlobUrl;
+}
+
+// ════════════════════════════════════════════════════════════════
+// SPLASH MODAL
+// ════════════════════════════════════════════════════════════════
+function showSplash() {
+  const m = document.getElementById('splash-modal');
+  m.classList.remove('hidden');
+  m.classList.add('flex');
+  if (window.lucide) lucide.createIcons();
+}
+
+function closeSplash() {
+  const m = document.getElementById('splash-modal');
+  m.classList.add('hidden');
+  m.classList.remove('flex');
+}
+
+// ════════════════════════════════════════════════════════════════
+// BADGES VIEW (full-page version)
+// ════════════════════════════════════════════════════════════════
+function renderBadgesView() {
+  // Tree
+  let lv = TREE_LEVELS[0], next = TREE_LEVELS[1];
+  TREE_LEVELS.forEach((t,i) => { if (state.points >= t.minPts) { lv = t; next = TREE_LEVELS[i+1]||null; } });
+
+  const setEl = (id, val) => { const e = document.getElementById(id); if(e) e.textContent = val; };
+  setEl('bv-tree-emoji', lv.emoji);
+  setEl('bv-tree-title', lv.title);
+  setEl('bv-tree-desc', lv.desc);
+  setEl('bv-pts', state.points);
+
+  if (next) {
+    setEl('bv-next-pts', `${next.minPts - state.points} pt`);
+    const pct = Math.min(100, Math.round(((state.points-lv.minPts)/(next.minPts-lv.minPts))*100));
+    const pb = document.getElementById('bv-progress-bar');
+    if (pb) pb.style.width = `${pct}%`;
+  } else {
+    setEl('bv-next-pts', 'MAX');
+    const pb = document.getElementById('bv-progress-bar');
+    if (pb) pb.style.width = '100%';
+  }
+
+  // Area balance
+  const counts = computeCoopAreaCounts();
+  const maxC = Math.max(...Object.values(counts), 1);
+  const barColors = ['bg-emerald-500','bg-teal-500','bg-blue-500','bg-purple-500','bg-indigo-500'];
+  const areaChart = document.getElementById('bv-area-chart');
+  if (areaChart) {
+    areaChart.innerHTML = COOP_AREAS.map((area,i) => {
+      const c = counts[area.id]||0;
+      const pct = Math.round((c/maxC)*100);
+      return `<div class="flex items-center gap-2.5">
+        <div class="w-32 text-[11px] font-bold text-slate-700 shrink-0 flex items-center gap-1">${area.emoji} <span class="truncate">${area.label}</span></div>
+        <div class="flex-1 bg-slate-100 rounded-full h-4 overflow-hidden"><div class="area-bar h-full ${barColors[i]} rounded-full" style="width:${pct}%"></div></div>
+        <span class="text-[11px] font-bold ${c===0?'text-orange-500':'text-slate-600'} w-10 text-right shrink-0">${c===0?'⚠️ 0':c+'件'}</span>
+      </div>${c===0?'<p class="text-[10px] text-orange-500 ml-36 font-bold mt-0.5 mb-1">要インプット！</p>':''}`;
+    }).join('');
+  }
+
+  // Badges grid
+  const badgesGrid = document.getElementById('bv-badges-grid');
+  if (badgesGrid) {
+    badgesGrid.innerHTML = BADGES.map(b => {
+      const unlocked = b.check(state);
+      return `<div class="p-3 rounded-xl border text-center transition ${unlocked?'bg-amber-50/70 border-amber-300':'bg-slate-50 border-slate-200 opacity-50 grayscale'}">
+        <div class="text-2xl mb-1">${b.icon}</div>
+        <p class="font-bold text-xs text-slate-800">${b.name}</p>
+        <p class="text-[10px] text-slate-500 mt-0.5">${b.desc}</p>
+      </div>`;
+    }).join('');
+  }
+
+  if (window.lucide) lucide.createIcons();
+}
 window.addEventListener('resize', updateDashboardUI);
 window.addEventListener('DOMContentLoaded', init);
 </script>
