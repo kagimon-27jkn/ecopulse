@@ -855,7 +855,7 @@
         <img src="icon-180.png" alt="EcoPulse" class="w-10 h-10 rounded-xl shadow-sm">
         <div>
           <p class="font-bold text-sm leading-tight">EcoPulse</p>
-          <p class="text-[11px] text-emerald-200 mt-0.5">東北ブロック 環境活動トラッカー</p>
+          <p class="text-[11px] text-emerald-200 mt-0.5">大学生協 環境活動トラッカー</p>
         </div>
       </div>
       <button onclick="closeDrawer()" class="p-1.5 text-white/70 hover:text-white rounded-lg">
@@ -867,7 +867,7 @@
       <span class="font-black text-[#F4C34F] leading-none" style="font-size:28px;font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif">V4</span>
       <div>
         <p class="text-xs font-bold text-emerald-100 leading-tight">サステナUniv. Co-op</p>
-        <p class="text-[10px] text-emerald-300 mt-0.5">東北ブロック中期ビジョン2028</p>
+        <p class="text-[10px] text-emerald-300 mt-0.5">大学生協2030Goals</p>
       </div>
     </div>
   </div>
@@ -903,7 +903,7 @@
       <span class="text-xl shrink-0">🏆</span>
       <div>
         <p class="text-sm font-bold text-slate-800">バッジを見る</p>
-        <p class="text-[11px] text-slate-500 drawer-sub mt-0.5">成長ツリー・実績バッジ</p>
+        <p class="text-[11px] text-slate-500 drawer-sub mt-0.5">成長ツリー・バッジ100種</p>
       </div>
     </button>
 
@@ -936,7 +936,7 @@
     <!-- Splash header bar -->
     <div class="bg-[#164A31] px-5 py-3 flex items-center justify-between shrink-0">
       <div>
-        <p class="text-[11px] font-medium text-[#CFE3D6]">東北ブロック中期ビジョン2028｜Goal 4</p>
+        <p class="text-[11px] font-medium text-[#CFE3D6]">全国大学生協連 大学生協2030Goals</p>
         <p class="text-xs font-bold text-white mt-0.5">サステナUniv. Co-op ビジョンポスター</p>
       </div>
       <button onclick="closeSplash()" class="p-1.5 text-white/70 hover:text-white rounded-lg">
@@ -948,7 +948,7 @@
     <div class="overflow-y-auto flex-1" style="background:#EEF3EC;">
       <!-- Green header section -->
       <div style="background:#164A31;color:#F2F8F3;padding:24px 20px 20px;">
-        <p style="font-size:11px;font-weight:500;color:#CFE3D6;margin:0 0 4px;">大学生協 東北ブロック中期ビジョン2028｜Goal 4</p>
+        <p style="font-size:11px;font-weight:500;color:#CFE3D6;margin:0 0 4px;">全国大学生協連 大学生協2030Goals</p>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
           <div>
             <p style="font-size:68px;line-height:0.9;font-weight:900;color:#F4C34F;margin:0;font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;letter-spacing:-2px;">V4</p>
@@ -1006,7 +1006,7 @@
             <p style="font-size:22px;font-weight:900;color:#F4C34F;margin:0;font-family:'Zen Kaku Gothic New',sans-serif;">＋10%</p>
           </div>
         </div>
-        <p style="font-size:10px;color:#47594D;text-align:right;margin-top:10px;">全国大学生活協同組合連合会 東北ブロック</p>
+        <p style="font-size:10px;color:#47594D;text-align:right;margin-top:10px;">全国大学生活協同組合連合会</p>
       </div>
     </div>
 
@@ -2526,7 +2526,7 @@ ul,ol{ margin:0; padding:0; list-style:none; }
 
 <header class="hero" id="top">
   <div class="wrap">
-    <p class="org">東北ブロック中期ビジョン2028｜Goal 4 持続可能な社会</p>
+    <p class="org">全国大学生協連 大学生協2030Goals｜持続可能な社会</p>
     <p class="code">V4</p>
     <h1>持続可能な社会実現のために実践し、発信する大学生協</h1>
     <p class="intro">サステナブルな行動を「特別なこと」から「当たり前」へ。3つのKPIと、その進め方をまとめました。</p>
@@ -2696,7 +2696,7 @@ ul,ol{ margin:0; padding:0; list-style:none; }
         <tr><th scope="row">4-3</th><td>認知肯定回答率</td></tr>
       </table>
     </div>
-    <p class="foot">全国大学生活協同組合連合会 東北ブロック｜東北ブロック中期ビジョン2028</p>
+    <p class="foot">全国大学生活協同組合連合会｜大学生協2030Goals</p>
     <a class="totop" href="#top">ページの先頭へ戻る</a>
   </section>
 
@@ -3052,7 +3052,7 @@ function markActivityToday() {
   else {
     const missed=gDaysBetween(s.lastDate, t) - 1;
     if (missed <= 0) s.count++;
-    else if (missed <= s.guards) { s.guards -= missed; s.count++; msg=`☔ 雨の日ガードを${missed}個使って連続記録を守りました！`; }
+    else if (missed <= s.guards) { s.guards -= missed; G().stats.guardsUsed=(G().stats.guardsUsed||0)+missed; s.count++; msg=`☔ 雨の日ガードを${missed}個使って連続記録を守りました！`; }
     else s.count=1;
   }
   s.lastDate=t; s.best=Math.max(s.best, s.count);
@@ -3534,6 +3534,321 @@ init = function() {
     g.initDone = true;
   }
   ensureQuests(); saveState();
+};
+
+
+// ════════════════════════════════════════════════════════════════
+// 🏅 BADGES 100 — 1年かけて集める実績バッジ
+// ════════════════════════════════════════════════════════════════
+const BADGE_CATS = [
+  { id:'read',   label:'読書',          e:'📖' },
+  { id:'streak', label:'連続記録',      e:'🔥' },
+  { id:'days',   label:'活動・記念日',  e:'📅' },
+  { id:'theme',  label:'テーマ',        e:'🏷️' },
+  { id:'coop',   label:'生協領域',      e:'🏪' },
+  { id:'type',   label:'種別・性質',    e:'🗂️' },
+  { id:'memo',   label:'メモ・Obsidian', e:'🔮' },
+  { id:'quiz',   label:'クイズ',        e:'💡' },
+  { id:'garden', label:'庭',            e:'🏡' },
+  { id:'habit',  label:'習慣・ひみつ',  e:'✨' },
+];
+const BADGE_RARITY = {
+  1:{ label:'ブロンズ',   reward:5,   bd:'#D6A77A', bg:'#FDF6EE',                                    tx:'#9A6A3C' },
+  2:{ label:'シルバー',   reward:15,  bd:'#AEBBC9', bg:'#F4F7FA',                                    tx:'#5B6B7C' },
+  3:{ label:'ゴールド',   reward:40,  bd:'#F2C14E', bg:'#FFFAEB',                                    tx:'#A77A0A' },
+  4:{ label:'レジェンド', reward:100, bd:'#A78BFA', bg:'linear-gradient(135deg,#F5F3FF,#FDF2F8)',   tx:'#6D28D9' },
+};
+
+// ── 統計コンテキスト（1回の判定ごとにまとめて計算） ─────────────
+let _bctx = null;
+function gBadgeMigrate() {
+  const st = G().stats;
+  if (!st.daysInit) {
+    st.days = [...new Set((state.history||[]).map(h=>h.date).filter(Boolean))];
+    st.dayReads = {};
+    (state.history||[]).forEach(h=>{ if (h.date) st.dayReads[h.date]=(st.dayReads[h.date]||0)+1; });
+    st.daysInit = true;
+  }
+  if (!st.days) st.days = [];
+  if (!st.dayReads) st.dayReads = {};
+}
+function gSeasonOf(d) { const m=+d.slice(5,7); return (m>=3&&m<=5)?'spring':(m>=6&&m<=8)?'summer':(m>=9&&m<=11)?'autumn':'winter'; }
+function gBadgeCtx() {
+  if (_bctx) return _bctx;
+  gBadgeMigrate();
+  const g=G(), st=g.stats, H=state.history||[];
+  const days=st.days;
+  const tag={}, nat={}; let memos=0, tmpl=0, longM=0;
+  H.forEach(h=>{
+    const t=h.article && h.article.tag; if (t) tag[t]=(tag[t]||0)+1;
+    const n=h.nature || (h.article && h.article.nature); if (n) nat[n]=(nat[n]||0)+1;
+    if (h.memo && h.memo.trim()) { memos++; if (h.memo.includes('【事実の核心】')) tmpl++; longM=Math.max(longM, h.memo.length); }
+  });
+  const area=computeCoopAreaCounts(), syn=computeSynergies();
+  _bctx = {
+    reads:state.readIds.length, streak:g.streak.best,
+    days:days.length, months:new Set(days.map(d=>d.slice(0,7))).size,
+    seasons:new Set(days.map(gSeasonOf)).size, md:new Set(days.map(d=>d.slice(5))),
+    tag:k=>tag[k]||0, nat:k=>nat[k]||0, area:k=>area[k]||0,
+    areaMin:Math.min(...COOP_AREAS.map(a=>area[a.id]||0)),
+    type:k=>(state.typeCounts||{})[k]||0,
+    memos, tmpl, longM, maxDay:Math.max(0, ...Object.values(st.dayReads)),
+    obs:state.obsidianCount||0, summary:state.summaryCount||0, quiz:state.quizSolved||0,
+    placed:st.placed||0, waters:st.waters||0, harvests:st.harvests||0,
+    creatures:g.creatures.length, syn:syn.pairs.length, size:g.size, glv:gLevel(syn).lv,
+    monuments:['stone','lantern','rainbow'].filter(i=>g.known.includes(i)).length,
+    quests:st.questsDone||0, perfect:st.perfectDays||0, guardsUsed:st.guardsUsed||0,
+    early:st.early||0, night:st.night||0,
+    rss:state.rssArticleCount||0, backups:state.backupCount||(state.lastBackupDate?1:0),
+    custom:(state.articles||[]).filter(a=>String(a.id).startsWith('custom-')).length,
+  };
+  return _bctx;
+}
+
+// ── バッジ定義（tiers: [id, 目標, 名前, 説明, レア度, アイコン, ひみつ?]） ──
+const _B = [];
+function bDef(cat, v, rows) {
+  rows.forEach(([id, target, name, desc, rarity, icon, secret])=>{
+    _B.push({ id, cat, v, target, name, desc, rarity, icon, secret:!!secret,
+      check:()=>{ try { return v(gBadgeCtx()) >= target; } catch(_) { return false; } } });
+  });
+}
+// 📖 読書（9）
+bDef('read', c=>c.reads, [
+  ['first_read',  1,  '初めの一歩',     '記事を1本読了',      1,'📖'],
+  ['read_5',      5,  '継続ウォッチャー','累計5記事を読了',     1,'📗'],
+  ['read_10',     10, 'エコ読書家',     '累計10記事を読了',    1,'📚'],
+  ['read_25',     25, '情報通',         '累計25記事を読了',    2,'🔎'],
+  ['read_50',     50, '環境ウォッチャー','累計50記事を読了',    2,'🗞️'],
+  ['read_100',    100,'百読の達人',     '累計100記事を読了',   3,'💯'],
+  ['read_200',    200,'知の探究者',     '累計200記事を読了',   3,'🔭'],
+  ['read_300',    300,'三百の知恵',     '累計300記事を読了',   3,'📕'],
+  ['read_365',    365,'一年分の学び',   '累計365記事を読了',   4,'🌏'],
+]);
+// 🔥 連続記録（8）
+bDef('streak', c=>c.streak, [
+  ['streak3',   3,  '三日坊主卒業',   '3日連続で水やり',   1,'🌱'],
+  ['streak7',   7,  '一週間の庭師',   '7日連続で水やり',   1,'🔥'],
+  ['streak14',  14, '二週間の約束',   '14日連続で水やり',  2,'🌿'],
+  ['streak30',  30, 'ひと月の習慣',   '30日連続で水やり',  2,'🌳'],
+  ['streak60',  60, 'ふた月の根っこ', '60日連続で水やり',  3,'🪵'],
+  ['streak100', 100,'百日の森',       '100日連続で水やり', 3,'🌲'],
+  ['streak200', 200,'二百日の大樹',   '200日連続で水やり', 4,'🌴'],
+  ['streak365', 365,'一年の年輪',     '365日連続で水やり', 4,'🏞️'],
+]);
+// 📅 活動日数・月数・季節・記念日（12）
+bDef('days', c=>c.days, [
+  ['days10',  10, '10日の芽吹き',   '記事を読んだ日が通算10日',  1,'🗓️'],
+  ['days30',  30, '30日の歩み',     '記事を読んだ日が通算30日',  2,'👣'],
+  ['days100', 100,'100日の学び舎',  '記事を読んだ日が通算100日', 3,'🏫'],
+  ['days300', 300,'300日の物語',    '記事を読んだ日が通算300日', 4,'📜'],
+]);
+bDef('days', c=>c.months, [
+  ['months3',  3, '季節をまたいで', '3か月にわたって活動',  2,'🍃'],
+  ['months6',  6, '半年の継続',     '6か月にわたって活動',  3,'🌗'],
+  ['months12', 12,'一年完走',       '12か月にわたって活動', 4,'🏆'],
+]);
+bDef('days', c=>c.seasons, [['seasons4', 4, '四季をめぐる', '春夏秋冬それぞれの季節に記事を読了', 3,'🌸']]);
+bDef('days', c=>c.md.has('04-22')?1:0, [['earthday',    1,'アースデイの学び',  '4月22日（アースデイ）に記事を読了',          2,'🌍']]);
+bDef('days', c=>c.md.has('06-05')?1:0, [['envday',      1,'環境の日の学び',    '6月5日（環境の日）に記事を読了',             2,'🌿']]);
+bDef('days', c=>c.md.has('10-30')?1:0, [['foodlossday', 1,'食品ロス削減の日',  '10月30日（食品ロス削減の日）に記事を読了',  2,'🍙']]);
+bDef('days', c=>c.md.has('01-01')?1:0, [['newyear',     1,'新年の誓い',        '1月1日に記事を読了',                          2,'🎍']]);
+// 🏷️ テーマ（12）
+[
+  ['フードロス',             'food', ['もったいない探偵','🍱'], ['食品ロスの守り人','🥡']],
+  ['脱炭素・再エネ',         'co2',  ['再エネ見習い','☀️'],     ['カーボンハンター','⚡']],
+  ['プラスチック・資源循環', 'plas', ['循環の見習い','♻️'],     ['サーキュラー職人','🔁']],
+  ['ESG評価・表彰',          'esg',  ['評価ウォッチャー','📊'], ['ESGアナリスト','🏅']],
+  ['生物多様性・森林',       'bio',  ['森の案内人','🌲'],       ['いきもの博士','🦋']],
+  ['経済・ルール形成',       'rule', ['ルール探検家','⚖️'],     ['ルールメイカー','📐']],
+].forEach(([t, k, lo, hi])=>bDef('theme', c=>c.tag(t), [
+  [`tag_${k}_3`,  3,  lo[0], `#${t} の記事を3本読了`,  1, lo[1]],
+  [`tag_${k}_15`, 15, hi[0], `#${t} の記事を15本読了`, 2, hi[1]],
+]));
+// 🏪 生協事業領域（7）
+[
+  ['食堂・フード',         'food', '食堂マイスター',     '🍽️'],
+  ['購買・商品調達',       'buy',  '購買バイヤー',       '📦'],
+  ['店舗運営・省エネ',     'shop', '省エネ店長',         '💡'],
+  ['学生企画・啓発',       'stu',  '企画プロデューサー', '🎓'],
+  ['組織方針・ガバナンス', 'gov',  'ガバナンス参謀',     '🏛️'],
+].forEach(([a, k, name, icon])=>bDef('coop', c=>c.area(a), [[`area_${k}`, 10, name, `「${a}」タグで10本読了`, 2, icon]]));
+bDef('coop', c=>c.areaMin, [
+  ['all_areas', 1, '全領域カバー',         '全5つの事業領域タグで各1本以上読了', 2,'🌈'],
+  ['all_areas5',5, '生協オールラウンダー', '全5つの事業領域タグで各5本以上読了', 3,'🧩'],
+]);
+// 🗂️ 種別・事例の性質（9）
+bDef('type', c=>c.type('自治体'),     [['muni_hunter',2,'自治体ハンター','自治体の記事を2本読了',1,'🏢'], ['muni_20',20,'自治体通','自治体の記事を20本読了',2,'🗾']]);
+bDef('type', c=>c.type('企業・評価'), [['esg_master',2,'企業評価アナリスト','企業・評価の記事を2本読了',1,'🏬'], ['corp_20',20,'企業評価の目利き','企業・評価の記事を20本読了',2,'🔬']]);
+bDef('type', c=>c.type('世界動向'),   [['world_2',2,'世界の窓','世界動向の記事を2本読了',1,'🌐'], ['world_20',20,'グローバル視点','世界動向の記事を20本読了',2,'✈️']]);
+bDef('type', c=>c.nat('義務・規制動向'), [['nat_rule', 5,'規制ウォッチャー','「義務・規制動向」の記事を5本読了',2,'🚨']]);
+bDef('type', c=>c.nat('先進事例・表彰'), [['nat_case', 5,'事例コレクター',  '「先進事例・表彰」の記事を5本読了',2,'🌟']]);
+bDef('type', c=>c.nat('補助・連携機会'), [['nat_link', 5,'連携の種まき',    '「補助・連携機会」の記事を5本読了',2,'🤝']]);
+// 🔮 メモ・Obsidian（13）
+bDef('memo', c=>c.memos, [
+  ['memo_1',  1,  'はじめての気づき', '気づきメモを1件書く',   1,'✏️'],
+  ['memo_10', 10, 'メモ習慣',         '気づきメモを10件書く',  1,'📝'],
+  ['memo_50', 50, '気づきの宝庫',     '気づきメモを50件書く',  2,'🗒️'],
+  ['memo_150',150,'知見のアーカイブ', '気づきメモを150件書く', 3,'🗃️'],
+]);
+bDef('memo', c=>c.obs, [
+  ['obsidian_1', 1,  '知識の錬金術師', 'Obsidianにメモを1件送信',   1,'🔮'],
+  ['obs_5',      5,  '第二の脳',       'Obsidianにメモを5件送信',   1,'🧠'],
+  ['obs_20',     20, 'ノートの庭師',   'Obsidianにメモを20件送信',  2,'🪴'],
+  ['obs_50',     50, 'ナレッジ建築家', 'Obsidianにメモを50件送信',  3,'🏗️'],
+  ['obs_100',    100,'百冊のノート',   'Obsidianにメモを100件送信', 4,'🗄️'],
+]);
+bDef('memo', c=>c.tmpl,  [['tmpl_3',  3,  '3問の型',  '3問テンプレを使ったメモを3件書く', 1,'📋']]);
+bDef('memo', c=>c.longM, [['long_memo',200,'熱量メモ', '200字以上の気づきメモを書く',      2,'♨️']]);
+bDef('memo', c=>c.summary, [
+  ['summary_maker', 1, '振り返りの達人', '振り返りサマリーをObsidianへ出力',     2,'🪞'],
+  ['summary_12',    12,'振り返りの年輪', '振り返りサマリーを12回出力',          3,'📈'],
+]);
+// 💡 クイズ（4）
+bDef('quiz', c=>c.quiz, [
+  ['quiz_winner', 1, 'エコクイズ王',  'クイズに1問正解',  1,'💡'],
+  ['quiz_5',      5, 'クイズ常連',    'クイズに5問正解',  1,'❓'],
+  ['quiz_10',     10,'物知り博士',    'クイズに10問正解', 2,'🧐'],
+  ['quiz_30',     30,'クイズマスター','クイズに30問正解', 3,'🎯'],
+]);
+// 🏡 庭（12）
+bDef('garden', c=>c.placed,    [['place_1',1,'はじめての配置','庭にアイテムを配置',1,'⛏️']]);
+bDef('garden', c=>c.waters,    [['water_20',20,'じょうろ見習い','庭に20回水やり',1,'🚿'], ['water_100',100,'水やり名人','庭に100回水やり',2,'💦']]);
+bDef('garden', c=>c.harvests,  [['harvest_1',1,'初収穫','コンポストの力で収穫',1,'🧺'], ['harvest_30',30,'豊作の庭','30回収穫',3,'🥕']]);
+bDef('garden', c=>c.creatures, [['creature_1',1,'最初のお客様','生き物が初めて来訪',1,'🐞'], ['gardener',5,'庭づくり名人','生き物を5種発見',2,'🦔'], ['creature_16',16,'生き物コンプリート','全16種の生き物を発見',4,'🦊']]);
+bDef('garden', c=>c.syn,       [['synergy',3,'シナジーの達人','シナジーを3件同時発動',2,'✨']]);
+bDef('garden', c=>c.size,      [['size_7',7,'広大な庭','庭を7×7に拡張',3,'🗺️']]);
+bDef('garden', c=>c.glv,       [['glv_6',6,'サステナの楽園','庭レベル6に到達',4,'🌺']]);
+bDef('garden', c=>c.monuments, [['monuments',3,'記念碑コレクター','記念オブジェ3種をすべて獲得',3,'🗿']]);
+// ✨ 習慣・ひみつ（14）
+bDef('habit', c=>c.quests,     [['quest_1',1,'クエスト初挑戦','デイリークエストを1つ達成',1,'📌'], ['quest_30',30,'クエストハンター','クエストを30個達成',2,'🎒'], ['quest_100',100,'クエストの鬼','クエストを100個達成',3,'⚔️'], ['quest_300',300,'伝説の冒険者','クエストを300個達成',4,'👑']]);
+bDef('habit', c=>c.perfect,    [['perfect_1',1,'パーフェクトデイ','1日のクエストを全達成',1,'🎁'], ['perfect_30',30,'完璧な30日','全達成の日が30日',3,'💎']]);
+bDef('habit', c=>c.guardsUsed, [['guard_used',1,'雨にも負けず','雨の日ガードで連続記録を守る',1,'☔']]);
+bDef('habit', c=>c.early,      [['early_bird',1,'早起きは三文の徳','朝5〜7時に記事を読了',2,'🐓',true]]);
+bDef('habit', c=>c.night,      [['night_owl',1,'夜ふかし学習者','23〜4時に記事を読了',1,'🌙',true]]);
+bDef('habit', c=>c.maxDay,     [['binge_5',5,'集中読書デー','1日に5記事を読了',2,'🚀'], ['binge_10',10,'読書の嵐','1日に10記事を読了',3,'🌪️',true]]);
+bDef('habit', c=>c.rss,        [['rss_user',1,'RSS活用家','RSSフィードから記事を取得',1,'📡']]);
+bDef('habit', c=>c.backups,    [['backup_1',1,'備えあれば','JSONバックアップを取る',1,'💾']]);
+bDef('habit', c=>c.custom,     [['custom_1',1,'自分で見つけた','記事を手動で追加',1,'🔖']]);
+
+// 初期値が0でないバッジは、スタート地点からの進み具合で「次に狙える」を判定
+_B.forEach(b=>{ if (b.id==='size_7') b.base=4; if (b.id==='glv_6') b.base=1; });
+BADGES.length = 0;
+_B.forEach(b=>BADGES.push(b));
+
+// ── 獲得判定（保存のたびに自動チェック） ─────────────────────────
+function gCheckBadges(silent) {
+  if (!state.badgesGot) state.badgesGot = {};
+  _bctx = null;
+  const got = state.badgesGot, g = G();
+  BADGES.forEach(b=>{
+    if (got[b.id] || !b.check()) return;
+    got[b.id] = gToday();
+    if (silent) return;
+    const r = BADGE_RARITY[b.rarity] || BADGE_RARITY[1];
+    g.bonus += r.reward;
+    gCelebrate(b.icon, `バッジ獲得：${b.name}`, `${r.label}｜${b.desc}（🌰+${r.reward}）`);
+  });
+  _bctx = null;
+}
+
+// ── バッジコレクション画面 ───────────────────────────────────────
+let gBadgeFilter = 'all';
+function setBadgeFilter(f, elId) { gBadgeFilter = f; renderBadgeCollection(elId); }
+function renderBadgeCollection(elId) {
+  const el = document.getElementById(elId); if (!el) return;
+  _bctx = null;
+  const got = state.badgesGot || {}, c = gBadgeCtx();
+  const n = BADGES.filter(b=>got[b.id]).length, total = BADGES.length;
+  const prog = b => [Math.min(b.target, b.v(c)), b.target];
+  const CAL={earthday:'04-22',envday:'06-05',foodlossday:'10-30',newyear:'01-01'}, todayMD=gToday().slice(5);
+  const next = BADGES.filter(b=>!got[b.id] && !b.secret && (!CAL[b.id] || CAL[b.id]===todayMD)).map(b=>{ const p=prog(b), base=b.base||0; return { b, p, ratio:Math.max(0,(p[0]-base)/(p[1]-base)) }; })
+    .filter(x=>x.ratio<1).sort((a,b)=>b.ratio-a.ratio || a.b.rarity-b.b.rarity || a.b.target-b.b.target).slice(0,3);
+  const rar = [1,2,3,4].map(r=>{ const all=BADGES.filter(b=>b.rarity===r); return `<span class="px-2 py-0.5 rounded-full border text-[10px] font-bold" style="border-color:${BADGE_RARITY[r].bd};color:${BADGE_RARITY[r].tx};background:${BADGE_RARITY[r].bg}">${BADGE_RARITY[r].label} ${all.filter(b=>got[b.id]).length}/${all.length}</span>`; }).join('');
+  const chips = [{ id:'all', label:'すべて', e:'🏅' }, ...BADGE_CATS].map(cat=>{
+    const inCat = BADGES.filter(b=>cat.id==='all' || b.cat===cat.id), cg = inCat.filter(b=>got[b.id]).length, on = gBadgeFilter===cat.id;
+    return `<button onclick="setBadgeFilter('${cat.id}','${elId}')" class="shrink-0 px-2.5 py-1.5 rounded-xl text-[11px] font-bold border transition ${on?'bg-slate-800 text-white border-slate-800':'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}">${cat.e} ${cat.label} <span class="${on?'text-slate-300':'text-slate-400'}">${cg}/${inCat.length}</span></button>`;
+  }).join('');
+  const card = b=>{
+    const r = BADGE_RARITY[b.rarity], have = got[b.id];
+    if (have) return `<div class="rounded-xl p-2 text-center border-2" style="border-color:${r.bd};background:${r.bg}">
+        <div class="text-3xl leading-none mt-1">${b.icon}</div>
+        <p class="font-bold text-[11px] text-slate-800 mt-1.5 leading-tight">${b.name}</p>
+        <p class="text-[9px] text-slate-500 mt-0.5 leading-tight">${b.desc}</p>
+        <p class="text-[9px] font-bold mt-1" style="color:${r.tx}">${r.label}・${have}</p></div>`;
+    if (b.secret) return `<div class="rounded-xl p-2 text-center border border-dashed border-slate-300 bg-slate-50">
+        <div class="text-3xl leading-none mt-1 opacity-40">❓</div>
+        <p class="font-bold text-[11px] text-slate-400 mt-1.5">？？？</p>
+        <p class="text-[9px] text-slate-400 mt-0.5">ひみつのバッジ</p></div>`;
+    const [cur, t] = prog(b), base=b.base||0, pct = Math.round(Math.max(0,(cur-base)/(t-base))*100);
+    return `<div class="rounded-xl p-2 text-center border border-slate-200 bg-slate-50">
+        <div class="text-3xl leading-none mt-1" style="filter:grayscale(1);opacity:.35">${b.icon}</div>
+        <p class="font-bold text-[11px] text-slate-500 mt-1.5 leading-tight">${b.name}</p>
+        <p class="text-[9px] text-slate-400 mt-0.5 leading-tight">${b.desc}</p>
+        ${t>1?`<div class="h-1 bg-slate-200 rounded-full overflow-hidden mt-1.5"><div class="h-full rounded-full" style="width:${pct}%;background:${r.bd}"></div></div><p class="text-[9px] text-slate-400 mt-0.5">${cur}/${t}</p>`:''}</div>`;
+  };
+  const list = BADGES.filter(b=>gBadgeFilter==='all' || b.cat===gBadgeFilter);
+  el.className = '';
+  el.innerHTML = `
+    <div class="rounded-2xl p-3.5 mb-3 text-white" style="background:linear-gradient(135deg,#164A31,#2E7D52)">
+      <div class="flex items-end justify-between"><p class="text-xs font-bold text-emerald-100">🏅 バッジコレクション</p><p><span class="text-2xl font-black text-[#F4C34F]">${n}</span><span class="text-xs text-emerald-100"> / ${total}</span></p></div>
+      <div class="h-2 bg-black/25 rounded-full overflow-hidden mt-2"><div class="h-full bg-[#F4C34F] rounded-full transition-all duration-700" style="width:${Math.round(n/total*100)}%"></div></div>
+      <div class="flex flex-wrap gap-1 mt-2.5">${rar}</div>
+    </div>
+    ${next.length?`<div class="bg-amber-50 border border-amber-200 rounded-2xl p-3 mb-3">
+      <p class="text-[11px] font-black text-amber-900 mb-2">🎯 次に狙えるバッジ</p>
+      <div class="space-y-2">${next.map(x=>`<div class="flex items-center gap-2.5"><span class="text-xl">${x.b.icon}</span><div class="flex-1 min-w-0">
+        <div class="flex justify-between text-[11px] font-bold text-slate-700"><span class="truncate">${x.b.name}</span><span class="shrink-0 text-slate-500">${x.p[0]}/${x.p[1]}</span></div>
+        <div class="h-1.5 bg-amber-100 rounded-full overflow-hidden mt-1"><div class="h-full bg-amber-400 rounded-full" style="width:${Math.max(4,Math.round(x.ratio*100))}%"></div></div>
+        <p class="text-[10px] text-slate-500 mt-0.5">${x.b.desc}</p></div></div>`).join('')}</div></div>`:''}
+    <div class="flex gap-1.5 overflow-x-auto no-scrollbar pb-2 mb-1">${chips}</div>
+    <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">${list.map(card).join('')}</div>
+    <p class="text-[10px] text-slate-400 mt-3 leading-relaxed">獲得するとレア度に応じて🌰どんぐり（ブロンズ5・シルバー15・ゴールド40・レジェンド100）がもらえます。</p>`;
+}
+
+// ── 統計の記録（読了時刻・日別読了数・クエスト・ガード使用） ─────
+const _bOrigOnRead = gardenOnRead;
+gardenOnRead = function(art, memo, sent, coopAreas) {
+  gBadgeMigrate();
+  const st = G().stats, t = gToday(), hr = new Date().getHours();
+  if (!st.days.includes(t)) st.days.push(t);
+  st.dayReads[t] = (st.dayReads[t]||0) + 1;
+  if (hr>=5 && hr<7) st.early = (st.early||0) + 1;
+  if (hr>=23 || hr<4) st.night = (st.night||0) + 1;
+  _bOrigOnRead(art, memo, sent, coopAreas);
+};
+const _bOrigQuest = questProgress;
+questProgress = function(type, n) {
+  const g = G(); ensureQuests();
+  const before = g.quests.list.filter(q=>q.done).length, wasAll = g.quests.allDone;
+  _bOrigQuest(type, n);
+  const st = g.stats;
+  st.questsDone = (st.questsDone||0) + (g.quests.list.filter(q=>q.done).length - before);
+  if (!wasAll && g.quests.allDone) st.perfectDays = (st.perfectDays||0) + 1;
+};
+const _bOrigExport = exportJSON;
+exportJSON = function() { state.backupCount = (state.backupCount||0) + 1; _bOrigExport(); };
+
+// ── 保存のたびにバッジ判定 ───────────────────────────────────────
+const _bOrigSave = saveState; let _bSaving = false;
+saveState = function() {
+  if (!_bSaving && state.badgesGot) { _bSaving = true; try { gCheckBadges(gSilent); } finally { _bSaving = false; } }
+  _bOrigSave();
+};
+
+// ── 画面への反映 ─────────────────────────────────────────────────
+const _bOrigBadgesView = renderBadgesView;
+renderBadgesView = function() { _bOrigBadgesView(); renderBadgeCollection('bv-badges-grid'); };
+const _bOrigCollection = openCollectionModal;
+openCollectionModal = function() { _bOrigCollection(); renderBadgeCollection('badges-grid'); };
+
+const _bOrigInit = init;
+init = function() {
+  _bOrigInit();
+  if (!state.badgesGot) {           // 既存の実績は静かに付与（お祝い連発を防ぐ）
+    state.badgesGot = {};
+    gBadgeMigrate(); gCheckBadges(true); _bOrigSave();
+  }
 };
 
 window.addEventListener('resize', updateDashboardUI);
