@@ -1341,9 +1341,15 @@ function renderFeedTab() {
             <p class="text-xs font-bold text-slate-600 truncate">${escapeHtml(art.source)}</p>
             <span class="text-[11px] font-bold text-emerald-700">#${art.tag}</span>
           </div>
-          <span class="bg-slate-100 group-hover:bg-emerald-600 group-hover:text-white text-slate-600 p-2 rounded-xl transition shrink-0">
-            <i data-lucide="book-open" class="w-4 h-4"></i>
-          </span>
+          <div class="flex items-center gap-1.5 shrink-0">
+                <button onclick="event.stopPropagation(); openArticleMemo('${art.id}')"
+                  class="bg-purple-100 hover:bg-purple-200 active:bg-purple-300 text-purple-700 px-2.5 py-2 rounded-xl transition text-xs font-bold flex items-center gap-1"
+                  title="読了メモを書く">✍️ <span class="hidden sm:inline">メモ</span>
+                </button>
+                <span class="bg-slate-100 group-hover:bg-emerald-600 group-hover:text-white text-slate-600 p-2 rounded-xl transition">
+                  <i data-lucide="external-link" class="w-4 h-4"></i>
+                </span>
+              </div>
         </div>
       </div>`;
   }).join('');
@@ -1412,7 +1418,12 @@ function renderReadLaterTab() {
         <span class="text-[11px] font-bold text-emerald-700">#${art.tag}</span>
       </div>
       <div class="flex items-center justify-between pt-2.5 border-t border-slate-100 mt-2">
-        <button onclick="openArticleReader('${art.id}')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition">今すぐ読む</button>
+        <div class="flex items-center gap-2">
+          <button onclick="openArticleReader('${art.id}')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1.5">
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>ブラウザで読む
+          </button>
+          <button onclick="openArticleMemo('${art.id}')" class="bg-purple-100 hover:bg-purple-200 text-purple-700 text-xs font-bold px-2.5 py-2 rounded-xl transition">✍️ メモ</button>
+        </div>
         <button onclick="removeReadLater('${art.id}')" class="text-xs font-bold text-slate-400 hover:text-slate-600 py-1">リストから削除</button>
       </div>
     </div>`).join('');
@@ -1563,92 +1574,42 @@ async function fetchHTMLviaProxy(url) {
   return Promise.any([p1, p2, p3]);
 }
 
-async function openArticleReader(id) {
+async // 記事カードタップ → ブラウザで直接開く
+function openArticleReader(id) {
   const art = state.articles.find(a => a.id === id);
   if (!art) return;
   if (art.readLater) { art.readLater = false; updateReadLaterBadge(); saveState(); }
   state.activeArticle = art;
+  window.open(art.url, '_blank', 'noopener,noreferrer');
+}
 
-  // 上部バー
-  document.getElementById('reader-source-badge').textContent = `${art.type} | ${art.source}`;
-  document.getElementById('reader-title').textContent = art.title;
-  document.getElementById('reader-external-link').href = art.url;
-  document.getElementById('fallback-link').href = art.url;
+// ✍️ メモボタン → 読了メモ入力画面を直接開く
+function openArticleMemo(id) {
+  const art = state.articles.find(a => a.id === id);
+  if (!art) return;
+  state.activeArticle = art;
 
-  // モーダルを開いてローディング表示
-  const modal = document.getElementById('reader-modal');
-  modal.classList.remove('hidden'); modal.classList.add('flex');
-  setReaderState('loading');
-  document.getElementById('reader-loading-msg').textContent = '記事を取得中...';
+  document.getElementById('memo-article-title').textContent = art.title;
+  document.getElementById('memo-textarea').value = '';
+  document.getElementById('clipboard-banner').classList.add('hidden');
 
-  try {
-    // ── STEP 1: プロキシ経由でHTML取得 ──
-    const html = await fetchHTMLviaProxy(art.url);
-    document.getElementById('reader-loading-msg').textContent = '本文を抽出中...';
+  renderNatureBtns('memo-nature-sel', art.nature || '');
+  renderCoopAreaBtns('memo-coop-areas');
+  (art.coopAreas || []).forEach(aId => {
+    const btn = document.querySelector('#memo-coop-areas [data-area="' + aId + '"]');
+    if (btn) { btn.classList.add('coop-btn-sel'); btn.classList.remove('bg-slate-100','text-slate-600','border-slate-200'); }
+  });
 
-    // ── STEP 2: DOMParser でパース ──
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
+  const vault = state.obsidianVault;
+  document.getElementById('obsidian-target-preview').textContent = vault
+    ? (state.obsidianMode === 'append'
+        ? ('追記先: ' + (state.obsidianAppendPath || '未設定'))
+        : ('Vault: 「' + vault + '」/ ' + (state.obsidianFolder || 'ルート')))
+    : '⚠️ Vault未設定（設定から指定できます）';
 
-    // base URLを設定（相対パス解決のため）
-    const existingBase = doc.querySelector('base');
-    if (existingBase) existingBase.href = art.url;
-    else {
-      const base = doc.createElement('base');
-      base.href = art.url;
-      doc.head.prepend(base);
-    }
-
-    // ── STEP 3: Readabilityで本文抽出 ──
-    if (typeof Readability === 'undefined') throw new Error('Readability not loaded');
-    const reader = new Readability(doc, {
-      charThreshold: 20,
-      keepClasses: false,
-    });
-    const parsed = reader.parse();
-    if (!parsed || !parsed.content || parsed.content.trim().length < 100) {
-      throw new Error('extraction failed or content too short');
-    }
-
-    // ── STEP 4: URL絶対化 & サニタイズ ──
-    let content = absolutifyUrls(parsed.content, art.url);
-    if (typeof DOMPurify !== 'undefined') {
-      content = DOMPurify.sanitize(content, {
-        ALLOWED_TAGS: ['p','br','b','strong','i','em','u','s','del','ins',
-          'h1','h2','h3','h4','h5','h6','ul','ol','li','dl','dt','dd',
-          'blockquote','pre','code','table','thead','tbody','tr','th','td',
-          'figure','figcaption','img','a','span','div','article','section',
-          'hr','sup','sub','time'],
-        ALLOWED_ATTR: ['href','src','alt','title','class','id','datetime','target','rel'],
-        FORCE_BODY: true,
-      });
-    }
-
-    // ── STEP 5: 表示 ──
-    document.getElementById('reader-article-body').innerHTML = content;
-    document.getElementById('reader-open-btn').href = art.url;
-
-    // メタバー
-    const bylineParts = [];
-    if (parsed.byline) bylineParts.push(parsed.byline);
-    if (parsed.siteName) bylineParts.push(parsed.siteName);
-    bylineParts.push(art.date);
-    document.getElementById('reader-meta-byline').textContent = bylineParts.join('　|　');
-
-    setReaderState('content');
-    if (window.lucide) lucide.createIcons();
-
-    // 記事内のリンクは新タブで開く
-    document.querySelectorAll('#reader-article-body a').forEach(a => {
-      a.setAttribute('target', '_blank');
-      a.setAttribute('rel', 'noopener noreferrer');
-    });
-
-  } catch(e) {
-    console.warn('Reader fetch/parse failed:', e.message);
-    setReaderState('fallback');
-    if (window.lucide) lucide.createIcons();
-  }
+  const mm = document.getElementById('memo-modal');
+  mm.classList.remove('hidden'); mm.classList.add('flex');
+  if (window.lucide) lucide.createIcons();
 }
 
 function closeReaderOnly() {
@@ -1666,34 +1627,8 @@ function retryArticleLoad() {
 }
 
 function finishReading() {
-  const artForMemo = state.activeArticle; // save ref before closeReaderOnly clears it
-  closeReaderOnly();
-  if (!artForMemo) return;
-  state.activeArticle = artForMemo; // restore for memo modal
-
-  document.getElementById('memo-article-title').textContent = state.activeArticle.title;
-  document.getElementById('memo-textarea').value = '';
-  document.getElementById('clipboard-banner').classList.add('hidden');
-
-  renderNatureBtns('memo-nature-sel', state.activeArticle.nature || '');
-  renderCoopAreaBtns('memo-coop-areas');
-  // Pre-select existing coopAreas
-  (state.activeArticle.coopAreas || []).forEach(aId => {
-    const btn = document.querySelector(`#memo-coop-areas [data-area="${aId}"]`);
-    if (btn) { btn.classList.add('coop-btn-sel'); btn.classList.remove('bg-slate-100','text-slate-600','border-slate-200'); }
-  });
-
-  const vault = state.obsidianVault;
-  const previewText = vault
-    ? (state.obsidianMode === 'append'
-        ? `追記先: ${state.obsidianAppendPath || '未設定'} (Vault: ${vault})`
-        : `Vault: 「${vault}」/ ${state.obsidianFolder || 'ルート'}`)
-    : '⚠️ Vault未設定（設定から指定できます）';
-  document.getElementById('obsidian-target-preview').textContent = previewText;
-
-  const mm = document.getElementById('memo-modal');
-  mm.classList.remove('hidden'); mm.classList.add('flex');
-  if (window.lucide) lucide.createIcons();
+  // openArticleMemo() と同じ処理（リーダーモーダルは使わない）
+  if (state.activeArticle) openArticleMemo(state.activeArticle.id);
 }
 
 // ════════════════════════════════════════════════════════════════
