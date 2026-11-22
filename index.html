@@ -4254,13 +4254,16 @@ init = function() { _cOrigInit(); if (gistOn()) setTimeout(()=>gistSync('startup
 // 📰 NEWS — ニュース自動取得・自動分類・既読タブ
 // ════════════════════════════════════════════════════════════════
 const NEWS_PRESETS = [
-  { q:'食品ロス OR フードロス OR フードバンク',               tag:'フードロス' },
-  { q:'脱炭素 OR カーボンニュートラル OR 再生可能エネルギー', tag:'脱炭素・再エネ' },
-  { q:'プラスチック削減 OR 資源循環 OR リサイクル',           tag:'プラスチック・資源循環' },
-  { q:'大学 環境 取り組み OR SDGs',                            tag:'' },
-  { q:'生物多様性 OR 森林保全 OR ネイチャーポジティブ',       tag:'生物多様性・森林' },
-  { q:'環境 表彰 OR 受賞 OR アワード',                         tag:'ESG評価・表彰' },
+  { q:'食品ロス OR フードロス OR フードバンク',               tag:'フードロス',             when:'14d' },
+  { q:'脱炭素 OR カーボンニュートラル OR 再生可能エネルギー', tag:'脱炭素・再エネ',         when:'7d'  },
+  { q:'プラスチック削減 OR 資源循環 OR リサイクル',           tag:'プラスチック・資源循環', when:'14d' },
+  { q:'大学 SDGs 環境 取り組み',                              tag:'',                       when:'30d' },
+  { q:'生物多様性 OR 森林保全 OR ネイチャーポジティブ',       tag:'生物多様性・森林',       when:'14d' },
+  { q:'環境問題 解説 OR コラム',                              tag:'',                       when:''    },
 ];
+// 環境フィルター：見出しに環境に関わる言葉がない記事は表示しない
+const NEWS_ENV_RE = /食品ロス|フードロス|食ロス|食べ残し|食べきり|フードバンク|フードドライブ|子ども食堂|余剰食品|規格外|食品廃棄|賞味期限|脱炭素|カーボン(?:ニュートラル|オフセット|プライシング|クレジット|フットプリント)|ゼロカーボン|再エネ|再生可能エネルギー|自然エネルギー|太陽光|風力発電|洋上風力|地熱|バイオマス|省エネ|節電|CO2|ＣＯ２|二酸化炭素|温室効果ガス|温暖化|気候変動|気候危機|GX|水素|蓄電池|電気自動車|排出量|プラスチック|プラごみ|マイクロプラ|リサイクル|リユース|リデュース|3R|資源循環|循環型|循環経済|サーキュラー|アップサイクル|ごみ|ゴミ|廃棄物|分別|レジ袋|マイボトル|マイバッグ|容器包装|生物多様性|生態系|森林|里山|里海|植樹|植林|外来種|絶滅危惧|ネイチャーポジティブ|自然保護|自然共生|自然環境|TNFD|30by30|海洋汚染|海洋ごみ|サンゴ|干潟|湿地|ESG|SDGs|ＳＤＧｓ|サステナ|持続可能|エシカル|フェアトレード|環境(?:省|大臣|保全|問題|配慮|負荷|教育|学習|活動|対策|政策|経営|ビジネス|影響|汚染|保護|団体|アセスメント|白書|基本計画|に(?:優しい|やさしい|配慮))|地球環境|公害|水質|大気汚染|COP\d|ＣＯＰ|パリ協定|エコ(?!ノミー|ー)|ビオトープ|コンポスト|堆肥|有機農業|オーガニック|地産地消|グリーン(?:成長|水素|電力|購入|インフラ|トランスフォーメーション)/;
+function newsIsEnv(t) { return NEWS_ENV_RE.test(String(t||'')); }
 const NEWS_THEMES = [
   ['フードロス',             /食品ロス|フードロス|食べ残し|食べきり|フードバンク|フードドライブ|余剰食品|賞味期限|規格外|食品廃棄|mottECO|生ごみ|食ロス|給食/g],
   ['脱炭素・再エネ',         /脱炭素|カーボンニュートラル|再エネ|再生可能エネルギー|太陽光|風力|省エネ|CO2|ＣＯ２|二酸化炭素|温室効果ガス|GX|気候変動|温暖化|水素|蓄電池|ゼロカーボン|排出/g],
@@ -4310,10 +4313,10 @@ function newsCfg() {
 // ── 記事の取り込み・整理 ─────────────────────────────────────────
 function newsMerge(items) {
   const ids = new Set(state.articles.map(a=>a.id)), keys = new Set(state.articles.map(a=>newsKey(a.title))), urls = new Set(state.articles.map(a=>a.url));
-  let added = 0;
+  let added = 0; const hidden = new Set(newsCfg().hidden || []);
   (items||[]).forEach(it=>{
-    if (!it || !it.t || !it.u) return;
-    const k = newsKey(it.t); if (!k || keys.has(k) || urls.has(it.u)) return;
+    if (!it || !it.t || !it.u || !newsIsEnv(it.t)) return;
+    const k = newsKey(it.t); if (!k || hidden.has(k) || keys.has(k) || urls.has(it.u)) return;
     const id = 'gn-' + gHash(k).toString(36);
     if (ids.has(id) || state.readIds.includes(id)) return;
     const d = new Date(it.d || Date.now());
@@ -4325,10 +4328,15 @@ function newsMerge(items) {
   return added;
 }
 function newsPrune() {
-  const read = new Set(state.readIds), cutoff = Date.now() - 21*86400000;
-  state.articles = state.articles.filter(a=>!(a.auto && !read.has(a.id) && !a.readLater && new Date(a.date+'T00:00:00').getTime() < cutoff));
-  const autoUnread = state.articles.filter(a=>a.auto && !read.has(a.id) && !a.readLater).sort((x,y)=>String(y.date).localeCompare(String(x.date)));
-  if (autoUnread.length > 400) { const drop = new Set(autoUnread.slice(400).map(a=>a.id)); state.articles = state.articles.filter(a=>!drop.has(a.id)); }
+  const read = new Set(state.readIds), hidden = new Set(newsCfg().hidden || []), cutoff = Date.now() - 45*86400000;
+  const seenAt = a => a.addedAt || new Date((a.date||'1970-01-01')+'T00:00:00').getTime();
+  state.articles = state.articles.filter(a=>{
+    if (!a.auto || read.has(a.id) || a.readLater) return true;
+    if (!newsIsEnv(a.title) || hidden.has(newsKey(a.title))) return false;   // 環境以外・興味なしは取り除く
+    return seenAt(a) >= cutoff;                                                 // 届いてから45日で整理（古いコラムもすぐには消えない）
+  });
+  const autoUnread = state.articles.filter(a=>a.auto && !read.has(a.id) && !a.readLater).sort((x,y)=>seenAt(y)-seenAt(x));
+  if (autoUnread.length > 500) { const drop = new Set(autoUnread.slice(500).map(a=>a.id)); state.articles = state.articles.filter(a=>!drop.has(a.id)); }
   state.articles.sort((x,y)=>String(y.date||'').localeCompare(String(x.date||'')));
 }
 function newsReclassifyOld() {
@@ -4349,7 +4357,7 @@ const NEWS_PROXIES = [
   u => 'https://api.codetabs.com/v1/proxy?quest=' + encodeURIComponent(u),
   u => 'https://corsproxy.io/?url=' + encodeURIComponent(u),
 ];
-function newsGnUrl(q) { return 'https://news.google.com/rss/search?q=' + encodeURIComponent(q + ' when:7d') + '&hl=ja&gl=JP&ceid=JP:ja'; }
+function newsGnUrl(q, when) { return 'https://news.google.com/rss/search?q=' + encodeURIComponent(when ? `${q} when:${when}` : q) + '&hl=ja&gl=JP&ceid=JP:ja'; }
 async function newsViaProxy(url) {
   for (const p of NEWS_PROXIES) {
     try { const r = await fetchWithTimeout(p(url), 12000); if (!r.ok) continue; const t = await r.text(); if (t.includes('<item')) return t; } catch(_) {}
@@ -4384,12 +4392,12 @@ async function newsRefresh(force) {
     }
     // ② 未設定のときは直接取得（予備）
     if (!got) {
-      for (const p of NEWS_PRESETS) { try { added += newsMerge(newsParseXML(await newsViaProxy(newsGnUrl(p.q)), p.tag)); got = true; } catch(_) {} }
+      for (const p of NEWS_PRESETS) { try { added += newsMerge(newsParseXML(await newsViaProxy(newsGnUrl(p.q, p.when)), p.tag)); got = true; } catch(_) {} }
       if (got) N.source = 'direct';
     }
     // ③ 追加キーワード（6時間ごと）
     if (N.keywords.length && (force || Date.now() - (N.lastKw||0) > 6*3600000)) {
-      for (const kw of N.keywords.slice(0, 5)) { try { added += newsMerge(newsParseXML(await newsViaProxy(newsGnUrl(kw)), '')); got = true; } catch(_) {} }
+      for (const kw of N.keywords.slice(0, 5)) { try { added += newsMerge(newsParseXML(await newsViaProxy(newsGnUrl(kw, '30d')), '')); got = true; } catch(_) {} }
       N.lastKw = Date.now();
     }
     // ④ 自分で登録したRSS（6時間ごと）
@@ -4408,13 +4416,22 @@ async function newsRefresh(force) {
 // ── 最新フィード（未読のみ・30件ずつ） ───────────────────────────
 let newsShown = 30;
 function newsMore() { newsShown += 30; renderArticles(); }
+// 「興味なし」：記事を消し、同じ記事が二度と表示されないようにする（端末間で同期）
+function newsHide(id) {
+  const a = state.articles.find(x=>x.id===id); if (!a) return;
+  const N = newsCfg(); N.hidden = N.hidden || []; const k = newsKey(a.title);
+  if (!N.hidden.includes(k)) N.hidden.push(k); if (N.hidden.length > 1500) N.hidden = N.hidden.slice(-1500);
+  state.articles = state.articles.filter(x=>x.id!==id);
+  saveState(); renderArticles(); updateReadLaterBadge(); showToast('この記事を非表示にしました');
+}
 renderFeedTab = function() {
   const container = document.getElementById('article-list');
   const read = new Set(state.readIds);
   const list = state.articles.filter(a=>!read.has(a.id)
     && (state.selectedType==='ALL' || a.type===state.selectedType)
     && (state.selectedTag==='すべて' || a.tag===state.selectedTag))
-    .sort((x,y)=>String(y.date||'').localeCompare(String(x.date||'')));
+    .sort((x,y)=>{ const dx=x.addedAt?gToday(new Date(x.addedAt)):x.date, dy=y.addedAt?gToday(new Date(y.addedAt)):y.date;
+      return String(dy||'').localeCompare(String(dx||'')) || String(y.date||'').localeCompare(String(x.date||'')); });
   const N = newsCfg();
   const when = N.lastOk ? new Date(N.lastOk).toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}) : '未取得';
   const head = `<div class="col-span-full flex items-center justify-between gap-2 text-[11px] text-slate-500 -mb-1">
@@ -4424,7 +4441,7 @@ renderFeedTab = function() {
       <p class="text-sm font-bold text-slate-700">未読の記事はありません</p><p class="text-xs text-slate-400 mt-1">上の「更新」ボタンで新しいニュースを取得できます</p></div>`;
     return;
   }
-  const dayAgo = Date.now() - 86400000;
+  const dayAgo = Date.now() - 86400000, oldDay = gToday(new Date(Date.now() - 30*86400000));
   container.innerHTML = head + list.slice(0, newsShown).map(art=>`
       <div onclick="openArticleReader('${art.id}')" class="group bg-white active:scale-[0.99] hover:bg-emerald-50/30 rounded-2xl p-4 sm:p-5 border ${art.readLater?'border-dashed border-slate-300':'border-slate-200 hover:border-emerald-400'} shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
         <div>
@@ -4432,6 +4449,7 @@ renderFeedTab = function() {
             <span class="text-[11px] font-bold px-2 py-0.5 rounded-lg border ${typeBadgeColor(art.type)} shrink-0">${art.type}</span>
             <div class="flex flex-wrap items-center gap-1 justify-end">
               ${(art.addedAt||0) > dayAgo ? '<span class="text-[10px] font-black bg-rose-500 text-white px-1.5 py-0.5 rounded">NEW</span>' : ''}
+              ${art.auto && String(art.date) < oldDay ? '<span class="text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200 px-1.5 py-0.5 rounded">📚 過去の記事</span>' : ''}
               ${art.readLater ? '<span class="text-[10px] font-bold bg-slate-700 text-white px-1.5 py-0.5 rounded">📌 あとで</span>' : ''}${naturePill(art.nature)}
               <span class="text-[11px] text-slate-400">${art.date}</span>
             </div>
@@ -4445,6 +4463,7 @@ renderFeedTab = function() {
             <span class="text-[11px] font-bold text-emerald-700">#${art.tag}</span>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
+            ${art.auto ? `<button onclick="event.stopPropagation(); newsHide('${art.id}')" class="bg-slate-50 hover:bg-rose-50 text-slate-400 hover:text-rose-600 px-2 py-2 rounded-xl transition text-[11px] font-bold" title="興味なし（今後表示しない）">興味なし</button>` : ''}
             <button onclick="event.stopPropagation(); openArticleMemo('${art.id}')" class="bg-purple-100 hover:bg-purple-200 active:bg-purple-300 text-purple-700 px-2.5 py-2 rounded-xl transition text-xs font-bold flex items-center gap-1" title="読了メモを書く">✍️ <span class="hidden sm:inline">メモ</span></button>
             <span class="bg-slate-100 group-hover:bg-emerald-600 group-hover:text-white text-slate-600 p-2 rounded-xl transition"><i data-lucide="external-link" class="w-4 h-4"></i></span>
           </div>
@@ -4501,11 +4520,21 @@ init = function() {
   if (!state.typeCounts) state.typeCounts = {};
   if (state.typeCounts['大学・生協'] == null) state.typeCounts['大学・生協'] = 0;
   newsCfg();
-  if (newsReclassifyOld()) saveState();
+  const before = state.articles.length; newsPrune();
+  if (newsReclassifyOld() || state.articles.length !== before) saveState();
   renderArticles();
   setTimeout(()=>newsRefresh(false), 1500);
 };
 
+
+// 「興味なし」の一覧も統合し、相手の端末から戻ってこないようにする
+const _nOrigSyncMerge = syncMerge;
+syncMerge = function(p) {
+  const N = newsCfg(), rh = (p && p.news && Array.isArray(p.news.hidden)) ? p.news.hidden : [];
+  N.hidden = [...new Set([...(N.hidden||[]), ...rh])].slice(-1500);
+  _nOrigSyncMerge(p);
+  newsPrune();
+};
 window.addEventListener('resize', updateDashboardUI);
 window.addEventListener('DOMContentLoaded', init);
 </script>
