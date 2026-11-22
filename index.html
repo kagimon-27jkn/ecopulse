@@ -659,6 +659,7 @@
       <!-- ---- Data Management Tab ---- -->
       <div id="stab-content-data" class="p-5 space-y-4 hidden">
         <div id="cloud-panel" class="rounded-xl p-3 bg-sky-50 border border-sky-200 text-xs"></div>
+        <div id="push-panel" class="rounded-xl p-3 bg-amber-50 border border-amber-200 text-xs"></div>
         <div id="sync-panel" class="rounded-xl p-3 bg-emerald-50 border border-emerald-200 text-xs"></div>
         <div id="backup-status-box" class="rounded-xl p-3 text-xs bg-slate-50 border border-slate-200 text-slate-600"></div>
         <div>
@@ -1736,7 +1737,7 @@ function recordCompletion(memo, sentObsidian, coopAreas, nature) {
     if (state.typeCounts[art.type] !== undefined) state.typeCounts[art.type]++;
   }
   if (sentObsidian) { state.obsidianCount++; state.points += 15; }
-  state.history.push({ article:{...art}, memo, coopAreas:coopAreas||[], nature:nature||'', date:new Date().toISOString().slice(0,10), sentToObsidian:sentObsidian });
+  state.history.push({ article:{...art}, memo, coopAreas:coopAreas||[], nature:nature||'', date:new Date().toISOString().slice(0,10), at:Date.now(), sentToObsidian:sentObsidian });
   saveState(); checkBackupReminder(); renderArticles(); closeMemoModal();
 }
 
@@ -3454,6 +3455,7 @@ function updateGardenHeader() {
       <span class="text-xs font-bold text-slate-700 flex items-center gap-3 flex-wrap">
         <span>${st.state==='done'?'🔥':'💧'} ${st.state==='done'?`連続${st.n}日・今日の水やり済`:'記事を読んで今日の水やり'}</span>
         <span class="text-slate-400">|</span><span>📋 クエスト ${d}/3</span>
+        <span class="text-slate-400">|</span><span>${memoGoalLabel()}</span>
         <span class="text-slate-400 hidden sm:inline">|</span><span class="hidden sm:inline">🌰 ${gCoins()}</span></span>
       <span class="text-[11px] font-bold text-emerald-700 shrink-0">庭へ →</span></button>`;
   }
@@ -4535,6 +4537,152 @@ syncMerge = function(p) {
   _nOrigSyncMerge(p);
   newsPrune();
 };
+
+// ════════════════════════════════════════════════════════════════
+// 🔔 NOTIFY — 1日3本のメモ目標と、20時・22時ごろの通知
+//   通知の送信はGitHub Actions（remind.yml）が担当。
+//   アプリは「鍵の作成」「この端末の宛先登録（Gistに保存）」「目標表示」を行う。
+// ════════════════════════════════════════════════════════════════
+const PUSH_FILE = 'ecopulse_push.json', MEMO_GOAL = 3;
+let _pushPriv = null;   // 作成直後だけ表示する秘密鍵（保存しない）
+
+// ── 今日のメモの本数 ─────────────────────────────────────────────
+function memoTodayCount() {
+  const today = gToday(), utc = new Date().toISOString().slice(0,10);
+  return (state.history||[]).filter(h=>h.memo && h.memo.trim() && (h.at ? gToday(new Date(h.at))===today : h.date===utc)).length;
+}
+function memoGoalLabel() {
+  const n = memoTodayCount();
+  return n >= MEMO_GOAL ? `🎯 今日のメモ ${n}/${MEMO_GOAL} 達成` : `✍️ 今日のメモ ${n}/${MEMO_GOAL}`;
+}
+const _pOrigRecord = recordCompletion;
+recordCompletion = function(memo, sent, coopAreas, nature) {
+  _pOrigRecord(memo, sent, coopAreas, nature);
+  const g = G(), t = gToday();
+  if (memo && memo.trim() && memoTodayCount() >= MEMO_GOAL && g.stats.goalDate !== t) {
+    g.stats.goalDate = t; g.bonus += 10;
+    gCelebrate('🎯', '今日のメモ目標達成！', `メモ${MEMO_GOAL}本を書きました（🌰+10）。今日の通知はお休みです`);
+    saveState();
+  }
+  updateGardenHeader();
+};
+
+// ── 鍵・宛先 ─────────────────────────────────────────────────────
+const b64u = u8 => btoa(String.fromCharCode(...u8)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const ub64u = s => { s = s.replace(/-/g,'+').replace(/_/g,'/'); while (s.length % 4) s += '='; return Uint8Array.from(atob(s), c=>c.charCodeAt(0)); };
+async function pushRead() {
+  const g = await gistFetch('/gists/' + gistCfg().gistId), f = g.files && g.files[PUSH_FILE];
+  if (!f) return { publicKey:null, subs:[] };
+  let t = f.content; if (f.truncated && f.raw_url) t = await (await fetch(f.raw_url, { cache:'no-store' })).text();
+  try { const o = JSON.parse(t); o.subs = o.subs || []; return o; } catch(_) { return { publicKey:null, subs:[] }; }
+}
+async function pushWrite(o) { await gistFetch('/gists/' + gistCfg().gistId, { method:'PATCH', body:{ files:{ [PUSH_FILE]:{ content:JSON.stringify(o, null, 1) } } } }); }
+async function pushMakeKeys() {
+  const kp = await crypto.subtle.generateKey({ name:'ECDSA', namedCurve:'P-256' }, true, ['sign','verify']);
+  return { publicKey: b64u(new Uint8Array(await crypto.subtle.exportKey('raw', kp.publicKey))), privateKey: (await crypto.subtle.exportKey('jwk', kp.privateKey)).d };
+}
+function pushStandalone() { return window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; }
+function pushSupport() {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
+    return /iPhone|iPad/.test(navigator.userAgent) ? 'iPhoneでは、ホーム画面に追加したEcoPulseから開くと通知を使えます（iOS 16.4以降）' : 'このブラウザは通知に対応していません（Chrome・Edgeをお使いください）';
+  }
+  if (/iPhone|iPad/.test(navigator.userAgent) && !pushStandalone()) return 'iPhoneでは、ホーム画面に追加したEcoPulseから開くと通知を使えます';
+  return '';
+}
+async function pushSubscribe(publicKey) {
+  const reg = await navigator.serviceWorker.ready;
+  let sub = await reg.pushManager.getSubscription();
+  if (sub) {
+    const cur = sub.options && sub.options.applicationServerKey ? b64u(new Uint8Array(sub.options.applicationServerKey)) : null;
+    if (cur && cur !== publicKey) { await sub.unsubscribe(); sub = null; }
+  }
+  if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly:true, applicationServerKey: ub64u(publicKey) });
+  const j = sub.toJSON();
+  return { endpoint:j.endpoint, keys:j.keys, device:state.deviceName || 'この端末', deviceId:syncDeviceId(), at:new Date().toISOString() };
+}
+async function pushEnable(regenerate) {
+  const why = pushSupport(); if (why) { showToast('⚠️ ' + why); return; }
+  if (!gistOn()) { showToast('⚠️ 先に「☁️ 自動同期」をオンにしてください'); return; }
+  const perm = await Notification.requestPermission();   // ボタンを押した直後に許可を求める（iPhoneの決まり）
+  if (perm !== 'granted') { showToast('⚠️ 通知が許可されませんでした'); pushRenderPanel(); return; }
+  pushBusy(true);
+  try {
+    let o = await pushRead();
+    if (!o.publicKey || regenerate) {
+      const k = await pushMakeKeys(); o.publicKey = k.publicKey; o.subs = []; _pushPriv = k.privateKey;
+    }
+    const me = await pushSubscribe(o.publicKey);
+    o.subs = o.subs.filter(s=>s.deviceId !== me.deviceId && s.endpoint !== me.endpoint); o.subs.push(me);
+    o.updated = new Date().toISOString();
+    await pushWrite(o);
+    localStorage.setItem('ecopulse_push', JSON.stringify({ on:true, endpoint:me.endpoint, checked:gToday() }));
+    showToast(_pushPriv ? '🔔 通知の準備ができました。下の秘密鍵をGitHubに登録してください' : '🔔 この端末で通知を受け取れるようになりました');
+  } catch(e) { console.error(e); showToast('⚠️ 通知を設定できませんでした（' + (e.message||e) + '）'); }
+  finally { pushBusy(false); pushRenderPanel(); }
+}
+async function pushDisable() {
+  pushBusy(true);
+  try {
+    const reg = await navigator.serviceWorker.ready, sub = await reg.pushManager.getSubscription();
+    const ep = sub && sub.endpoint; if (sub) await sub.unsubscribe();
+    if (gistOn()) { const o = await pushRead(); o.subs = o.subs.filter(s=>s.deviceId !== syncDeviceId() && s.endpoint !== ep); await pushWrite(o); }
+  } catch(_) {}
+  localStorage.removeItem('ecopulse_push'); pushBusy(false); pushRenderPanel(); showToast('この端末の通知をオフにしました');
+}
+async function pushLocalTest() {
+  try { const reg = await navigator.serviceWorker.ready;
+    await reg.showNotification('EcoPulse', { body:`🔔 表示テストです。${memoGoalLabel()}`, icon:'./icon-192.png', tag:'ecopulse-test' });
+  } catch(e) { showToast('⚠️ 表示できませんでした：' + (e.message||e)); }
+}
+function pushCopyPriv() { const t = _pushPriv || ''; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(()=>showToast('📋 秘密鍵をコピーしました')).catch(()=>showToast('長押しして手動でコピーしてください')); }
+let _pushBusy = false; function pushBusy(b) { _pushBusy = b; pushRenderPanel(); }
+// 起動時：宛先が変わっていたら登録し直す（1日1回）
+async function pushRefreshSub() {
+  try {
+    const st = JSON.parse(localStorage.getItem('ecopulse_push') || 'null');
+    if (!st || !st.on || !gistOn() || Notification.permission !== 'granted' || st.checked === gToday()) return;
+    const o = await pushRead(); if (!o.publicKey) return;
+    const me = await pushSubscribe(o.publicKey);
+    if (!o.subs.some(s=>s.endpoint === me.endpoint)) { o.subs = o.subs.filter(s=>s.deviceId !== me.deviceId); o.subs.push(me); await pushWrite(o); }
+    localStorage.setItem('ecopulse_push', JSON.stringify({ on:true, endpoint:me.endpoint, checked:gToday() }));
+  } catch(_) {}
+}
+
+// ── 設定画面の欄 ─────────────────────────────────────────────────
+function pushRenderPanel() {
+  const el = document.getElementById('push-panel'); if (!el) return;
+  const st = JSON.parse(localStorage.getItem('ecopulse_push') || 'null'), why = pushSupport();
+  const perm = ('Notification' in window) ? Notification.permission : 'unsupported';
+  const n = memoTodayCount();
+  let body = '';
+  if (why) body = `<p class="text-[11px] text-amber-800 mt-1.5 font-bold">${escapeHtml(why)}</p>`;
+  else if (!gistOn()) body = `<p class="text-[11px] text-amber-800 mt-1.5 font-bold">先に上の「☁️ 自動同期」をオンにしてください（通知の係がメモの本数を確認するために使います）</p>`;
+  else if (perm === 'denied') body = `<p class="text-[11px] text-rose-700 mt-1.5 font-bold">通知が拒否されています。端末の設定（iPhoneは「設定 → 通知 → EcoPulse」）で許可してから、もう一度お試しください。</p>`;
+  else if (st && st.on && perm === 'granted') body = `
+      <p class="text-[11px] text-emerald-800 mt-1.5 font-bold">✅ この端末で通知を受け取ります（20時ごろ・まだなら22時ごろ）</p>
+      <div class="flex gap-2 mt-2">
+        <button onclick="pushLocalTest()" class="flex-1 bg-white border border-amber-300 text-amber-800 text-xs font-bold py-2 rounded-lg hover:bg-amber-100">表示テスト</button>
+        <button onclick="pushDisable()" class="px-3 border border-slate-300 text-slate-600 text-xs font-bold py-2 rounded-lg hover:bg-slate-50">オフにする</button>
+      </div>
+      <button onclick="if(confirm('通知用の鍵を作り直します。GitHubの秘密鍵も登録し直し、ほかの端末では通知をオンにし直す必要があります。よろしいですか？'))pushEnable(true)" class="mt-1.5 text-[10px] text-slate-500 underline">秘密鍵をなくしたとき：鍵を作り直す</button>`;
+  else body = `<button onclick="pushEnable(false)" ${_pushBusy?'disabled':''} class="w-full mt-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold py-2.5 rounded-lg">${_pushBusy?'設定中…':'🔔 この端末で通知を受け取る'}</button>`;
+  const priv = _pushPriv ? `
+      <div class="mt-2.5 bg-white border-2 border-rose-300 rounded-lg p-2.5">
+        <p class="text-[11px] font-black text-rose-700">🔑 秘密鍵（この画面を閉じると二度と表示されません）</p>
+        <p class="font-mono text-[11px] break-all bg-slate-50 rounded p-1.5 mt-1 select-all">${escapeHtml(_pushPriv)}</p>
+        <button onclick="pushCopyPriv()" class="w-full mt-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2 rounded-lg">秘密鍵をコピー</button>
+        <p class="text-[10px] text-slate-600 mt-1.5 leading-relaxed">GitHubの「Settings → Secrets and variables → Actions → New repository secret」で、名前を <b>VAPID_PRIVATE_KEY</b> にして貼り付けてください。</p>
+      </div>` : '';
+  el.innerHTML = `
+    <div class="flex items-center justify-between"><p class="text-xs font-bold text-slate-800">🔔 通知（1日${MEMO_GOAL}本のメモ目標）</p><span class="text-[11px] font-bold ${n>=MEMO_GOAL?'text-emerald-700':'text-amber-700'}">${memoGoalLabel()}</span></div>
+    <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">今日のメモが${MEMO_GOAL}本に届いていないと、20時ごろに通知します。まだなら22時ごろにもう1回。達成した日は送りません。</p>
+    ${body}${priv}`;
+}
+const _pOrigOpenSettings = openSettingsModal;
+openSettingsModal = function() { _pOrigOpenSettings(); pushRenderPanel(); };
+const _pOrigInit = init;
+init = function() { _pOrigInit(); setTimeout(()=>pushRefreshSub(), 3000); };
+
 window.addEventListener('resize', updateDashboardUI);
 window.addEventListener('DOMContentLoaded', init);
 </script>

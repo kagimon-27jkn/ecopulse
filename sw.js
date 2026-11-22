@@ -6,7 +6,7 @@
  *   - 外部プロキシ / RSS / API リクエスト: ネットワーク専用 (キャッシュしない)
  */
 
-const CACHE_VERSION = 'v12-env-filter';
+const CACHE_VERSION = 'v13-notify';
 const CACHE_NAME = `ecopulse-${CACHE_VERSION}`;
 
 // インストール時に事前キャッシュするファイル
@@ -126,4 +126,25 @@ self.addEventListener('fetch', event => {
       })
     )
   );
+});
+
+// ─── 通知（GitHub Actions から届く） ─────────────────────────────
+self.addEventListener('push', event => {
+  let d = {};
+  try { d = event.data ? event.data.json() : {}; } catch (_) { d = { body: event.data ? event.data.text() : '' }; }
+  event.waitUntil(self.registration.showNotification(d.title || 'EcoPulse', {
+    body: d.body || '今日の環境ニュースを読んでみませんか？',
+    icon: './icon-192.png', badge: './icon-192.png',
+    tag: d.tag || 'ecopulse', renotify: true,
+    data: { url: d.url || self.registration.scope },
+  }));
+});
+// 通知をタップしたらアプリを開く（開いていれば前面に）
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  const url = (event.notification.data && event.notification.data.url) || self.registration.scope;
+  event.waitUntil(clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
+    for (const c of list) { if (c.url.startsWith(self.registration.scope) && 'focus' in c) return c.focus(); }
+    return clients.openWindow(url);
+  }));
 });
